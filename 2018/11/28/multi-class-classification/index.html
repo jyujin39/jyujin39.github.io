@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>multi-class classification | Data Science YJ</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="study">
+    
+    <meta name="description" content="다중 클래스 분류 이진(Binary Class) 분류 : 종속변수의 클래스가 2개인 분류 문제  다중 클래스(Multi-Class) 분류 : 종속변수의 클래스가 3 개 이상인 분류문제  OvO 혹은 OvR 방법을 통해 여러 개의 이진 클래스 분류문제로 변환해서 푼다    OvO (One-vs-One): K개의 타겟 클래스가 존재할 때, 그 중 2개씩 선택해">
+<meta name="keywords" content="study">
+<meta property="og:type" content="article">
+<meta property="og:title" content="multi-class classification">
+<meta property="og:url" content="https://jyujin39.github.io/2018/11/28/multi-class-classification/index.html">
+<meta property="og:site_name" content="Data Science YJ">
+<meta property="og:description" content="다중 클래스 분류 이진(Binary Class) 분류 : 종속변수의 클래스가 2개인 분류 문제  다중 클래스(Multi-Class) 분류 : 종속변수의 클래스가 3 개 이상인 분류문제  OvO 혹은 OvR 방법을 통해 여러 개의 이진 클래스 분류문제로 변환해서 푼다    OvO (One-vs-One): K개의 타겟 클래스가 존재할 때, 그 중 2개씩 선택해">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://jyujin39.github.io/images/image-20181129173641026.png">
+<meta property="og:updated_time" content="2018-11-29T11:42:00.091Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="multi-class classification">
+<meta name="twitter:description" content="다중 클래스 분류 이진(Binary Class) 분류 : 종속변수의 클래스가 2개인 분류 문제  다중 클래스(Multi-Class) 분류 : 종속변수의 클래스가 3 개 이상인 분류문제  OvO 혹은 OvR 방법을 통해 여러 개의 이진 클래스 분류문제로 변환해서 푼다    OvO (One-vs-One): K개의 타겟 클래스가 존재할 때, 그 중 2개씩 선택해">
+<meta name="twitter:image" content="https://jyujin39.github.io/images/image-20181129173641026.png">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">my daily study blog for Data Science</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Math/">Math</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Math/Classification/">Classification</a></li></ul></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Math/Classification/">Classification</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-multi-class-classification" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        multi-class classification
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/11/28/multi-class-classification/" class="article-date">
+            <time datetime="2018-11-28T12:17:36.000Z" itemprop="datePublished">2018-11-28</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/study/">study</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="다중-클래스-분류"><a href="#다중-클래스-분류" class="headerlink" title="다중 클래스 분류"></a>다중 클래스 분류</h1><ul>
+<li><p>이진(Binary Class) 분류 : 종속변수의 클래스가 2개인 분류 문제</p>
+</li>
+<li><p>다중 클래스(Multi-Class) 분류 : 종속변수의 클래스가 3 개 이상인 분류문제</p>
+<ul>
+<li>OvO 혹은 OvR 방법을 통해 여러 개의 이진 클래스 분류문제로 변환해서 푼다</li>
+</ul>
+</li>
+</ul>
+<h3 id="OvO-One-vs-One"><a href="#OvO-One-vs-One" class="headerlink" title="OvO (One-vs-One)"></a>OvO (One-vs-One)</h3><p>: K개의 타겟 클래스가 존재할 때, 그 중 2개씩 선택해 이진 클래스 분류 문제를 풀고, 그 결과로 가장 많은 판별값을 얻은 클래스를 선택하는 방법</p>
+<ul>
+<li>풀어야 하는 이진 클래스분류 문제의 수 :  $ _KC_2 $ </li>
+</ul>
+<p>두 개의 클래스씩 비교했을 때 선택받은 횟수의 총합으로 비교하면 여러 클래스가 동점이 나오는  tie case가 발생할 수 있기 때문에 각 클래스가 얻은 조건부 확률값을 모두 더한 값으로 비교하면 그 문제가 해결된다.</p>
+<p><code>OneVsOneClassifier</code> 클래스를 사용하면 이진 클래스용 모형을 OvO 방법으로 다중 클래스용 모형으로 변환한다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.multiclass <span class="keyword">import</span> OneVsOneClassifier</span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</span><br><span class="line"></span><br><span class="line">model_ovo = OneVsOneClassifier(LogisticRegression()).fit(iris.data, iris.target) </span><br><span class="line">         <span class="comment">#2진 모형 인스턴스를 만들고 OvO로 wrapping하면 내부에서 세 번 경합 실시</span></span><br></pre></td></tr></table></figure>
+<p>각 클래스가 얻는 조건부 확률값을 합한 값을 <code>decision_function</code>으로 출력한다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ax1 = plt.subplot(<span class="number">211</span>)</span><br><span class="line">pd.DataFrame(model_ovo.decision_function(iris.data)).plot(ax=ax1, legend=<span class="keyword">False</span>)</span><br><span class="line">plt.title(<span class="string">"판별 함수"</span>)</span><br><span class="line">ax2 = plt.subplot(<span class="number">212</span>)</span><br><span class="line">pd.DataFrame(model_ovo.predict(iris.data), columns=[<span class="string">"prediction"</span>]).plot(marker=<span class="string">'o'</span>, ls=<span class="string">""</span>, ax=ax2)</span><br><span class="line">plt.title(<span class="string">"클래스 판별"</span>)</span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20181129173641026.png" alt=""></p>
+<p>​    0(파란색), 1(주황색), 2(초록색)의 총 3개 클래스로 데이터가 판별되었고, 총 세 개의 데이터가 잘못 예측되었음이 확인 가능하다.</p>
+<h3 id="OvR-One-vs-the-Rest"><a href="#OvR-One-vs-the-Rest" class="headerlink" title="OvR (One-vs-the-Rest)"></a>OvR (One-vs-the-Rest)</h3><p>: 클래스 개수가 K개이면 풀어야할 이진분류 문제가 K의 제곱에 비례하여 많아지는 OvO와 달리, OvR은 K개의 문제를 풀면 되기 때문에 훨씬 빠르고 효율적이다.</p>
+<p>클래스 A, B, C가 있을 때,</p>
+<ul>
+<li>A vs B,C        즉,  A vs A$^C$</li>
+<li>B vs A,C          즉,  B vs B$^C$</li>
+<li>C vs A,B          즉,  C vs C$^C$</li>
+</ul>
+<p>이렇게 3 번 이진문제를 푸는데, OvR에서도 판별 결과의 수가 같은 동점 문제가 발생할 수가 있기 때문에 각 클래스가 얻은 조건부 확률값을 더하여 그 값이 +가 나오면 해당 클래스고 -가 나오면 해당 클래스가 아니라고 판단한다. 결과적으로는 +값이 나온 클래스들 중 가장 그 값이 큰 클래스를 정답으로 예측한다.</p>
+<p><code>OneVsRestClassifier</code> 클래스를 사용하면 이진 클래스용 모형을 OvR 방법으로 다중 클래스용 모형으로 변환한다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.multiclass <span class="keyword">import</span> OneVsRestClassifier</span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</span><br><span class="line"></span><br><span class="line">model_ovr = OneVsRestClassifier(LogisticRegression()).fit(iris.data, iris.target)</span><br><span class="line"></span><br><span class="line">ax1 = plt.subplot(<span class="number">211</span>)</span><br><span class="line">pd.DataFrame(model_ovr.decision_function(iris.data)).plot(ax=ax1, legend=<span class="keyword">False</span>)</span><br><span class="line">plt.title(<span class="string">"판별 함수"</span>)</span><br><span class="line">ax2 = plt.subplot(<span class="number">212</span>)</span><br><span class="line">pd.DataFrame(model_ovr.predict(iris.data), columns=[<span class="string">"prediction"</span>]).plot(marker=<span class="string">'o'</span>, ls=<span class="string">""</span>, ax=ax2)</span><br><span class="line">plt.title(<span class="string">"클래스 판별"</span>)</span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20181129175824716.png" alt=""></p>
+<p>​    그래프를 보면 클래스 판별 예측에 실패한 데이터의 수가 약 6개로 OvO보다 예측 성능이 조금 떨어지는 것을 볼 수 있다. 하지만 현실적으로 클래스가 많아지면 OvO는 아예 쓸 수가 없기 때문에 OvR을 쓰는 것이 일반적이다.</p>
+<p><img src="/images/image-20181129180008522.png" alt=""></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://jyujin39.github.io/2018/11/28/multi-class-classification/" data-id="cjp2j4ubo00012kbag1fgg1l1" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/11/28/classification-models/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            classification models
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="no-thumbnail">
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/11/28/classification-models/" class="title">classification models</a></p>
+                            <p class="item-date"><time datetime="2018-11-28T12:17:36.000Z" itemprop="datePublished">2018-11-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/11/28/multi-class-classification/" class="title">multi-class classification</a></p>
+                            <p class="item-date"><time datetime="2018-11-28T12:17:36.000Z" itemprop="datePublished">2018-11-28</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Math/Classification/">Classification</a><span class="category-list-count">2</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/">study</a><span class="tag-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/study/" style="font-size: 10px;">study</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 Yujin Jeon</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'https://jyujin39.github.io/2018/11/28/multi-class-classification/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
