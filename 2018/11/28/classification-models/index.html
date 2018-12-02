@@ -6,26 +6,25 @@
     
 
     
-    <title>classification models | Data Science YJ</title>
+    <title>Data Science YJ</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="study">
+        <meta name="keywords" content="">
     
-    <meta name="description" content="분류모형분류(classification)는 독립 변수 값이 주어졌을 때 그 독립 변수 값과 가장 연관성이 큰 종속변수 카테고리(클래스)를 계산하는 문제이다.  분류 모형의 종류 판별함수(discriminant function) 모형  : 주어진 데이터를 서로 다른 영역으로 나누는 경계면을 찾는다.  확률적 모형   확률적 판별(discriminative)">
-<meta name="keywords" content="study">
+    <meta name="description" content="p(y = k |  x) = f(x)​$$​    확률적 판별 모형에는 로지스틱 회귀모형과 의사결정나무가 있다.​​​​    - 로지스틱 회귀모형​​    1234567​    from sklearn.datasets import make_classification​    from sklearn.linear_model import LogisticRegres">
 <meta property="og:type" content="article">
-<meta property="og:title" content="classification models">
+<meta property="og:title" content="Data Science YJ">
 <meta property="og:url" content="https://jyujin39.github.io/2018/11/28/classification-models/index.html">
 <meta property="og:site_name" content="Data Science YJ">
-<meta property="og:description" content="분류모형분류(classification)는 독립 변수 값이 주어졌을 때 그 독립 변수 값과 가장 연관성이 큰 종속변수 카테고리(클래스)를 계산하는 문제이다.  분류 모형의 종류 판별함수(discriminant function) 모형  : 주어진 데이터를 서로 다른 영역으로 나누는 경계면을 찾는다.  확률적 모형   확률적 판별(discriminative)">
+<meta property="og:description" content="p(y = k |  x) = f(x)​$$​    확률적 판별 모형에는 로지스틱 회귀모형과 의사결정나무가 있다.​​​​    - 로지스틱 회귀모형​​    1234567​    from sklearn.datasets import make_classification​    from sklearn.linear_model import LogisticRegres">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://jyujin39.github.io/images/image-20181128193332516.png">
-<meta property="og:updated_time" content="2018-11-29T11:54:39.081Z">
+<meta property="og:image" content="https://jyujin39.github.io/images/image-20181128200223956.png">
+<meta property="og:updated_time" content="2018-12-02T11:58:31.060Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="classification models">
-<meta name="twitter:description" content="분류모형분류(classification)는 독립 변수 값이 주어졌을 때 그 독립 변수 값과 가장 연관성이 큰 종속변수 카테고리(클래스)를 계산하는 문제이다.  분류 모형의 종류 판별함수(discriminant function) 모형  : 주어진 데이터를 서로 다른 영역으로 나누는 경계면을 찾는다.  확률적 모형   확률적 판별(discriminative)">
-<meta name="twitter:image" content="https://jyujin39.github.io/images/image-20181128193332516.png">
+<meta name="twitter:title" content="Data Science YJ">
+<meta name="twitter:description" content="p(y = k |  x) = f(x)​$$​    확률적 판별 모형에는 로지스틱 회귀모형과 의사결정나무가 있다.​​​​    - 로지스틱 회귀모형​​    1234567​    from sklearn.datasets import make_classification​    from sklearn.linear_model import LogisticRegres">
+<meta name="twitter:image" content="https://jyujin39.github.io/images/image-20181128200223956.png">
     
 
     
@@ -136,7 +135,7 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <a class="page-title-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Math/Classification/">Classification</a>
+    uncategorized
     </h1>
 </div>
 
@@ -144,124 +143,32 @@
                             <article id="post-classification-models" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
     <div class="article-inner">
         
-            <header class="article-header">
-                
-    
-        <h1 class="article-title" itemprop="name">
-        classification models
-        </h1>
-    
-
-            </header>
-        
         
             <div class="article-meta">
                 
     <div class="article-date">
         <a href="/2018/11/28/classification-models/" class="article-date">
-            <time datetime="2018-11-28T12:17:36.000Z" itemprop="datePublished">2018-11-28</time>
+            <time datetime="2018-11-28T12:17:36.526Z" itemprop="datePublished">2018-11-28</time>
         </a>
     </div>
 
 		
 
                 
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/study/">study</a>
-    </div>
-
             </div>
         
         
         <div class="article-entry" itemprop="articleBody">
-            <h1 id="분류모형"><a href="#분류모형" class="headerlink" title="분류모형"></a>분류모형</h1><p><strong>분류</strong>(classification)는 독립 변수 값이 주어졌을 때 그 독립 변수 값과 가장 연관성이 큰 종속변수 카테고리(클래스)를 계산하는 문제이다. </p>
-<h3 id="분류-모형의-종류"><a href="#분류-모형의-종류" class="headerlink" title="분류 모형의 종류"></a>분류 모형의 종류</h3><ul>
-<li>판별함수(discriminant function) 모형</li>
-</ul>
-<p>: 주어진 데이터를 서로 다른 영역으로 나누는 경계면을 찾는다.</p>
-<ul>
-<li><p>확률적 모형 </p>
-<ul>
-<li><p>확률적 판별(discriminative) 모형</p>
-<p>: 주어진 데이터가 특정 카테고리일 조건부확률을  직접 계산한다.</p>
-</li>
-<li><p>확률적 생성(generative) 모형</p>
-<p>: 주어진 데이터가 특정 카테고리일 조건부확률을 베이즈정리를 통해 계산한다.</p>
-</li>
-</ul>
-</li>
-</ul>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>모형</th>
-<th>방법론</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Linear/Quadratic  Discriminant  Analysis</td>
-<td>확률적 생성 모형</td>
-</tr>
-<tr>
-<td>나이브 베이지안 (Naive  Bayes)</td>
-<td>확률적 생성 모형</td>
-</tr>
-<tr>
-<td>로지스틱 회귀 (Logistic Regression)</td>
-<td>확률적 판별 모형</td>
-</tr>
-<tr>
-<td>의사결정나무  (Decision Tree)</td>
-<td>확률적 판별 모형</td>
-</tr>
-<tr>
-<td>퍼셉트론  (Perceptron)</td>
-<td>판별함수 모형</td>
-</tr>
-<tr>
-<td>서포트 벡터 머신 (Support Vector Machine)</td>
-<td>판별함수 모형</td>
-</tr>
-<tr>
-<td>신경망 (Neural Network)</td>
-<td>판별함수 모형</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h3 id="1-확률적-모형"><a href="#1-확률적-모형" class="headerlink" title="1. 확률적 모형"></a>1. 확률적 모형</h3><h4 id="1-확률적-생성모형"><a href="#1-확률적-생성모형" class="headerlink" title="1) 확률적 생성모형"></a>1) 확률적 생성모형</h4><p>조건부확률 기반 생성모형의 장점 중 하나는 클래스가 3개 이상인 경우에도 바로 적용할 수 있다는 점이다.</p>
-<p>생성모형은 더 구하기 쉬운 클래스별 특징 데이터의 확률분포 $ P(x |  y = k) $, 즉 가능도를  먼저 추정한 다음 베이즈 정리를 사용하여 $ P(y = k | x) $ 를 계산한다.</p>
-<script type="math/tex; mode=display">
-P(y = k |  x) = \dfrac{P(x | y = k)P(y  = k)}{P(x)}</script><p>또한 전체확률의 법칙을 이용하여  $ P(x)  $ 를 구할 수 있다. 이 값을 알면  x라는 데이터만 입력되어도 그 데이터 자체가 정상적인 데이터인지 아닌지 판단할 수 있다.</p>
-<script type="math/tex; mode=display">
-P(x)  = \sum^K_{k=1}P(x|y = k)P(y = k)</script><p>확률적 생성모형의 예로 QDA와 Naive Bayesian model이 있다.</p>
-<ul>
-<li><strong>QDA</strong></li>
-</ul>
-<p>QDA(Quadratic Discriminant Analysis)에서는 다음과 같은 코드로 분류문제를 푼다.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.discriminant_analysis <span class="keyword">import</span> QuadraticDiscriminantAnalysis</span><br><span class="line">model = QuadraticDiscriminantAnalysis().fit(X, y)</span><br><span class="line">test_data =  [[<span class="number">0.2</span>, <span class="number">0.2</span>]]</span><br><span class="line">p = model.predict_proba(test_data)</span><br></pre></td></tr></table></figure>
-<p><img src="/images/image-20181128193332516.png" alt=""></p>
-<ul>
-<li><strong>나이브 베이지안 모형</strong></li>
-</ul>
-<p><code>TfidfVectorizer</code> 전처리기는 텍스트 데이터를 BoW에  따라 실수 벡터로 변환한다. </p>
-<p><code>MultinomialNB</code> 모형은 나이브 베이즈 방법으로 분류 문제를 예측한다. </p>
-<p><code>Pipeline</code>을 사용하여 이 두 클래스 객체를 하나의 모형으로 합친다.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> fetch_20newsgroups</span><br><span class="line"><span class="keyword">from</span> sklearn.feature_extraction.text <span class="keyword">import</span> TfidfVectorizer</span><br><span class="line"><span class="keyword">from</span> sklearn.naive_bayes <span class="keyword">import</span> MultinomialNB</span><br><span class="line"><span class="keyword">from</span> sklearn.pipeline <span class="keyword">import</span> Pipeline</span><br><span class="line"></span><br><span class="line">news = fetch_20newsgroups(subset=<span class="string">"all"</span>)</span><br><span class="line">model = Pipeline([</span><br><span class="line">(<span class="string">'vect'</span>, TfidfVectorizer(stop_words=<span class="string">"english"</span>)),</span><br><span class="line">(<span class="string">'nb'</span>, MultinomialNB()),</span><br><span class="line">])</span><br><span class="line">model.fit(news.data, news.target)</span><br></pre></td></tr></table></figure>
-<p><img src="/images/image-20181128195225135.png" alt=""></p>
-<p>​    20개의 클래스 중 3번 클래스에 가장 높은 조건부확률을 갖기 때문에 3번째 클래스에 해당한다고 판별한다.<br>​    </p>
-<h4 id="2-확률적-판별-모형"><a href="#2-확률적-판별-모형" class="headerlink" title="2) 확률적 판별 모형"></a>2) 확률적 판별 모형</h4><p>​    확률적 생성 모형과 달리 확률적 판별 모형에서는  조건부확률 $  p(y = 1 |  x) $ 가 x값에 따라 0에서 1 사이에서 달라지는 값을 갖는 함수라고 가정하고, 그 함수를 직접 찾아낸다.</p>
-<script type="math/tex; mode=display">
-p(y = k |  x) = f(x)</script><p>​ 확률적 판별 모형에는 로지스틱 회귀모형과 의사결정나무가 있다.<br>​<br>​    </p>
-<pre><code>- **로지스틱** **회귀모형**
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> make_classification</span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</span><br><span class="line"></span><br><span class="line">X0, y = make_classification(n_features=<span class="number">1</span>, n_redundant=<span class="number">0</span>,</span><br><span class="line">n_informative=<span class="number">1</span>, n_clusters_per_class=<span class="number">1</span>, random_state=<span class="number">4</span>)</span><br><span class="line">model = LogisticRegression().fit(X0, y)</span><br></pre></td></tr></table></figure>
-</code></pre><p>​    <img src="/images/image-20181128200223956.png" alt=""><br>​<br>​<br>​    </p>
-<pre><code>### 2. 판별함수 기반 모형
-</code></pre><p>​    판별함수 기반 모형은 클래스의 영역을 나누는 경계면 혹은 경계선 함수 $ f(x) ​$ 를 정의하고, 이  판별함수 값의 부호에 따라 클래스가 나뉘어진다.<br>​<br>​    \text{판별 경계선} : f(x) = 0<br>​<br>​<br>​    \text{클래스 1} : f(x) &gt; 0<br>​<br>​<br>​    \text{클래스 0} : f(x) &lt; 0<br>​    $$<br>​    scikit-learn에서는 <code>decision_function</code>메서드를 통해 판별함수 값을 출력할 수 있다.<br>​<br>​    판별함수기반 모형으로는 퍼셉트론과  커널 SVM이 있다.<br>​<br>​<br>​<br>​    - <strong>퍼셉트론</strong><br>​<br>​    가장 단순한 판별함수 모형으로, 두 개의 클래스만 구분해낼 수 있으며 직선으로 구분되는 경계선만을 찾아낸다.<br>​<br>​    <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">​    <span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> Perceptron</span><br><span class="line">​    <span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_iris</span><br><span class="line">​    iris = load_iris()</span><br><span class="line">​    idx = np.in1d(iris.target, [<span class="number">0</span>, <span class="number">2</span>])</span><br><span class="line">​    X = iris.data[idx, <span class="number">0</span>:<span class="number">2</span>]</span><br><span class="line">​    y = iris.target[idx]</span><br><span class="line">​    </span><br><span class="line">​    model = Perceptron(max_iter=<span class="number">100</span>, eta0=<span class="number">0.1</span>, random_state=<span class="number">1</span>).fit(X, y)</span><br><span class="line">​</span><br></pre></td></tr></table></figure></p>
+            <script type="math/tex; mode=display">
+p(y = k |  x) = f(x)</script><p>​$$<br>​    확률적 판별 모형에는 로지스틱 회귀모형과 의사결정나무가 있다.<br>​<br>​<br>​<br>​    - <strong>로지스틱</strong> <strong>회귀모형</strong><br>​<br>​    <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">​    <span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> make_classification</span><br><span class="line">​    <span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</span><br><span class="line">​    </span><br><span class="line">​    X0, y = make_classification(n_features=<span class="number">1</span>, n_redundant=<span class="number">0</span>,</span><br><span class="line">​    n_informative=<span class="number">1</span>, n_clusters_per_class=<span class="number">1</span>, random_state=<span class="number">4</span>)</span><br><span class="line">​    model = LogisticRegression().fit(X0, y)</span><br><span class="line">​</span><br></pre></td></tr></table></figure></p>
+<p>​<br>​    <img src="/images/image-20181128200223956.png" alt=""><br>​<br>​<br>​<br>​    ### 2. 판별함수 기반 모형<br>​<br>​    판별함수 기반 모형은 클래스의 영역을 나누는 경계면 혹은 경계선 함수 $ f(x) ​$ 를 정의하고, 이  판별함수 값의 부호에 따라 클래스가 나뉘어진다.<br>​    <script type="math/tex">$$$$$$
+​    \text{판별 경계선} : f(x) = 0
+​    \</script><br>​    <script type="math/tex">$$$$$$
+​    \text{클래스 1} : f(x) > 0
+​    $$$$$$
+​    $$$$
+​    \text{클래스 0} : f(x) < 0
+​</script><br>​    scikit-learn에서는 <code>decision_function</code>메서드를 통해 판별함수 값을 출력할 수 있다.<br>​<br>​    판별함수기반 모형으로는 퍼셉트론과  커널 SVM이 있다.<br>​<br>​<br>​<br>​    - <strong>퍼셉트론</strong><br>​<br>​    가장 단순한 판별함수 모형으로, 두 개의 클래스만 구분해낼 수 있으며 직선으로 구분되는 경계선만을 찾아낸다.<br>​<br>​    <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">​    <span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> Perceptron</span><br><span class="line">​    <span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_iris</span><br><span class="line">​    iris = load_iris()</span><br><span class="line">​    idx = np.in1d(iris.target, [<span class="number">0</span>, <span class="number">2</span>])</span><br><span class="line">​    X = iris.data[idx, <span class="number">0</span>:<span class="number">2</span>]</span><br><span class="line">​    y = iris.target[idx]</span><br><span class="line">​    </span><br><span class="line">​    model = Perceptron(max_iter=<span class="number">100</span>, eta0=<span class="number">0.1</span>, random_state=<span class="number">1</span>).fit(X, y)</span><br><span class="line">​</span><br></pre></td></tr></table></figure></p>
 <p>​<br>​    <img src="/images/image-20181128201127059.png" alt=""><br>​<br>​    <img src="/images/image-20181128201158344.png" alt=""><br>​<br>​    만약 데이터가 3차원이라면 경계선이 아닌 경계면(boundary surface)를 갖게 된다. 경계면 혹은 경계선을 decision hyperplane 이라고 한다.<br>​<br>​    <img src="/images/image-20181128201256638.png" alt=""><br>​<br>​<br>​<br>​    - <strong>커널 SVM</strong><br>​<br>​    직선인 경계면밖에 구분하지 못하는 퍼셉트론과 달리 곡선인 경계면을 찾아낼수 있다.<br>​<br>​    <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">​    <span class="keyword">from</span> sklearn <span class="keyword">import</span> svm</span><br><span class="line">​    </span><br><span class="line">​    xx, yy = np.meshgrid(np.linspace(<span class="number">-3</span>, <span class="number">3</span>, <span class="number">500</span>),</span><br><span class="line">​    np.linspace(<span class="number">-3</span>, <span class="number">3</span>, <span class="number">500</span>))</span><br><span class="line">​    np.random.seed(<span class="number">0</span>)</span><br><span class="line">​    X = np.random.randn(<span class="number">300</span>, <span class="number">2</span>)</span><br><span class="line">​    Y = np.logical_xor(X[:, <span class="number">0</span>] &gt; <span class="number">0</span>, X[:, <span class="number">1</span>] &gt; <span class="number">0</span>)</span><br><span class="line">​    </span><br><span class="line">​    model = svm.NuSVC().fit(X, Y)</span><br><span class="line">​    Z = model.decision_function(np.c_[xx.ravel(), yy.ravel()])</span><br><span class="line">​    Z = Z.reshape(xx.shape)</span><br><span class="line">​</span><br></pre></td></tr></table></figure></p>
 <p>​<br>​    <img src="/images/image-20181128202549867.png" alt=""><br>​<br>​    <img src="/images/image-20181128202607054.png" alt=""><br>​    </p>
 
@@ -271,7 +178,7 @@ p(y = k |  x) = f(x)</script><p>​ 확률적 판별 모형에는 로지스틱 �
 
 
 
-    <a data-url="https://jyujin39.github.io/2018/11/28/classification-models/" data-id="cjp2k3bko0000a5baqhj17xvc" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://jyujin39.github.io/2018/11/28/classification-models/" data-id="cjp6u8tlx0000wybacku9hxri" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -399,6 +306,15 @@ p(y = k |  x) = f(x)</script><p>​ 확률적 판별 모형에는 로지스틱 �
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/12/02/classification_performance_evaluation/" class="title">classification performance evaluation</a></p>
+                            <p class="item-date"><time datetime="2018-12-01T15:00:00.000Z" itemprop="datePublished">2018-12-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
                             <p class="item-title"><a href="/2018/11/29/multi-class-classification/" class="title">multi-class classification</a></p>
                             <p class="item-date"><time datetime="2018-11-29T11:37:09.440Z" itemprop="datePublished">2018-11-29</time></p>
                         </div>
@@ -407,9 +323,9 @@ p(y = k |  x) = f(x)</script><p>​ 확률적 판별 모형에는 로지스틱 �
                     <li>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
-                            <p class="item-title"><a href="/2018/11/28/classification-models/" class="title">classification models</a></p>
-                            <p class="item-date"><time datetime="2018-11-28T12:17:36.000Z" itemprop="datePublished">2018-11-28</time></p>
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/11/28/classification-models/" class="title"></a></p>
+                            <p class="item-date"><time datetime="2018-11-28T12:17:36.526Z" itemprop="datePublished">2018-11-28</time></p>
                         </div>
                     </li>
                 
@@ -432,7 +348,7 @@ p(y = k |  x) = f(x)</script><p>​ 확률적 판별 모형에는 로지스틱 �
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">2</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">2</span></li></ul>
         </div>
     </div>
 
