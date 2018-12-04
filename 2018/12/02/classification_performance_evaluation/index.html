@@ -21,7 +21,7 @@
 <meta property="og:description" content="분류 성능 평가분류 문제는 회귀분석과 달리 다양한 성능 평가기준이 필요하다. Scikit-Learn에서 제공하는 분류 성능평가 메서드들은 다음과 같다. sklearn.metrics 서브 패키지  confusion_matrix() classfication_report() accuracy_score(y_true, y_pred) precision_score(y_">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://jyujin39.github.io/Users/jeon-yujin/Library/Application%20Support/typora-user-images/image-20181201093234513.png">
-<meta property="og:updated_time" content="2018-12-02T12:04:00.654Z">
+<meta property="og:updated_time" content="2018-12-04T06:49:37.092Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="classification performance evaluation">
 <meta name="twitter:description" content="분류 성능 평가분류 문제는 회귀분석과 달리 다양한 성능 평가기준이 필요하다. Scikit-Learn에서 제공하는 분류 성능평가 메서드들은 다음과 같다. sklearn.metrics 서브 패키지  confusion_matrix() classfication_report() accuracy_score(y_true, y_pred) precision_score(y_">
@@ -311,6 +311,8 @@ F_1 = \dfrac{2\cdot\text{precision}\cdot\text{recall}}{\text{precision} + \text{
 <p>  데이터가 더 많으면 더 곡선에 가까운 형태의 그래프가 그려진다.</p>
 <h3 id="AUC"><a href="#AUC" class="headerlink" title="AUC"></a>AUC</h3><p>분류모델은 Fall-Out 점수가 낮으면서 Recall이 높으면 좋기 때문에 ROC커브 그래프에서는 좌측 상단의 점이 높게 그려질수록 좋은 모델에 해당한다. 따라서 곡선 아래 면적이 클수록 좋은데, 그 면적을 측정한 것이 AUC(Area Under the Curve)이다. AUC가 1에 가까울수록 좋은 모델이라고 볼 수 있다. </p>
 <p><img src="/images/image-20181201101735894.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.metrics import auc</span><br><span class="line">auc(fpr, tpr)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#AUC 결과값</span><br><span class="line">0.9112016520622872</span><br></pre></td></tr></table></figure>
 
         </div>
         <footer class="article-footer">
@@ -318,7 +320,7 @@ F_1 = \dfrac{2\cdot\text{precision}\cdot\text{recall}}{\text{precision} + \text{
 
 
 
-    <a data-url="https://jyujin39.github.io/2018/12/02/classification_performance_evaluation/" data-id="cjp7sk0ab000epqbakoawdar3" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://jyujin39.github.io/2018/12/02/classification_performance_evaluation/" data-id="cjp9dwcgt0001rhbae0bzyilu" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
