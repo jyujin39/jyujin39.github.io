@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>QDA &amp; LDA | Data Science YJ</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="study">
+    
+    <meta name="description" content="QDA와 LDA확률론적 생성모형에서는 베이즈 정리를 사용하여 조건부확률을 계산한다고 했다.   P(y=k\mid x) = \dfrac{P(x\mid y=k)P(y=k)}{P(x)}하나의 독립변수 x에 대해 y가 k일 경우의 조건부확률을 모두 구해서 그 중 가장 값이 큰 y로 추정하는데, 위 베이즈정리 공식에서 분모는 P(x)이므로 이 때 분모값은 고정이다.">
+<meta name="keywords" content="study">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QDA &amp; LDA">
+<meta property="og:url" content="https://jyujin39.github.io/2018/12/06/QDA_LDA/index.html">
+<meta property="og:site_name" content="Data Science YJ">
+<meta property="og:description" content="QDA와 LDA확률론적 생성모형에서는 베이즈 정리를 사용하여 조건부확률을 계산한다고 했다.   P(y=k\mid x) = \dfrac{P(x\mid y=k)P(y=k)}{P(x)}하나의 독립변수 x에 대해 y가 k일 경우의 조건부확률을 모두 구해서 그 중 가장 값이 큰 y로 추정하는데, 위 베이즈정리 공식에서 분모는 P(x)이므로 이 때 분모값은 고정이다.">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://jyujin39.github.io/images/image-20181205185858348.png">
+<meta property="og:updated_time" content="2018-12-06T13:17:13.542Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="QDA &amp; LDA">
+<meta name="twitter:description" content="QDA와 LDA확률론적 생성모형에서는 베이즈 정리를 사용하여 조건부확률을 계산한다고 했다.   P(y=k\mid x) = \dfrac{P(x\mid y=k)P(y=k)}{P(x)}하나의 독립변수 x에 대해 y가 k일 경우의 조건부확률을 모두 구해서 그 중 가장 값이 큰 y로 추정하는데, 위 베이즈정리 공식에서 분모는 P(x)이므로 이 때 분모값은 고정이다.">
+<meta name="twitter:image" content="https://jyujin39.github.io/images/image-20181205185858348.png">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">my daily study blog for Data Science</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Math/">Math</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Math/Classification/">Classification</a></li></ul></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Math/Classification/">Classification</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-QDA_LDA" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        QDA &amp; LDA
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/12/06/QDA_LDA/" class="article-date">
+            <time datetime="2018-12-05T15:00:00.000Z" itemprop="datePublished">2018-12-06</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/study/">study</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="QDA와-LDA"><a href="#QDA와-LDA" class="headerlink" title="QDA와 LDA"></a>QDA와 LDA</h1><p>확률론적 생성모형에서는 베이즈 정리를 사용하여 조건부확률을 계산한다고 했다. </p>
+<script type="math/tex; mode=display">
+P(y=k\mid x) = \dfrac{P(x\mid y=k)P(y=k)}{P(x)}</script><p>하나의 독립변수 x에 대해 y가 k일 경우의 조건부확률을 모두 구해서 그 중 가장 값이 큰 y로 추정하는데, 위 베이즈정리 공식에서 분모는 P(x)이므로 이 때 분모값은 고정이다. 따라서 확률의 크기만을 비교해도 되는 경우에는 현실적으로 분모를 따로 구하지 않고 분자만을 계산해 비교하여 클래스를 판별하기도 한다. </p>
+<script type="math/tex; mode=display">
+P(y=k\mid x) \; \; \propto \;\; P(x\mid y=k)P(y=k)</script><p>여기서 사전확률, 즉 $P(y=k)$ 는 다음처럼 계산한다.</p>
+<script type="math/tex; mode=display">
+P(y=k) \approx \dfrac{\;\;\;y=k\text{인 데이터의 수}\;\;\;}{모든 데이터의 수}</script><p>그리고 가능도 $P(x \mid y=k)$ 는 다음과 같이 계산한다.</p>
+<ol>
+<li><p>$P(x \mid y= k)$ 가 특정한 확률분포 모형을 따른다고 가정한다.</p>
+</li>
+<li><p>k번째 클래스에 속하는 학습데이터 {$x_1, \cdots , x_{N}$} 을 사용하여 이 모형의 모수 값을 구한다.</p>
+</li>
+<li><p>모수값을 알고 있으므로 $P(x \mid y=k)$ 의 확률밀도함수를 구한 것이다. 즉, 새로운 독립변수가 어떤 x가 되더라도 가능도를 구할 수 있다.</p>
+</li>
+</ol>
+<h2 id="QDA"><a href="#QDA" class="headerlink" title="QDA"></a>QDA</h2><p>베이즈 정리를 사용하여 조건부확률 $p(y=k\mid x)$ 을 계산하는 확률적 생성모형 중에서, 독립변수 x가 다변수 가우시안 정규분포(Multivariable Gaussian Normal distribution)을 따른다고 가정하는 모형이 QDA(Quadratic Discriminant Analysis)이다.</p>
+<script type="math/tex; mode=display">
+p(x\mid y=k) = \dfrac{1}{(2\pi)^{D/2}|\Sigma_k|^{1/2}}\text{exp}\left(-\dfrac{1}{2}(x-\mu_k)^T\Sigma_k^{-1}(x-\mu_k)\right)</script><ul>
+<li><p>$\sum_k$ : k클래스에 해당하는 x들의 공분산행렬</p>
+</li>
+<li><p>$\mu_k$ : 1클래스에 해당하는 x들의 평균</p>
+</li>
+</ul>
+<p>이 분포들을 알고 있으면 독립변수 x에 대한 y의 조건부확률 분포는 다음과 같이 베이즈 정리와 전체확률의 법칙으로 구할 수 있다.</p>
+<script type="math/tex; mode=display">
+P(y=k\mid x) = \dfrac{p(x\mid y=k)P(y=k)}{p(x)}=\dfrac{p(x\mid y=k)P(y=k)}{\sum_l p(x\mid y=l)P(y=l)}</script><p>예를 들어 y가 1, 2, 3 세 개의 클래스를 가지고, 각 클래스에서의 x의 확률분포가 다음과 같은 기댓값 및 공분산행렬을 갖는다고 가정하자.</p>
+<script type="math/tex; mode=display">
+\mu_1 = \begin{bmatrix} 0\\0 \end{bmatrix},\;\; \mu_2 = \begin{bmatrix} 1\\1 \end{bmatrix}, \;\;\mu_3 = \begin{bmatrix} -1\\1 \end{bmatrix}\\
+\Sigma_1 = \begin{bmatrix} 0.7 & 0\\0 & 0.7 \end{bmatrix},\;\; \Sigma_2 = \begin{bmatrix} 0.8 & 0.2\\0.2 & 0.8 \end{bmatrix}, \;\; \Sigma_3 = \begin{bmatrix} 0.8 & 0.2\\0.2 & 0.8 \end{bmatrix}</script><p>y의 사전확률은 다음과 같이 동일하다.</p>
+<script type="math/tex; mode=display">
+P(Y = 1) = P(Y=2) = P(Y=3) = \dfrac{1}{3}</script><p>Scikit-Learn은 QDA 모형을 위한<code>QuadraticDiscriminantAnalysis</code> 클래스를 제공한다. 이 클래스로 위에서 가정한 바에 따라 모형을 만들어 보자.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">N = <span class="number">100</span></span><br><span class="line">np.random.seed(<span class="number">0</span>)</span><br><span class="line">X1 = sp.stats.multivariate_normal([<span class="number">0</span>, <span class="number">0</span>], [[<span class="number">0.7</span>, <span class="number">0</span>], [<span class="number">0</span>, <span class="number">0.7</span>]]).rvs(<span class="number">100</span>)</span><br><span class="line">X2 = sp.stats.multivariate_normal([<span class="number">1</span>, <span class="number">1</span>], [[<span class="number">0.8</span>, <span class="number">0.2</span>], [<span class="number">0.2</span>, <span class="number">0.8</span>]]).rvs(<span class="number">100</span>)</span><br><span class="line">X3 = sp.stats.multivariate_normal([<span class="number">-1</span>, <span class="number">1</span>], [[<span class="number">0.8</span>, <span class="number">0.2</span>], [<span class="number">0.2</span>, <span class="number">0.8</span>]]).rvs(<span class="number">100</span>)</span><br><span class="line">y1 = np.zeros(N)</span><br><span class="line">y2 = np.ones(N)</span><br><span class="line">y3 = <span class="number">2</span>*np.ones(N)</span><br><span class="line">X = np.vstack([X1, X2, X3])</span><br><span class="line">y = np.hstack([y1, y2, y3])</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sklearn.discriminant_analysis <span class="keyword">import</span> QuadraticDiscriminantAnalysis</span><br><span class="line">qda = QuadraticDiscriminantAnalysis(store_covariance=<span class="keyword">True</span>).fit(X, y)</span><br><span class="line"><span class="comment">#store_covariance=True로 놓으면 공분산행렬을 제공한다</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">qda.means_ <span class="comment">#각 클래스에서의 추정된 기댓값 벡터 </span></span><br><span class="line"></span><br><span class="line"><span class="comment">#결과</span></span><br><span class="line">array([[<span class="number">-8.01254084e-04</span>,  <span class="number">1.19457204e-01</span>], <span class="comment"># class 1일 때 </span></span><br><span class="line">       [ <span class="number">1.16303727e+00</span>,  <span class="number">1.03930605e+00</span>], <span class="comment">#       2일 때</span></span><br><span class="line">       [<span class="number">-8.64060404e-01</span>,  <span class="number">1.02295794e+00</span>]])<span class="comment">#       3일 때</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">qda.covariance_ <span class="comment">#공분산행렬</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#결과</span></span><br><span class="line">[array([[ <span class="number">0.73846319</span>, <span class="number">-0.01762041</span>],</span><br><span class="line">        [<span class="number">-0.01762041</span>,  <span class="number">0.72961278</span>]]), array([[<span class="number">0.66534246</span>, <span class="number">0.21132313</span>],</span><br><span class="line">        [<span class="number">0.21132313</span>, <span class="number">0.78806006</span>]]), array([[<span class="number">0.9351386</span> , <span class="number">0.22880955</span>],</span><br><span class="line">        [<span class="number">0.22880955</span>, <span class="number">0.79142383</span>]])]</span><br></pre></td></tr></table></figure>
+<p>이 확률분포를 사용하여 분류를 한 결과는 다음과 같다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">x1min, x1max = <span class="number">-5</span>, <span class="number">5</span></span><br><span class="line">x2min, x2max = <span class="number">-4</span>, <span class="number">5</span></span><br><span class="line">XX1, XX2 = np.meshgrid(np.arange(x1min, x1max, (x1max-x1min)/<span class="number">1000</span>),</span><br><span class="line">                       np.arange(x2min, x2max, (x2max-x2min)/<span class="number">1000</span>))</span><br><span class="line">YY = np.reshape(qda.predict(np.array([XX1.ravel(), XX2.ravel()]).T), XX1.shape)</span><br><span class="line">cmap = mpl.colors.ListedColormap(sns.color_palette([<span class="string">"r"</span>, <span class="string">"g"</span>, <span class="string">"b"</span>]).as_hex())</span><br><span class="line">plt.contourf(XX1, XX2, YY, cmap=cmap, alpha=<span class="number">0.5</span>)</span><br><span class="line">plt.scatter(X1[:, <span class="number">0</span>], X1[:, <span class="number">1</span>], alpha=<span class="number">0.8</span>, s=<span class="number">50</span>, marker=<span class="string">"o"</span>, color=<span class="string">'r'</span>, label=<span class="string">"클래스 1"</span>)</span><br><span class="line">plt.scatter(X2[:, <span class="number">0</span>], X2[:, <span class="number">1</span>], alpha=<span class="number">0.8</span>, s=<span class="number">50</span>, marker=<span class="string">"s"</span>, color=<span class="string">'g'</span>, label=<span class="string">"클래스 2"</span>)</span><br><span class="line">plt.scatter(X3[:, <span class="number">0</span>], X3[:, <span class="number">1</span>], alpha=<span class="number">0.8</span>, s=<span class="number">50</span>, marker=<span class="string">"x"</span>, color=<span class="string">'b'</span>, label=<span class="string">"클래스 3"</span>)</span><br><span class="line">plt.xlim(x1min, x1max)</span><br><span class="line">plt.ylim(x2min, x2max)</span><br><span class="line">plt.xlabel(<span class="string">"x1"</span>)</span><br><span class="line">plt.ylabel(<span class="string">"x2"</span>)</span><br><span class="line">plt.title(<span class="string">"QDA 분석 결과"</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20181205185858348.png" alt=""></p>
+<p>이 그래프는 predict    결과를 등고선으로 나타낸 것이다. 경계선이 그려진 영역에서 높이가 구분되고, 다른 곳은 높이가 일정한 평지이다.</p>
+<p>각 영역에 다른 색깔로 misclassification된 데이터들이 많지만 그건 어쩔 수가 없다.</p>
+<ul>
+<li><p>QDA의 약점</p>
+<p>모형을 만들어 예측하려면 독립변수들의 Covariance 행렬을 먼저 추정해내야 한다는 점이다. 데이터가 적을 때는 괜찮지만 현실에서 데이터가 수천 수만개가 되면, 공분산 행렬의 크기는 데이터수의 제곱만큼 커지게 된다. </p>
+<p>데이터가 많아질수록 공분산행렬에는 노이즈가 많아지고, 추정도 부정확하게 된다.</p>
+</li>
+</ul>
+<h2 id="LDA-Linear-discriminant-analysis"><a href="#LDA-Linear-discriminant-analysis" class="headerlink" title="LDA(Linear discriminant analysis)"></a>LDA(Linear discriminant analysis)</h2><p>LDA(Linear Discriminant Analysis)에서는 클래스별로 중심의 위치만 다를 뿐 데이터의 분포는 같다고 가정한다. 즉, 각 클래스 y에 대한 독립변수 x의 조건부 확률분포가 <strong>공통된 공분산 행렬을 갖는</strong> 다변수 가우시안 정규분포라고 가정한다.</p>
+<script type="math/tex; mode=display">
+\Sigma_k = \Sigma  \;\;\;\;\text{for all} \;\;k</script><p>이러한 가정은 현실과는 다를 수 있지만 데이터 자체에 노이즈가 섞이는 것을 막아주어, 분류가 qda보다 오히려 정확하게 이루어질 수 있다. 각 class 영역을 구분하는 경계가 곡선이었던 QDA와 달리 LDA에서는 직선이 된다.</p>
+<p>Scikit-Learn은 LDA 모형을 위한 <code>LinearDiscriminantAnalysis</code> 클래스를 제공한다. 아래 사용한 데이터는 위 QDA를 진행했던 것과 같은 데이터다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.discriminant_analysis <span class="keyword">import</span> LinearDiscriminantAnalysis</span><br><span class="line">lda = LinearDiscriminatAnalysis(n_components=<span class="number">3</span>, solver=<span class="string">'svd'</span>, store_covariance=<span class="keyword">True</span>).fit(X, y)</span><br></pre></td></tr></table></figure>
+<p>LDA에서는 기댓값 벡터만 클래스에 따라 달라지고, 공분산행렬은 모든 클래스에 대해 하나로 동일하다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">lda.means_</span><br><span class="line"><span class="comment">#결과</span></span><br><span class="line">array([[<span class="number">-8.01254084e-04</span>,  <span class="number">1.19457204e-01</span>],</span><br><span class="line">       [ <span class="number">1.16303727e+00</span>,  <span class="number">1.03930605e+00</span>],</span><br><span class="line">       [<span class="number">-8.64060404e-01</span>,  <span class="number">1.02295794e+00</span>]])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">lda.covariance_</span><br><span class="line"><span class="comment">#결과</span></span><br><span class="line">array([[<span class="number">0.7718516</span> , <span class="number">0.13942905</span>],</span><br><span class="line">       [<span class="number">0.13942905</span>, <span class="number">0.7620019</span> ]])</span><br></pre></td></tr></table></figure>
+<p>LDA 모형에 따른 분류 결과는 다음과 같다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">x1min, x1max = <span class="number">-5</span>, <span class="number">5</span></span><br><span class="line">x2min, x2max = <span class="number">-4</span>, <span class="number">5</span></span><br><span class="line">XX1, XX2 = np.meshgrid(np.arange(x1min, x1max, (x1max-x1min)/<span class="number">1000</span>),</span><br><span class="line">                       np.arange(x2min, x2max, (x2max-x2min)/<span class="number">1000</span>))</span><br><span class="line">YY = np.reshape(lda.predict(np.array([XX1.ravel(), XX2.ravel()]).T), XX1.shape)</span><br><span class="line">cmap = mpl.colors.ListedColormap(sns.color_palette([<span class="string">"r"</span>, <span class="string">"g"</span>, <span class="string">"b"</span>]).as_hex())</span><br><span class="line">plt.contourf(XX1, XX2, YY, cmap=cmap, alpha=<span class="number">0.5</span>)</span><br><span class="line">plt.scatter(X1[:, <span class="number">0</span>], X1[:, <span class="number">1</span>], alpha=<span class="number">0.8</span>, s=<span class="number">50</span>, marker=<span class="string">"o"</span>, color=<span class="string">'r'</span>, label=<span class="string">"클래스 1"</span>)</span><br><span class="line">plt.scatter(X2[:, <span class="number">0</span>], X2[:, <span class="number">1</span>], alpha=<span class="number">0.8</span>, s=<span class="number">50</span>, marker=<span class="string">"s"</span>, color=<span class="string">'g'</span>, label=<span class="string">"클래스 2"</span>)</span><br><span class="line">plt.scatter(X3[:, <span class="number">0</span>], X3[:, <span class="number">1</span>], alpha=<span class="number">0.8</span>, s=<span class="number">50</span>, marker=<span class="string">"x"</span>, color=<span class="string">'b'</span>, label=<span class="string">"클래스 3"</span>)</span><br><span class="line">plt.xlim(x1min, x1max)</span><br><span class="line">plt.ylim(x2min, x2max)</span><br><span class="line">plt.xlabel(<span class="string">"x1"</span>)</span><br><span class="line">plt.ylabel(<span class="string">"x2"</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.title(<span class="string">"LDA 분석 결과"</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20181205185834494.png" alt=""></p>
+<ul>
+<li><p>LDA의 약점</p>
+<p>문제는, LDA에서도 데이터가 너무 많아지면 공분산행렬이 너무 커진다는 점이다. 그래서 나온 가정이 공분산행렬의 대각성분만 구하고 나머지 비대각성분은 0이라고 하자는 나이브 가정이다.</p>
+<p>QDA를 간략화한 모형이 LDA이고, 그걸 더 간략화한 모형이 다음 설명할 나이브베이즈 모형이다.</p>
+</li>
+</ul>
+<p>참조:</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://jyujin39.github.io/2018/12/06/QDA_LDA/" data-id="cjpcmm5ek0000ntbanrjh1dfp" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/jyujin39/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2018/12/02/classification_performance_evaluation/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">classification performance evaluation</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="no-thumbnail">
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/12/06/QDA_LDA/" class="title">QDA &amp; LDA</a></p>
+                            <p class="item-date"><time datetime="2018-12-05T15:00:00.000Z" itemprop="datePublished">2018-12-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/12/02/classification_performance_evaluation/" class="title">classification performance evaluation</a></p>
+                            <p class="item-date"><time datetime="2018-12-01T15:00:00.000Z" itemprop="datePublished">2018-12-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/11/29/multi-class-classification/" class="title">multi-class classification</a></p>
+                            <p class="item-date"><time datetime="2018-11-29T11:37:09.440Z" itemprop="datePublished">2018-11-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/11/28/classification-models/" class="title">classification models</a></p>
+                            <p class="item-date"><time datetime="2018-11-27T15:00:00.000Z" itemprop="datePublished">2018-11-28</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Math/Classification/">Classification</a><span class="category-list-count">4</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/">study</a><span class="tag-list-count">4</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/study/" style="font-size: 10px;">study</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 Yujin Jeon</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'https://jyujin39.github.io/2018/12/06/QDA_LDA/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
