@@ -6,17 +6,23 @@
     
 
     
-    <title>Archive | Data Science YJ</title>
+    <title>Data Science YJ</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta property="og:type" content="website">
+    <meta name="description" content="지금까지는 RDBMS 의 하나인 mysql을 했었는데, NoSQL은 RDBMS의 한계를 좀 더 극복한 데이터베이스이다.  장점:  확장성이 좋다.  Join 개념이 없다. 테이블을 서로 합치거나 할 수 없다.  데이터 저장이 유연하다 테이블에 새로운 타입의 데이터를 추가해야 할 때 schema를 수정하거나 할 필요 없이 자동으로 칼럼을 생성해서 추가해준다.">
+<meta property="og:type" content="website">
 <meta property="og:title" content="Data Science YJ">
-<meta property="og:url" content="https://jyujin39.github.io/archives/index.html">
+<meta property="og:url" content="https://jyujin39.github.io/images/12:7.html">
 <meta property="og:site_name" content="Data Science YJ">
+<meta property="og:description" content="지금까지는 RDBMS 의 하나인 mysql을 했었는데, NoSQL은 RDBMS의 한계를 좀 더 극복한 데이터베이스이다.  장점:  확장성이 좋다.  Join 개념이 없다. 테이블을 서로 합치거나 할 수 없다.  데이터 저장이 유연하다 테이블에 새로운 타입의 데이터를 추가해야 할 때 schema를 수정하거나 할 필요 없이 자동으로 칼럼을 생성해서 추가해준다.">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="https://jyujin39.github.io/Users/jeon-yujin/Library/Application">
+<meta property="og:updated_time" content="2018-12-07T03:48:10.827Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Data Science YJ">
+<meta name="twitter:description" content="지금까지는 RDBMS 의 하나인 mysql을 했었는데, NoSQL은 RDBMS의 한계를 좀 더 극복한 데이터베이스이다.  장점:  확장성이 좋다.  Join 개념이 없다. 테이블을 서로 합치거나 할 수 없다.  데이터 저장이 유연하다 테이블에 새로운 타입의 데이터를 추가해야 할 때 schema를 수정하거나 할 필요 없이 자동으로 칼럼을 생성해서 추가해준다.">
+<meta name="twitter:image" content="https://jyujin39.github.io/Users/jeon-yujin/Library/Application">
     
 
     
@@ -127,195 +133,143 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <i class="icon fa fa-archive"></i>Archive
+    Data Science YJ
     </h1>
 </div>
 
                         <div class="main-body-content">
-                            
+                            <article id="page-" class="article article-single article-type-page" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>지금까지는 RDBMS 의 하나인 mysql을 했었는데,</p>
+<p>NoSQL은 RDBMS의 한계를 좀 더 극복한 데이터베이스이다.</p>
+<ul>
+<li><p>장점:</p>
+<ul>
+<li><p>확장성이 좋다. </p>
+<p>Join 개념이 없다. 테이블을 서로 합치거나 할 수 없다.</p>
+</li>
+<li><p>데이터 저장이 유연하다</p>
+<p>테이블에 새로운 타입의 데이터를 추가해야 할 때 schema를 수정하거나 할 필요 없이 자동으로 칼럼을 생성해서 추가해준다.</p>
+</li>
+<li><p>insert가 빠르다. </p>
+</li>
+</ul>
+</li>
+<li><p>단점:</p>
+<ul>
+<li>테이블별로 데이터를 서로 나눠 가지면서 join을 할 수가 없기 때문에 같은 데이터를 여러 테이블에서 중복적으로 가지고 있어야 할 수도 있다. 컬럼개수가 늘어나기 때문에 조회할 때 속도가 늦어진다.</li>
+<li>select는 RDBMS보다 느리다.</li>
+</ul>
+</li>
+</ul>
+<p>NoSQL은,</p>
+<p>table 대신 collection 이라는 개념을 쓴다.</p>
+<p>Row 대신 document 라는 개념을 쓴다.</p>
+<p>document 안에는 key, value 값이 들어있다.</p>
+<p>주로 Mongodb 데이터베이스를 사용한다.</p>
+<p><img src="/Users/jeon-yujin/Library/Application Support/typora-user-images/image-20181207115445536.png" alt="image-20181207115445536"></p>
+<p><img src="/Users/jeon-yujin/Library/Application Support/typora-user-images/image-20181207115528399.png" alt="image-20181207115528399"></p>
+<p>db 삭제: db.dropDatabase()</p>
+<p><code>db.createCollection(name, [option])</code></p>
+<p>option</p>
+<ul>
+<li>capped : true로 설정하면 collection의 최대 용량을 설정 (최대 용량의 크기는 size 옵션으로<br>설정), 설정된 최대용량 이상으로 데이터가 입력되면 오래된 데이터 부터 자동으로 삭제됩니다.</li>
+<li>autoIndex : true로 설정하면 _id 필드에 index가 자동으로 생성됩니다.</li>
+<li>size : 숫자 데이터를 사용하며 collection의 최대 사이즈를 byte 단위로 지정</li>
+<li>max : 숫자 데이터를 사용하며 최대 document 개수를 설정</li>
+</ul>
+<p><img src="/Users/jeon-yujin/Library/Application Support/typora-user-images/image-20181207120148947.png" alt="image-20181207120148947"></p>
+<p><img src="/Users/jeon-yujin/Library/Application Support/typora-user-images/image-20181207120852508.png" alt="image-20181207120852508"></p>
+<p>max가 5로 설정된 info1에 6개의 데이터를 넣어보면 5개밖에 안들어간다.</p>
+<p><img src="/Users/jeon-yujin/Library/Application Support/typora-user-images/image-20181207121317892.png" alt="image-20181207121317892"></p>
+<p><img src="/Users/jeon-yujin/Library/Application Support/typora-user-images/image-20181207121359279.png" alt="image-20181207121359279"></p>
+<p>info2는 같은 5개로 max가 설정됐지만 size가 50바이트로 지정되어 4개까지밖에 안들어간다.</p>
+<p><img src="/Users/jeon-yujin/Library/Application Support/typora-user-images/image-20181207121450702.png" alt="image-20181207121450702"></p>
+<p><img src="/Users/jeon-yujin/Library/Application Support/typora-user-images/image-20181207121605152.png" alt="image-20181207121605152"></p>
 
-    
-    
-        
-        
-        <section class="archives-wrap">
-            <div class="archive-year-wrap">
-                <a href="/archives/2018" class="archive-year"><i class="icon fa fa-calendar-o"></i>2018</a>
-            </div>
-            <div class="archives">
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a>
-            </div>
-            <div class="date"><time datetime="2018-12-06T15:00:00.000Z" itemprop="datePublished">2018-12-07</time></div>
         </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2018/12/07/naive_bayesian_classification_model/">naive bayesian classification model</a>
-        </h1>
-    
+        <footer class="article-footer">
+            
 
-        <p class="article-excerpt">
-            나이브베이즈 분류모형나이브 가정모든 차원의 개별 독립변수 요소들이 서로 조건부 독립이라는 가정을 나이브 가정이라고 한다. 이 가정은 그냥 생각해봐도 말이 안 된다. 예를 들어 iris데이터에서 독립변수 $x_1$은 꽃잎의 길이, $x_2$는 꽃잎의 폭이라고 할 때, 꽃잎의 길이가 길어지면 상식적으로 폭도 커지므로 두 변수 사이에는 매우 큰 상관관계가 있다.
-        </p>
+
+
+    <a data-url="https://jyujin39.github.io/images/12:7.html" data-id="cjpds3y2s0001knbazzuu78ai" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
     </div>
 </article>
-    
 
+    <section id="comments">
     
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
         
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a>
-            </div>
-            <div class="date"><time datetime="2018-12-05T15:00:00.000Z" itemprop="datePublished">2018-12-06</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2018/12/06/QDA_LDA/">QDA &amp; LDA</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            QDA와 LDA확률론적 생성모형에서는 베이즈 정리를 사용하여 조건부확률을 계산한다고 했다. 
-
-P(y=k\mid x) = \dfrac{P(x\mid y=k)P(y=k)}{P(x)}하나의 독립변수 x에 대해 y가 k일 경우의 조건부확률을 모두 구해서 그 중 가장 값이 큰 y로 추정하는데, 위 베이즈정리 공식에서 분모는 P(x)이므로 이 때 분모값은 고정이다.
-        </p>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
-</article>
-    
-        </div>
-    
 
     
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a>
-            </div>
-            <div class="date"><time datetime="2018-12-01T15:00:00.000Z" itemprop="datePublished">2018-12-02</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2018/12/02/classification_performance_evaluation/">classification performance evaluation</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            분류 성능 평가분류 문제는 회귀분석과 달리 다양한 성능 평가기준이 필요하다.
-Scikit-Learn에서 제공하는 분류 성능평가 메서드들은 다음과 같다.
-sklearn.metrics 서브 패키지
-
-confusion_matrix()
-classfication_report()
-accuracy_score(y_true, y_pred)
-precision_score(y_
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a>
-            </div>
-            <div class="date"><time datetime="2018-11-29T11:37:09.440Z" itemprop="datePublished">2018-11-29</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2018/11/29/multi-class-classification/">multi-class classification</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            다중 클래스 분류
-이진(Binary Class) 분류 : 종속변수의 클래스가 2개인 분류 문제
-
-다중 클래스(Multi-Class) 분류 : 종속변수의 클래스가 3 개 이상인 분류문제
-
-OvO 혹은 OvR 방법을 통해 여러 개의 이진 클래스 분류문제로 변환해서 푼다
-
-
-
-OvO (One-vs-One): K개의 타겟 클래스가 존재할 때, 그 중 2개씩 선택해
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a>
-            </div>
-            <div class="date"><time datetime="2018-11-27T15:00:00.000Z" itemprop="datePublished">2018-11-28</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2018/11/28/classification-models/">classification models</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            분류모형분류(classification)는 독립 변수 값이 주어졌을 때 그 독립 변수 값과 가장 연관성이 큰 종속변수 카테고리(클래스)를 계산하는 문제이다. 
-분류 모형의 종류
-판별함수(discriminant function) 모형
-: 주어진 데이터를 서로 다른 영역으로 나누는 경계면을 찾는다.
-
-확률적 모형 
-
-확률적 판별(discriminative) 모
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-
-    </div></section>
+    </section>
 
 
 
@@ -490,11 +444,13 @@ OvO (One-vs-One): K개의 타겟 클래스가 존재할 때, 그 중 2개씩 선
     var disqus_shortname = 'hexo-theme-hueman';
     
     
+    var disqus_url = 'https://jyujin39.github.io/images/12:7.html';
+    
     (function() {
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
     </script>

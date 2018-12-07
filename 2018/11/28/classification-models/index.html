@@ -21,7 +21,7 @@
 <meta property="og:description" content="분류모형분류(classification)는 독립 변수 값이 주어졌을 때 그 독립 변수 값과 가장 연관성이 큰 종속변수 카테고리(클래스)를 계산하는 문제이다.  분류 모형의 종류 판별함수(discriminant function) 모형 : 주어진 데이터를 서로 다른 영역으로 나누는 경계면을 찾는다.  확률적 모형   확률적 판별(discriminative) 모">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://jyujin39.github.io/images/image-20181128193332516.png">
-<meta property="og:updated_time" content="2018-12-03T04:04:47.190Z">
+<meta property="og:updated_time" content="2018-12-07T08:36:11.533Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="classification models">
 <meta name="twitter:description" content="분류모형분류(classification)는 독립 변수 값이 주어졌을 때 그 독립 변수 값과 가장 연관성이 큰 종속변수 카테고리(클래스)를 계산하는 문제이다.  분류 모형의 종류 판별함수(discriminant function) 모형 : 주어진 데이터를 서로 다른 영역으로 나누는 경계면을 찾는다.  확률적 모형   확률적 판별(discriminative) 모">
@@ -260,9 +260,8 @@ p(y = k |  x) = f(x)</script><p>​    확률적 판별 모형에는 로지스�
 <pre><code>- **로지스틱** **회귀모형**
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> make_classification</span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</span><br><span class="line"></span><br><span class="line">X0, y = make_classification(n_features=<span class="number">1</span>, n_redundant=<span class="number">0</span>,</span><br><span class="line">n_informative=<span class="number">1</span>, n_clusters_per_class=<span class="number">1</span>, random_state=<span class="number">4</span>)</span><br><span class="line">model = LogisticRegression().fit(X0, y)</span><br></pre></td></tr></table></figure>
-</code></pre><p>​    <img src="/images/image-20181128200223956.png" alt=""><br>​<br>​<br>​    </p>
-<pre><code>### 2. 판별함수 기반 모형
-</code></pre><p>​    판별함수 기반 모형은 클래스의 영역을 나누는 경계면 혹은 경계선 함수 $ f(x) $ 를 정의하고, 이  판별함수 값의 부호에 따라 클래스가 나뉘어진다.<br>​    <script type="math/tex">$$$$
+</code></pre><p>​    <img src="/images/image-20181128200223956.png" alt=""><br>​<br>​<br>​<br>​    ### 2. 판별함수 기반 모형</p>
+<p>​    판별함수 기반 모형은 클래스의 영역을 나누는 경계면 혹은 경계선 함수 $ f(x) $ 를 정의하고, 이  판별함수 값의 부호에 따라 클래스가 나뉘어진다.<br>​    <script type="math/tex">$$$$
 ​    \text{판별 경계선} : f(x) = 0
 ​    \</script><br>​    <script type="math/tex">$$$$$$
 ​    \text{클래스 1} : f(x) > 0
@@ -279,7 +278,7 @@ p(y = k |  x) = f(x)</script><p>​    확률적 판별 모형에는 로지스�
 
 
 
-    <a data-url="https://jyujin39.github.io/2018/11/28/classification-models/" data-id="cjpcmm5eq0004ntba3a2p5xpc" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://jyujin39.github.io/2018/11/28/classification-models/" data-id="cjpds3y2p0000knbavyyixdqk" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -407,6 +406,15 @@ p(y = k |  x) = f(x)</script><p>​    확률적 판별 모형에는 로지스�
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/12/07/naive_bayesian_classification_model/" class="title">naive bayesian classification model</a></p>
+                            <p class="item-date"><time datetime="2018-12-06T15:00:00.000Z" itemprop="datePublished">2018-12-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
                             <p class="item-title"><a href="/2018/12/06/QDA_LDA/" class="title">QDA &amp; LDA</a></p>
                             <p class="item-date"><time datetime="2018-12-05T15:00:00.000Z" itemprop="datePublished">2018-12-06</time></p>
                         </div>
@@ -448,7 +456,7 @@ p(y = k |  x) = f(x)</script><p>​    확률적 판별 모형에는 로지스�
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">categories</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Math/Classification/">Classification</a><span class="category-list-count">4</span></li></ul></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Math/Classification/">Classification</a><span class="category-list-count">5</span></li></ul></li></ul>
         </div>
     </div>
 
@@ -458,7 +466,7 @@ p(y = k |  x) = f(x)</script><p>​    확률적 판별 모형에는 로지스�
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">2</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -468,7 +476,7 @@ p(y = k |  x) = f(x)</script><p>​    확률적 판별 모형에는 로지스�
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">tags</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/">study</a><span class="tag-list-count">4</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/">study</a><span class="tag-list-count">5</span></li></ul>
         </div>
     </div>
 

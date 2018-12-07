@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>naive bayesian classification model | Data Science YJ</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="study">
+    
+    <meta name="description" content="나이브베이즈 분류모형나이브 가정모든 차원의 개별 독립변수 요소들이 서로 조건부 독립이라는 가정을 나이브 가정이라고 한다. 이 가정은 그냥 생각해봐도 말이 안 된다. 예를 들어 iris데이터에서 독립변수 $x_1$은 꽃잎의 길이, $x_2$는 꽃잎의 폭이라고 할 때, 꽃잎의 길이가 길어지면 상식적으로 폭도 커지므로 두 변수 사이에는 매우 큰 상관관계가 있다.">
+<meta name="keywords" content="study">
+<meta property="og:type" content="article">
+<meta property="og:title" content="naive bayesian classification model">
+<meta property="og:url" content="https://jyujin39.github.io/2018/12/07/naive_bayesian_classification_model/index.html">
+<meta property="og:site_name" content="Data Science YJ">
+<meta property="og:description" content="나이브베이즈 분류모형나이브 가정모든 차원의 개별 독립변수 요소들이 서로 조건부 독립이라는 가정을 나이브 가정이라고 한다. 이 가정은 그냥 생각해봐도 말이 안 된다. 예를 들어 iris데이터에서 독립변수 $x_1$은 꽃잎의 길이, $x_2$는 꽃잎의 폭이라고 할 때, 꽃잎의 길이가 길어지면 상식적으로 폭도 커지므로 두 변수 사이에는 매우 큰 상관관계가 있다.">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://jyujin39.github.io/images/image-20181206211121253.png">
+<meta property="og:updated_time" content="2018-12-07T08:38:34.233Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="naive bayesian classification model">
+<meta name="twitter:description" content="나이브베이즈 분류모형나이브 가정모든 차원의 개별 독립변수 요소들이 서로 조건부 독립이라는 가정을 나이브 가정이라고 한다. 이 가정은 그냥 생각해봐도 말이 안 된다. 예를 들어 iris데이터에서 독립변수 $x_1$은 꽃잎의 길이, $x_2$는 꽃잎의 폭이라고 할 때, 꽃잎의 길이가 길어지면 상식적으로 폭도 커지므로 두 변수 사이에는 매우 큰 상관관계가 있다.">
+<meta name="twitter:image" content="https://jyujin39.github.io/images/image-20181206211121253.png">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">my daily study blog for Data Science</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Math/">Math</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Math/Classification/">Classification</a></li></ul></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Math/Classification/">Classification</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-naive_bayesian_classification_model" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        naive bayesian classification model
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/12/07/naive_bayesian_classification_model/" class="article-date">
+            <time datetime="2018-12-06T15:00:00.000Z" itemprop="datePublished">2018-12-07</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/study/">study</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="나이브베이즈-분류모형"><a href="#나이브베이즈-분류모형" class="headerlink" title="나이브베이즈 분류모형"></a>나이브베이즈 분류모형</h1><h3 id="나이브-가정"><a href="#나이브-가정" class="headerlink" title="나이브 가정"></a>나이브 가정</h3><p>모든 차원의 개별 독립변수 요소들이 서로 조건부 독립이라는 가정을 나이브 가정이라고 한다. 이 가정은 그냥 생각해봐도 말이 안 된다. 예를 들어 iris데이터에서 독립변수 $x_1$은 꽃잎의 길이, $x_2$는 꽃잎의 폭이라고 할 때, 꽃잎의 길이가 길어지면 상식적으로 폭도 커지므로 두 변수 사이에는 매우 큰 상관관계가 있다. 그런데 수많은 데이터에서 상관관계를 모두 구하기가 현실적으로 힘들기 때문에 어떨 수 없이 나이브하게 변수들이 서로 독립이라고 가정하는 것이다. 이 가정을 베이즈 분류모형에 적용한 것이 <strong>나이브 베이즈 분류모형(Naive Bayes classification model)</strong> 이다.</p>
+<p>나이브베이즈 분류모형에서는 데이터들이 서로 독립이라서, 데이터들의 확률분포가 개별 데이터의 확률의 곱으로 표현된다. 주의할 점은 그냥 독립인 게 아니라 y가 특정 클래스라는 조건 하에서 독립, 즉 조건부 독립이다.</p>
+<script type="math/tex; mode=display">
+P(x_1, \cdots , x_D \mid y=k) = \prod_{d=1}^D P(x_d \mid y=k)</script><script type="math/tex; mode=display">
+P(y=k \mid x) \;\; \propto \;\; \prod^D_{d=1} P(x_d \mid y=k)P(y=k)</script><ul>
+<li><p>나이브베이즈 분류모형의 강점</p>
+<p>이렇게 나이브한 가정을 했음에도 실제로는 분류가 잘 된다.</p>
+<p>x들을 서로 독립으로 놓음으로써 qda와 lda가 가지지 못한 또다른 장점이 생기는데, 각 x마다 개별적으로 맞는 모델을 사용할 수 있다는 점이다. 꼭 하나의 분포를 모든 데이터에 대해 사용하지 않아도 되는 것이다.</p>
+<p>가우시안 정규분포를 따르지 않아도 되므로 x가 연속이 아니라 이산분포(베르누이, 다항분포 등)인 경우에도 모델링할 수가 있게 된다.</p>
+</li>
+</ul>
+<p>Scikit-Learn의 naive_bayes 서브패키지에서는 다음과 같은 세가지 나이브 베이즈 모형 클래스를 제공한다.</p>
+<ul>
+<li><code>GaussianNB</code>: 가우시안 정규 분포 나이브 베이즈</li>
+<li><code>BernoulliNB</code>: 베르누이 분포 나이브 베이즈</li>
+<li><code>MultinomialNB</code>: 다항 분포 나이브 베이즈</li>
+</ul>
+<p>이 클래스들은 다양한 속성값 및 메서드를 가진다. 우선 사전 확률과 관련된 속성은 다음과 같다.</p>
+<ul>
+<li><code>classes_</code><ul>
+<li>종속 변수 y의 클래스</li>
+</ul>
+</li>
+<li><code>class_count_</code><ul>
+<li>종속 변수 y의 값이 특정한 클래스인 표본 데이터의 수</li>
+</ul>
+</li>
+<li><code>class_prior_</code><ul>
+<li>종속 변수 y의 무조건부 확률 분포 $P(Y)$ (가우시안 정규 분포의 경우에만)</li>
+</ul>
+</li>
+<li><code>class_log_prior_</code><ul>
+<li>종속 변수 y의 무조건부 확률 분포의 로그 $\text{log}P(Y)$(베르누이 분포와 다항 분포의 경우에만)</li>
+<li></li>
+</ul>
+</li>
+</ul>
+<h3 id="1-가우시안-정규분포-나이브-베이즈-모형"><a href="#1-가우시안-정규분포-나이브-베이즈-모형" class="headerlink" title="1) 가우시안 정규분포 나이브 베이즈 모형"></a>1) 가우시안 정규분포 나이브 베이즈 모형</h3><p>가우시안 분포에서는 $\mu$(기댓값) 과 $\sigma$ (표준편차)만 구하면 된다.</p>
+<ul>
+<li><code>theta_</code>: 가우시안 정규 분포의 기댓값 $\mu$</li>
+<li><code>sigma_</code>: 가우시안 정규 분포의 분산 $\sigma^2$</li>
+</ul>
+<p>예를 들어 두 개의 실수인 독립변수 $x_1, x_2$ 와 두 종류의 클래스 $y=0,1$ 을 가지는 분류 모형이 있다고 하자. 독립변수의 분포는 y의 클래스에 다라 다음처럼 분포가 달라진다.</p>
+<script type="math/tex; mode=display">
+\mu_0 = \begin{bmatrix}-2\\ -2\end{bmatrix}, \;\; \Sigma_0 = \begin{bmatrix} 1 & 0.9 \\ 0.9 & 2 \end{bmatrix}</script><script type="math/tex; mode=display">
+\mu_1 = \begin{bmatrix} 2 \\ 2\end{bmatrix}, \;\; \Sigma_1 = \begin{bmatrix} 1.2 & -0.8 \\ -0.8 & 2\end{bmatrix}</script><p>이 데이터를 가우시안 나이브베이즈모형으로 다음처럼 풀 수 있다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">np.random.seed(<span class="number">0</span>)</span><br><span class="line">rv0 = sp.stats.multivariate_normal([<span class="number">-2</span>, <span class="number">-2</span>], [[<span class="number">1</span>, <span class="number">0.9</span>], [<span class="number">0.9</span>, <span class="number">2</span>]])</span><br><span class="line">rv1 = sp.stats.multivariate_normal([<span class="number">2</span>, <span class="number">2</span>], [[<span class="number">1.2</span>, <span class="number">-0.8</span>], [<span class="number">-0.8</span>, <span class="number">2</span>]])</span><br><span class="line">X0 = rv0.rvs(<span class="number">40</span>)</span><br><span class="line">X1 = rv1.rvs(<span class="number">60</span>)</span><br><span class="line">X = np.vstack([X0, X1])</span><br><span class="line">y = np.hstack([np.zeros(<span class="number">40</span>), np.ones(<span class="number">60</span>)])</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sklearn.naive_bayes <span class="keyword">import</span> GaussianNB</span><br><span class="line">model_norm = GaussianNB().fit(X, y)</span><br></pre></td></tr></table></figure>
+<p>클래스 값이 0일 때와 1일 때 각각 x가 이루는 확률분포의 모수를 계산하면 다음과 같다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">model_norm.theta_[<span class="number">0</span>], model_norm.sigma_[<span class="number">0</span>]</span><br><span class="line"><span class="comment">#클래스 0일 때 결과</span></span><br><span class="line">(array([<span class="number">-1.96197643</span>, <span class="number">-2.00597903</span>]), array([<span class="number">1.02398854</span>, <span class="number">2.31390497</span>]))</span><br><span class="line"></span><br><span class="line">model_norm.theta_[<span class="number">1</span>], model_norm.sigma_[<span class="number">1</span>]</span><br><span class="line"><span class="comment">#클래스 1일 때 결과</span></span><br><span class="line">(array([<span class="number">2.19130701</span>, <span class="number">2.12626716</span>]), array([<span class="number">1.25429371</span>, <span class="number">1.93742544</span>]))</span><br></pre></td></tr></table></figure>
+<p>추정 결과 실제 모수와 유사한 모수를 구할 수 있다.</p>
+<p>다만, 아래 그래프를 보면 알 수 있듯이, 원래 데이터의 분포는 무시된다. 위 그래프는 원래 데이터의 분포를 나타낸 플롯이고, 아래 그래프는 나이브베이즈 모형으로 추정한 데이터의 분포 그래프이다.</p>
+<p><img src="/images/image-20181206211121253.png" alt=""></p>
+<p><img src="/images/image-20181204195306412.png" alt=""></p>
+<p>원래 데이터의 분포를 보면 0번 클래스(파란색)에 해당하는 데이터는 약간 양의상관관계가 보이고, 1번 클래스(빨간색)에 해당하는 데이터는 약간 음의 상관관계를 보인다. 그러나 나이브베이즈 모형에서는 그러한 상관관계를 없다고 배제해버리고 두 클래스의 분포를 동일하다고 가정하기 때문에 아래와 같은 모양이 된다.</p>
+<p>만들어진 모형으로 $x_{new}=(-0.7, -0.8)$ 인 데이터의 y 값을 예측해보자. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">x_new = [<span class="number">-0.7</span>, <span class="number">-0.8</span>]</span><br><span class="line">model_norm.predict_proba([x_new])</span><br><span class="line"><span class="comment">#결과:</span></span><br><span class="line">array([[<span class="number">0.98300323</span>, <span class="number">0.01699677</span>]])</span><br><span class="line"><span class="comment">#x_new가 클래스 0일 확률, 1일 확률</span></span><br></pre></td></tr></table></figure>
+<p>따라서 $y=0$일 확률이 $y=1$일 확률보다 훨씬 크다는 것을 알 수 있다.</p>
+<h3 id="2-베르누이-분포-나이브베이즈-모형"><a href="#2-베르누이-분포-나이브베이즈-모형" class="headerlink" title="2) 베르누이 분포 나이브베이즈 모형"></a>2) 베르누이 분포 나이브베이즈 모형</h3><p>베르누이 모형에서는 타겟변수뿐 아니라 독립변수도 0 또는 1의 값을 가져야 한다. 예를 들어 문서에 특정 단어가 포함되어있는지의 여부를 베르누이 확률변수로 모형화할 수 있다. 여기서 추정해야 되는 것은 개별 x와 y마다의 뮤 값이다.</p>
+<p>스팸 메일을 디텍팅하는 데 이 모형을 사용한다고 해보자. 아래의 경우 총 10개의 메일을 4개의 키워드의 포함여부에 따라 0 또는 1 값을 부여한 것이다. 독립변수가 0이면 특정 키워드가 포함되지 않은 것이고, 1이면 특정 키워드가 포함된 것이다. 종속변수 값은 0이면 정상메일, 1이면 스팸메일에 해당한다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">X = np.array([</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>], <span class="comment">#행 하나가 메일 하나, 열 하나가 키워드 하나</span></span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>]])</span><br><span class="line">y = np.array([<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>])<span class="comment">#정상메일인지 아닌지 라벨링</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><strong>스무딩(Smoothing)</strong></p>
+<p>: 표본 데이터의 수가 적은 경우에는 베르누이 모수가 0 또는 1이라는 극단적인 추정값이 나올 수도 있다. 하지만 현실적으로는 그럴 가능성은 매우 적다. 따라서 베르누이분포 나이브베이즈 모형 내에서, 추정한 모수들의 값이 0.5에 좀더 가까워지도록  각각의 x에 가상의 데이터 0과 1을 하나씩 추가한다. </p>
+<script type="math/tex; mode=display">
+\hat{\mu}_{d,k} = \dfrac{N_{d,k}+\alpha}{N_k + 2\alpha}</script><p>이렇게 스무딩을 거치면 1에 가까웠던 모수는 작아지고, 0에 가까웠던 모수는 커져서 모두 0.5에 조금씩 더 가까워지게 된다.</p>
+<p>만약 2개의 데이터에서 개수를 더 늘려서 $\alpha$ 개 만큼의 데이터를 추가하면 모수값이 좀 더 0.5에 가까워질 것이다.</p>
+</li>
+</ul>
+<p>이제 위 데이터를 베르누이 나이브 베이즈 모형으로 예측해 보자.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.naive_bayes <span class="keyword">import</span> BernoulliNB</span><br><span class="line">model_bern = BernoulliNB().fit(X, y)</span><br></pre></td></tr></table></figure>
+<p>각 클래스와 키워드별로 총 8개의 베르누이 확률변수의 모수를 구해보면 실제 값은 다음과 같다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fc = model_bern.feature_count_</span><br><span class="line">fc / np.repeat(model_bern.class_count_[:, np.newaxis], <span class="number">4</span>, axis=<span class="number">1</span>)</span><br><span class="line"><span class="comment">#결과</span></span><br><span class="line">array([[<span class="number">0.5</span>       , <span class="number">1.</span>        , <span class="number">0.75</span>      , <span class="number">0.25</span>      ],</span><br><span class="line">       [<span class="number">0.33333333</span>, <span class="number">0.5</span>       , <span class="number">0.83333333</span>, <span class="number">0.5</span>       ]])</span><br></pre></td></tr></table></figure>
+<p>그런데 모형으로 예측해보면 값이 다르다. 모형 내부에서 디폴트 알파값이 1인 스무딩을 거쳐 각 모수가 0.5에 가까워진 추정값을 출력하기 때문이다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">theta = np.exp(model_bern.feature_log_prob_)</span><br><span class="line">theta</span><br><span class="line"><span class="comment">#결과</span></span><br><span class="line">array([[<span class="number">0.5</span>       , <span class="number">0.83333333</span>, <span class="number">0.66666667</span>, <span class="number">0.33333333</span>],</span><br><span class="line">       [<span class="number">0.375</span>     , <span class="number">0.5</span>       , <span class="number">0.75</span>      , <span class="number">0.5</span>       ]])</span><br></pre></td></tr></table></figure>
+<p>이렇게 만들어진 모형에 테스트데이터를 넣고 클래스 예측을 해 보면 다음처럼 정상메일일 확률을 구할 수 있다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x_new = np.array([<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>])</span><br><span class="line">model_bern.predict_proba([x_new])</span><br><span class="line"><span class="comment">#결과</span></span><br><span class="line">array([[<span class="number">0.72480181</span>, <span class="number">0.27519819</span>]])</span><br></pre></td></tr></table></figure>
+<h3 id="3-다항-분포-나이브-베이즈-모형"><a href="#3-다항-분포-나이브-베이즈-모형" class="headerlink" title="3) 다항 분포 나이브 베이즈 모형"></a>3) 다항 분포 나이브 베이즈 모형</h3><p>다항 분포 나이브베이즈 모형에서는 독립변수 x가 0 또는 자연수이다. 베르누이에서 x가 특정 단어의 출현 여부였다면, 다항분포에서는 특정단어가 한 문서에 나온 빈도 수가 된다. 여기서는 각 클래스 k에서 x의 개수 d(아래의 경우 4개)만큼의 면을 가진 주사위를 던졌을 때 d번째 면이 나온 횟수가 입력변수로 들어간다. </p>
+<p>따라서 다항 분포 가능도모형을 기반으로 하는 나이브 베이즈 모형은 주사위를 던진 결과로부터 $1,K_1,\cdots,K_K$ 중 어느 주사위를 던졌는지를 찾아내는 모형이라고 할 수 있다.</p>
+<p>다항분포 나이브베이즈 모형에서 스무딩 공식은 다음과 같다. 주사위의 각 면이 $\alpha$ 번씩 나온 경우를 추가해주는 것이라고 생각하면 된다. $N_{d,k}$ 는 클래스 k에서 d번째 면이 나온 횟수를 의미한다.</p>
+<script type="math/tex; mode=display">
+\hat{\mu}_{d,k} = \dfrac{N_{d,k} + \alpha}{N_k + D\alpha}</script><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">X = np.array([</span><br><span class="line">   <span class="comment">#[1, 1, 1, 1] 클래스 0의 스무딩. 주사위 각면이 1번씩 나온 경우를 추가</span></span><br><span class="line">    [<span class="number">3</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">2</span>],</span><br><span class="line">    [<span class="number">3</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">3</span>, <span class="number">3</span>, <span class="number">0</span>, <span class="number">4</span>],</span><br><span class="line">    [<span class="number">3</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">2</span>],</span><br><span class="line">    <span class="comment">#여기까지 클래스 0</span></span><br><span class="line">    [<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">4</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">5</span>, <span class="number">3</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">2</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">5</span>],</span><br><span class="line">    [<span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]])</span><br><span class="line">	<span class="comment">#여기까지 클래스 1</span></span><br><span class="line">y = np.array([<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+<p>베르누이 분포에서와 마찬가지로 실제 데이터의 모수와 스무딩을 거친 모형에서 추정한 모수는 다르게 된다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#실제 모수</span></span><br><span class="line">fc = model_mult.feature_count_</span><br><span class="line">fc / np.repeat(fc.sum(axis=<span class="number">1</span>)[:, np.newaxis], <span class="number">4</span>, axis=<span class="number">1</span>)</span><br><span class="line"><span class="comment">#결과</span></span><br><span class="line">array([[<span class="number">0.3</span>       , <span class="number">0.4</span>       , <span class="number">0.075</span>     , <span class="number">0.225</span>     ],</span><br><span class="line">       [<span class="number">0.10416667</span>, <span class="number">0.14583333</span>, <span class="number">0.375</span>     , <span class="number">0.375</span>     ]])</span><br><span class="line">       </span><br><span class="line"><span class="comment">#추정 모수</span></span><br><span class="line">theta = np.exp(model_mult.feature_log_prob_)</span><br><span class="line">theta</span><br><span class="line"><span class="comment">#결과</span></span><br><span class="line">array([[<span class="number">0.29545455</span>, <span class="number">0.38636364</span>, <span class="number">0.09090909</span>, <span class="number">0.22727273</span>],</span><br><span class="line">       [<span class="number">0.11538462</span>, <span class="number">0.15384615</span>, <span class="number">0.36538462</span>, <span class="number">0.36538462</span>]])</span><br></pre></td></tr></table></figure>
+<p>다항분포에서는 스무딩을 하면 각 모수가 0.25에 조금씩 더 가까워진다.</p>
+<p>이 모형으로 새로운 데이터의 클래스를 예측해보면 다음과 같이 클래스 1에 해당할 확률이 2배 가량 높다는 결론을 낼 수 있다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">x_new = np.array([10, 10, 10, 10])</span><br><span class="line">model_mult.predict_proba([x_new])</span><br><span class="line"></span><br><span class="line">#결과</span><br><span class="line">array([[0.38848858, 0.61151142]])</span><br></pre></td></tr></table></figure>
+<ul>
+<li>만약 문서에 TF-IDF(inverse document frequency) 인코딩을 하게되면 텍스트에 나온 단어의 빈도수가 정수가 아닌 실수값이 나올 수도 있다. 이 때에도 다항분포 나이브베이즈 모형을 쓸 수 있을까?</li>
+</ul>
+<blockquote>
+<p>아래와 같이 TF-IDF 인코딩을 거친 벡터가 있을 때, 원소를 모두 정수로 만들어주는 과정을 거치게 되면 숫자가 커질 뿐 기존의 다항분포와 똑같은 데이터가 된다.</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">TF_IDF_X = np.array([</span><br><span class="line">    [<span class="number">3.2</span>, <span class="number">5.4</span>, <span class="number">1.1</span>, <span class="number">0.3</span>],</span><br><span class="line">    [<span class="number">1.1</span>, <span class="number">2.3</span>, <span class="number">10.9</span>, <span class="number">5.8</span>]])</span><br><span class="line"><span class="comment">#한 클래스가 이런 식으로 있다고 할 때, 모든 값에 10을 곱하면</span></span><br><span class="line"></span><br><span class="line">TF_IDF_X = np.array([</span><br><span class="line">    [<span class="number">32</span>, <span class="number">54</span>, <span class="number">11</span>, <span class="number">3</span>],</span><br><span class="line">    [<span class="number">11</span>, <span class="number">23</span>, <span class="number">109</span>, <span class="number">58</span>]])</span><br><span class="line"><span class="comment">#총 횟수가 늘어났을 뿐 MultinomialNB 계산이 가능하다.</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>그렇다면 만약 x 값에 실수 변수, 0/1 값을 가지는 변수, 일정 변수 집합이 특정한 분포를 이루는 변수들이 섞여있다면 어떻게 풀 수 있을까?</li>
+</ul>
+<blockquote>
+<p>나이브베이지안 모형에서 각 변수는 서로 독립이므로, 성격을 공유하는 변수끼리 모아서 각각에 맞는 모형에 넣으면 된다. </p>
+</blockquote>
+<p>  예를 들어 데이터가 100개일 때 1~20개는 가우시안, 21~50은 베르누이, 51~100은 다항 분포라면, 세 모델을 predict_proba 한 후 P(y)값만을 제거하고 다 곱해준다. 그 후 P(y)를 한번만 곱해주면 구하고자 하는 조건부확률을 구할 수 있게 된다.</p>
+<script type="math/tex; mode=display">
+\begin{eqnarray}
+P(y \mid x_{1:100})
+&=& P(x_{1:100}\mid y)P(y)\\
+&=& P(x_{1:20}\mid y)P(x_{21:50}\mid y)P(x_{51:100}\mid y)P(y)\\
+\end{eqnarray}</script><script type="math/tex; mode=display">
+\text{Gaussian_P} = P(x_{1:20}\mid y)P(y)\\
+\text{Bernoulli_P} = P(x_{21:50}\mid y)P(y)\\
+\text{Multinomial_P} = P(x_{51:100}\mid y)P(y)</script><p>참조:</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://jyujin39.github.io/2018/12/07/naive_bayesian_classification_model/" data-id="cjpds3y2x0007knbajlumnp42" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/jyujin39/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2018/12/06/QDA_LDA/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">QDA &amp; LDA</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="no-thumbnail">
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/12/07/naive_bayesian_classification_model/" class="title">naive bayesian classification model</a></p>
+                            <p class="item-date"><time datetime="2018-12-06T15:00:00.000Z" itemprop="datePublished">2018-12-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/12/06/QDA_LDA/" class="title">QDA &amp; LDA</a></p>
+                            <p class="item-date"><time datetime="2018-12-05T15:00:00.000Z" itemprop="datePublished">2018-12-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/12/02/classification_performance_evaluation/" class="title">classification performance evaluation</a></p>
+                            <p class="item-date"><time datetime="2018-12-01T15:00:00.000Z" itemprop="datePublished">2018-12-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/11/29/multi-class-classification/" class="title">multi-class classification</a></p>
+                            <p class="item-date"><time datetime="2018-11-29T11:37:09.440Z" itemprop="datePublished">2018-11-29</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/11/28/classification-models/" class="title">classification models</a></p>
+                            <p class="item-date"><time datetime="2018-11-27T15:00:00.000Z" itemprop="datePublished">2018-11-28</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Math/Classification/">Classification</a><span class="category-list-count">5</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/">study</a><span class="tag-list-count">5</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/study/" style="font-size: 10px;">study</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 Yujin Jeon</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'https://jyujin39.github.io/2018/12/07/naive_bayesian_classification_model/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
