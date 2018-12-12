@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>entropy | Data Science YJ</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="study">
+    
+    <meta name="description" content="엔트로피엔트로피란?$Y=0$ 또는 $Y=1$ 인 두 가지 값을 갖는 확률분포가 다음처럼 세 종류 있다고 하자.  확률 분포 $Y_1$ : $P(Y=0) = 0.5, P(Y=1) = 0.5$ 확률 분포 $Y_2$ : $P(Y=0) = 0.8,  P(Y=1) = 0.2$ 확률 분포 $Y_3$ : $P(Y=0) = 1.0, P(Y=1) = 0$  이 확률값이 베">
+<meta name="keywords" content="study">
+<meta property="og:type" content="article">
+<meta property="og:title" content="entropy">
+<meta property="og:url" content="https://jyujin39.github.io/2018/12/12/entropy/index.html">
+<meta property="og:site_name" content="Data Science YJ">
+<meta property="og:description" content="엔트로피엔트로피란?$Y=0$ 또는 $Y=1$ 인 두 가지 값을 갖는 확률분포가 다음처럼 세 종류 있다고 하자.  확률 분포 $Y_1$ : $P(Y=0) = 0.5, P(Y=1) = 0.5$ 확률 분포 $Y_2$ : $P(Y=0) = 0.8,  P(Y=1) = 0.2$ 확률 분포 $Y_3$ : $P(Y=0) = 1.0, P(Y=1) = 0$  이 확률값이 베">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://jyujin39.github.io/images/image-20181208205552160.png">
+<meta property="og:updated_time" content="2018-12-12T11:44:45.387Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="entropy">
+<meta name="twitter:description" content="엔트로피엔트로피란?$Y=0$ 또는 $Y=1$ 인 두 가지 값을 갖는 확률분포가 다음처럼 세 종류 있다고 하자.  확률 분포 $Y_1$ : $P(Y=0) = 0.5, P(Y=1) = 0.5$ 확률 분포 $Y_2$ : $P(Y=0) = 0.8,  P(Y=1) = 0.2$ 확률 분포 $Y_3$ : $P(Y=0) = 1.0, P(Y=1) = 0$  이 확률값이 베">
+<meta name="twitter:image" content="https://jyujin39.github.io/images/image-20181208205552160.png">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">my daily study blog for Data Science</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Math/">Math</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Math/Classification/">Classification</a></li></ul></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Math/Classification/">Classification</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-entropy" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        entropy
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/12/12/entropy/" class="article-date">
+            <time datetime="2018-12-11T15:00:00.000Z" itemprop="datePublished">2018-12-12</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/study/">study</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="엔트로피"><a href="#엔트로피" class="headerlink" title="엔트로피"></a>엔트로피</h1><h3 id="엔트로피란"><a href="#엔트로피란" class="headerlink" title="엔트로피란?"></a>엔트로피란?</h3><p>$Y=0$ 또는 $Y=1$ 인 두 가지 값을 갖는 확률분포가 다음처럼 세 종류 있다고 하자.</p>
+<ul>
+<li>확률 분포 $Y_1$ : $P(Y=0) = 0.5, P(Y=1) = 0.5$</li>
+<li>확률 분포 $Y_2$ : $P(Y=0) = 0.8,  P(Y=1) = 0.2$</li>
+<li>확률 분포 $Y_3$ : $P(Y=0) = 1.0, P(Y=1) = 0$</li>
+</ul>
+<p>이 확률값이 베이지안 확률</p>
+<blockquote id="fn_베이지안 확률과 빈도주의적 확률">
+<sup>베이지안 확률과 빈도주의적 확률</sup>. 베이지안 관점에서의 확률은 데이터로부터 얻은 법칙이나 규칙을 표현하기 위한 수단이고, 빈도주의적 관점에서의 확률은 데이터 자체의 값이 어떤 특성을 갖는지를 표현하기 위한 수단이다.<a href="#reffn_베이지안 확률과 빈도주의적 확률" title="Jump back to footnote [베이지안 확률과 빈도주의적 확률] in the text."> &#8617;</a>
+</blockquote>
+<p>이라면, 확률분포 $Y_1$ 은 $y$ 값에 대해 아무것도 모르는 상태(확률이 반반이므로), $Y_2$ 는 $y$ 값이 0이 아니라고 믿지만 확신할 수는 없는 상태, $Y_3$ 은 $y$ 값이 0이라고 100% 확신하는 상태일 것이다. 이렇게 <strong>확률분포들이 가지는 확신의 정도를 수치로 나타낸 것을 엔트로피(entropy)</strong> 라고 한다. 확률변수에서 나올 수 있는 값들의 확률이 비슷비슷한 경우 엔트로피가 높아지고, 특정 값이 나올 확률이 높다면 엔트로피가 작아진다. </p>
+<p>물리학에서는 상태가 분산되어 있는 정도를 엔트로피로 정의한다. 여러가지로 고루 분산되어 있을 수 있으면 엔트로피가 높고 특정한 하나의 상태로 몰려있으면 엔트로피가 낮다. 확률분포의 엔트로피는 물리학의 엔트로피 용어를 빌려온 것이다.</p>
+<p>엔트로피는 수학적으로 다음과 같이 정의한다.</p>
+<ul>
+<li><p>확률변수 Y가 이산 확률변수이면,</p>
+<script type="math/tex; mode=display">
+H[Y] = -\sum_{k=1}^K P(y_k)\log_2 P(y_k)</script></li>
+<li><p>확률변수 Y가 연속 확률변수이면,</p>
+<script type="math/tex; mode=display">
+H[Y] = -\int^\infin_{-\infin}p(y)\log_2p(y)\,\,dy</script><p>이 식에서 $p(y)$ 는 확률밀도함수다.</p>
+</li>
+</ul>
+<p>위에서 예를 든 $Y_1, Y_2, Y_3$ 에 대해 엔트로피를 구하면 다음과 같다.</p>
+<script type="math/tex; mode=display">
+H[Y_1] = -\dfrac{1}{2}\log_2\dfrac{1}{2} -\dfrac{1}{2}\log_2\dfrac{1}{2} = 1\\
+H[Y_2] = -\dfrac{8}{10}\log_2\dfrac{8}{10} -\dfrac{2}{10}\log_2\dfrac{2}{10} = 0.72\\
+H[Y_3] = -1\log_2 1 -0\log_2 0 = 0\\</script><h3 id="엔트로피의-성질"><a href="#엔트로피의-성질" class="headerlink" title="엔트로피의 성질"></a>엔트로피의 성질</h3><p>확률변수가 결정론적</p>
+<blockquote id="fn_결정론적 데이터">
+<sup>결정론적 데이터</sup>. 예측할 수 없는 값이 나오는 확률적 데이터가 아닌, 항상 같은 값이 나오는 데이터를 결정론적 데이터라고 한다.<a href="#reffn_결정론적 데이터" title="Jump back to footnote [결정론적 데이터] in the text."> &#8617;</a>
+</blockquote>
+<p>이면 확률분포에서 특정한 하나의 값이 나올 확률이 1이다. 이 때 엔트로피는 0이 되고, 이 값은 엔트로피가 가질 수 있는 최소값이다.</p>
+<p>반대로 엔트로피의 최대값은 이산 확률변수의 클래스 개수에 따라 달라진다. 만약 이산확률변수가 갖는 클래스가 $2^K$ 개라면, <strong>엔트로피의 최대값은 각 클래스가 모두 같은 확률을 갖는 때</strong>이다. 이 때 엔트로피의 값은 </p>
+<script type="math/tex; mode=display">
+H = -\frac{2^K}{2^K}\log_2\frac{1}{2^K} = K</script><h3 id="엔트로피와-정보량"><a href="#엔트로피와-정보량" class="headerlink" title="엔트로피와 정보량"></a>엔트로피와 정보량</h3><p>엔트로피는 확률변수가 담을 수 있는 정보의 양을 의미한다고 볼 수도 있다. 확률변수가 담을 수 있는 정보량이란, 확률변수의 표본값을 관측해서 얻을 수 있는 추가적인 정보의 종류를 말한다.</p>
+<p>엔트로피가 0이면 확률변수는 결정론적이므로 확률변수의 표본값은 항상 같다. 따라서 확률변수의 표본값을 관측한다고 해도 우리가 얻을 수 있는 추가 정보는 없다.</p>
+<p>반대로 엔트로피가 크다면 확률변수의 표본값이 가질 수 있는 경우의 수가 증가하므로 표본값을 실제로 관측하기 전까지는 알 수 있는 게 거의 없다. 즉, 확률변수의 표본값이 우리에게 가져다줄 수 있는 정보의 양이 많다.</p>
+<h3 id="엔트로피의-추정"><a href="#엔트로피의-추정" class="headerlink" title="엔트로피의 추정"></a>엔트로피의 추정</h3><p>확률변수모형, 즉 이론적인 확률밀도(질량)함수가 아닌 실제 데이터가 주어진 경우에는 확률밀도(질량)함수를 추정하여 엔트로피를 계산해야 한다.</p>
+<p>예를 들어 데이터가 80개가 있고 그 중 Y=0 인 데이터가 40개, Y=1인 데이터가 40개 있는 경우는 엔트로피가 1이다.</p>
+<script type="math/tex; mode=display">
+P(y=0) = \frac{40}{80} = \frac{1}{2}\\
+P(y=1) = \frac{40}{80} = \frac{1}{2}\\
+H[Y] = -\frac{1}{2}\log_2\left(\frac{1}{2}\right) -\frac{1}{2}\log_2\left(\frac{1}{2}\right) = \frac{1}{2} + \frac{1}{2} = 1</script><p>엔트로피는 원래 통신 분야에서 데이터가 가지고 </p>
+<p>만약 데이터가 40개가 있고 그 중 Y=0인 데이터가 30개, Y=1인 데이터가 10개 있는 경우는 엔트로피가 약 0.81이다.</p>
+<script type="math/tex; mode=display">
+P(y=0) = \dfrac{30}{40} = \dfrac{3}{4}\\
+P(y=1) = \dfrac{10}{40} = \dfrac{1}{4}\\
+H[Y] = -\dfrac{3}{4}\log_2\left(\dfrac{3}{4}\right) - \dfrac{1}{4}\log_2\left(\dfrac{1}{4}\right) = 0.81</script><h3 id="지니불순도"><a href="#지니불순도" class="headerlink" title="지니불순도"></a>지니불순도</h3><p>엔트로피와 유사한 개념으로 지니불순도(Gini impurity)라는 것이 있다. 지니불순도는 엔트로피처럼 확률분포가 어느쪽에 치우쳐있는지를 재는 척도지만, 로그를 사용하지 않기 때문에 계산량이 더 적어서 엔트로피 대용으로 많이 사용된다.</p>
+<script type="math/tex; mode=display">
+G[Y] = \sum^K_{k=1} P(y_k)(1-P(y_k))</script><p><img src="/images/image-20181208205552160.png" alt=""></p>
+<h3 id="결합-엔트로피"><a href="#결합-엔트로피" class="headerlink" title="결합 엔트로피"></a>결합 엔트로피</h3><p>두 확률변수 $X, Y$에 대해 결합 엔트로피(joint entropy)는 다음과 같이 정의한다.</p>
+<ul>
+<li>$X, Y$가 이산확률변수인 경우</li>
+</ul>
+<script type="math/tex; mode=display">
+H[X,Y] = -\sum^{K_x}_{i=1}\sum^{K_y}_{j=1} P(x_i,y_j)\log_2P(x_i,y_j)</script><ul>
+<li>$X, Y$가 이산확률변수인 경우</li>
+</ul>
+<script type="math/tex; mode=display">
+  H[X, Y] = -\int_x\int_y p(x,y)\log_2p(x,y)\;dxdy</script><h3 id="조건부-엔트로피"><a href="#조건부-엔트로피" class="headerlink" title="조건부 엔트로피"></a>조건부 엔트로피</h3><p>조건부 엔트로피는 상관관계가 있는 두 확률변수 X, Y가 있고 X의 값을 알 때 Y가 가질 수 있는 정보량을 의미한다. 수학적인 정의는 다음과 같다.</p>
+<ul>
+<li>$X, Y$가 이산확률변수인 경우</li>
+</ul>
+<script type="math/tex; mode=display">
+H[Y\mid X] = -\sum^{K_x}_{i=1}\sum^{K_y}_{j=1}\log_2P(y_j\mid x_i)</script><ul>
+<li>$X, Y$가 연속확률변수인 경우</li>
+</ul>
+<script type="math/tex; mode=display">
+  H[Y\mid X] = -\int_x\int_y p(x,y)\log_2p(y\mid x)\;dxdy</script><p>조건부 엔트로피는 조건부 확률분포의 정의를 사용해 다음과 같이 고칠 수 있다.</p>
+<ul>
+<li>$X, Y$가 이산확률변수인 경우</li>
+</ul>
+<script type="math/tex; mode=display">
+H[Y\mid X] = \sum^{K_x}_{i=1}P(x_i)H[Y\mid X=x_i]</script><ul>
+<li>$X, Y$가 연속확률변수인 경우</li>
+</ul>
+<script type="math/tex; mode=display">
+  H[Y\mid X] = \int_x p(x)H[Y \mid X=x] \;dx</script><h4 id="조건부-엔트로피-예시"><a href="#조건부-엔트로피-예시" class="headerlink" title="조건부 엔트로피 예시"></a>조건부 엔트로피 예시</h4><p>조건부 엔트로피 개념을 스팸메일 분류문제를 통해 알아보자.</p>
+<p>스팸메일 분류모형을 만들기 위한 메일 표본 80개가 있다. 이 중 40개가 정상메일($Y=0$), 40개가 스팸 메일($Y=1$)이다.</p>
+<p>스팸메일 여부를 특정 키워드가 존재하는지($X=1$) 혹은 존재하지 않는지($X=0$)의 여부로 알아보고자 한다. 키워드 후보로는 $X_1, X_2, X_3$ 세 가지가 있다.</p>
+<p>1) 우선 $X_1$과 $Y$의 관계가 다음과 같다고 하자.</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:center">$Y=0$</th>
+<th style="text-align:center">$Y=1$</th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">$X_1 = 0$</td>
+<td style="text-align:center">30</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">40</td>
+</tr>
+<tr>
+<td style="text-align:left">$X_1 = 1$</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">30</td>
+<td style="text-align:center">40</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:center">40</td>
+<td style="text-align:center">40</td>
+<td style="text-align:center">80</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>이 때 조건부 엔트로피는 0.81이다.</p>
+<script type="math/tex; mode=display">
+\begin{eqnarray}
+H[Y\mid X_1] &=& p(X_1 = 0)H[Y\mid X_1=0] + p(X_1=1)H[Y\mid X_1=1]\\
+&=& \frac{40}{80}\cdot 0.81 + \frac{40}{80}\cdot 0.81 = 0.81
+\end{eqnarray}</script><p>2) $X_2$와 $Y$의 관계는 다음과 같다.</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:center">$Y=0$</th>
+<th style="text-align:center">$Y=1$</th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$X_2 = 0$</td>
+<td style="text-align:center">20</td>
+<td style="text-align:center">40</td>
+<td style="text-align:center">60</td>
+</tr>
+<tr>
+<td>$X_2 = 1$</td>
+<td style="text-align:center">20</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">20</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:center">40</td>
+<td style="text-align:center">40</td>
+<td style="text-align:center">80</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>이 때 조건부 엔트로피는 0.69이다.</p>
+<script type="math/tex; mode=display">
+\begin{eqnarray}
+H[Y\mid X_2] &=& p(X_2 = 0)H[Y\mid X_2=0] + p(X_2=1)H[Y\mid X_2=1]\\
+&=& \frac{60}{80}\cdot 0.92 + \frac{20}{80}\cdot 0 = 0.69
+\end{eqnarray}</script><p>3) $X_3$ 과 $Y$ 의 관계는 다음과 같다.</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>$Y=0$</th>
+<th>$Y=1$</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$X_3=0$</td>
+<td>0</td>
+<td>40</td>
+<td>40</td>
+</tr>
+<tr>
+<td>$X_3 = 1$</td>
+<td>40</td>
+<td>0</td>
+<td>40</td>
+</tr>
+<tr>
+<td></td>
+<td>40</td>
+<td>40</td>
+<td>80</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>이 때 조건부 엔트로피는 0이 된다.</p>
+<script type="math/tex; mode=display">
+\begin{eqnarray}
+H[Y\mid X_3] &=& p(X_3 = 0)H[Y\mid X_3=0] + p(X_3=1)H[Y\mid X_3=1]\\
+&=& \frac{40}{80}\cdot 0 + \frac{40}{80}\cdot 0 = 0
+\end{eqnarray}</script><p>위를 통해 조건부 엔트로피는 X값에 의해 만들어지는 새로운 Y 확률분포의 가중평균임을 알 수 있다.</p>
+<h3 id="크로스-엔트로피"><a href="#크로스-엔트로피" class="headerlink" title="크로스 엔트로피"></a>크로스 엔트로피</h3><p>같은 확률변수에 대한 두 개의 추정 확률분포를 비교하는 데 주로 쓰이는 크로스 엔트로피(cross entropy)는 두 확률분포의 차이를 정량화한 값으로, 예측의 틀린 정도를 나타내주는 일종의 loss function 역할을 해준다. 확률변수를 인수로 사용하는 joint 엔트로피와 달리 확률분포를 인수로 사용해 다음과 같이 정의된다.  </p>
+<ul>
+<li>이산확률변수인 경우</li>
+</ul>
+<script type="math/tex; mode=display">
+H[P,Q] = -\sum_{k=1}^K P(y_k)\text{log}_2Q(y_k)</script><ul>
+<li>연속확률변수인 경우<script type="math/tex; mode=display">
+H[p,q] = -\int_y p(y)\log_2q(y)\;dy</script></li>
+</ul>
+<p>여기서 $P(y_k)$ 는 실제 값, $Q(y_k)$는 예상 값에 해당한다. 크로스 엔트로피 값은 실제값과 예측값이 일치할 경우 0으로 수렴하고, 값이 틀릴 경우 무한대로 발산하기 때문에 크로스 엔트로피를 최소화하는 방향으로 분류모델 성능을 수정한다.</p>
+<p>크로스 엔트로피는 확률분포의 차이를 정량화한 값이지만 기준이 되는 분포가 p로 고정되어 있다. q에서 p가 얼만큼 떨어져있는지를 측정한 것과 p에서 q가 얼만큼 떨어져있는지를 측정한 것은 다른 값이다. 즉, p와 q가 바뀌면 값이 달라진다.</p>
+<script type="math/tex; mode=display">
+H[p,q] \neq H[q,p]</script><p>크로스 엔트로피는 분류모형의 성능을 측정할 때 사용된다. Y가 0 또는 1이라는 값만 가지는 이진 분류문제를 예로 들어보자.</p>
+<ul>
+<li>$P_Y$ 는 $X$가 정해졌을 때 실제 $Y$가 가지는 분포를 뜻한다. $X$가 정해지면 $Y$는 확실히 0이거나 확실히 1이다. 즉, $P_Y$는 $(0,1)$ 또는 $(1,0)$이 된다.</li>
+<li>하지만 예측값 $\hat{Y}$의 분포 $Q_\hat{Y}$는 모수가 $\mu$인 베르누이 분포이다. 즉 $Q_\hat{Y}$는 $(1-\mu, \mu)$이다. </li>
+</ul>
+<p>특정한 X에 대해 P와 Q의 크로스 엔트로피는 아래와 같다.</p>
+<script type="math/tex; mode=display">
+H[P,Q] = 
+\begin{cases}
+& -\log_2 (1-\mu) & \text{Y=0일 때} \\
+& -\log_2 \mu & \text{Y=1일 때} \\
+\end{cases}</script><p>분류문제에서는 $P(Y\mid X)$ 와 $P(\hat{Y}\mid X)$ 가 같으면 최상인 케이스.</p>
+<script type="math/tex; mode=display">
+H[P_Y, P_{\hat{Y}}] = P_Y(Y=0)\,\text{log}P_{\hat{Y}}(\hat{Y}=0)\\
+\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,+ P_Y(Y=1)\,\text{log}P_{\hat{Y}}(\hat{Y}=1)</script><p>Y는 0이거나 1이다.</p>
+<ul>
+<li>로지스틱 회귀분석에서 나왔던 $G^2$ 와 크로스엔트로피의 비교</li>
+</ul>
+<script type="math/tex; mode=display">
+H[P,Q] = -\dfrac{1}{N}\sum_{i=1}^N(y_i\log_2\mu_i + (1-y_i)\log_2(1-\mu_i))</script><script type="math/tex; mode=display">
+G^2 = 2\sum^N_{i=1}\left(y_i\log\dfrac{y_i}{\hat{y}_i} + (1-y_i)\log\dfrac{1-y_i}{1-\hat{y}_i}\right)</script><h3 id="쿨백-라이블러-발산"><a href="#쿨백-라이블러-발산" class="headerlink" title="쿨백 - 라이블러 발산"></a>쿨백 - 라이블러 발산</h3><p>쿨백-라이블러  발산(Kullback-Leibler divergence)은 두 확률분포 $p(y)$ 와 $q(y)$ 의 차이를 정량화하는 방법의 하나로, 크로스 엔트로피에서 기준이 되는 분포의 엔트로피 값을 뺀 값이다. 따라서 상대 엔트로피(relative entropy)라고도 한다. 값은 항상 양수이며, 두 확률분포가 완전히 같을 때에만 0이 된다.</p>
+<ul>
+<li>이산확률변수의 경우</li>
+</ul>
+<script type="math/tex; mode=display">
+KL(P\mid\mid Q) = H[P,Q] - H[P] = \sum_{i=1}^K P(y_i)\log_2\left(\dfrac{P(y_i)}{Q(y_i)}\right)</script><ul>
+<li>연속확률변수의 경우<script type="math/tex; mode=display">
+KL(p\mid\mid q) = H[p,q] - H[p] = \int p(y)\log_2\left(\frac{p(y)}{q(y)}\right)</script></li>
+</ul>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://jyujin39.github.io/2018/12/12/entropy/" data-id="cjpl3yllr00006dbatgj85kbf" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/jyujin39/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2018/12/07/naive_bayesian_classification_model/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">naive bayesian classification model</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="no-thumbnail">
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/12/12/entropy/" class="title">entropy</a></p>
+                            <p class="item-date"><time datetime="2018-12-11T15:00:00.000Z" itemprop="datePublished">2018-12-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/12/07/naive_bayesian_classification_model/" class="title">naive bayesian classification model</a></p>
+                            <p class="item-date"><time datetime="2018-12-06T15:00:00.000Z" itemprop="datePublished">2018-12-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/12/06/QDA_LDA/" class="title">QDA &amp; LDA</a></p>
+                            <p class="item-date"><time datetime="2018-12-05T15:00:00.000Z" itemprop="datePublished">2018-12-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/12/02/classification_performance_evaluation/" class="title">classification performance evaluation</a></p>
+                            <p class="item-date"><time datetime="2018-12-01T15:00:00.000Z" itemprop="datePublished">2018-12-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/11/29/multi-class-classification/" class="title">multi-class classification</a></p>
+                            <p class="item-date"><time datetime="2018-11-29T11:37:09.440Z" itemprop="datePublished">2018-11-29</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Math/Classification/">Classification</a><span class="category-list-count">6</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/">study</a><span class="tag-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/study/" style="font-size: 10px;">study</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 Yujin Jeon</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'https://jyujin39.github.io/2018/12/12/entropy/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
