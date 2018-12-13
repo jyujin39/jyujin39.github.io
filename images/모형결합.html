@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>Data Science YJ</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="description" content="모형 결합모형 결합(model combining) 방법은 앙상블 방법론(ensemble methods)라고도 한다. 단일모형으로 예측이 잘 되지 않을 때, 복수의 모형을 결합해 예측성능을 높이고자 할 때 사용한다.  장점 개별 모형의 성능이 안좋을 때는 결합모형을 하게 되면 성능이 향상된다. 단일모형으로 할 때보다 과최적화를 방지할 수 있다.    모형 결">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Data Science YJ">
+<meta property="og:url" content="https://jyujin39.github.io/images/모형결합.html">
+<meta property="og:site_name" content="Data Science YJ">
+<meta property="og:description" content="모형 결합모형 결합(model combining) 방법은 앙상블 방법론(ensemble methods)라고도 한다. 단일모형으로 예측이 잘 되지 않을 때, 복수의 모형을 결합해 예측성능을 높이고자 할 때 사용한다.  장점 개별 모형의 성능이 안좋을 때는 결합모형을 하게 되면 성능이 향상된다. 단일모형으로 할 때보다 과최적화를 방지할 수 있다.    모형 결">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://jyujin39.github.io/Users/jeon-yujin/Library/Application%20Support/typora-user-images/image-20181211191906364.png">
+<meta property="og:updated_time" content="2018-12-13T14:43:32.194Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Data Science YJ">
+<meta name="twitter:description" content="모형 결합모형 결합(model combining) 방법은 앙상블 방법론(ensemble methods)라고도 한다. 단일모형으로 예측이 잘 되지 않을 때, 복수의 모형을 결합해 예측성능을 높이고자 할 때 사용한다.  장점 개별 모형의 성능이 안좋을 때는 결합모형을 하게 되면 성능이 향상된다. 단일모형으로 할 때보다 과최적화를 방지할 수 있다.    모형 결">
+<meta name="twitter:image" content="https://jyujin39.github.io/Users/jeon-yujin/Library/Application%20Support/typora-user-images/image-20181211191906364.png">
+    
+
+    
+
+    
+        <link rel="icon" href="/images/icons8-account-40.png">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Yujin&#39;s study blog for Data Science</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Math/">Math</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Math/Classification/">Classification</a></li></ul></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    Data Science YJ
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="page-" class="article article-single article-type-page" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="모형-결합"><a href="#모형-결합" class="headerlink" title="모형 결합"></a>모형 결합</h1><p>모형 결합(model combining) 방법은 앙상블 방법론(ensemble methods)라고도 한다. 단일모형으로 예측이 잘 되지 않을 때, 복수의 모형을 결합해 예측성능을 높이고자 할 때 사용한다.</p>
+<ul>
+<li>장점<ol>
+<li>개별 모형의 성능이 안좋을 때는 결합모형을 하게 되면 성능이 향상된다.</li>
+<li>단일모형으로 할 때보다 과최적화를 방지할 수 있다.</li>
+</ol>
+</li>
+</ul>
+<p>모형 결합 방법은 크게 취합(aggregation) 방법론과 부스팅(boosting) 방법론으로 나눌 수 있다.</p>
+<ol>
+<li><p>aggregation</p>
+<p>처음부터 여러 모델로 한 문제를 푼다.</p>
+</li>
+<li><p>boosting</p>
+<p>한 모델이 문제를 풀다가 잘 못하면 그 다음 다른모형을 투입한다. 그 두 모형이 풀다가 잘 못푸는 문제가 생기면 한 모델을 또 추가한다. 모형마다 하는 역할이 다르다.</p>
+</li>
+</ol>
+<p>각 방법론의 대표적인 방법들은 아래와 같다.</p>
+<ul>
+<li>취합 방법론<ul>
+<li>다수결 (Majority Voting)</li>
+<li>배깅 (Bagging)</li>
+<li>랜덤 포레스트 (Random Forests)</li>
+</ul>
+</li>
+<li>부스팅 방법론<ul>
+<li>에이다부스트 (AdaBoost)</li>
+<li>그레디언트 부스트 (Gradient Boost)</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-취합-aggregation"><a href="#1-취합-aggregation" class="headerlink" title="1. 취합 aggregation"></a>1. 취합 aggregation</h3><h3 id="1-다수결-방법"><a href="#1-다수결-방법" class="headerlink" title="1) 다수결 방법"></a>1) 다수결 방법</h3><p>: 가장 단순한 모형결합 방법. 5가지 모형이 있으면 그 5가지로 문제를 다 풀어본다.</p>
+<p>ex) 로지스틱 회귀모형, QDA, 가우시안 나이브베이즈 모형으로 하나의 분류문제를 풀어본다.</p>
+<p>scikitlearn이 제공하는 ‘VotingClassifier’를 이용해 3 모델을 합친다. 그렇게 하면 이 세 모형이 마치 하나의 모델인것처럼 사용할 수 있게 된다.</p>
+<p>이렇게 모델을 취합할 때 두 가지 방법으로 할 수 있다.</p>
+<ol>
+<li>Hard_voting: 모형들의 가중치가 모두 동일</li>
+<li>soft voting: 모형마다 가중치를 다르게 줌</li>
+</ol>
+<p>두 방식으로 각각 했을때 분류 결과가 달라진다.</p>
+<h4 id="모형-결합을-사용한-성능-향상"><a href="#모형-결합을-사용한-성능-향상" class="headerlink" title="모형 결합을 사용한 성능 향상"></a>모형 결합을 사용한 성능 향상</h4><p>핵심가정: 개별 모델들은 상호간에 영향을 받지 않고 독립적으로 문제를 예측한다.</p>
+<p>위 가정을 따르면 N개의 모델이 모여 올바른 정답을 낼 확률은 아래와 같아진다.</p>
+<script type="math/tex; mode=display">
+\sum^N_{k>\frac{N}{2}}\binom N k p^k (1-p)^{N-k}</script><p>개별모형의 성능이 정답률 60프로일 때, 그런 모형이 10개가 모이면 성능이 80프로, 100개가 모이면 99프로까지 올라갈 수 있다.<img src="/Users/jeon-yujin/Library/Application%20Support/typora-user-images/image-20181211191906364.png" alt="image-20181211191906364"></p>
+<p>그런데 개별모형의 성능이 50프로가 안되면, 다수결로 했을 때 오히려 더 성능이 나빠진다.</p>
+<p>즉, 최소한 정확도가 50은 넘는 개별모형들로 모아야 한다.</p>
+<p>개별모형 하나하나를 weak classifier라고 한다. 많이만 모을수있다면 성능은 50프로라도 괜찮다.</p>
+<p>그런데 우리가 지금까지 배운 모형의종류가 5개정도밖에 안되는데 어떻게 100개를 모을까?</p>
+<h3 id="2-배깅"><a href="#2-배깅" class="headerlink" title="2) 배깅"></a>2) 배깅</h3><p>같은 확률모형을 쓰지만 데이터를 다르게 줌으로써 서로 다른 결과를 출력하는 다수의 모형을 만들 수 있는 방법이다.</p>
+<p>부트스트래핑, 크로스 밸리데이션처럼 트레이닝데이터를 랜덤하게 선택해서 하나의 모형에 주면 다른 판단결과가 나오게 된다. 이렇게 해서 엄청나게 많은 모델을 만들어내는 것이다.</p>
+<p>회귀분석, 분류 등등 다 되고, 모델만 많이 주면 뭐든 해내지만 단점은 계산량이 좀 많다는 점.</p>
+<p>Scikit-Learn 의 ensemble 서브패키지는 배깅 모형 결합을 위한 <a href="http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.BaggingClassifier.html" target="_blank" rel="noopener"><code>BaggingClassifier</code></a> 클래스를 제공한다.</p>
+<p>인수:</p>
+<ul>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">base_estimator</span><br></pre></td></tr></table></figure>
+<ul>
+<li>기본 모형</li>
+</ul>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">n_estimators</span><br></pre></td></tr></table></figure>
+<p>: 정수. 디폴트 10</p>
+<ul>
+<li>모형 갯수</li>
+</ul>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">max_samples</span><br></pre></td></tr></table></figure>
+<p>: 정수 혹은 실수. 디폴트 1.0</p>
+<ul>
+<li>데이터 샘플 중 선택할 샘플의 수 혹은 비율</li>
+</ul>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">max_features</span><br></pre></td></tr></table></figure>
+<p>: 정수 혹은 실수. 디폴트 1.0</p>
+<ul>
+<li>다차원 독립 변수 중 선택할 차원의 수 혹은 비율</li>
+</ul>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bootstrap</span><br></pre></td></tr></table></figure>
+<p>: 불리언, 디폴트 True</p>
+<ul>
+<li>데이터 중복 사용 여부</li>
+</ul>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bootstrap_features</span><br></pre></td></tr></table></figure>
+<p>: 불리언, 디폴트 False</p>
+<ul>
+<li>차원 중복 사용 여부</li>
+</ul>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">oob_score</span><br></pre></td></tr></table></figure>
+<p>: 불리언 디폴트 False</p>
+<ul>
+<li>성능 평가시 OOB(out-of-bag) 샘플 사용 여부</li>
+</ul>
+</li>
+</ul>
+<p>bootstrap과 bootstrap_features를 모두 트루로 하면 랜덤패치가 되는 것.</p>
+<ol>
+<li>개별모형이지만 성능을 높이기 위해 depth=5로 설정한 좋은 모델 사용.</li>
+<li>배깅 모형(10개 합침)</li>
+</ol>
+<p><img src="/Users/jeon-yujin/Library/Application%20Support/typora-user-images/image-20181211192857280.png" alt="image-20181211192857280"></p>
+<ol>
+<li>빨간 영역 안에 끼어들어간 녹색인 애를 분류하기 위해 그 위치에 해당하는 부분만 영역을 쪼갰다. 하지만 이거는 누가봐도 오버피팅이다. 그 위에 노란 부분에 빨간데이터가 들어온다면 빨간색일 가능성이 높은데 녹색으로 분류되어버리기 때문이다.</li>
+<li>과최적화가 되지 않았다. 왜? 배깅방법은 데이터를 나눠서 각 모델에는 데이터의 일부만 들어가게 된다. 따라서 대부분의 모델에는 아웃라이어인 데이터가 안들어갔을 확률이 높다. 즉, 여러 모델 중 아웃라이어에 대해 오버피팅을 안한 모델이 더 많게 된다. 이러한 모델들로 다수결을 하게 되면 오버피팅발생 확률이 낮아진다. 자동으로 정규화가 되는 것이다.</li>
+</ol>
+<h3 id="3-랜덤-포레스트"><a href="#3-랜덤-포레스트" class="headerlink" title="3) 랜덤 포레스트"></a>3) 랜덤 포레스트</h3><p>정말 많이 사용하는 다수결방법이 랜덤포레스트다. 트리를 여러개 사용해서 포레스트라고 한다. 의사결정나무를 개별모형으로 사용하는 모형결합방법이다.</p>
+<p>트리 여러 개에 데이터들을 분배해서 준다. 각 트리에서 노드를 내려갈때, 부모노드에서썼던 그 일부데이터를 이용하는 게 아니라, 전체 데이터에서 다시한번 서브스페이싱을 해서 랜덤하게 데이터를 선택해 사용한다. 노드마다마다 이렇게 랜덤하게 데이터 서브스페이싱을 새로 한다.</p>
+<p>이렇게 하면 모델들의 독립성이 증가한다.</p>
+<p>의사결정나무는 원래 greedy한 선택, 즉 위에서 내려올 때 항상 그순간에 가장 좋은 변수를 사용하는데,</p>
+<p>랜덤포레스트는 제약조건을 줘서 non-greedy한 변수선택을 한다.</p>
+<p>extreme 랜덤포레스트는 더욱 극단적으로 맨 처음 변수를 분배할 때부터 어디부터 어디까지 특정 범위로 주는게 아니라 하나의 변수를 랜덤하게 준다.</p>
+<p>feature importance: 랜덤하게 선택된 변수들의 IG, 즉 아래 노드로 내려가면서 떨어지는 엔트로피 점수를 비교해보면 각 변수의 중요도를 계산할 수 있다. 의사결정나무의 경우 선택되는 변수들이 정해져 있기 때문에 선택 기회조차 얻지 못하는 변수들에 대해서는 IG를 계산하기가 힘들다. 그런데 랜덤포레스트의 경우 변수가 랜덤으로 선택되기 때문에 좀더 공정하게 변수들의 중요도를 파악할 수 있다.</p>
+<p>올리베티 얼굴사진에서 변수는 픽셀이 되고, 얘들을 랜덤포레스트 엄청많이 해봤을 때 변수들의 출전횟수(선택횟수)는 거의 비슷한데 분류에 영향을 얼마나 미쳤는지에 해당하는 변수중요도는 서로 다르게 된다.</p>
+<h3 id="2-부스팅-boosting"><a href="#2-부스팅-boosting" class="headerlink" title="2. 부스팅 boosting"></a>2. 부스팅 boosting</h3><p>한 번에 하나씩 모형을 추가하고, 각 모형은 서로 다른 문제를 푼다. 추가되는 모형의 목표는 이전에 추가되어온 모형 혹은 모형들이 잘 못 푼 문제를 푸는 것이다.</p>
+<p>이진분류에만 쓸 수 있으며, class값은 1 혹은 -1이다.</p>
+<p>새로운 모형이 추가될 때 해당 모형의 가중치가 결정된다.</p>
+<script type="math/tex; mode=display">
+C_m(x_i) = \text{sign}(\alpha_1k_1(x_i) + \cdots + \alpha_mk_m(x_i))</script><h3 id="1-에이다부스트"><a href="#1-에이다부스트" class="headerlink" title="1) 에이다부스트"></a>1) 에이다부스트</h3><p>adaptive + boost = adaboost</p>
+<p>1부터 N까지의 트레이닝 데이터에 대해, km이 분류를 해서 1 혹은 -1의 답을 낸다. 그 답이 정답이라면 0점, 오답이라면 1점을 부여. 틀리면 벌점 1점이 생기는 벌점제도와 같다. 벌점을 최소화하는 모델을 찾아 선택한다.</p>
+<script type="math/tex; mode=display">
+L_m = \sum_{i=1}^N w_{m,i}I(k_m(x_i)\neq y_i)</script><p>$I$ : 0 혹은 1</p>
+<p>$w_m$ : 모델마다 다른 가중치(벌점). 문제를 틀려서 얻는 벌점은 모델마다 다르다. 어떤 로직에 의해 이미 결정된 수치.</p>
+<p>모델을 선택한 후 가중치 $\alpha_m$ 을 결정해야 한다.</p>
+<script type="math/tex; mode=display">
+\epsilon_m = \dfrac{\Sigma^N_{i=1} w_{m,i}I(k_m(x_i)\neq y_i)}{\Sigma^N_{i=1}w_{m,i}}</script><p>$\epsilon _m$: 벌점을 0-1사이로 정규화한 점수.</p>
+<p>분모: 다 틀렸을 때 계산된 벌점</p>
+<p>분자: 실제 틀린 문제에 대한 벌점. 즉, 모델의 성능</p>
+<script type="math/tex; mode=display">
+\alpha_m = \frac{1}{2}\log\left(\frac{1-\epsilon_m}{\epsilon_m}\right)</script><p>위 L은 k번째 멤버에 대한 손실함수이고,</p>
+<p>에이다부스팅은 아래와 같이 전체 모형집단에 대한 손실함수를 최소화하는 모형집단을 찾아나가는 과정이라고 볼 수 있다.</p>
+<script type="math/tex; mode=display">
+L_m = \sum^N_{i=1} \exp(-y_iC_m(x_i))</script><p>결국 이걸 최소화하는거나 위 손실함수를 최소화하는 거나 똑같다.</p>
+<p>그전에 적용한 모형이 정답을 맞추지 못한 데이터는 가중치가 커지고 맞춘애들은 가중치가 작게 돼서 다음 모델이 가중치가 커진 데이터를 중점으로 분류를 하게 된다. </p>
+<h3 id="2-그레디언트-부스트"><a href="#2-그레디언트-부스트" class="headerlink" title="2) 그레디언트 부스트"></a>2) 그레디언트 부스트</h3><p>변분법을 사용한 모형이다. 손실 범함수(loss functional)를 최소화하는 개별 분류함수 $k_m$ 을 찾는다.</p>
+<script type="math/tex; mode=display">
+C_m = C_{m-1} - \alpha_m \dfrac{\delta L(y,C_{m-1})}{\delta C_{m-1}} = C_{m-1} + \alpha_m k_m</script><p>결국 범함수를 최적화하는 과정. 앞에서는 기존의 데이터에서 가중치만 바꿔서  잘 추정하는 $k_m$ 을 선택했다면 여기서는 범함수의 그레디언트와 가장 비슷한 $k_m$ 을 찾는다.</p>
+<p>만약 손실범함수가 오차제곱형태라면 ,</p>
+<script type="math/tex; mode=display">
+L(y, C_{m-1}) = \frac{1}{2}(y-C_{m-1})^2</script><p>범함수의 미분은 실제 목푯값 y와 $C_{m-1}$ 과의 차이, 즉 잔차가 된다.</p>
+<script type="math/tex; mode=display">
+-\frac{dL(y,C_m)}{dC_m} = y - C_{m-1}</script><p>이때는 이전 모델과 y와의 잔차와 가장 비슷한 다음 모델을 찾는 것이 그레디언트부스팅 방법이 된다.</p>
+<p>그래디언트 부스팅만을 전문으로 구현해놓은 라이브러리들이 있다.</p>
+<ul>
+<li><p>XGBoost 라이브러리 </p>
+<p>:scikit learn에 비해 빠르다. </p>
+</li>
+<li><p>Light GBM (gradient boosting machine) 라이브러리</p>
+<p>: xgboost보다 더 빨라서 많이 쓰인다.</p>
+</li>
+</ul>
+<p>그래디언트 부스팅모델에 들어가게 되는 것은 함수이므로 decision tree classifier가 아니라 decision tree regressor이다. 따라서 개별 모형들은 0 또는 1의 클래스가 아니라 각각 다른 높이를 지닌 계단식 함수값을 출력한다. 그걸 다 합쳤을 때 최종결과에서 바이너리 클래스로 분류하게 되는 것이다.</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://jyujin39.github.io/images/모형결합.html" data-id="cjpmr7y5n0001qhbayzju3c4d" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/jyujin39/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Math/Classification/">Classification</a><span class="category-list-count">7</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="no-thumbnail">
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/12/13/decision-tree/" class="title">decision_tree</a></p>
+                            <p class="item-date"><time datetime="2018-12-13T11:17:27.000Z" itemprop="datePublished">2018-12-13</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/12/12/entropy/" class="title">entropy</a></p>
+                            <p class="item-date"><time datetime="2018-12-11T15:00:00.000Z" itemprop="datePublished">2018-12-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/12/07/naive_bayesian_classification_model/" class="title">naive bayesian classification model</a></p>
+                            <p class="item-date"><time datetime="2018-12-06T15:00:00.000Z" itemprop="datePublished">2018-12-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/12/06/QDA_LDA/" class="title">QDA &amp; LDA</a></p>
+                            <p class="item-date"><time datetime="2018-12-05T15:00:00.000Z" itemprop="datePublished">2018-12-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/12/02/classification_performance_evaluation/" class="title">classification performance evaluation</a></p>
+                            <p class="item-date"><time datetime="2018-12-01T15:00:00.000Z" itemprop="datePublished">2018-12-02</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/">study</a><span class="tag-list-count">7</span></li></ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 Yujin Jeon</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'https://jyujin39.github.io/images/모형결합.html';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

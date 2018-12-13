@@ -229,7 +229,7 @@ body,
   background: #f77e38;
 }
 body {
-  background: #eaeaea;
+  background: #fff;
   font: 14px "Titillium Web", "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
   -webkit-text-size-adjust: 100%;
 }
@@ -274,14 +274,14 @@ code {
 .logo {
   display: block;
   padding: 10px 0;
-  width: 165px;
-  height: 60px;
+  width: 0px;
+  height: 0px;
   background-image: url("");
   background-position: 0px 10px;
   background-repeat: no-repeat;
-  -webkit-background-size: 165px 60px;
-  -moz-background-size: 165px 60px;
-  background-size: 165px 60px;
+  -webkit-background-size: 0px 0px;
+  -moz-background-size: 0px 0px;
+  background-size: 0px 0px;
 }
 .main-body {
   margin-top: -60px;
@@ -344,7 +344,7 @@ code {
   clear: both;
 }
 #header {
-  background: #f0f0f0;
+  background: rgba(3,8,32,0.878);
   padding-bottom: 60px;
   position: relative;
 }
@@ -357,7 +357,7 @@ code {
 }
 #header-title {
   text-align: center;
-  padding: 10px 30px;
+  padding: 50px 10px 30px 20px;
 }
 #header-title:before,
 #header-title:after {
@@ -375,10 +375,11 @@ code {
   margin-bottom: 20px;
 }
 #header-title .subtitle {
-  font-size: 18px;
-  line-height: 70px;
-  color: #17181a;
-  text-shadow: 0 1px rgba(0,0,0,0.2);
+  font-size: 23px;
+  font-weight: bold;
+  font-style: italic;
+  line-height: 10px;
+  color: #fff;
 }
 .nav-container .nav-icon,
 .nav-container .nav-container-inner #main-nav .main-nav-list-item .main-nav-list-link {
@@ -1256,7 +1257,7 @@ a.article-title:hover {
   line-height: 1em;
   padding: 6px 15px;
   border-radius: 15px;
-  background: #eaeaea;
+  background: #fff;
   color: #aaa;
   text-shadow: 0 1px #fff;
   text-decoration: none;
@@ -1330,7 +1331,7 @@ a.article-title:hover {
   line-height: 36px;
 }
 .article-share-links {
-  background: #eaeaea;
+  background: #fff;
 }
 .article-share-links:before,
 .article-share-links:after {
@@ -1617,7 +1618,7 @@ a.article-title:hover {
   color: #ddd;
 }
 #footer {
-  background: #33363b;
+  background: rgba(3,8,32,0.878);
   margin-top: 60px;
   color: #aaa;
   line-height: 1.6em;
@@ -1636,7 +1637,7 @@ a.article-title:hover {
   padding: 0px 30px 30px 30px;
 }
 #footer #back-to-top {
-  background: #eaeaea;
+  background: #fff;
   color: #777;
   overflow: hidden;
   text-align: center;
@@ -1656,11 +1657,11 @@ a.article-title:hover {
   line-height: 22px;
 }
 #footer .logo {
-  width: 132px;
-  height: 48px;
-  -webkit-background-size: 132px 48px;
-  -moz-background-size: 132px 48px;
-  background-size: 132px 48px;
+  width: 0px;
+  height: 0px;
+  -webkit-background-size: 0px 0px;
+  -moz-background-size: 0px 0px;
+  background-size: 0px 0px;
 }
 i.icon {
   display: inline-block;
