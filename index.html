@@ -1,1175 +1,568 @@
 <!DOCTYPE html>
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="utf-8">
-  
-  <title>Data Science YJ</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>Data Science YJ</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta property="og:type" content="website">
 <meta property="og:title" content="Data Science YJ">
 <meta property="og:url" content="https://jyujin39.github.io/index.html">
 <meta property="og:site_name" content="Data Science YJ">
 <meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Data Science YJ">
-  
-    <link rel="alternate" href="/atom.xml" title="Data Science YJ" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/icons8-account-40.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
+    
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+    
+        <link rel="icon" href="/images/icons8-account-40.png">
+    
 
-  <link rel="stylesheet" href="/css/styles.css">
-  
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
 
 </head>
 </html>
 <body>
-  <nav class="navbar navbar-inverse">
-  <div class="container">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="main-menu-navbar">
-      <ul class="nav navbar-nav">
-        
-          <li><a class="active" href="/index.html">Home</a></li>
-        
-          <li><a class="" href="/archives/">Archives</a></li>
-        
-      </ul>
-
-      <!--
-      <ul class="nav navbar-nav navbar-right">
-        
-          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
-        
-      </ul>
-      -->
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-
-  <div class="container">
-    <div class="blog-header">
-  <h1 class="blog-title">Data Science YJ</h1>
-  
-    <p class="lead blog-description">my daily study blog for Data Science</p>
-  
-</div>
-
-    <div class="row">
-        <div class="col-sm-8 blog-main">
-          
-  
-    <article id="post-entropy" class="article article-type-post" itemscope="" itemprop="blogPost">
-
-  <header class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/12/entropy/">entropy</a>
-    </h1>
-  
-
-
-  </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/2018/12/12/entropy/" class="article-date"><time datetime="2018-12-11T15:00:00.000Z" itemprop="datePublished">2018-12-12</time></a>
-</div>
-
-    
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Math/">Math</a> / <a class="article-category-link" href="/categories/Math/Classification/">Classification</a>
-  </div>
-
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="엔트로피"><a href="#엔트로피" class="headerlink" title="엔트로피"></a>엔트로피</h1><h3 id="엔트로피란"><a href="#엔트로피란" class="headerlink" title="엔트로피란?"></a>엔트로피란?</h3><p>$Y=0$ 또는 $Y=1$ 인 두 가지 값을 갖는 확률분포가 다음처럼 세 종류 있다고 하자.</p>
-<ul>
-<li>확률 분포 $Y_1$ : $P(Y=0) = 0.5, P(Y=1) = 0.5$</li>
-<li>확률 분포 $Y_2$ : $P(Y=0) = 0.8,  P(Y=1) = 0.2$</li>
-<li>확률 분포 $Y_3$ : $P(Y=0) = 1.0, P(Y=1) = 0$</li>
-</ul>
-<p>이 확률값이 베이지안 확률</p>
-<blockquote id="fn_베이지안 확률과 빈도주의적 확률">
-<sup>베이지안 확률과 빈도주의적 확률</sup>. 베이지안 관점에서의 확률은 데이터로부터 얻은 법칙이나 규칙을 표현하기 위한 수단이고, 빈도주의적 관점에서의 확률은 데이터 자체의 값이 어떤 특성을 갖는지를 표현하기 위한 수단이다.<a href="#reffn_베이지안 확률과 빈도주의적 확률" title="Jump back to footnote [베이지안 확률과 빈도주의적 확률] in the text."> &#8617;</a>
-</blockquote>
-<p>이라면, 확률분포 $Y_1$ 은 $y$ 값에 대해 아무것도 모르는 상태(확률이 반반이므로), $Y_2$ 는 $y$ 값이 0이 아니라고 믿지만 확신할 수는 없는 상태, $Y_3$ 은 $y$ 값이 0이라고 100% 확신하는 상태일 것이다. 이렇게 <strong>확률분포들이 가지는 확신의 정도를 수치로 나타낸 것을 엔트로피(entropy)</strong> 라고 한다. 확률변수에서 나올 수 있는 값들의 확률이 비슷비슷한 경우 엔트로피가 높아지고, 특정 값이 나올 확률이 높다면 엔트로피가 작아진다. </p>
-<p>물리학에서는 상태가 분산되어 있는 정도를 엔트로피로 정의한다. 여러가지로 고루 분산되어 있을 수 있으면 엔트로피가 높고 특정한 하나의 상태로 몰려있으면 엔트로피가 낮다. 확률분포의 엔트로피는 물리학의 엔트로피 용어를 빌려온 것이다.</p>
-<p>엔트로피는 수학적으로 다음과 같이 정의한다.</p>
-<ul>
-<li><p>확률변수 Y가 이산 확률변수이면,</p>
-<script type="math/tex; mode=display">
-H[Y] = -\sum_{k=1}^K P(y_k)\log_2 P(y_k)</script></li>
-<li><p>확률변수 Y가 연속 확률변수이면,</p>
-<script type="math/tex; mode=display">
-H[Y] = -\int^\infin_{-\infin}p(y)\log_2p(y)\,\,dy</script><p>이 식에서 $p(y)$ 는 확률밀도함수다.</p>
-</li>
-</ul>
-<p>위에서 예를 든 $Y_1, Y_2, Y_3$ 에 대해 엔트로피를 구하면 다음과 같다.</p>
-<script type="math/tex; mode=display">
-H[Y_1] = -\dfrac{1}{2}\log_2\dfrac{1}{2} -\dfrac{1}{2}\log_2\dfrac{1}{2} = 1\\
-H[Y_2] = -\dfrac{8}{10}\log_2\dfrac{8}{10} -\dfrac{2}{10}\log_2\dfrac{2}{10} = 0.72\\
-H[Y_3] = -1\log_2 1 -0\log_2 0 = 0\\</script><h3 id="엔트로피의-성질"><a href="#엔트로피의-성질" class="headerlink" title="엔트로피의 성질"></a>엔트로피의 성질</h3><p>확률변수가 결정론적</p>
-<blockquote id="fn_결정론적 데이터">
-<sup>결정론적 데이터</sup>. 예측할 수 없는 값이 나오는 확률적 데이터가 아닌, 항상 같은 값이 나오는 데이터를 결정론적 데이터라고 한다.<a href="#reffn_결정론적 데이터" title="Jump back to footnote [결정론적 데이터] in the text."> &#8617;</a>
-</blockquote>
-<p>이면 확률분포에서 특정한 하나의 값이 나올 확률이 1이다. 이 때 엔트로피는 0이 되고, 이 값은 엔트로피가 가질 수 있는 최소값이다.</p>
-<p>반대로 엔트로피의 최대값은 이산 확률변수의 클래스 개수에 따라 달라진다. 만약 이산확률변수가 갖는 클래스가 $2^K$ 개라면, <strong>엔트로피의 최대값은 각 클래스가 모두 같은 확률을 갖는 때</strong>이다. 이 때 엔트로피의 값은 </p>
-<script type="math/tex; mode=display">
-H = -\frac{2^K}{2^K}\log_2\frac{1}{2^K} = K</script><h3 id="엔트로피와-정보량"><a href="#엔트로피와-정보량" class="headerlink" title="엔트로피와 정보량"></a>엔트로피와 정보량</h3><p>엔트로피는 확률변수가 담을 수 있는 정보의 양을 의미한다고 볼 수도 있다. 확률변수가 담을 수 있는 정보량이란, 확률변수의 표본값을 관측해서 얻을 수 있는 추가적인 정보의 종류를 말한다.</p>
-<p>엔트로피가 0이면 확률변수는 결정론적이므로 확률변수의 표본값은 항상 같다. 따라서 확률변수의 표본값을 관측한다고 해도 우리가 얻을 수 있는 추가 정보는 없다.</p>
-<p>반대로 엔트로피가 크다면 확률변수의 표본값이 가질 수 있는 경우의 수가 증가하므로 표본값을 실제로 관측하기 전까지는 알 수 있는 게 거의 없다. 즉, 확률변수의 표본값이 우리에게 가져다줄 수 있는 정보의 양이 많다.</p>
-<h3 id="엔트로피의-추정"><a href="#엔트로피의-추정" class="headerlink" title="엔트로피의 추정"></a>엔트로피의 추정</h3><p>확률변수모형, 즉 이론적인 확률밀도(질량)함수가 아닌 실제 데이터가 주어진 경우에는 확률밀도(질량)함수를 추정하여 엔트로피를 계산해야 한다.</p>
-<p>예를 들어 데이터가 80개가 있고 그 중 Y=0 인 데이터가 40개, Y=1인 데이터가 40개 있는 경우는 엔트로피가 1이다.</p>
-<script type="math/tex; mode=display">
-P(y=0) = \frac{40}{80} = \frac{1}{2}\\
-P(y=1) = \frac{40}{80} = \frac{1}{2}\\
-H[Y] = -\frac{1}{2}\log_2\left(\frac{1}{2}\right) -\frac{1}{2}\log_2\left(\frac{1}{2}\right) = \frac{1}{2} + \frac{1}{2} = 1</script><p>만약 데이터가 40개가 있고 그 중 Y=0인 데이터가 30개, Y=1인 데이터가 10개 있는 경우는 엔트로피가 약 0.81이다.</p>
-<script type="math/tex; mode=display">
-P(y=0) = \dfrac{30}{40} = \dfrac{3}{4}\\
-P(y=1) = \dfrac{10}{40} = \dfrac{1}{4}\\
-H[Y] = -\dfrac{3}{4}\log_2\left(\dfrac{3}{4}\right) - \dfrac{1}{4}\log_2\left(\dfrac{1}{4}\right) = 0.81</script><h3 id="지니불순도"><a href="#지니불순도" class="headerlink" title="지니불순도"></a>지니불순도</h3><p>엔트로피와 유사한 개념으로 지니불순도(Gini impurity)라는 것이 있다. 지니불순도는 엔트로피처럼 확률분포가 어느쪽에 치우쳐있는지를 재는 척도지만, 로그를 사용하지 않기 때문에 계산량이 더 적어서 엔트로피 대용으로 많이 사용된다.</p>
-<script type="math/tex; mode=display">
-G[Y] = \sum^K_{k=1} P(y_k)(1-P(y_k))</script><p><img src="/images/image-20181208205552160.png" alt=""></p>
-<h3 id="결합-엔트로피"><a href="#결합-엔트로피" class="headerlink" title="결합 엔트로피"></a>결합 엔트로피</h3><p>두 확률변수 $X, Y$에 대해 결합 엔트로피(joint entropy)는 다음과 같이 정의한다.</p>
-<ul>
-<li>$X, Y$가 이산확률변수인 경우</li>
-</ul>
-<script type="math/tex; mode=display">
-H[X,Y] = -\sum^{K_x}_{i=1}\sum^{K_y}_{j=1} P(x_i,y_j)\log_2P(x_i,y_j)</script><ul>
-<li>$X, Y$가 이산확률변수인 경우</li>
-</ul>
-<script type="math/tex; mode=display">
-  H[X, Y] = -\int_x\int_y p(x,y)\log_2p(x,y)\;dxdy</script><h3 id="조건부-엔트로피"><a href="#조건부-엔트로피" class="headerlink" title="조건부 엔트로피"></a>조건부 엔트로피</h3><p>조건부 엔트로피는 상관관계가 있는 두 확률변수 X, Y가 있고 X의 값을 알 때 Y가 가질 수 있는 정보량을 의미한다. 수학적인 정의는 다음과 같다.</p>
-<ul>
-<li>$X, Y$가 이산확률변수인 경우</li>
-</ul>
-<script type="math/tex; mode=display">
-H[Y\mid X] = -\sum^{K_x}_{i=1}\sum^{K_y}_{j=1}\log_2P(y_j\mid x_i)</script><ul>
-<li>$X, Y$가 연속확률변수인 경우</li>
-</ul>
-<script type="math/tex; mode=display">
-  H[Y\mid X] = -\int_x\int_y p(x,y)\log_2p(y\mid x)\;dxdy</script><p>조건부 엔트로피는 조건부 확률분포의 정의를 사용해 다음과 같이 고칠 수 있다.</p>
-<ul>
-<li>$X, Y$가 이산확률변수인 경우</li>
-</ul>
-<script type="math/tex; mode=display">
-H[Y\mid X] = \sum^{K_x}_{i=1}P(x_i)H[Y\mid X=x_i]</script><ul>
-<li>$X, Y$가 연속확률변수인 경우</li>
-</ul>
-<script type="math/tex; mode=display">
-  H[Y\mid X] = \int_x p(x)H[Y \mid X=x] \;dx</script><h4 id="조건부-엔트로피-예시"><a href="#조건부-엔트로피-예시" class="headerlink" title="조건부 엔트로피 예시"></a>조건부 엔트로피 예시</h4><p>조건부 엔트로피 개념을 스팸메일 분류문제를 통해 알아보자.</p>
-<p>스팸메일 분류모형을 만들기 위한 메일 표본 80개가 있다. 이 중 40개가 정상메일($Y=0$), 40개가 스팸 메일($Y=1$)이다.</p>
-<p>스팸메일 여부를 특정 키워드가 존재하는지($X=1$) 혹은 존재하지 않는지($X=0$)의 여부로 알아보고자 한다. 키워드 후보로는 $X_1, X_2, X_3$ 세 가지가 있다.</p>
-<p>1) 우선 $X_1$과 $Y$의 관계가 다음과 같다고 하자.</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:left"></th>
-<th style="text-align:center">$Y=0$</th>
-<th style="text-align:center">$Y=1$</th>
-<th style="text-align:center"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">$X_1 = 0$</td>
-<td style="text-align:center">30</td>
-<td style="text-align:center">10</td>
-<td style="text-align:center">40</td>
-</tr>
-<tr>
-<td style="text-align:left">$X_1 = 1$</td>
-<td style="text-align:center">10</td>
-<td style="text-align:center">30</td>
-<td style="text-align:center">40</td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:center">40</td>
-<td style="text-align:center">40</td>
-<td style="text-align:center">80</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>이 때 조건부 엔트로피는 0.81이다.</p>
-<script type="math/tex; mode=display">
-\begin{eqnarray}
-H[Y\mid X_1] &=& p(X_1 = 0)H[Y\mid X_1=0] + p(X_1=1)H[Y\mid X_1=1]\\
-&=& \frac{40}{80}\cdot 0.81 + \frac{40}{80}\cdot 0.81 = 0.81
-\end{eqnarray}</script><p>2) $X_2$와 $Y$의 관계는 다음과 같다.</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th></th>
-<th style="text-align:center">$Y=0$</th>
-<th style="text-align:center">$Y=1$</th>
-<th style="text-align:center"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>$X_2 = 0$</td>
-<td style="text-align:center">20</td>
-<td style="text-align:center">40</td>
-<td style="text-align:center">60</td>
-</tr>
-<tr>
-<td>$X_2 = 1$</td>
-<td style="text-align:center">20</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">20</td>
-</tr>
-<tr>
-<td></td>
-<td style="text-align:center">40</td>
-<td style="text-align:center">40</td>
-<td style="text-align:center">80</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>이 때 조건부 엔트로피는 0.69이다.</p>
-<script type="math/tex; mode=display">
-\begin{eqnarray}
-H[Y\mid X_2] &=& p(X_2 = 0)H[Y\mid X_2=0] + p(X_2=1)H[Y\mid X_2=1]\\
-&=& \frac{60}{80}\cdot 0.92 + \frac{20}{80}\cdot 0 = 0.69
-\end{eqnarray}</script><p>3) $X_3$ 과 $Y$ 의 관계는 다음과 같다.</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th></th>
-<th>$Y=0$</th>
-<th>$Y=1$</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>$X_3=0$</td>
-<td>0</td>
-<td>40</td>
-<td>40</td>
-</tr>
-<tr>
-<td>$X_3 = 1$</td>
-<td>40</td>
-<td>0</td>
-<td>40</td>
-</tr>
-<tr>
-<td></td>
-<td>40</td>
-<td>40</td>
-<td>80</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>이 때 조건부 엔트로피는 0이 된다.</p>
-<script type="math/tex; mode=display">
-\begin{eqnarray}
-H[Y\mid X_3] &=& p(X_3 = 0)H[Y\mid X_3=0] + p(X_3=1)H[Y\mid X_3=1]\\
-&=& \frac{40}{80}\cdot 0 + \frac{40}{80}\cdot 0 = 0
-\end{eqnarray}</script><p>위를 통해 조건부 엔트로피는 X값에 의해 만들어지는 새로운 Y 확률분포의 가중평균임을 알 수 있다.</p>
-<h3 id="크로스-엔트로피"><a href="#크로스-엔트로피" class="headerlink" title="크로스 엔트로피"></a>크로스 엔트로피</h3><p>같은 확률변수에 대한 두 개의 추정 확률분포를 비교하는 데 주로 쓰이는 크로스 엔트로피(cross entropy)는 두 확률분포의 차이를 정량화한 값으로, 예측의 틀린 정도를 나타내주는 일종의 loss function 역할을 해준다. 확률변수를 인수로 사용하는 joint 엔트로피와 달리 확률분포를 인수로 사용해 다음과 같이 정의된다.  </p>
-<ul>
-<li>이산확률변수인 경우</li>
-</ul>
-<script type="math/tex; mode=display">
-H[P,Q] = -\sum_{k=1}^K P(y_k)\text{log}_2Q(y_k)</script><ul>
-<li>연속확률변수인 경우<script type="math/tex; mode=display">
-H[p,q] = -\int_y p(y)\log_2q(y)\;dy</script></li>
-</ul>
-<p>여기서 $P(y_k)$ 는 실제 값, $Q(y_k)$는 예상 값에 해당한다. 크로스 엔트로피 값은 실제값과 예측값이 일치할 경우 0으로 수렴하고, 값이 틀릴 경우 무한대로 발산하기 때문에 크로스 엔트로피를 최소화하는 방향으로 분류모델 성능을 수정한다.</p>
-<p>크로스 엔트로피는 확률분포의 차이를 정량화한 값이지만 기준이 되는 분포가 p로 고정되어 있다. q에서 p가 얼만큼 떨어져있는지를 측정한 것과 p에서 q가 얼만큼 떨어져있는지를 측정한 것은 다른 값이다. 즉, p와 q가 바뀌면 값이 달라진다.</p>
-<script type="math/tex; mode=display">
-H[p,q] \neq H[q,p]</script><p>크로스 엔트로피는 분류모형의 성능을 측정할 때 사용된다. Y가 0 또는 1이라는 값만 가지는 이진 분류문제를 예로 들어보자.</p>
-<ul>
-<li>$P_Y$ 는 $X$가 정해졌을 때 실제 $Y$가 가지는 분포를 뜻한다. $X$가 정해지면 $Y$는 확실히 0이거나 확실히 1이다. 즉, $P_Y$는 $(0,1)$ 또는 $(1,0)$이 된다.</li>
-<li>하지만 예측값 $\hat{Y}$의 분포 $Q_\hat{Y}$는 모수가 $\mu$인 베르누이 분포이다. 즉 $Q_\hat{Y}$는 $(1-\mu, \mu)$이다. </li>
-</ul>
-<p>특정한 X에 대해 P와 Q의 크로스 엔트로피는 아래와 같다.</p>
-<script type="math/tex; mode=display">
-H[P,Q] = 
-\begin{cases}
-& -\log_2 (1-\mu) & \text{Y=0일 때} \\
-& -\log_2 \mu & \text{Y=1일 때} \\
-\end{cases}</script><p>분류문제에서는 $P(Y\mid X)$ 와 $P(\hat{Y}\mid X)$ 가 같으면 최상인 케이스.</p>
-<script type="math/tex; mode=display">
-H[P_Y, P_{\hat{Y}}] = P_Y(Y=0)\,\text{log}P_{\hat{Y}}(\hat{Y}=0)\\
-\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,+ P_Y(Y=1)\,\text{log}P_{\hat{Y}}(\hat{Y}=1)</script><p>Y는 0이거나 1이다.</p>
-<ul>
-<li>로지스틱 회귀분석에서 나왔던 $G^2$ 와 크로스엔트로피의 비교</li>
-</ul>
-<script type="math/tex; mode=display">
-H[P,Q] = -\dfrac{1}{N}\sum_{i=1}^N(y_i\log_2\mu_i + (1-y_i)\log_2(1-\mu_i))</script><script type="math/tex; mode=display">
-G^2 = 2\sum^N_{i=1}\left(y_i\log\dfrac{y_i}{\hat{y}_i} + (1-y_i)\log\dfrac{1-y_i}{1-\hat{y}_i}\right)</script><h3 id="쿨백-라이블러-발산"><a href="#쿨백-라이블러-발산" class="headerlink" title="쿨백 - 라이블러 발산"></a>쿨백 - 라이블러 발산</h3><p>쿨백-라이블러  발산(Kullback-Leibler divergence)은 두 확률분포 $p(y)$ 와 $q(y)$ 의 차이를 정량화하는 방법의 하나로, 크로스 엔트로피에서 기준이 되는 분포의 엔트로피 값을 뺀 값이다. 따라서 상대 엔트로피(relative entropy)라고도 한다. 값은 항상 양수이며, 두 확률분포가 완전히 같을 때에만 0이 된다.</p>
-<ul>
-<li>이산확률변수의 경우</li>
-</ul>
-<script type="math/tex; mode=display">
-KL(P\mid\mid Q) = H[P,Q] - H[P] = \sum_{i=1}^K P(y_i)\log_2\left(\dfrac{P(y_i)}{Q(y_i)}\right)</script><ul>
-<li>연속확률변수의 경우<script type="math/tex; mode=display">
-KL(p\mid\mid q) = H[p,q] - H[p] = \int p(y)\log_2\left(\frac{p(y)}{q(y)}\right)</script></li>
-</ul>
-
-      
-    </div>
-
-    
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="https://jyujin39.github.io/2018/12/12/entropy/" data-id="cjpm75a4g0005zeba5z5y9zpj" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/">study</a></li></ul>
-
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-naive_bayesian_classification_model" class="article article-type-post" itemscope="" itemprop="blogPost">
-
-  <header class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/07/naive_bayesian_classification_model/">naive bayesian classification model</a>
-    </h1>
-  
-
-
-  </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/2018/12/07/naive_bayesian_classification_model/" class="article-date"><time datetime="2018-12-06T15:00:00.000Z" itemprop="datePublished">2018-12-07</time></a>
-</div>
-
-    
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Math/">Math</a> / <a class="article-category-link" href="/categories/Math/Classification/">Classification</a>
-  </div>
-
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="나이브베이즈-분류모형"><a href="#나이브베이즈-분류모형" class="headerlink" title="나이브베이즈 분류모형"></a>나이브베이즈 분류모형</h1><h3 id="나이브-가정"><a href="#나이브-가정" class="headerlink" title="나이브 가정"></a>나이브 가정</h3><p>모든 차원의 개별 독립변수 요소들이 서로 조건부 독립이라는 가정을 나이브 가정이라고 한다. 이 가정은 그냥 생각해봐도 말이 안 된다. 예를 들어 iris데이터에서 독립변수 $x_1$은 꽃잎의 길이, $x_2$는 꽃잎의 폭이라고 할 때, 꽃잎의 길이가 길어지면 상식적으로 폭도 커지므로 두 변수 사이에는 매우 큰 상관관계가 있다. 그런데 수많은 데이터에서 상관관계를 모두 구하기가 현실적으로 힘들기 때문에 어떨 수 없이 나이브하게 변수들이 서로 독립이라고 가정하는 것이다. 이 가정을 베이즈 분류모형에 적용한 것이 <strong>나이브 베이즈 분류모형(Naive Bayes classification model)</strong> 이다.</p>
-<p>나이브베이즈 분류모형에서는 데이터들이 서로 독립이라서, 데이터들의 확률분포가 개별 데이터의 확률의 곱으로 표현된다. 주의할 점은 그냥 독립인 게 아니라 y가 특정 클래스라는 조건 하에서 독립, 즉 조건부 독립이다.</p>
-<script type="math/tex; mode=display">
-P(x_1, \cdots , x_D \mid y=k) = \prod_{d=1}^D P(x_d \mid y=k)</script><script type="math/tex; mode=display">
-P(y=k \mid x) \;\; \propto \;\; \prod^D_{d=1} P(x_d \mid y=k)P(y=k)</script><ul>
-<li><p>나이브베이즈 분류모형의 강점</p>
-<p>이렇게 나이브한 가정을 했음에도 실제로는 분류가 잘 된다.</p>
-<p>x들을 서로 독립으로 놓음으로써 qda와 lda가 가지지 못한 또다른 장점이 생기는데, 각 x마다 개별적으로 맞는 모델을 사용할 수 있다는 점이다. 꼭 하나의 분포를 모든 데이터에 대해 사용하지 않아도 되는 것이다.</p>
-<p>가우시안 정규분포를 따르지 않아도 되므로 x가 연속이 아니라 이산분포(베르누이, 다항분포 등)인 경우에도 모델링할 수가 있게 된다.</p>
-</li>
-</ul>
-<p>Scikit-Learn의 naive_bayes 서브패키지에서는 다음과 같은 세가지 나이브 베이즈 모형 클래스를 제공한다.</p>
-<ul>
-<li><code>GaussianNB</code>: 가우시안 정규 분포 나이브 베이즈</li>
-<li><code>BernoulliNB</code>: 베르누이 분포 나이브 베이즈</li>
-<li><code>MultinomialNB</code>: 다항 분포 나이브 베이즈</li>
-</ul>
-<p>이 클래스들은 다양한 속성값 및 메서드를 가진다. 우선 사전 확률과 관련된 속성은 다음과 같다.</p>
-<ul>
-<li><code>classes_</code><ul>
-<li>종속 변수 y의 클래스</li>
-</ul>
-</li>
-<li><code>class_count_</code><ul>
-<li>종속 변수 y의 값이 특정한 클래스인 표본 데이터의 수</li>
-</ul>
-</li>
-<li><code>class_prior_</code><ul>
-<li>종속 변수 y의 무조건부 확률 분포 $P(Y)$ (가우시안 정규 분포의 경우에만)</li>
-</ul>
-</li>
-<li><code>class_log_prior_</code><ul>
-<li>종속 변수 y의 무조건부 확률 분포의 로그 $\text{log}P(Y)$(베르누이 분포와 다항 분포의 경우에만)</li>
-<li></li>
-</ul>
-</li>
-</ul>
-<h3 id="1-가우시안-정규분포-나이브-베이즈-모형"><a href="#1-가우시안-정규분포-나이브-베이즈-모형" class="headerlink" title="1) 가우시안 정규분포 나이브 베이즈 모형"></a>1) 가우시안 정규분포 나이브 베이즈 모형</h3><p>가우시안 분포에서는 $\mu$(기댓값) 과 $\sigma$ (표준편차)만 구하면 된다.</p>
-<ul>
-<li><code>theta_</code>: 가우시안 정규 분포의 기댓값 $\mu$</li>
-<li><code>sigma_</code>: 가우시안 정규 분포의 분산 $\sigma^2$</li>
-</ul>
-<p>예를 들어 두 개의 실수인 독립변수 $x_1, x_2$ 와 두 종류의 클래스 $y=0,1$ 을 가지는 분류 모형이 있다고 하자. 독립변수의 분포는 y의 클래스에 다라 다음처럼 분포가 달라진다.</p>
-<script type="math/tex; mode=display">
-\mu_0 = \begin{bmatrix}-2\\ -2\end{bmatrix}, \;\; \Sigma_0 = \begin{bmatrix} 1 & 0.9 \\ 0.9 & 2 \end{bmatrix}</script><script type="math/tex; mode=display">
-\mu_1 = \begin{bmatrix} 2 \\ 2\end{bmatrix}, \;\; \Sigma_1 = \begin{bmatrix} 1.2 & -0.8 \\ -0.8 & 2\end{bmatrix}</script><p>이 데이터를 가우시안 나이브베이즈모형으로 다음처럼 풀 수 있다.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">np.random.seed(<span class="number">0</span>)</span><br><span class="line">rv0 = sp.stats.multivariate_normal([<span class="number">-2</span>, <span class="number">-2</span>], [[<span class="number">1</span>, <span class="number">0.9</span>], [<span class="number">0.9</span>, <span class="number">2</span>]])</span><br><span class="line">rv1 = sp.stats.multivariate_normal([<span class="number">2</span>, <span class="number">2</span>], [[<span class="number">1.2</span>, <span class="number">-0.8</span>], [<span class="number">-0.8</span>, <span class="number">2</span>]])</span><br><span class="line">X0 = rv0.rvs(<span class="number">40</span>)</span><br><span class="line">X1 = rv1.rvs(<span class="number">60</span>)</span><br><span class="line">X = np.vstack([X0, X1])</span><br><span class="line">y = np.hstack([np.zeros(<span class="number">40</span>), np.ones(<span class="number">60</span>)])</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sklearn.naive_bayes <span class="keyword">import</span> GaussianNB</span><br><span class="line">model_norm = GaussianNB().fit(X, y)</span><br></pre></td></tr></table></figure>
-<p>클래스 값이 0일 때와 1일 때 각각 x가 이루는 확률분포의 모수를 계산하면 다음과 같다.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">model_norm.theta_[<span class="number">0</span>], model_norm.sigma_[<span class="number">0</span>]</span><br><span class="line"><span class="comment">#클래스 0일 때 결과</span></span><br><span class="line">(array([<span class="number">-1.96197643</span>, <span class="number">-2.00597903</span>]), array([<span class="number">1.02398854</span>, <span class="number">2.31390497</span>]))</span><br><span class="line"></span><br><span class="line">model_norm.theta_[<span class="number">1</span>], model_norm.sigma_[<span class="number">1</span>]</span><br><span class="line"><span class="comment">#클래스 1일 때 결과</span></span><br><span class="line">(array([<span class="number">2.19130701</span>, <span class="number">2.12626716</span>]), array([<span class="number">1.25429371</span>, <span class="number">1.93742544</span>]))</span><br></pre></td></tr></table></figure>
-<p>추정 결과 실제 모수와 유사한 모수를 구할 수 있다.</p>
-<p>다만, 아래 그래프를 보면 알 수 있듯이, 원래 데이터의 분포는 무시된다. 위 그래프는 원래 데이터의 분포를 나타낸 플롯이고, 아래 그래프는 나이브베이즈 모형으로 추정한 데이터의 분포 그래프이다.</p>
-<p><img src="/images/image-20181206211121253.png" alt=""></p>
-<p><img src="/images/image-20181204195306412.png" alt=""></p>
-<p>원래 데이터의 분포를 보면 0번 클래스(파란색)에 해당하는 데이터는 약간 양의상관관계가 보이고, 1번 클래스(빨간색)에 해당하는 데이터는 약간 음의 상관관계를 보인다. 그러나 나이브베이즈 모형에서는 그러한 상관관계를 없다고 배제해버리고 두 클래스의 분포를 동일하다고 가정하기 때문에 아래와 같은 모양이 된다.</p>
-<p>만들어진 모형으로 $x_{new}=(-0.7, -0.8)$ 인 데이터의 y 값을 예측해보자. </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">x_new = [<span class="number">-0.7</span>, <span class="number">-0.8</span>]</span><br><span class="line">model_norm.predict_proba([x_new])</span><br><span class="line"><span class="comment">#결과:</span></span><br><span class="line">array([[<span class="number">0.98300323</span>, <span class="number">0.01699677</span>]])</span><br><span class="line"><span class="comment">#x_new가 클래스 0일 확률, 1일 확률</span></span><br></pre></td></tr></table></figure>
-<p>따라서 $y=0$일 확률이 $y=1$일 확률보다 훨씬 크다는 것을 알 수 있다.</p>
-<h3 id="2-베르누이-분포-나이브베이즈-모형"><a href="#2-베르누이-분포-나이브베이즈-모형" class="headerlink" title="2) 베르누이 분포 나이브베이즈 모형"></a>2) 베르누이 분포 나이브베이즈 모형</h3><p>베르누이 모형에서는 타겟변수뿐 아니라 독립변수도 0 또는 1의 값을 가져야 한다. 예를 들어 문서에 특정 단어가 포함되어있는지의 여부를 베르누이 확률변수로 모형화할 수 있다. 여기서 추정해야 되는 것은 개별 x와 y마다의 뮤 값이다.</p>
-<p>스팸 메일을 디텍팅하는 데 이 모형을 사용한다고 해보자. 아래의 경우 총 10개의 메일을 4개의 키워드의 포함여부에 따라 0 또는 1 값을 부여한 것이다. 독립변수가 0이면 특정 키워드가 포함되지 않은 것이고, 1이면 특정 키워드가 포함된 것이다. 종속변수 값은 0이면 정상메일, 1이면 스팸메일에 해당한다.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">X = np.array([</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>], <span class="comment">#행 하나가 메일 하나, 열 하나가 키워드 하나</span></span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>]])</span><br><span class="line">y = np.array([<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>])<span class="comment">#정상메일인지 아닌지 라벨링</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li><p><strong>스무딩(Smoothing)</strong></p>
-<p>: 표본 데이터의 수가 적은 경우에는 베르누이 모수가 0 또는 1이라는 극단적인 추정값이 나올 수도 있다. 하지만 현실적으로는 그럴 가능성은 매우 적다. 따라서 베르누이분포 나이브베이즈 모형 내에서, 추정한 모수들의 값이 0.5에 좀더 가까워지도록  각각의 x에 가상의 데이터 0과 1을 하나씩 추가한다. </p>
-<script type="math/tex; mode=display">
-\hat{\mu}_{d,k} = \dfrac{N_{d,k}+\alpha}{N_k + 2\alpha}</script><p>이렇게 스무딩을 거치면 1에 가까웠던 모수는 작아지고, 0에 가까웠던 모수는 커져서 모두 0.5에 조금씩 더 가까워지게 된다.</p>
-<p>만약 2개의 데이터에서 개수를 더 늘려서 $\alpha$ 개 만큼의 데이터를 추가하면 모수값이 좀 더 0.5에 가까워질 것이다.</p>
-</li>
-</ul>
-<p>이제 위 데이터를 베르누이 나이브 베이즈 모형으로 예측해 보자.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.naive_bayes <span class="keyword">import</span> BernoulliNB</span><br><span class="line">model_bern = BernoulliNB().fit(X, y)</span><br></pre></td></tr></table></figure>
-<p>각 클래스와 키워드별로 총 8개의 베르누이 확률변수의 모수를 구해보면 실제 값은 다음과 같다.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fc = model_bern.feature_count_</span><br><span class="line">fc / np.repeat(model_bern.class_count_[:, np.newaxis], <span class="number">4</span>, axis=<span class="number">1</span>)</span><br><span class="line"><span class="comment">#결과</span></span><br><span class="line">array([[<span class="number">0.5</span>       , <span class="number">1.</span>        , <span class="number">0.75</span>      , <span class="number">0.25</span>      ],</span><br><span class="line">       [<span class="number">0.33333333</span>, <span class="number">0.5</span>       , <span class="number">0.83333333</span>, <span class="number">0.5</span>       ]])</span><br></pre></td></tr></table></figure>
-<p>그런데 모형으로 예측해보면 값이 다르다. 모형 내부에서 디폴트 알파값이 1인 스무딩을 거쳐 각 모수가 0.5에 가까워진 추정값을 출력하기 때문이다.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">theta = np.exp(model_bern.feature_log_prob_)</span><br><span class="line">theta</span><br><span class="line"><span class="comment">#결과</span></span><br><span class="line">array([[<span class="number">0.5</span>       , <span class="number">0.83333333</span>, <span class="number">0.66666667</span>, <span class="number">0.33333333</span>],</span><br><span class="line">       [<span class="number">0.375</span>     , <span class="number">0.5</span>       , <span class="number">0.75</span>      , <span class="number">0.5</span>       ]])</span><br></pre></td></tr></table></figure>
-<p>이렇게 만들어진 모형에 테스트데이터를 넣고 클래스 예측을 해 보면 다음처럼 정상메일일 확률을 구할 수 있다.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x_new = np.array([<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>])</span><br><span class="line">model_bern.predict_proba([x_new])</span><br><span class="line"><span class="comment">#결과</span></span><br><span class="line">array([[<span class="number">0.72480181</span>, <span class="number">0.27519819</span>]])</span><br></pre></td></tr></table></figure>
-<h3 id="3-다항-분포-나이브-베이즈-모형"><a href="#3-다항-분포-나이브-베이즈-모형" class="headerlink" title="3) 다항 분포 나이브 베이즈 모형"></a>3) 다항 분포 나이브 베이즈 모형</h3><p>다항 분포 나이브베이즈 모형에서는 독립변수 x가 0 또는 자연수이다. 베르누이에서 x가 특정 단어의 출현 여부였다면, 다항분포에서는 특정단어가 한 문서에 나온 빈도 수가 된다. 여기서는 각 클래스 k에서 x의 개수 d(아래의 경우 4개)만큼의 면을 가진 주사위를 던졌을 때 d번째 면이 나온 횟수가 입력변수로 들어간다. </p>
-<p>따라서 다항 분포 가능도모형을 기반으로 하는 나이브 베이즈 모형은 주사위를 던진 결과로부터 $1,K_1,\cdots,K_K$ 중 어느 주사위를 던졌는지를 찾아내는 모형이라고 할 수 있다.</p>
-<p>다항분포 나이브베이즈 모형에서 스무딩 공식은 다음과 같다. 주사위의 각 면이 $\alpha$ 번씩 나온 경우를 추가해주는 것이라고 생각하면 된다. $N_{d,k}$ 는 클래스 k에서 d번째 면이 나온 횟수를 의미한다.</p>
-<script type="math/tex; mode=display">
-\hat{\mu}_{d,k} = \dfrac{N_{d,k} + \alpha}{N_k + D\alpha}</script><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">X = np.array([</span><br><span class="line">   <span class="comment">#[1, 1, 1, 1] 클래스 0의 스무딩. 주사위 각면이 1번씩 나온 경우를 추가</span></span><br><span class="line">    [<span class="number">3</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">2</span>],</span><br><span class="line">    [<span class="number">3</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">3</span>, <span class="number">3</span>, <span class="number">0</span>, <span class="number">4</span>],</span><br><span class="line">    [<span class="number">3</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">2</span>],</span><br><span class="line">    <span class="comment">#여기까지 클래스 0</span></span><br><span class="line">    [<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">4</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">5</span>, <span class="number">3</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">2</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">5</span>],</span><br><span class="line">    [<span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]])</span><br><span class="line">	<span class="comment">#여기까지 클래스 1</span></span><br><span class="line">y = np.array([<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>])</span><br></pre></td></tr></table></figure>
-<p>베르누이 분포에서와 마찬가지로 실제 데이터의 모수와 스무딩을 거친 모형에서 추정한 모수는 다르게 된다.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#실제 모수</span></span><br><span class="line">fc = model_mult.feature_count_</span><br><span class="line">fc / np.repeat(fc.sum(axis=<span class="number">1</span>)[:, np.newaxis], <span class="number">4</span>, axis=<span class="number">1</span>)</span><br><span class="line"><span class="comment">#결과</span></span><br><span class="line">array([[<span class="number">0.3</span>       , <span class="number">0.4</span>       , <span class="number">0.075</span>     , <span class="number">0.225</span>     ],</span><br><span class="line">       [<span class="number">0.10416667</span>, <span class="number">0.14583333</span>, <span class="number">0.375</span>     , <span class="number">0.375</span>     ]])</span><br><span class="line">       </span><br><span class="line"><span class="comment">#추정 모수</span></span><br><span class="line">theta = np.exp(model_mult.feature_log_prob_)</span><br><span class="line">theta</span><br><span class="line"><span class="comment">#결과</span></span><br><span class="line">array([[<span class="number">0.29545455</span>, <span class="number">0.38636364</span>, <span class="number">0.09090909</span>, <span class="number">0.22727273</span>],</span><br><span class="line">       [<span class="number">0.11538462</span>, <span class="number">0.15384615</span>, <span class="number">0.36538462</span>, <span class="number">0.36538462</span>]])</span><br></pre></td></tr></table></figure>
-<p>다항분포에서는 스무딩을 하면 각 모수가 0.25에 조금씩 더 가까워진다.</p>
-<p>이 모형으로 새로운 데이터의 클래스를 예측해보면 다음과 같이 클래스 1에 해당할 확률이 2배 가량 높다는 결론을 낼 수 있다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">x_new = np.array([10, 10, 10, 10])</span><br><span class="line">model_mult.predict_proba([x_new])</span><br><span class="line"></span><br><span class="line">#결과</span><br><span class="line">array([[0.38848858, 0.61151142]])</span><br></pre></td></tr></table></figure>
-<ul>
-<li>만약 문서에 TF-IDF(inverse document frequency) 인코딩을 하게되면 텍스트에 나온 단어의 빈도수가 정수가 아닌 실수값이 나올 수도 있다. 이 때에도 다항분포 나이브베이즈 모형을 쓸 수 있을까?</li>
-</ul>
-<blockquote>
-<p>아래와 같이 TF-IDF 인코딩을 거친 벡터가 있을 때, 원소를 모두 정수로 만들어주는 과정을 거치게 되면 숫자가 커질 뿐 기존의 다항분포와 똑같은 데이터가 된다.</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">TF_IDF_X = np.array([</span><br><span class="line">    [<span class="number">3.2</span>, <span class="number">5.4</span>, <span class="number">1.1</span>, <span class="number">0.3</span>],</span><br><span class="line">    [<span class="number">1.1</span>, <span class="number">2.3</span>, <span class="number">10.9</span>, <span class="number">5.8</span>]])</span><br><span class="line"><span class="comment">#한 클래스가 이런 식으로 있다고 할 때, 모든 값에 10을 곱하면</span></span><br><span class="line"></span><br><span class="line">TF_IDF_X = np.array([</span><br><span class="line">    [<span class="number">32</span>, <span class="number">54</span>, <span class="number">11</span>, <span class="number">3</span>],</span><br><span class="line">    [<span class="number">11</span>, <span class="number">23</span>, <span class="number">109</span>, <span class="number">58</span>]])</span><br><span class="line"><span class="comment">#총 횟수가 늘어났을 뿐 MultinomialNB 계산이 가능하다.</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>그렇다면 만약 x 값에 실수 변수, 0/1 값을 가지는 변수, 일정 변수 집합이 특정한 분포를 이루는 변수들이 섞여있다면 어떻게 풀 수 있을까?</li>
-</ul>
-<blockquote>
-<p>나이브베이지안 모형에서 각 변수는 서로 독립이므로, 성격을 공유하는 변수끼리 모아서 각각에 맞는 모형에 넣으면 된다. </p>
-</blockquote>
-<p>  예를 들어 데이터가 100개일 때 1~20개는 가우시안, 21~50은 베르누이, 51~100은 다항 분포라면, 세 모델을 predict_proba 한 후 P(y)값만을 제거하고 다 곱해준다. 그 후 P(y)를 한번만 곱해주면 구하고자 하는 조건부확률을 구할 수 있게 된다.</p>
-<script type="math/tex; mode=display">
-\begin{eqnarray}
-P(y \mid x_{1:100})
-&=& P(x_{1:100}\mid y)P(y)\\
-&=& P(x_{1:20}\mid y)P(x_{21:50}\mid y)P(x_{51:100}\mid y)P(y)\\
-\end{eqnarray}</script><script type="math/tex; mode=display">
-\text{Gaussian_P} = P(x_{1:20}\mid y)P(y)\\
-\text{Bernoulli_P} = P(x_{21:50}\mid y)P(y)\\
-\text{Multinomial_P} = P(x_{51:100}\mid y)P(y)</script><p>참조:</p>
-
-      
-    </div>
-
-    
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="https://jyujin39.github.io/2018/12/07/naive_bayesian_classification_model/" data-id="cjpm75a4k000azebagftzi1w4" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/">study</a></li></ul>
-
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-QDA_LDA" class="article article-type-post" itemscope="" itemprop="blogPost">
-
-  <header class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/06/QDA_LDA/">QDA &amp; LDA</a>
-    </h1>
-  
-
-
-  </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/2018/12/06/QDA_LDA/" class="article-date"><time datetime="2018-12-05T15:00:00.000Z" itemprop="datePublished">2018-12-06</time></a>
-</div>
-
-    
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Math/">Math</a> / <a class="article-category-link" href="/categories/Math/Classification/">Classification</a>
-  </div>
-
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="QDA와-LDA"><a href="#QDA와-LDA" class="headerlink" title="QDA와 LDA"></a>QDA와 LDA</h1><p>확률론적 생성모형에서는 베이즈 정리를 사용하여 조건부확률을 계산한다고 했다. </p>
-<script type="math/tex; mode=display">
-P(y=k\mid x) = \dfrac{P(x\mid y=k)P(y=k)}{P(x)}</script><p>하나의 독립변수 x에 대해 y가 k일 경우의 조건부확률을 모두 구해서 그 중 가장 값이 큰 y로 추정하는데, 위 베이즈정리 공식에서 분모는 P(x)이므로 이 때 분모값은 고정이다. 따라서 확률의 크기만을 비교해도 되는 경우에는 현실적으로 분모를 따로 구하지 않고 분자만을 계산해 비교하여 클래스를 판별하기도 한다. </p>
-<script type="math/tex; mode=display">
-P(y=k\mid x) \; \; \propto \;\; P(x\mid y=k)P(y=k)</script><p>여기서 사전확률, 즉 $P(y=k)$ 는 다음처럼 계산한다.</p>
-<script type="math/tex; mode=display">
-P(y=k) \approx \dfrac{\;\;\;y=k\text{인 데이터의 수}\;\;\;}{모든 데이터의 수}</script><p>그리고 가능도 $P(x \mid y=k)$ 는 다음과 같이 계산한다.</p>
-<ol>
-<li><p>$P(x \mid y= k)$ 가 특정한 확률분포 모형을 따른다고 가정한다.</p>
-</li>
-<li><p>k번째 클래스에 속하는 학습데이터 {$x_1, \cdots , x_{N}$} 을 사용하여 이 모형의 모수 값을 구한다.</p>
-</li>
-<li><p>모수값을 알고 있으므로 $P(x \mid y=k)$ 의 확률밀도함수를 구한 것이다. 즉, 새로운 독립변수가 어떤 x가 되더라도 가능도를 구할 수 있다.</p>
-</li>
-</ol>
-<h2 id="QDA"><a href="#QDA" class="headerlink" title="QDA"></a>QDA</h2><p>베이즈 정리를 사용하여 조건부확률 $p(y=k\mid x)$ 을 계산하는 확률적 생성모형 중에서, 독립변수 x가 다변수 가우시안 정규분포(Multivariable Gaussian Normal distribution)을 따른다고 가정하는 모형이 QDA(Quadratic Discriminant Analysis)이다.</p>
-<script type="math/tex; mode=display">
-p(x\mid y=k) = \dfrac{1}{(2\pi)^{D/2}|\Sigma_k|^{1/2}}\text{exp}\left(-\dfrac{1}{2}(x-\mu_k)^T\Sigma_k^{-1}(x-\mu_k)\right)</script><ul>
-<li><p>$\sum_k$ : k클래스에 해당하는 x들의 공분산행렬</p>
-</li>
-<li><p>$\mu_k$ : 1클래스에 해당하는 x들의 평균</p>
-</li>
-</ul>
-<p>이 분포들을 알고 있으면 독립변수 x에 대한 y의 조건부확률 분포는 다음과 같이 베이즈 정리와 전체확률의 법칙으로 구할 수 있다.</p>
-<script type="math/tex; mode=display">
-P(y=k\mid x) = \dfrac{p(x\mid y=k)P(y=k)}{p(x)}=\dfrac{p(x\mid y=k)P(y=k)}{\sum_l p(x\mid y=l)P(y=l)}</script><p>예를 들어 y가 1, 2, 3 세 개의 클래스를 가지고, 각 클래스에서의 x의 확률분포가 다음과 같은 기댓값 및 공분산행렬을 갖는다고 가정하자.</p>
-<script type="math/tex; mode=display">
-\mu_1 = \begin{bmatrix} 0\\0 \end{bmatrix},\;\; \mu_2 = \begin{bmatrix} 1\\1 \end{bmatrix}, \;\;\mu_3 = \begin{bmatrix} -1\\1 \end{bmatrix}\\
-\Sigma_1 = \begin{bmatrix} 0.7 & 0\\0 & 0.7 \end{bmatrix},\;\; \Sigma_2 = \begin{bmatrix} 0.8 & 0.2\\0.2 & 0.8 \end{bmatrix}, \;\; \Sigma_3 = \begin{bmatrix} 0.8 & 0.2\\0.2 & 0.8 \end{bmatrix}</script><p>y의 사전확률은 다음과 같이 동일하다.</p>
-<script type="math/tex; mode=display">
-P(Y = 1) = P(Y=2) = P(Y=3) = \dfrac{1}{3}</script><p>Scikit-Learn은 QDA 모형을 위한<code>QuadraticDiscriminantAnalysis</code> 클래스를 제공한다. 이 클래스로 위에서 가정한 바에 따라 모형을 만들어 보자.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">N = <span class="number">100</span></span><br><span class="line">np.random.seed(<span class="number">0</span>)</span><br><span class="line">X1 = sp.stats.multivariate_normal([<span class="number">0</span>, <span class="number">0</span>], [[<span class="number">0.7</span>, <span class="number">0</span>], [<span class="number">0</span>, <span class="number">0.7</span>]]).rvs(<span class="number">100</span>)</span><br><span class="line">X2 = sp.stats.multivariate_normal([<span class="number">1</span>, <span class="number">1</span>], [[<span class="number">0.8</span>, <span class="number">0.2</span>], [<span class="number">0.2</span>, <span class="number">0.8</span>]]).rvs(<span class="number">100</span>)</span><br><span class="line">X3 = sp.stats.multivariate_normal([<span class="number">-1</span>, <span class="number">1</span>], [[<span class="number">0.8</span>, <span class="number">0.2</span>], [<span class="number">0.2</span>, <span class="number">0.8</span>]]).rvs(<span class="number">100</span>)</span><br><span class="line">y1 = np.zeros(N)</span><br><span class="line">y2 = np.ones(N)</span><br><span class="line">y3 = <span class="number">2</span>*np.ones(N)</span><br><span class="line">X = np.vstack([X1, X2, X3])</span><br><span class="line">y = np.hstack([y1, y2, y3])</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sklearn.discriminant_analysis <span class="keyword">import</span> QuadraticDiscriminantAnalysis</span><br><span class="line">qda = QuadraticDiscriminantAnalysis(store_covariance=<span class="keyword">True</span>).fit(X, y)</span><br><span class="line"><span class="comment">#store_covariance=True로 놓으면 공분산행렬을 제공한다</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">qda.means_ <span class="comment">#각 클래스에서의 추정된 기댓값 벡터 </span></span><br><span class="line"></span><br><span class="line"><span class="comment">#결과</span></span><br><span class="line">array([[<span class="number">-8.01254084e-04</span>,  <span class="number">1.19457204e-01</span>], <span class="comment"># class 1일 때 </span></span><br><span class="line">       [ <span class="number">1.16303727e+00</span>,  <span class="number">1.03930605e+00</span>], <span class="comment">#       2일 때</span></span><br><span class="line">       [<span class="number">-8.64060404e-01</span>,  <span class="number">1.02295794e+00</span>]])<span class="comment">#       3일 때</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">qda.covariance_ <span class="comment">#공분산행렬</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#결과</span></span><br><span class="line">[array([[ <span class="number">0.73846319</span>, <span class="number">-0.01762041</span>],</span><br><span class="line">        [<span class="number">-0.01762041</span>,  <span class="number">0.72961278</span>]]), array([[<span class="number">0.66534246</span>, <span class="number">0.21132313</span>],</span><br><span class="line">        [<span class="number">0.21132313</span>, <span class="number">0.78806006</span>]]), array([[<span class="number">0.9351386</span> , <span class="number">0.22880955</span>],</span><br><span class="line">        [<span class="number">0.22880955</span>, <span class="number">0.79142383</span>]])]</span><br></pre></td></tr></table></figure>
-<p>이 확률분포를 사용하여 분류를 한 결과는 다음과 같다.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">x1min, x1max = <span class="number">-5</span>, <span class="number">5</span></span><br><span class="line">x2min, x2max = <span class="number">-4</span>, <span class="number">5</span></span><br><span class="line">XX1, XX2 = np.meshgrid(np.arange(x1min, x1max, (x1max-x1min)/<span class="number">1000</span>),</span><br><span class="line">                       np.arange(x2min, x2max, (x2max-x2min)/<span class="number">1000</span>))</span><br><span class="line">YY = np.reshape(qda.predict(np.array([XX1.ravel(), XX2.ravel()]).T), XX1.shape)</span><br><span class="line">cmap = mpl.colors.ListedColormap(sns.color_palette([<span class="string">"r"</span>, <span class="string">"g"</span>, <span class="string">"b"</span>]).as_hex())</span><br><span class="line">plt.contourf(XX1, XX2, YY, cmap=cmap, alpha=<span class="number">0.5</span>)</span><br><span class="line">plt.scatter(X1[:, <span class="number">0</span>], X1[:, <span class="number">1</span>], alpha=<span class="number">0.8</span>, s=<span class="number">50</span>, marker=<span class="string">"o"</span>, color=<span class="string">'r'</span>, label=<span class="string">"클래스 1"</span>)</span><br><span class="line">plt.scatter(X2[:, <span class="number">0</span>], X2[:, <span class="number">1</span>], alpha=<span class="number">0.8</span>, s=<span class="number">50</span>, marker=<span class="string">"s"</span>, color=<span class="string">'g'</span>, label=<span class="string">"클래스 2"</span>)</span><br><span class="line">plt.scatter(X3[:, <span class="number">0</span>], X3[:, <span class="number">1</span>], alpha=<span class="number">0.8</span>, s=<span class="number">50</span>, marker=<span class="string">"x"</span>, color=<span class="string">'b'</span>, label=<span class="string">"클래스 3"</span>)</span><br><span class="line">plt.xlim(x1min, x1max)</span><br><span class="line">plt.ylim(x2min, x2max)</span><br><span class="line">plt.xlabel(<span class="string">"x1"</span>)</span><br><span class="line">plt.ylabel(<span class="string">"x2"</span>)</span><br><span class="line">plt.title(<span class="string">"QDA 분석 결과"</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img src="/images/image-20181205185858348.png" alt=""></p>
-<p>이 그래프는 predict    결과를 등고선으로 나타낸 것이다. 경계선이 그려진 영역에서 높이가 구분되고, 다른 곳은 높이가 일정한 평지이다.</p>
-<p>각 영역에 다른 색깔로 misclassification된 데이터들이 많지만 그건 어쩔 수가 없다.</p>
-<ul>
-<li><p>QDA의 약점</p>
-<p>모형을 만들어 예측하려면 독립변수들의 Covariance 행렬을 먼저 추정해내야 한다는 점이다. 데이터가 적을 때는 괜찮지만 현실에서 데이터가 수천 수만개가 되면, 공분산 행렬의 크기는 데이터수의 제곱만큼 커지게 된다. </p>
-<p>데이터가 많아질수록 공분산행렬에는 노이즈가 많아지고, 추정도 부정확하게 된다.</p>
-</li>
-</ul>
-<h2 id="LDA-Linear-discriminant-analysis"><a href="#LDA-Linear-discriminant-analysis" class="headerlink" title="LDA(Linear discriminant analysis)"></a>LDA(Linear discriminant analysis)</h2><p>LDA(Linear Discriminant Analysis)에서는 클래스별로 중심의 위치만 다를 뿐 데이터의 분포는 같다고 가정한다. 즉, 각 클래스 y에 대한 독립변수 x의 조건부 확률분포가 <strong>공통된 공분산 행렬을 갖는</strong> 다변수 가우시안 정규분포라고 가정한다.</p>
-<script type="math/tex; mode=display">
-\Sigma_k = \Sigma  \;\;\;\;\text{for all} \;\;k</script><p>이러한 가정은 현실과는 다를 수 있지만 데이터 자체에 노이즈가 섞이는 것을 막아주어, 분류가 qda보다 오히려 정확하게 이루어질 수 있다. 각 class 영역을 구분하는 경계가 곡선이었던 QDA와 달리 LDA에서는 직선이 된다.</p>
-<p>Scikit-Learn은 LDA 모형을 위한 <code>LinearDiscriminantAnalysis</code> 클래스를 제공한다. 아래 사용한 데이터는 위 QDA를 진행했던 것과 같은 데이터다.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.discriminant_analysis <span class="keyword">import</span> LinearDiscriminantAnalysis</span><br><span class="line">lda = LinearDiscriminatAnalysis(n_components=<span class="number">3</span>, solver=<span class="string">'svd'</span>, store_covariance=<span class="keyword">True</span>).fit(X, y)</span><br></pre></td></tr></table></figure>
-<p>LDA에서는 기댓값 벡터만 클래스에 따라 달라지고, 공분산행렬은 모든 클래스에 대해 하나로 동일하다.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">lda.means_</span><br><span class="line"><span class="comment">#결과</span></span><br><span class="line">array([[<span class="number">-8.01254084e-04</span>,  <span class="number">1.19457204e-01</span>],</span><br><span class="line">       [ <span class="number">1.16303727e+00</span>,  <span class="number">1.03930605e+00</span>],</span><br><span class="line">       [<span class="number">-8.64060404e-01</span>,  <span class="number">1.02295794e+00</span>]])</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">lda.covariance_</span><br><span class="line"><span class="comment">#결과</span></span><br><span class="line">array([[<span class="number">0.7718516</span> , <span class="number">0.13942905</span>],</span><br><span class="line">       [<span class="number">0.13942905</span>, <span class="number">0.7620019</span> ]])</span><br></pre></td></tr></table></figure>
-<p>LDA 모형에 따른 분류 결과는 다음과 같다.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">x1min, x1max = <span class="number">-5</span>, <span class="number">5</span></span><br><span class="line">x2min, x2max = <span class="number">-4</span>, <span class="number">5</span></span><br><span class="line">XX1, XX2 = np.meshgrid(np.arange(x1min, x1max, (x1max-x1min)/<span class="number">1000</span>),</span><br><span class="line">                       np.arange(x2min, x2max, (x2max-x2min)/<span class="number">1000</span>))</span><br><span class="line">YY = np.reshape(lda.predict(np.array([XX1.ravel(), XX2.ravel()]).T), XX1.shape)</span><br><span class="line">cmap = mpl.colors.ListedColormap(sns.color_palette([<span class="string">"r"</span>, <span class="string">"g"</span>, <span class="string">"b"</span>]).as_hex())</span><br><span class="line">plt.contourf(XX1, XX2, YY, cmap=cmap, alpha=<span class="number">0.5</span>)</span><br><span class="line">plt.scatter(X1[:, <span class="number">0</span>], X1[:, <span class="number">1</span>], alpha=<span class="number">0.8</span>, s=<span class="number">50</span>, marker=<span class="string">"o"</span>, color=<span class="string">'r'</span>, label=<span class="string">"클래스 1"</span>)</span><br><span class="line">plt.scatter(X2[:, <span class="number">0</span>], X2[:, <span class="number">1</span>], alpha=<span class="number">0.8</span>, s=<span class="number">50</span>, marker=<span class="string">"s"</span>, color=<span class="string">'g'</span>, label=<span class="string">"클래스 2"</span>)</span><br><span class="line">plt.scatter(X3[:, <span class="number">0</span>], X3[:, <span class="number">1</span>], alpha=<span class="number">0.8</span>, s=<span class="number">50</span>, marker=<span class="string">"x"</span>, color=<span class="string">'b'</span>, label=<span class="string">"클래스 3"</span>)</span><br><span class="line">plt.xlim(x1min, x1max)</span><br><span class="line">plt.ylim(x2min, x2max)</span><br><span class="line">plt.xlabel(<span class="string">"x1"</span>)</span><br><span class="line">plt.ylabel(<span class="string">"x2"</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.title(<span class="string">"LDA 분석 결과"</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img src="/images/image-20181205185834494.png" alt=""></p>
-<ul>
-<li><p>LDA의 약점</p>
-<p>문제는, LDA에서도 데이터가 너무 많아지면 공분산행렬이 너무 커진다는 점이다. 그래서 나온 가정이 공분산행렬의 대각성분만 구하고 나머지 비대각성분은 0이라고 하자는 나이브 가정이다.</p>
-<p>QDA를 간략화한 모형이 LDA이고, 그걸 더 간략화한 모형이 다음 설명할 나이브베이즈 모형이다.</p>
-</li>
-</ul>
-<p>참조:</p>
-
-      
-    </div>
-
-    
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="https://jyujin39.github.io/2018/12/06/QDA_LDA/" data-id="cjpm75a4f0004zeba1vo7c3p4" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/">study</a></li></ul>
-
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-classification_performance_evaluation" class="article article-type-post" itemscope="" itemprop="blogPost">
-
-  <header class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/02/classification_performance_evaluation/">classification performance evaluation</a>
-    </h1>
-  
-
-
-  </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/2018/12/02/classification_performance_evaluation/" class="article-date"><time datetime="2018-12-01T15:00:00.000Z" itemprop="datePublished">2018-12-02</time></a>
-</div>
-
-    
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Math/">Math</a> / <a class="article-category-link" href="/categories/Math/Classification/">Classification</a>
-  </div>
-
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="분류-성능-평가"><a href="#분류-성능-평가" class="headerlink" title="분류 성능 평가"></a>분류 성능 평가</h1><p>분류 문제는 회귀분석과 달리 다양한 성능 평가기준이 필요하다.</p>
-<p>Scikit-Learn에서 제공하는 분류 성능평가 메서드들은 다음과 같다.</p>
-<p><code>sklearn.metrics</code> 서브 패키지</p>
-<ul>
-<li><code>confusion_matrix()</code></li>
-<li><code>classfication_report()</code></li>
-<li><code>accuracy_score(y_true, y_pred)</code></li>
-<li><code>precision_score(y_true, y_pred)</code></li>
-<li><code>recall_score(y_true, y_pred)</code></li>
-<li><code>fbeta_score(y_true, y_pred, beta)</code></li>
-<li><code>f1_score(y_true, y_pred)</code></li>
-</ul>
-<h3 id="분류-결과표-Confusion-Matrix"><a href="#분류-결과표-Confusion-Matrix" class="headerlink" title="분류 결과표 Confusion Matrix"></a>분류 결과표 Confusion Matrix</h3><p>분류 결과표는 타겟의 실제 클래스와 모형이 예측한 클래스가 일치하는 개수를 표로 나타낸 것이다. 원래 클래스는 행으로, 예측한 클래스는 열로 나타낸다.</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th></th>
-<th style="text-align:center">예측 클래스 0</th>
-<th style="text-align:center">예측 클래스 1</th>
-<th style="text-align:center">예측 클래스 2</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>원래 클래스 0</strong></td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-</tr>
-<tr>
-<td><strong>원래 클래스 1</strong></td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-</tr>
-<tr>
-<td><strong>원래 클래스 2</strong></td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">2</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>이를 코드로 구현하면 다음과 같다.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> confusion_matrix</span><br><span class="line">y_true = [<span class="number">2</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">y_pred = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">2</span>]</span><br><span class="line">confusion_matrix(y_true, y_pred)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#분류결과표</span><br><span class="line">array([[2, 0, 0],</span><br><span class="line">       [0, 0, 1],</span><br><span class="line">       [1, 0, 2]])</span><br></pre></td></tr></table></figure>
-<h2 id="이진-분류-결과표-Binary-Confusion-Matrix"><a href="#이진-분류-결과표-Binary-Confusion-Matrix" class="headerlink" title="이진 분류 결과표 Binary Confusion Matrix"></a>이진 분류 결과표 Binary Confusion Matrix</h2><p>클래스가 두 개인 경우에는 일반적으로 클래스 이름을 “Positive”와 “Negative”로 표시한다.</p>
-<ul>
-<li>positive : 특이한 케이스에 해당하는 경우</li>
-<li>negative :  그렇지 않은 일반적인 경우</li>
-</ul>
-<p>이진 분류 결과표는 다음과 같은 모양이다.</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th></th>
-<th style="text-align:center">Positive라고 예측</th>
-<th style="text-align:center">Negative라고 예측</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>실제 Positive</strong></td>
-<td style="text-align:center">True Positive</td>
-<td style="text-align:center">False Negative</td>
-</tr>
-<tr>
-<td><strong>실제 Negative</strong></td>
-<td style="text-align:center">False Positive</td>
-<td style="text-align:center">True Negative</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h4 id="FDS-Fraud-Detection-System"><a href="#FDS-Fraud-Detection-System" class="headerlink" title="FDS (Fraud Detection System)"></a>FDS (Fraud Detection System)</h4><p>잘못된 거래 및 사기 거래 등을 예측하는 시스템으로, 예측 결과가 실제와 일치하는지에 따라 다음과 같이 구분한다.</p>
-<ul>
-<li><strong>TP</strong>(True Positive): 사기를 사기라고 정확하게 예측</li>
-<li><strong>TN</strong>(True Negative): 정상을 정상이라고 정확하게 예측</li>
-<li><strong>FP</strong>(False Positive): 정상을 사기라고 잘못 예측</li>
-<li><strong>FN</strong>(False Negative): 사기를 정상이라고 잘못 예측</li>
-</ul>
-<p>FDS는 병의 진단에도 쓰일 수 있다. (positive: 병에 걸린 것, negative: 병에 걸리지 않은 것)</p>
-<p>이진분류결과표에 따르면 분류모델의 성능평가척도가 4개로 추려지지만 그래도 여전히 많다.</p>
-<p>그래서 그 4개의 수를 조합해 하나의 점수로 만든 것이 아래 설명할 평가점수다.</p>
-<h3 id="평가-점수"><a href="#평가-점수" class="headerlink" title="평가 점수"></a>평가 점수</h3><p>FDS 의 결과로 나온 TP, TN, FP, FN 네 가지를 조합해 다음의 평가점수들을 계산한다.</p>
-<ul>
-<li>accuracy (정확도)</li>
-<li>precision (정밀도)</li>
-<li>recall (재현율)</li>
-<li>fallout (위양성율)</li>
-<li>F (beta) score</li>
-</ul>
-<h4 id="1-Accuracy"><a href="#1-Accuracy" class="headerlink" title="1) Accuracy"></a>1) Accuracy</h4><p>​    : 전체 샘플 중 맞게 예측한 샘플 수의 비율</p>
-<script type="math/tex; mode=display">
-\text{accuracy} = \dfrac{TP + TN}{TP + TN + FP + FN}</script><h4 id="2-Precision"><a href="#2-Precision" class="headerlink" title="2) Precision"></a>2) Precision</h4><p>​    : Positive 클래스라고 예측한 데이터 중 실제로 Positive에 해당하는 데이터의 비율</p>
-<ul>
-<li>사기거래 추정에서 일단 positive라고 추정이 됐으면 그게 실제 사기문제일 수 있기 때문에 중요하게 여겨지고, 사기거래 특정 시스템이 실제로 잘 작동하고 있는지 파악할 수 있어야 되기 때문에 precision점수가 중요하게 된다. </li>
-</ul>
-<script type="math/tex; mode=display">
-\text{precision} = \dfrac{TP}{TP + FP}</script><h4 id="3-Recall"><a href="#3-Recall" class="headerlink" title="3) Recall"></a>3) Recall</h4><p>​    : 실제 Positive인 데이터 중 Positive라고 예측된 데이터의 비율</p>
-<script type="math/tex; mode=display">
-\text{recall} = \dfrac{TP}{TP + FN}</script><h4 id="4-Fall-Out"><a href="#4-Fall-Out" class="headerlink" title="4) Fall-Out"></a>4) Fall-Out</h4><p>​    : 실제 Negative인 데이터 중 Positive로 잘못 에측된 표본의 비율</p>
-<script type="math/tex; mode=display">
-\text{fallout} = \dfrac{FP}{FP + TN}</script><h4 id="5-F-beta-score"><a href="#5-F-beta-score" class="headerlink" title="5) F (beta) score"></a>5) F (beta) score</h4><p>​    :반비례관계에 있는 precision과 recall은 둘 다 중요한 점수이기 때문에 같이 봐야 하는데, 그 때 그 두 점수를 가중조화 평균낸 점수가 F-score다. 베타 값에 따라 달라진다.</p>
-<p><img src="/Users/jeon-yujin/Library/Application%20Support/typora-user-images/image-20181201093234513.png" alt="image-20181201093234513"></p>
-<script type="math/tex; mode=display">
-F_\beta = \dfrac{(1 + \beta^2) \, ({\text{precision} \times \text{recall}})}{({\beta^2 \, \text{precision} + \text{recall}})}</script><ul>
-<li>F1 score    (beta = 1)<script type="math/tex; mode=display">
-F_1 = \dfrac{2\cdot\text{precision}\cdot\text{recall}}{\text{precision} + \text{recall}}</script></li>
-</ul>
-<p>Scikit-Learn의 metrics 패키지에서는 정밀도, 재현율, F1-score를 구하는 <code>classification_report</code> 명령을 제공한다. </p>
-<p>이 명령은 각각의 클래스를 positive로 보았을 때의 precision, recall, F1-score를 구하고 그 평균값으로 전체 모형의 성능을 평가한다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.metrics import classification_report</span><br><span class="line"></span><br><span class="line">y_true = [0, 0, 0, 1, 1, 0, 0]</span><br><span class="line">y_pred = [0, 0, 0, 0, 1, 1, 1]</span><br><span class="line"></span><br><span class="line">print(classification_report(y_true, y_pred, target_names=[&apos;class 0&apos;, &apos;class 1&apos;]))</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#결과</span><br><span class="line">             precision    recall  f1-score   support</span><br><span class="line"></span><br><span class="line">    class 0       0.75      0.60      0.67         5</span><br><span class="line">    class 1       0.33      0.50      0.40         2</span><br><span class="line"></span><br><span class="line">avg / total       0.63      0.57      0.59         7</span><br></pre></td></tr></table></figure>
-<p>위의 평가 점수들은 서로 밀접한 관계를 맺고 있다.</p>
-<ul>
-<li>재현율(recall)과 위양성률(fall-out)은 양의 상관 관계가 있다.</li>
-<li>정밀도(precision)와 재현율(recall)은 대략적으로 음의 상관 관계가 있다.</li>
-</ul>
-<h3 id="Precision-vs-Recall"><a href="#Precision-vs-Recall" class="headerlink" title="Precision vs. Recall"></a>Precision vs. Recall</h3><p>분류모델 예측결과 precision과 recall이 모두 높으면 좋지만, 사실 두 점수는 반비례하는 경향이 있다.</p>
-<p>precision은, 예를들어 의사가 진단을 하는 경우 의사의 권위 및 능력과 직결되는 점수이다. precision이 낮으면 신뢰도가 떨어지기때문에 의사는 precision을 높이기 위해 판별함수 f(x)의 기준점을 0보다 높게 설정하게 된다. f(x)가 10 이상인 경우에만 positive라고 진단해버림으로써 0이상 10 미만일 때 오진이었던 경우를 배제해버리는 것이다. 그러면 precision점수가 높아진다.</p>
-<p>이와 반대로 recall을 높이려면 존재하는 모든 positive를 잡아내야만 하는 것이 목표가 된다. 그러기 위해서는 반대로 f(x)의 임계점을 0보다 낮게 만든다. 일단 negative인 것들도 막 잡아내고 보면 positive가 다 잡히게 되어있기 때문이다.</p>
-<p>따라서 precision과 recall을 동시에 높이기는 쉽지 않다.</p>
-<h3 id="ROC-커브"><a href="#ROC-커브" class="headerlink" title="ROC 커브"></a>ROC 커브</h3><p>ROC(Receiver Operator Characteristic) 커브란, fall-out과 recall 값이 판별함수 기준값의 변화에 따라 어떻게 달라지는지를 시각화한 것이다.</p>
-<p>아래 표는, 16개의 데이터에 대해 판별함수 기준값을 0으로 설정하고 이진분류를 진행한 결과이다. </p>
-<p><img src="/images/image-20181201094238076.png" alt=""></p>
-<p>​    표를 보면 6번, 7번, 10번 데이터의 예측에 실패했음을 알 수 있다. 이 때 만약 판별함수 기준값을 6번데이터의 판별함수값인 0.244729보다 높이게 되면 6번데이터는 0클래스로 예측되게 되므로 정확한 예측이 된다. 이런 식으로 기준값을 높이거나 낮춰가면서 recall과 fall-out 점수를 확인하는 과정을 자동으로 진행하고 시각화해주는 것이 scikit-learn의 <code>roc_curve</code> 명령이다.</p>
-<p><img src="/Users/jeon-yujin/Library/Application%20Support/typora-user-images/image-20181202204820835.png" alt="image-20181202204820835"></p>
-<p>​    아래 그래프는 위 16개의 데이터에 대한 ROC 곡선이다.</p>
-<p><img src="/images/image-20181202204930413.png" alt=""></p>
-<p>  데이터가 더 많으면 더 곡선에 가까운 형태의 그래프가 그려진다.</p>
-<h3 id="AUC"><a href="#AUC" class="headerlink" title="AUC"></a>AUC</h3><p>분류모델은 Fall-Out 점수가 낮으면서 Recall이 높으면 좋기 때문에 ROC커브 그래프에서는 좌측 상단의 점이 높게 그려질수록 좋은 모델에 해당한다. 따라서 곡선 아래 면적이 클수록 좋은데, 그 면적을 측정한 것이 AUC(Area Under the Curve)이다. AUC가 1에 가까울수록 좋은 모델이라고 볼 수 있다. </p>
-<p><img src="/images/image-20181201101735894.png" alt=""></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.metrics import auc</span><br><span class="line">auc(fpr, tpr)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#AUC 결과값</span><br><span class="line">0.9112016520622872</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="https://jyujin39.github.io/2018/12/02/classification_performance_evaluation/" data-id="cjpm75a4b0001zebaxeup8l51" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/">study</a></li></ul>
-
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-multi-class-classification" class="article article-type-post" itemscope="" itemprop="blogPost">
-
-  <header class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/29/multi-class-classification/">multi-class classification</a>
-    </h1>
-  
-
-
-  </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/2018/11/29/multi-class-classification/" class="article-date"><time datetime="2018-11-29T11:37:09.440Z" itemprop="datePublished">2018-11-29</time></a>
-</div>
-
-    
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Math/">Math</a> / <a class="article-category-link" href="/categories/Math/Classification/">Classification</a>
-  </div>
-
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="다중-클래스-분류"><a href="#다중-클래스-분류" class="headerlink" title="다중 클래스 분류"></a>다중 클래스 분류</h1><ul>
-<li><p>이진(Binary Class) 분류 : 종속변수의 클래스가 2개인 분류 문제</p>
-</li>
-<li><p>다중 클래스(Multi-Class) 분류 : 종속변수의 클래스가 3 개 이상인 분류문제</p>
-<ul>
-<li>OvO 혹은 OvR 방법을 통해 여러 개의 이진 클래스 분류문제로 변환해서 푼다</li>
-</ul>
-</li>
-</ul>
-<h3 id="OvO-One-vs-One"><a href="#OvO-One-vs-One" class="headerlink" title="OvO (One-vs-One)"></a>OvO (One-vs-One)</h3><p>: K개의 타겟 클래스가 존재할 때, 그 중 2개씩 선택해 이진 클래스 분류 문제를 풀고, 그 결과로 가장 많은 판별값을 얻은 클래스를 선택하는 방법</p>
-<ul>
-<li>풀어야 하는 이진 클래스분류 문제의 수 :  $ _KC_2 $ </li>
-</ul>
-<p>두 개의 클래스씩 비교했을 때 선택받은 횟수의 총합으로 비교하면 여러 클래스가 동점이 나오는  tie case가 발생할 수 있기 때문에 각 클래스가 얻은 조건부 확률값을 모두 더한 값으로 비교하면 그 문제가 해결된다.</p>
-<p><code>OneVsOneClassifier</code> 클래스를 사용하면 이진 클래스용 모형을 OvO 방법으로 다중 클래스용 모형으로 변환한다.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.multiclass <span class="keyword">import</span> OneVsOneClassifier</span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</span><br><span class="line"></span><br><span class="line">model_ovo = OneVsOneClassifier(LogisticRegression()).fit(iris.data, iris.target) </span><br><span class="line">         <span class="comment">#2진 모형 인스턴스를 만들고 OvO로 wrapping하면 내부에서 세 번 경합 실시</span></span><br></pre></td></tr></table></figure>
-<p>각 클래스가 얻는 조건부 확률값을 합한 값을 <code>decision_function</code>으로 출력한다.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ax1 = plt.subplot(<span class="number">211</span>)</span><br><span class="line">pd.DataFrame(model_ovo.decision_function(iris.data)).plot(ax=ax1, legend=<span class="keyword">False</span>)</span><br><span class="line">plt.title(<span class="string">"판별 함수"</span>)</span><br><span class="line">ax2 = plt.subplot(<span class="number">212</span>)</span><br><span class="line">pd.DataFrame(model_ovo.predict(iris.data), columns=[<span class="string">"prediction"</span>]).plot(marker=<span class="string">'o'</span>, ls=<span class="string">""</span>, ax=ax2)</span><br><span class="line">plt.title(<span class="string">"클래스 판별"</span>)</span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img src="/images/image-20181129173641026.png" alt=""></p>
-<p>​    0(파란색), 1(주황색), 2(초록색)의 총 3개 클래스로 데이터가 판별되었고, 총 세 개의 데이터가 잘못 예측되었음이 확인 가능하다.</p>
-<h3 id="OvR-One-vs-the-Rest"><a href="#OvR-One-vs-the-Rest" class="headerlink" title="OvR (One-vs-the-Rest)"></a>OvR (One-vs-the-Rest)</h3><p>: 클래스 개수가 K개이면 풀어야할 이진분류 문제가 K의 제곱에 비례하여 많아지는 OvO와 달리, OvR은 K개의 문제를 풀면 되기 때문에 훨씬 빠르고 효율적이다.</p>
-<p>클래스 A, B, C가 있을 때,</p>
-<ul>
-<li>A vs B,C        즉,  A vs A$^C$</li>
-<li>B vs A,C          즉,  B vs B$^C$</li>
-<li>C vs A,B          즉,  C vs C$^C$</li>
-</ul>
-<p>이렇게 3 번 이진문제를 푸는데, OvR에서도 판별 결과의 수가 같은 동점 문제가 발생할 수가 있기 때문에 각 클래스가 얻은 조건부 확률값을 더하여 그 값이 +가 나오면 해당 클래스고 -가 나오면 해당 클래스가 아니라고 판단한다. 결과적으로는 +값이 나온 클래스들 중 가장 그 값이 큰 클래스를 정답으로 예측한다.</p>
-<p><code>OneVsRestClassifier</code> 클래스를 사용하면 이진 클래스용 모형을 OvR 방법으로 다중 클래스용 모형으로 변환한다.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.multiclass <span class="keyword">import</span> OneVsRestClassifier</span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</span><br><span class="line"></span><br><span class="line">model_ovr = OneVsRestClassifier(LogisticRegression()).fit(iris.data, iris.target)</span><br><span class="line"></span><br><span class="line">ax1 = plt.subplot(<span class="number">211</span>)</span><br><span class="line">pd.DataFrame(model_ovr.decision_function(iris.data)).plot(ax=ax1, legend=<span class="keyword">False</span>)</span><br><span class="line">plt.title(<span class="string">"판별 함수"</span>)</span><br><span class="line">ax2 = plt.subplot(<span class="number">212</span>)</span><br><span class="line">pd.DataFrame(model_ovr.predict(iris.data), columns=[<span class="string">"prediction"</span>]).plot(marker=<span class="string">'o'</span>, ls=<span class="string">""</span>, ax=ax2)</span><br><span class="line">plt.title(<span class="string">"클래스 판별"</span>)</span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img src="/images/image-20181129175824716.png" alt=""></p>
-<p>​    그래프를 보면 클래스 판별 예측에 실패한 데이터의 수가 약 6개로 OvO보다 예측 성능이 조금 떨어지는 것을 볼 수 있다. 하지만 현실적으로 클래스가 많아지면 OvO는 아예 쓸 수가 없기 때문에 OvR을 쓰는 것이 일반적이다.</p>
-<p><img src="/images/image-20181129180008522.png" alt=""></p>
-
-      
-    </div>
-
-    
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="https://jyujin39.github.io/2018/11/29/multi-class-classification/" data-id="cjpm75a4h0006zebaupoufu38" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/">study</a></li></ul>
-
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-classification-models" class="article article-type-post" itemscope="" itemprop="blogPost">
-
-  <header class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/28/classification-models/">classification models</a>
-    </h1>
-  
-
-
-  </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/2018/11/28/classification-models/" class="article-date"><time datetime="2018-11-27T15:00:00.000Z" itemprop="datePublished">2018-11-28</time></a>
-</div>
-
-    
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Math/">Math</a> / <a class="article-category-link" href="/categories/Math/Classification/">Classification</a>
-  </div>
-
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="분류모형"><a href="#분류모형" class="headerlink" title="분류모형"></a>분류모형</h1><p><strong>분류</strong>(classification)는 독립 변수 값이 주어졌을 때 그 독립 변수 값과 가장 연관성이 큰 종속변수 카테고리(클래스)를 계산하는 문제이다. </p>
-<h3 id="분류-모형의-종류"><a href="#분류-모형의-종류" class="headerlink" title="분류 모형의 종류"></a>분류 모형의 종류</h3><ul>
-<li><p>판별함수(discriminant function) 모형</p>
-<p>: 주어진 데이터를 서로 다른 영역으로 나누는 경계면을 찾는다.</p>
-</li>
-<li><p>확률적 모형 </p>
-<ul>
-<li><p>확률적 판별(discriminative) 모형</p>
-<p>: 주어진 데이터가 특정 카테고리일 조건부확률을  직접 계산한다.</p>
-</li>
-<li><p>확률적 생성(generative) 모형</p>
-<p>: 주어진 데이터가 특정 카테고리일 조건부확률을 베이즈정리를 통해 계산한다.</p>
-</li>
-</ul>
-</li>
-</ul>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>모형</th>
-<th>방법론</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Linear/Quadratic  Discriminant  Analysis</td>
-<td>확률적 생성 모형</td>
-</tr>
-<tr>
-<td>나이브 베이지안 (Naive  Bayes)</td>
-<td>확률적 생성 모형</td>
-</tr>
-<tr>
-<td>로지스틱 회귀 (Logistic Regression)</td>
-<td>확률적 판별 모형</td>
-</tr>
-<tr>
-<td>의사결정나무  (Decision Tree)</td>
-<td>확률적 판별 모형</td>
-</tr>
-<tr>
-<td>퍼셉트론  (Perceptron)</td>
-<td>판별함수 모형</td>
-</tr>
-<tr>
-<td>서포트 벡터 머신 (Support Vector Machine)</td>
-<td>판별함수 모형</td>
-</tr>
-<tr>
-<td>신경망 (Neural Network)</td>
-<td>판별함수 모형</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h3 id="1-확률적-모형"><a href="#1-확률적-모형" class="headerlink" title="1. 확률적 모형"></a>1. 확률적 모형</h3><h4 id="1-확률적-생성모형"><a href="#1-확률적-생성모형" class="headerlink" title="1) 확률적 생성모형"></a>1) 확률적 생성모형</h4><p>조건부확률 기반 생성모형의 장점 중 하나는 클래스가 3개 이상인 경우에도 바로 적용할 수 있다는 점이다.</p>
-<p>생성모형은 더 구하기 쉬운 클래스별 특징 데이터의 확률분포 $ P(x |  y = k) $, 즉 가능도를  먼저 추정한 다음 베이즈 정리를 사용하여 $ P(y = k | x) $ 를 계산한다.</p>
-<script type="math/tex; mode=display">
-P(y = k |  x) = \dfrac{P(x | y = k)P(y  = k)}{P(x)}</script><p>또한 전체확률의 법칙을 이용하여  $ P(x)  $ 를 구할 수 있다. 이 값을 알면  x라는 데이터만 입력되어도 그 데이터 자체가 정상적인 데이터인지 아닌지 판단할 수 있다.</p>
-<script type="math/tex; mode=display">
-P(x)  = \sum^K_{k=1}P(x|y = k)P(y = k)</script><p>확률적 생성모형의 예로 QDA와 Naive Bayesian model이 있다.</p>
-<ul>
-<li><p><strong>QDA</strong></p>
-<p>QDA(Quadratic Discriminant Analysis)에서는 다음과 같은 코드로 분류문제를 푼다.</p>
-</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.discriminant_analysis <span class="keyword">import</span> QuadraticDiscriminantAnalysis</span><br><span class="line">model = QuadraticDiscriminantAnalysis().fit(X, y)</span><br><span class="line">test_data =  [[<span class="number">0.2</span>, <span class="number">0.2</span>]]</span><br><span class="line">p = model.predict_proba(test_data)</span><br></pre></td></tr></table></figure>
-<p><img src="/images/image-20181128193332516.png" alt=""></p>
-<ul>
-<li><p>나이브 베이지안 모형**</p>
-<p><code>TfidfVectorizer</code> 전처리기는 텍스트 데이터를 BoW에  따라 실수 벡터로 변환한다. </p>
-<p><code>MultinomialNB</code> 모형은 나이브 베이즈 방법으로 분류 문제를 예측한다. </p>
-<p><code>Pipeline</code>을 사용하여 이 두 클래스 객체를 하나의 모형으로 합친다.</p>
-</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> fetch_20newsgroups</span><br><span class="line"><span class="keyword">from</span> sklearn.feature_extraction.text <span class="keyword">import</span> TfidfVectorizer</span><br><span class="line"><span class="keyword">from</span> sklearn.naive_bayes <span class="keyword">import</span> MultinomialNB</span><br><span class="line"><span class="keyword">from</span> sklearn.pipeline <span class="keyword">import</span> Pipeline</span><br><span class="line"></span><br><span class="line">news = fetch_20newsgroups(subset=<span class="string">"all"</span>)</span><br><span class="line">model = Pipeline([</span><br><span class="line">    (<span class="string">'vect'</span>, TfidfVectorizer(stop_words=<span class="string">"english"</span>)),</span><br><span class="line">    (<span class="string">'nb'</span>, MultinomialNB()),</span><br><span class="line">])</span><br><span class="line">model.fit(news.data, news.target)</span><br></pre></td></tr></table></figure>
-<p><img src="/images/image-20181128195225135.png" alt=""></p>
-<p>​    20개의 클래스 중 3번 클래스에 가장 높은 조건부확률을 갖기 때문에 3번째 클래스에 해당한다고 판별한다.</p>
-<h4 id="2-확률적-판별-모형"><a href="#2-확률적-판별-모형" class="headerlink" title="2) 확률적 판별 모형"></a>2) 확률적 판별 모형</h4><p>확률적 생성 모형과 달리 확률적 판별 모형에서는  조건부확률 $  p(y = 1 |  x) $ 가 x값에 따라 0에서 1 사이에서 달라지는 값을 갖는 함수라고 가정하고, 그 함수를 직접 찾아낸다.</p>
-<script type="math/tex; mode=display">
-p(y = k |  x) = f(x)</script><p>​    확률적 판별 모형에는 로지스틱 회귀모형과 의사결정나무가 있다.<br>​<br>​<br>​    </p>
-<pre><code>- **로지스틱** **회귀모형**
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> make_classification</span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</span><br><span class="line"></span><br><span class="line">X0, y = make_classification(n_features=<span class="number">1</span>, n_redundant=<span class="number">0</span>,</span><br><span class="line">n_informative=<span class="number">1</span>, n_clusters_per_class=<span class="number">1</span>, random_state=<span class="number">4</span>)</span><br><span class="line">model = LogisticRegression().fit(X0, y)</span><br></pre></td></tr></table></figure>
-</code></pre><p>​    <img src="/images/image-20181128200223956.png" alt=""><br>​<br>​<br>​<br>​    ### 2. 판별함수 기반 모형</p>
-<p>​    판별함수 기반 모형은 클래스의 영역을 나누는 경계면 혹은 경계선 함수 $ f(x) $ 를 정의하고, 이  판별함수 값의 부호에 따라 클래스가 나뉘어진다.<br>​    <script type="math/tex">$$$$
-​    \text{판별 경계선} : f(x) = 0
-​    \</script><br>​    <script type="math/tex">$$$$$$
-​    \text{클래스 1} : f(x) > 0
-​    $$$$$$
-​    $$$$
-​    \text{클래스 0} : f(x) < 0
-​</script><br>​    scikit-learn에서는 <code>decision_function</code>메서드를 통해 판별함수 값을 출력할 수 있다.<br>​<br>​    판별함수기반 모형으로는 퍼셉트론과  커널 SVM이 있다.<br>​<br>​<br>​<br>​    - <strong>퍼셉트론</strong><br>​<br>​    가장 단순한 판별함수 모형으로, 두 개의 클래스만 구분해낼 수 있으며 직선으로 구분되는 경계선만을 찾아낸다.<br>​<br>​    <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">​    <span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> Perceptron</span><br><span class="line">​    <span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_iris</span><br><span class="line">​    iris = load_iris()</span><br><span class="line">​    idx = np.in1d(iris.target, [<span class="number">0</span>, <span class="number">2</span>])</span><br><span class="line">​    X = iris.data[idx, <span class="number">0</span>:<span class="number">2</span>]</span><br><span class="line">​    y = iris.target[idx]</span><br><span class="line">​    </span><br><span class="line">​    model = Perceptron(max_iter=<span class="number">100</span>, eta0=<span class="number">0.1</span>, random_state=<span class="number">1</span>).fit(X, y)</span><br><span class="line">​</span><br></pre></td></tr></table></figure></p>
-<p>​<br>​    <img src="/images/image-20181128201127059.png" alt=""><br>​<br>​    <img src="/images/image-20181128201158344.png" alt=""><br>​<br>​    만약 데이터가 3차원이라면 경계선이 아닌 경계면(boundary surface)를 갖게 된다. 경계면 혹은 경계선을 decision hyperplane 이라고 한다.<br>​<br>​    <img src="/images/image-20181128201256638.png" alt=""><br>​<br>​<br>​<br>​    - <strong>커널 SVM</strong><br>​<br>​    직선인 경계면밖에 구분하지 못하는 퍼셉트론과 달리 곡선인 경계면을 찾아낼수 있다.<br>​<br>​    <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">​    <span class="keyword">from</span> sklearn <span class="keyword">import</span> svm</span><br><span class="line">​    </span><br><span class="line">​    xx, yy = np.meshgrid(np.linspace(<span class="number">-3</span>, <span class="number">3</span>, <span class="number">500</span>),</span><br><span class="line">​    np.linspace(<span class="number">-3</span>, <span class="number">3</span>, <span class="number">500</span>))</span><br><span class="line">​    np.random.seed(<span class="number">0</span>)</span><br><span class="line">​    X = np.random.randn(<span class="number">300</span>, <span class="number">2</span>)</span><br><span class="line">​    Y = np.logical_xor(X[:, <span class="number">0</span>] &gt; <span class="number">0</span>, X[:, <span class="number">1</span>] &gt; <span class="number">0</span>)</span><br><span class="line">​    </span><br><span class="line">​    model = svm.NuSVC().fit(X, Y)</span><br><span class="line">​    Z = model.decision_function(np.c_[xx.ravel(), yy.ravel()])</span><br><span class="line">​    Z = Z.reshape(xx.shape)</span><br><span class="line">​</span><br></pre></td></tr></table></figure></p>
-<p>​<br>​    <img src="/images/image-20181128202549867.png" alt=""><br>​<br>​    <img src="/images/image-20181128202607054.png" alt=""><br>​    </p>
-
-      
-    </div>
-
-    
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="https://jyujin39.github.io/2018/11/28/classification-models/" data-id="cjpm75a480000zebac150h9yg" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/">study</a></li></ul>
-
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-
-
-
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">my daily study blog for Data Science</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Math/">Math</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Math/Classification/">Classification</a></li></ul></li></ul>
+                                    
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
-        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
-          
-  <div class="sidebar-module sidebar-module-inset">
-  <h4>About</h4>
-  <p>Welcome to <strong>yujin's git blog</strong> for data science!</p>
-
-</div>
-
-
-  
-  <div class="sidebar-module">
-    <h4>Categories</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Math/">Math</a><span class="sidebar-module-list-count">6</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/Math/Classification/">Classification</a><span class="sidebar-module-list-count">6</span></li></ul></li></ul>
-  </div>
-
-
-
-  
-  <div class="sidebar-module">
-    <h4>Recents</h4>
-    <ul class="sidebar-module-list">
-      
-        <li>
-          <a href="/2018/12/12/entropy/">entropy</a>
-        </li>
-      
-        <li>
-          <a href="/2018/12/07/naive_bayesian_classification_model/">naive bayesian classification model</a>
-        </li>
-      
-        <li>
-          <a href="/2018/12/06/QDA_LDA/">QDA &amp; LDA</a>
-        </li>
-      
-        <li>
-          <a href="/2018/12/02/classification_performance_evaluation/">classification performance evaluation</a>
-        </li>
-      
-        <li>
-          <a href="/2018/11/29/multi-class-classification/">multi-class classification</a>
-        </li>
-      
-    </ul>
-  </div>
-
-
-  
-  <div class="sidebar-module">
-    <h4>Archives</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2018/12/">December 2018</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2018/11/">November 2018</a><span class="sidebar-module-list-count">2</span></li></ul>
-  </div>
-
-
-
-  
-
-
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
         </div>
     </div>
-  </div>
-  <footer class="blog-footer">
-  <div class="container">
-    <div id="footer-info" class="inner">
-      &copy; 2018 Yujin Jeon<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <em class="page-title-link" data-url="home">Home</em>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            
+
+    
+    
+        
+        
+        <section class="archives-wrap">
+            <div class="archive-year-wrap">
+                <a href="/archives/2018" class="archive-year"><i class="icon fa fa-calendar-o"></i>2018</a>
+            </div>
+            <div class="archives">
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a>
+            </div>
+            <div class="date"><time datetime="2018-12-11T15:00:00.000Z" itemprop="datePublished">2018-12-12</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2018/12/12/entropy/">entropy</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            엔트로피엔트로피란?$Y=0$ 또는 $Y=1$ 인 두 가지 값을 갖는 확률분포가 다음처럼 세 종류 있다고 하자.
+
+확률 분포 $Y_1$ : $P(Y=0) = 0.5, P(Y=1) = 0.5$
+확률 분포 $Y_2$ : $P(Y=0) = 0.8,  P(Y=1) = 0.2$
+확률 분포 $Y_3$ : $P(Y=0) = 1.0, P(Y=1) = 0$
+
+이 확률값이 베
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a>
+            </div>
+            <div class="date"><time datetime="2018-12-06T15:00:00.000Z" itemprop="datePublished">2018-12-07</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2018/12/07/naive_bayesian_classification_model/">naive bayesian classification model</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            나이브베이즈 분류모형나이브 가정모든 차원의 개별 독립변수 요소들이 서로 조건부 독립이라는 가정을 나이브 가정이라고 한다. 이 가정은 그냥 생각해봐도 말이 안 된다. 예를 들어 iris데이터에서 독립변수 $x_1$은 꽃잎의 길이, $x_2$는 꽃잎의 폭이라고 할 때, 꽃잎의 길이가 길어지면 상식적으로 폭도 커지므로 두 변수 사이에는 매우 큰 상관관계가 있다.
+        </p>
+    </div>
+</article>
+    
+        </div>
+    
+
+    
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a>
+            </div>
+            <div class="date"><time datetime="2018-12-05T15:00:00.000Z" itemprop="datePublished">2018-12-06</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2018/12/06/QDA_LDA/">QDA &amp; LDA</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            QDA와 LDA확률론적 생성모형에서는 베이즈 정리를 사용하여 조건부확률을 계산한다고 했다. 
+
+P(y=k\mid x) = \dfrac{P(x\mid y=k)P(y=k)}{P(x)}하나의 독립변수 x에 대해 y가 k일 경우의 조건부확률을 모두 구해서 그 중 가장 값이 큰 y로 추정하는데, 위 베이즈정리 공식에서 분모는 P(x)이므로 이 때 분모값은 고정이다.
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a>
+            </div>
+            <div class="date"><time datetime="2018-12-01T15:00:00.000Z" itemprop="datePublished">2018-12-02</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2018/12/02/classification_performance_evaluation/">classification performance evaluation</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            분류 성능 평가분류 문제는 회귀분석과 달리 다양한 성능 평가기준이 필요하다.
+Scikit-Learn에서 제공하는 분류 성능평가 메서드들은 다음과 같다.
+sklearn.metrics 서브 패키지
+
+confusion_matrix()
+classfication_report()
+accuracy_score(y_true, y_pred)
+precision_score(y_
+        </p>
+    </div>
+</article>
+    
+        </div>
+    
+
+    
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a>
+            </div>
+            <div class="date"><time datetime="2018-11-29T11:37:09.440Z" itemprop="datePublished">2018-11-29</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2018/11/29/multi-class-classification/">multi-class classification</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            다중 클래스 분류
+이진(Binary Class) 분류 : 종속변수의 클래스가 2개인 분류 문제
+
+다중 클래스(Multi-Class) 분류 : 종속변수의 클래스가 3 개 이상인 분류문제
+
+OvO 혹은 OvR 방법을 통해 여러 개의 이진 클래스 분류문제로 변환해서 푼다
+
+
+
+OvO (One-vs-One): K개의 타겟 클래스가 존재할 때, 그 중 2개씩 선택해
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a>
+            </div>
+            <div class="date"><time datetime="2018-11-27T15:00:00.000Z" itemprop="datePublished">2018-11-28</time></div>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2018/11/28/classification-models/">classification models</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            분류모형분류(classification)는 독립 변수 값이 주어졌을 때 그 독립 변수 값과 가장 연관성이 큰 종속변수 카테고리(클래스)를 계산하는 문제이다. 
+분류 모형의 종류
+판별함수(discriminant function) 모형
+: 주어진 데이터를 서로 다른 영역으로 나누는 경계면을 찾는다.
+
+확률적 모형 
+
+확률적 판별(discriminative) 모
+        </p>
+    </div>
+</article>
+    
+        </div>
+    
+
+
+    </div></section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/jyujin39/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="no-thumbnail">
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/12/12/entropy/" class="title">entropy</a></p>
+                            <p class="item-date"><time datetime="2018-12-11T15:00:00.000Z" itemprop="datePublished">2018-12-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/12/07/naive_bayesian_classification_model/" class="title">naive bayesian classification model</a></p>
+                            <p class="item-date"><time datetime="2018-12-06T15:00:00.000Z" itemprop="datePublished">2018-12-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/12/06/QDA_LDA/" class="title">QDA &amp; LDA</a></p>
+                            <p class="item-date"><time datetime="2018-12-05T15:00:00.000Z" itemprop="datePublished">2018-12-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/12/02/classification_performance_evaluation/" class="title">classification performance evaluation</a></p>
+                            <p class="item-date"><time datetime="2018-12-01T15:00:00.000Z" itemprop="datePublished">2018-12-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/11/29/multi-class-classification/" class="title">multi-class classification</a></p>
+                            <p class="item-date"><time datetime="2018-11-29T11:37:09.440Z" itemprop="datePublished">2018-11-29</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Math/Classification/">Classification</a><span class="category-list-count">6</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/">study</a><span class="tag-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/study/" style="font-size: 10px;">study</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 Yujin Jeon</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
 </footer>
 
-  
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 
 
-<script src="/js/script.js"></script>
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
 
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
 </body>
 </html>
