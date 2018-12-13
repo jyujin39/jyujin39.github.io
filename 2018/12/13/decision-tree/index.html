@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>decision_tree | Data Science YJ</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="study">
+    
+    <meta name="description" content="의사 결정 나무의사결정나무(decision tree)는 여러 가지 규칙을 순차적으로 적용하면서 독립변수 공간을 분할하는 분류 모형이다. 판별적 확률모형이긴 하지만 분류해야 하는 class가 multi든 binary든, 혹은 문제 자체가 classification이든 regression이든 모두 적용할 수 있는 만능 모형이다. 분류와 회귀분석 모두에 사용될">
+<meta name="keywords" content="study">
+<meta property="og:type" content="article">
+<meta property="og:title" content="decision_tree">
+<meta property="og:url" content="https://jyujin39.github.io/2018/12/13/decision-tree/index.html">
+<meta property="og:site_name" content="Data Science YJ">
+<meta property="og:description" content="의사 결정 나무의사결정나무(decision tree)는 여러 가지 규칙을 순차적으로 적용하면서 독립변수 공간을 분할하는 분류 모형이다. 판별적 확률모형이긴 하지만 분류해야 하는 class가 multi든 binary든, 혹은 문제 자체가 classification이든 regression이든 모두 적용할 수 있는 만능 모형이다. 분류와 회귀분석 모두에 사용될">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://jyujin39.github.io/images/image-20181213185933226.png">
+<meta property="og:updated_time" content="2018-12-13T11:23:44.967Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="decision_tree">
+<meta name="twitter:description" content="의사 결정 나무의사결정나무(decision tree)는 여러 가지 규칙을 순차적으로 적용하면서 독립변수 공간을 분할하는 분류 모형이다. 판별적 확률모형이긴 하지만 분류해야 하는 class가 multi든 binary든, 혹은 문제 자체가 classification이든 regression이든 모두 적용할 수 있는 만능 모형이다. 분류와 회귀분석 모두에 사용될">
+<meta name="twitter:image" content="https://jyujin39.github.io/images/image-20181213185933226.png">
+    
+
+    
+
+    
+        <link rel="icon" href="/images/icons8-account-40.png">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">my daily study blog for Data Science</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Math/">Math</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Math/Classification/">Classification</a></li></ul></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Math/Classification/">Classification</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-decision-tree" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        decision_tree
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/12/13/decision-tree/" class="article-date">
+            <time datetime="2018-12-13T11:17:27.000Z" itemprop="datePublished">2018-12-13</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/study/">study</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="의사-결정-나무"><a href="#의사-결정-나무" class="headerlink" title="의사 결정 나무"></a>의사 결정 나무</h1><p><strong>의사결정나무(decision tree)</strong>는 여러 가지 규칙을 순차적으로 적용하면서 독립변수 공간을 분할하는 분류 모형이다. 판별적 확률모형이긴 하지만 분류해야 하는 class가 multi든 binary든, 혹은 문제 자체가 classification이든 regression이든 모두 적용할 수 있는 만능 모형이다. 분류와 회귀분석 모두에 사용될 수 있다는 점에서 <strong>CART(Classification And Regression Tree)</strong>라고도 한다.</p>
+<h3 id="의사-결정-나무를-이용한-분류"><a href="#의사-결정-나무를-이용한-분류" class="headerlink" title="의사 결정 나무를 이용한 분류"></a>의사 결정 나무를 이용한 분류</h3><p>의사결정나무를 이용해 분류를 할 때는 다음과 같은 방식을 따른다.</p>
+<ol>
+<li><p>여러가지 독립변수 중 하나의 독립변수를 선택하고, 그 독립변수에 대한 기준값을 정한다. 이를 분류 규칙이라고 하고, 최적의 분류 규칙을 찾는 방법은 추후 설명한다.</p>
+</li>
+<li><p>전체 학습데이터 집합(부모노드)을 선택한 독립변수 값이 기준값보다 작은 데이터와 큰 데이터의 두 그룹(자식노드 1, 2)으로 나눈다.</p>
+</li>
+<li><p>각각의 자식노드에 대해 또 새롭게 독립변수와 기준값을 선택해 1~2의 단계를 반복하여 하위 자식노드를 만들어나간다. 자식노드에 한 가지 클래스의 데이터만 남게 된다면 그 노드는 거기서 중단한다.</p>
+<p>그런데 현실적으로 한 클래스의 데이터 수가 0이 아니더라도 두 클래스 데이터 비율이 10:1 정도라면 계산의 편의를 위해 그정도에서 멈출 수 있다.</p>
+<p>또한 학습용 데이터가 너무 작아서 마지막노드의 클래스의 비율이 2:1 과 같이 너무 작게 나오면 신뢰도가 떨어지기 때문에 그 전에 중단해준다.</p>
+</li>
+</ol>
+<p>이렇게 자식노드 나누기를 계속하다보면 노드가 계속 뻗어나가는 나무와 같은 형태로 표현된다. 이 나무가 의사결정 나무가 된다.</p>
+<p>의사결정 나무에 전체 트레이닝 데이터를 모두 적용해 보면 각 데이터는 갈라지는 두 노드 중 하나의 노드로 계속해서 흘러내려가게 된다. 그렇게 해서 각 노드는 특정 데이터 집합을 갖게 되는데, 각 노드에 속한 데이터들의 클래스 비율을 해당 노드의 조건부 확률분포 $P(Y=k\mid X)_{\text{node}}$ 라고 정의한다.</p>
+<script type="math/tex; mode=display">
+P(Y = k|X)_{node} \approx \frac{N_{\text{node},k}}{N_{\text{node}}}</script><p>이 의사결정나무를 이용해 테스트 데이터의 클래스를 예측할 때는 가장 상위의 노드에 데이터를 집어넣어 나무의 노드를 따라 흘러내려가게 만들고 맨 마지막에 도달하는 노드의 조건부 확률분포를 이용해 클래스를 예측한다. </p>
+<p>그렇다면 첫 번째 단계에서 분류규칙을 정하는 기준은 무엇일까? 이 때 조건부 엔트로피 개념이 사용되는데, 모든 독립변수와 가능한 기준값들에 대해 부모노드와 자식노드 간의 엔트로피를 계산한 후 어떤 조합에서 가장 엔트로피가 낮아지는지를 본다. 즉, 자식노드의 엔트로피가 부모노드의 엔트로피에 비해 얼마나 낮아졌는가가 기준이 된다. 이러한 기준을 정량화한 것을 정보획득량(information gain)이라고 한다. </p>
+<h3 id="정보-획득량"><a href="#정보-획득량" class="headerlink" title="정보 획득량"></a>정보 획득량</h3><p>정보 획득량(information gain)이란, $X$ 라는 조건에 의해 확률변수 $Y$의 엔트로피가 얼마나 감소했는지를 타나내는 값이다. $Y$의 엔트로피에서$ X$에 대한 $Y$의 조건부엔트로피를 뺀 값으로 정의된다. IG값이 큰 조건, 즉 분류규칙을 선택한다.</p>
+<script type="math/tex; mode=display">
+IG[Y,X] = H[Y] - H[Y|X]</script><p>H[Y] : 부모노드의 엔트로피</p>
+<p>H[Y|X] : 두 자식노드의 조건부 엔트로피의 평균값 . 낮으면 낮을수록 좋다</p>
+<p>예를 들어 하나의 데이터셋에 A, B 두 가지의 다른 분류 규칙을 적용하여 다음처럼 서로 다른 의사결정나무가 만들어졌다고 가정하자.</p>
+<p><img src="/images/image-20181213185933226.png" alt=""> </p>
+<p>A와 B의 부모노드에 들어간 데이터는 같지만, 자식노드에서는 데이터가 다르게 나뉘어 들어갔다.</p>
+<ul>
+<li>A의 왼쪽 자식노드 - Y=0인 데이터가 30개, Y=1인 데이터가 10개</li>
+<li>A의 오른쪽 자식노드 - Y=0인 데이터가 10개, Y=1인 데이터가 30개</li>
+<li>B의 왼쪽 자식노드 - Y=0인 데이터가 20개, Y=1인 데이터가 40개</li>
+<li>B의 오른쪽 자식노드 - Y=0인 데이터가 20개, Y=1인 데이터가 0개</li>
+</ul>
+<p>우선 A와 B의 공통된 부모 노드의 엔트로피를 계산하면 다음과 같다.</p>
+<script type="math/tex; mode=display">
+H[Y] = -\frac{1}{2}\log_2\left(\frac{1}{2}\right) - \frac{1}{2}\log_2\left(\frac{1}{2}\right) = \frac{1}{2}+\frac{1}{2}=1</script><p>그런 후 A와 B 각각의 IG를 계산해본다.</p>
+<p>​    1) A의 정보획득량</p>
+<script type="math/tex; mode=display">
+H[Y\mid X=X_1] = -\frac{3}{4}\log_2\left(\frac{3}{4}\right) -\frac{1}{4}\log_2\left(\frac{1}{4}\right) = 0.81 \\
+H[Y\mid X=X_2] = -\frac{1}{4}\log_2\left(\frac{1}{4}\right) -\frac{3}{4}\log_2\left(\frac{3}{4}\right) = 0.81 \\</script><script type="math/tex; mode=display">
+H[Y\mid X]= \frac{1}{2}H[Y\mid X=X_1] + \frac{1}{2}H[Y\mid X=X_2] = 0.81</script><script type="math/tex; mode=display">
+IG = H[Y] - H[Y\mid X] = 0.19</script><p>​    2) B의 정보획득량</p>
+<script type="math/tex; mode=display">
+H[Y\mid X=X_1] = -\frac{1}{3}\log_2\left(\frac{1}{3}\right) -\frac{2}{3}\log_2\left(\frac{2}{3}\right) = 0.92 \\
+H[Y\mid X=X_2] = 0</script><script type="math/tex; mode=display">
+H[Y\mid X]= \frac{3}{4}H[Y\mid X=X_1] + \frac{1}{4}H[Y\mid X=X_2] = 0.69</script><script type="math/tex; mode=display">
+IG = H[Y] - H[Y\mid X] = 0.31</script><p>따라서 B가 더 나은 분류규칙임을 알 수 있다.</p>
+<p>처음에 독립변수와 임계점을 선정하는 방법은 다음과 같다.</p>
+<p>독립변수들 중 맨 첫 번째 변수를 우선 선택하고, 임계점은 처음 두 데이터의 해당 독립변수에 대한 값들의 중간값으로 설정해 IG값을 계산한다. 그 후 두번째와 세번째 데이터의 중간값으로 임계점을 재설정하고 IG값을 또 계산한다. 이 과정을 데이터 끝까지 반복해나가고, 모든 독립변수에 대해 전 과정을 또 반복한다.</p>
+<p>여기서 끝이 아니라, 그렇게 해서 나눠진 자식노드에서 위 과정을 반복해나간다.</p>
+<p>사실 현실적으로는 위처럼 전 데이터에 대해 하지는 않고 임계점을 특정 기준에 따라 선택해서 일부만 계산한다. 일단은 그냥 위와 같은 방식으로 일일히 IG값을 비교해 분류규칙을 선택한다고 생각하면 된다.</p>
+<h3 id="Scikit-Learn의-의사-결정-나무-클래스"><a href="#Scikit-Learn의-의사-결정-나무-클래스" class="headerlink" title="Scikit-Learn의 의사 결정 나무 클래스"></a>Scikit-Learn의 의사 결정 나무 클래스</h3><p>scikit-learn이 제공하는 <code>DecisionTreeClassifier</code> 클래스로 붓꽃 분류 문제를 풀어보도록 하자.</p>
+<p>여기서는 편의상 꽃의 길이와 폭만을 독립변수로 사용한다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_iris</span><br><span class="line"></span><br><span class="line">iris = load_iris()</span><br><span class="line">X = iris.data[:, [<span class="number">2</span>, <span class="number">3</span>]]</span><br><span class="line">y = iris.target</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeClassifier</span><br><span class="line"></span><br><span class="line">tree1 = DecisionTreeClassifier(criterion=<span class="string">'entropy'</span>, max_depth=<span class="number">1</span>, random_state=<span class="number">0</span>).fit(X, y) <span class="comment">#max_depth는 의사결정나무의 높이, 즉 자식노드를 몇 단계까지 만들 것인지를 의미한다.</span></span><br></pre></td></tr></table></figure>
+<p>다음은 의사결정나무를 시각화하기 위한 코드이다.</p>
+<p><code>draw_decision_tree</code> 함수는 의사결정나무가 의사결정을 하는 과정을 다이어그램으로 보여주고,</p>
+<p><code>plot_decision_regions</code> 함수는 이러한 의사결정에 의해 데이터의 영역이 어떻게 나눠졌는지를 보여준다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> io</span><br><span class="line"><span class="keyword">import</span> pydot</span><br><span class="line"><span class="keyword">from</span> IPython.core.display <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> export_graphviz</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">draw_decision_tree</span><span class="params">(model)</span>:</span></span><br><span class="line">    dot_buf = io.StringIO()</span><br><span class="line">    export_graphviz(model, out_file=dot_buf,</span><br><span class="line">                    feature_names=iris.feature_names[<span class="number">2</span>:])</span><br><span class="line">    graph = pydot.graph_from_dot_data(dot_buf.getvalue())[<span class="number">0</span>]</span><br><span class="line">    image = graph.create_png()</span><br><span class="line">    <span class="keyword">return</span> Image(image)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_decision_regions</span><span class="params">(X, y, model, title)</span>:</span></span><br><span class="line">    resolution = <span class="number">0.01</span></span><br><span class="line">    markers = (<span class="string">'s'</span>, <span class="string">'^'</span>, <span class="string">'o'</span>)</span><br><span class="line">    colors = (<span class="string">'red'</span>, <span class="string">'blue'</span>, <span class="string">'lightgreen'</span>)</span><br><span class="line">    cmap = mpl.colors.ListedColormap(colors)</span><br><span class="line"></span><br><span class="line">    x1_min, x1_max = X[:, <span class="number">0</span>].min() - <span class="number">1</span>, X[:, <span class="number">0</span>].max() + <span class="number">1</span></span><br><span class="line">    x2_min, x2_max = X[:, <span class="number">1</span>].min() - <span class="number">1</span>, X[:, <span class="number">1</span>].max() + <span class="number">1</span></span><br><span class="line">    xx1, xx2 = np.meshgrid(np.arange(x1_min, x1_max, resolution),</span><br><span class="line">                           np.arange(x2_min, x2_max, resolution))</span><br><span class="line">    Z = model.predict(</span><br><span class="line">        np.array([xx1.ravel(), xx2.ravel()]).T).reshape(xx1.shape)</span><br><span class="line"></span><br><span class="line">    plt.contour(xx1, xx2, Z, cmap=mpl.colors.ListedColormap([<span class="string">'k'</span>]))</span><br><span class="line">    plt.contourf(xx1, xx2, Z, alpha=<span class="number">0.4</span>, cmap=cmap)</span><br><span class="line">    plt.xlim(xx1.min(), xx1.max())</span><br><span class="line">    plt.ylim(xx2.min(), xx2.max())</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> idx, cl <span class="keyword">in</span> enumerate(np.unique(y)):</span><br><span class="line">        plt.scatter(x=X[y == cl, <span class="number">0</span>], y=X[y == cl, <span class="number">1</span>], alpha=<span class="number">0.8</span>,</span><br><span class="line">                    c=[cmap(idx)], marker=markers[idx], s=<span class="number">80</span>, label=cl)</span><br><span class="line"></span><br><span class="line">    plt.xlabel(iris.feature_names[<span class="number">2</span>])</span><br><span class="line">    plt.ylabel(iris.feature_names[<span class="number">3</span>])</span><br><span class="line">    plt.legend(loc=<span class="string">'upper left'</span>)</span><br><span class="line">    plt.title(title)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> Z</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">draw_decision_tree(tree1)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20181213194803666.png" alt=""></p>
+<p>생성된 의사결정나무를 보면 독립변수로는 Petal width가 선택되었고, 임계점으로는 0.8이 설정되었다.  이 때 부모노드의 IG값을 구하면 다음과 같다.</p>
+<script type="math/tex; mode=display">
+H[Y] = 1.585\\
+H[Y|X]= \frac{1}{3} \times 0 + \frac{2}{3} \times 1 = 0.667\\
+IG = 1.585 - 0.667 = 0.918</script><p>이 의사결정나무에 의해 나눠진 데이터의 영역을 확인해본다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plot_decision_regions(X, y, tree1, <span class="string">"Depth 1"</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20181213195208376.png" alt=""></p>
+<p>클래스 1과 2의 영역이 나눠지지 않았으므로 의사결정나무의 max_depth인수를 2로 설정해 데이터 분류를 한 번 더 실시한다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tree2 = DecisionTreeClassifier(</span><br><span class="line">    criterion=<span class="string">'entropy'</span>, max_depth=<span class="number">2</span>, random_state=<span class="number">0</span>).fit(X, y)</span><br><span class="line">draw_decision_tree(tree2)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20181213195722497.png" alt=""></p>
+<p>이번에도 petalwidth가 독립변수로 선택됐는데 기준값은 1.75로 바뀌었다.</p>
+<p>맨 아래 단계의 왼쪽 자식노드에는 클래스2인 데이터가 훨씬 많고 오른쪽 자식노드에는 클래스3인 데이터가 훨씬 많게 나누어졌므로 이 정도면 꽤 분류가 잘 될 수 있는 모델이다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plot_decision_regions(X, y, tree2, <span class="string">"Depth 2"</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/Users/jeon-yujin/Library/Application%20Support/typora-user-images/image-20181208122200999.png" alt="image-20181208122200999"></p>
+<p>여기서 한단계 더 해주면, 맨 아래 자식노드드에 엔트로피가 커진 것들이 있긴 하지만 데이터수가 각각 6, 3으로 매우 작고, 그 외 자식노드들은 데이터가 많고 엔트로피가 확 낮아졌기 때문에 결과적으로 평균 엔트로피는 낮아진다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tree3 = DecisionTreeClassifier(criterion=<span class="string">'entropy'</span>, max_depth=<span class="number">3</span>,</span><br><span class="line">                               random_state=<span class="number">0</span>)</span><br><span class="line">draw_decision_tree(tree3)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20181208122351175.png" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plot_decision_regions(X, y, tree3, <span class="string">"Depth 3"</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20181208122403149.png" alt=""></p>
+<p>위 단계에서 맨 오른쪽 노드를 보면 클래스 2에 해당하는 초록색 구간도 4.85를 기준으로 각각 2개와 43개의 데이터로 나눠졌는데 그래프에서 나타나지 않는다. 왜 그럴까? </p>
+<p>어차피 나눠진 두 자식노드에서 모두 3번째 클래스인 데이터가 더 많게 나왔으므로 사실 마지막 그 단계는 큰 의미가 없는 작업이라서 경계가 표시되지 않는다. 그 위 노드에서 1:45로 나눠졌을 때 멈췄어도 된다.</p>
+<p>여기서 두 단계를 더 해주면 마지막에는 아래와 같이 나눠진다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tree5 = DecisionTreeClassifier(</span><br><span class="line">    criterion=<span class="string">'entropy'</span>, max_depth=<span class="number">5</span>, random_state=<span class="number">0</span>).fit(X, y)</span><br><span class="line">draw_decision_tree(tree5)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20181213200758572.png" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plot_decision_regions(X, y, tree5, <span class="string">"Depth 5"</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20181208122736624.png" alt=""></p>
+<p>이 결과에 대해 confusion matrix를 보면 아래와 같다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">confusion_matrix(y, tree5.predict(X))</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20181213200850209.png" alt=""></p>
+<h3 id="회귀-나무"><a href="#회귀-나무" class="headerlink" title="회귀 나무"></a>회귀 나무</h3><p>예측값 $\hat{y}$ 을 다음처럼 각 영역마다 고정된 값을 사용하고, 특징을 구분하는 기준값으로 IG값이 아닌 오차 제곱합을 사용하면 회귀분석에서도 의사결정나무를 쓸 수 있다.</p>
+<p>이러한 모형을 회귀 나무(regression tree) 라고 한다.</p>
+<script type="math/tex; mode=display">
+\hat{y} = \begin{cases} 
+y_1 & \;\; \text{if} x \geq x_{\text{threshold}}\\
+y_2 & \;\; \text{if} x < x_{\text{threshold}}
+\end{cases}</script><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeRegressor</span><br><span class="line"></span><br><span class="line">rng = np.random.RandomState(<span class="number">1</span>)</span><br><span class="line">X = np.sort(<span class="number">5</span> * rng.rand(<span class="number">80</span>, <span class="number">1</span>), axis=<span class="number">0</span>)</span><br><span class="line">y = np.sin(X).ravel()</span><br><span class="line">y[::<span class="number">5</span>] += <span class="number">3</span> * (<span class="number">0.5</span> - rng.rand(<span class="number">16</span>))</span><br><span class="line"></span><br><span class="line">regtree = DecisionTreeRegressor(max_depth=<span class="number">3</span>)</span><br><span class="line">regtree.fit(X, y)</span><br><span class="line"></span><br><span class="line">X_test = np.arange(<span class="number">0.0</span>, <span class="number">5.0</span>, <span class="number">0.01</span>)[:, np.newaxis]</span><br><span class="line">y_hat = regtree.predict(X_test)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Plot the results</span></span><br><span class="line">plt.figure()</span><br><span class="line">plt.scatter(X, y, s=<span class="number">20</span>, edgecolor=<span class="string">"black"</span>, c=<span class="string">"darkorange"</span>, label=<span class="string">"데이터"</span>)</span><br><span class="line">plt.plot(X_test, y_hat, color=<span class="string">"cornflowerblue"</span>, linewidth=<span class="number">2</span>, label=<span class="string">"예측"</span>)</span><br><span class="line">plt.xlabel(<span class="string">"x"</span>)</span><br><span class="line">plt.ylabel(<span class="string">r"$y$ &amp; $\hat&#123;y&#125;$"</span>)</span><br><span class="line">plt.title(<span class="string">"회귀 나무"</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20181213201435279.png" alt=""></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://jyujin39.github.io/2018/12/13/decision-tree/" data-id="cjpmimy7i00040aba7tsjj684" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/jyujin39/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2018/12/12/entropy/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">entropy</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Math/Classification/">Classification</a><span class="category-list-count">7</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="no-thumbnail">
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/12/13/decision-tree/" class="title">decision_tree</a></p>
+                            <p class="item-date"><time datetime="2018-12-13T11:17:27.000Z" itemprop="datePublished">2018-12-13</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/12/12/entropy/" class="title">entropy</a></p>
+                            <p class="item-date"><time datetime="2018-12-11T15:00:00.000Z" itemprop="datePublished">2018-12-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/12/07/naive_bayesian_classification_model/" class="title">naive bayesian classification model</a></p>
+                            <p class="item-date"><time datetime="2018-12-06T15:00:00.000Z" itemprop="datePublished">2018-12-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/12/06/QDA_LDA/" class="title">QDA &amp; LDA</a></p>
+                            <p class="item-date"><time datetime="2018-12-05T15:00:00.000Z" itemprop="datePublished">2018-12-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/12/02/classification_performance_evaluation/" class="title">classification performance evaluation</a></p>
+                            <p class="item-date"><time datetime="2018-12-01T15:00:00.000Z" itemprop="datePublished">2018-12-02</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/">study</a><span class="tag-list-count">7</span></li></ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 Yujin Jeon</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'https://jyujin39.github.io/2018/12/13/decision-tree/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
