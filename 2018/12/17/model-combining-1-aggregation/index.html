@@ -6,23 +6,26 @@
     
 
     
-    <title>Data Science YJ</title>
+    <title>model combining - 1. aggregation | Data Science YJ</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
+        <meta name="keywords" content="study">
+    
     <meta name="description" content="모형 결합모형 결합(model combining) 방법은 앙상블 방법론(ensemble methods)라고도 한다. 단일모형으로 예측이 잘 되지 않을 때, 복수의 모형을 결합해 예측성능을 높이고자 할 때 사용한다.  장점 개별 모형의 성능이 안좋을 때는 결합모형을 하게 되면 성능이 향상된다. 단일모형으로 할 때보다 과최적화를 방지할 수 있다.    모형 결">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Data Science YJ">
-<meta property="og:url" content="https://jyujin39.github.io/images/모형결합.html">
+<meta name="keywords" content="study">
+<meta property="og:type" content="article">
+<meta property="og:title" content="model combining - 1. aggregation">
+<meta property="og:url" content="https://jyujin39.github.io/2018/12/17/model-combining-1-aggregation/index.html">
 <meta property="og:site_name" content="Data Science YJ">
 <meta property="og:description" content="모형 결합모형 결합(model combining) 방법은 앙상블 방법론(ensemble methods)라고도 한다. 단일모형으로 예측이 잘 되지 않을 때, 복수의 모형을 결합해 예측성능을 높이고자 할 때 사용한다.  장점 개별 모형의 성능이 안좋을 때는 결합모형을 하게 되면 성능이 향상된다. 단일모형으로 할 때보다 과최적화를 방지할 수 있다.    모형 결">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://jyujin39.github.io/Users/jeon-yujin/Library/Application">
-<meta property="og:updated_time" content="2018-12-17T09:03:26.139Z">
+<meta property="og:image" content="https://jyujin39.github.io/images/image-20181216174749899.png">
+<meta property="og:updated_time" content="2018-12-17T09:03:21.241Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Data Science YJ">
+<meta name="twitter:title" content="model combining - 1. aggregation">
 <meta name="twitter:description" content="모형 결합모형 결합(model combining) 방법은 앙상블 방법론(ensemble methods)라고도 한다. 단일모형으로 예측이 잘 되지 않을 때, 복수의 모형을 결합해 예측성능을 높이고자 할 때 사용한다.  장점 개별 모형의 성능이 안좋을 때는 결합모형을 하게 되면 성능이 향상된다. 단일모형으로 할 때보다 과최적화를 방지할 수 있다.    모형 결">
-<meta name="twitter:image" content="https://jyujin39.github.io/Users/jeon-yujin/Library/Application">
+<meta name="twitter:image" content="https://jyujin39.github.io/images/image-20181216174749899.png">
     
 
     
@@ -131,14 +134,42 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    Data Science YJ
+    uncategorized
     </h1>
 </div>
 
                         <div class="main-body-content">
-                            <article id="page-" class="article article-single article-type-page" itemscope="" itemprop="blogPost">
+                            <article id="post-model-combining-1-aggregation" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
     <div class="article-inner">
         
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        model combining - 1. aggregation
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/12/17/model-combining-1-aggregation/" class="article-date">
+            <time datetime="2018-12-17T08:58:36.000Z" itemprop="datePublished">2018-12-17</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/study/">study</a>
+    </div>
+
+            </div>
         
         
         <div class="article-entry" itemprop="articleBody">
@@ -184,13 +215,14 @@
 </ul>
 <p>두 방식으로 각각 했을때 분류 결과가 달라진다.</p>
 <p>예를 들어 로지스틱 회귀모형, QDA 모형, 가우시안 나이브 베이즈 모형, 이 세 가지 모형으로 하나의 이진분류 문제를 다수결방법으로 푼다고 하자. 이 때 가우시안 나이브 베이즈모형에만 다른 모형들에 비해 가중치를 두 배로 주고 예측을 진행하면, 각각의 모형에서 예측한 클래스와 소프트 보팅으로 다수결방법을 했을 때 예측된 클래스는 다음과 같다.</p>
-<p><img src="/Users/jeon-yujin/Library/Application Support/typora-user-images/image-20181216174749899.png" alt="image-20181216174749899"></p>
+<p><img src="/images/image-20181216174749899.png" alt=""></p>
 <p>소프트 다수결 모형은 각 모형마다의 가중치를 고려해 확률값의 합으로 클래스를 결정하기 때문에 세 모델의 조건부확률값의 합이 더 큰 클래스 2로 예측한다.</p>
 <p>그러나 만약 하드 다수결모형을 사용했다면 1개의 모델(QDA)에서만 선택된 클래스 2가 아닌, 나머지 2개의 모델에서 예측된 클래스 1을 답으로 예측해내게 된다.</p>
 <h4 id="모형-결합을-사용한-성능-향상"><a href="#모형-결합을-사용한-성능-향상" class="headerlink" title="모형 결합을 사용한 성능 향상"></a>모형 결합을 사용한 성능 향상</h4><p>다수결 모형의 핵심가정 : 개별 모델들은 상호간에 영향을 받지 않고 독립적으로 문제를 예측한다.</p>
 <p>위 가정을 따르면 N개의 모델이 모여 정답을 출력할 확률은 아래와 같아진다.</p>
 <script type="math/tex; mode=display">
-\sum^N_{k>\frac{N}{2}}\binom N k p^k (1-p)^{N-k}</script><p>아래 그래프를 보면, 개별모형의 성능이 정답률 60프로일 때, 그런 모형이 10개가 모이면 성능이 80프로, 100개가 모이면 거의 99프로까지도 올라가는 것을 확인할 수 있다..<img src="/Users/jeon-yujin/Library/Application%20Support/typora-user-images/image-20181211191906364.png" alt="image-20181211191906364"></p>
+\sum^N_{k>\frac{N}{2}}\binom N k p^k (1-p)^{N-k}</script><p>아래 그래프를 보면, 개별모형의 성능이 정답률 60프로일 때, 그런 모형이 10개가 모이면 성능이 80프로, 100개가 모이면 거의 99프로까지도 올라가는 것을 확인할 수 있다.</p>
+<p><img src="/images/image-20181211191906364.png" alt=""></p>
 <p>다만, 개별모형의 성능이 50프로가 안되면 모형결합을 했을 때 오히려 더 성능이 나빠지는 것도 확인된다. 즉, 다수결모형을 만들 때는 최소한 정확도가 50은 넘는 개별모형들로 모아야 한다.</p>
 <p>그런데 우리가 지금까지 배운 모형의 종류가 5개 정도밖에 안 되는데 어떻게 10개, 100개의 모형을 모을 수 있을까?</p>
 <h3 id="2-배깅"><a href="#2-배깅" class="headerlink" title="2) 배깅"></a>2) 배깅</h3><p>배깅(bagging)은 동일한 확률모형을 쓰지만 모형마다 데이터를 다르게 줌으로써 서로 다른 결과를 출력하는 다수의 모형을 만들어 다수결모형을 적용하는 방법이다. </p>
@@ -209,7 +241,7 @@
 <p>배깅 방법은 회귀분석, 분류 등 어떤 문제도 풀어낸다는 장점이 있지만, 계산량이 많다는 단점이 있다.</p>
 <p>Scikit-Learn 의 ensemble 서브패키지는 배깅 모형 결합을 위한 <a href="http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.BaggingClassifier.html" target="_blank" rel="noopener"><code>BaggingClassifier</code></a> 클래스를 제공한다.</p>
 <p>아래는 모형 한 개를 사용했을 때와 배깅모형을 사용했을 때의 분류 결과를 시각화한 것이다.</p>
-<p><img src="/Users/jeon-yujin/Library/Application%20Support/typora-user-images/image-20181211192857280.png" alt="image-20181211192857280"></p>
+<p><img src="/images/image-20181211192857280.png" alt=""></p>
 <ul>
 <li><p>depth=5로 설정한 개별모형</p>
 <p>빨간 영역 안에 끼어들어간 녹색 아웃라이어 데이터를 분류하기 위해 그 위치에 해당하는 부분만 영역이 나누어졌다. 하지만 이것은 분명한 오버피팅이다.  그 영역에 새로운 데이터가 들어온다면 빨간색일 가능성이 높은데 녹색으로 분류되어버리기 때문이다.</p>
@@ -228,44 +260,6 @@
 <p>랜덤하게 선택된 변수들의 IG, 즉 아래 노드로 내려가면서 엔트로피가 얼마나 감소하는지를 비교해보면 각 변수의 중요도를 계산할 수 있다. 의사결정나무의 경우 선택되는 변수들이 정해져 있기 때문에 선택 기회조차 얻지 못하는 변수들에 대해서는 IG를 계산하기가 힘들다. 그런데 랜덤포레스트의 경우 변수가 랜덤으로 선택되기 때문에 좀더 공정하게 변수들의 중요도를 파악할 수 있다.</p>
 </li>
 </ul>
-<h3 id="2-부스팅-boosting"><a href="#2-부스팅-boosting" class="headerlink" title="2. 부스팅 boosting"></a>2. 부스팅 boosting</h3><p>한 번에 하나씩 모형을 추가하고, 각 모형은 서로 다른 문제를 푼다. 추가되는 모형의 목표는 이전에 추가되어온 모형 혹은 모형들이 잘 못 푼 문제를 푸는 것이다.</p>
-<p>이진분류에만 쓸 수 있으며, class값은 1 혹은 -1이다.</p>
-<p>새로운 모형이 추가될 때 해당 모형의 가중치가 결정된다.</p>
-<script type="math/tex; mode=display">
-C_m(x_i) = \text{sign}(\alpha_1k_1(x_i) + \cdots + \alpha_mk_m(x_i))</script><h3 id="1-에이다부스트"><a href="#1-에이다부스트" class="headerlink" title="1) 에이다부스트"></a>1) 에이다부스트</h3><p>adaptive + boost = adaboost</p>
-<p>1부터 N까지의 트레이닝 데이터에 대해, km이 분류를 해서 1 혹은 -1의 답을 낸다. 그 답이 정답이라면 0점, 오답이라면 1점을 부여. 틀리면 벌점 1점이 생기는 벌점제도와 같다. 벌점을 최소화하는 모델을 찾아 선택한다.</p>
-<script type="math/tex; mode=display">
-L_m = \sum_{i=1}^N w_{m,i}I(k_m(x_i)\neq y_i)</script><p>$I$ : 0 혹은 1</p>
-<p>$w_m$ : 모델마다 다른 가중치(벌점). 문제를 틀려서 얻는 벌점은 모델마다 다르다. 어떤 로직에 의해 이미 결정된 수치.</p>
-<p>모델을 선택한 후 가중치 $\alpha_m$ 을 결정해야 한다.</p>
-<script type="math/tex; mode=display">
-\epsilon_m = \dfrac{\Sigma^N_{i=1} w_{m,i}I(k_m(x_i)\neq y_i)}{\Sigma^N_{i=1}w_{m,i}}</script><p>$\epsilon _m$: 벌점을 0-1사이로 정규화한 점수.</p>
-<p>분모: 다 틀렸을 때 계산된 벌점</p>
-<p>분자: 실제 틀린 문제에 대한 벌점. 즉, 모델의 성능</p>
-<script type="math/tex; mode=display">
-\alpha_m = \frac{1}{2}\log\left(\frac{1-\epsilon_m}{\epsilon_m}\right)</script><p>위 L은 k번째 멤버에 대한 손실함수이고,</p>
-<p>에이다부스팅은 아래와 같이 전체 모형집단에 대한 손실함수를 최소화하는 모형집단을 찾아나가는 과정이라고 볼 수 있다.</p>
-<script type="math/tex; mode=display">
-L_m = \sum^N_{i=1} \exp(-y_iC_m(x_i))</script><p>결국 이걸 최소화하는거나 위 손실함수를 최소화하는 거나 똑같다.</p>
-<p>그전에 적용한 모형이 정답을 맞추지 못한 데이터는 가중치가 커지고 맞춘애들은 가중치가 작게 돼서 다음 모델이 가중치가 커진 데이터를 중점으로 분류를 하게 된다. </p>
-<h3 id="2-그레디언트-부스트"><a href="#2-그레디언트-부스트" class="headerlink" title="2) 그레디언트 부스트"></a>2) 그레디언트 부스트</h3><p>변분법을 사용한 모형이다. 손실 범함수(loss functional)를 최소화하는 개별 분류함수 $k_m$ 을 찾는다.</p>
-<script type="math/tex; mode=display">
-C_m = C_{m-1} - \alpha_m \dfrac{\delta L(y,C_{m-1})}{\delta C_{m-1}} = C_{m-1} + \alpha_m k_m</script><p>결국 범함수를 최적화하는 과정. 앞에서는 기존의 데이터에서 가중치만 바꿔서  잘 추정하는 $k_m$ 을 선택했다면 여기서는 범함수의 그레디언트와 가장 비슷한 $k_m$ 을 찾는다.</p>
-<p>만약 손실범함수가 오차제곱형태라면 ,</p>
-<script type="math/tex; mode=display">
-L(y, C_{m-1}) = \frac{1}{2}(y-C_{m-1})^2</script><p>범함수의 미분은 실제 목푯값 y와 $C_{m-1}$ 과의 차이, 즉 잔차가 된다.</p>
-<script type="math/tex; mode=display">
--\frac{dL(y,C_m)}{dC_m} = y - C_{m-1}</script><p>이때는 이전 모델과 y와의 잔차와 가장 비슷한 다음 모델을 찾는 것이 그레디언트부스팅 방법이 된다.</p>
-<p>그래디언트 부스팅만을 전문으로 구현해놓은 라이브러리들이 있다.</p>
-<ul>
-<li><p>XGBoost 라이브러리 </p>
-<p>:scikit learn에 비해 빠르다. </p>
-</li>
-<li><p>Light GBM (gradient boosting machine) 라이브러리</p>
-<p>: xgboost보다 더 빨라서 많이 쓰인다.</p>
-</li>
-</ul>
-<p>그래디언트 부스팅모델에 들어가게 되는 것은 함수이므로 decision tree classifier가 아니라 decision tree regressor이다. 따라서 개별 모형들은 0 또는 1의 클래스가 아니라 각각 다른 높이를 지닌 계단식 함수값을 출력한다. 그걸 다 합쳤을 때 최종결과에서 바이너리 클래스로 분류하게 되는 것이다.</p>
 
         </div>
         <footer class="article-footer">
@@ -273,7 +267,7 @@ L(y, C_{m-1}) = \frac{1}{2}(y-C_{m-1})^2</script><p>범함수의 미분은 실�
 
 
 
-    <a data-url="https://jyujin39.github.io/images/모형결합.html" data-id="cjps3dz2r0001m4bazztz47cr" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://jyujin39.github.io/2018/12/17/model-combining-1-aggregation/" data-id="cjps3dz2w0006m4bab3it7iwv" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -367,6 +361,19 @@ L(y, C_{m-1}) = \frac{1}{2}(y-C_{m-1})^2</script><p>범함수의 미분은 실�
             
         </ul>
     </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2018/12/13/decision-tree/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">decision_tree</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
     
     <div class="widgets-container">
         
@@ -494,7 +501,7 @@ L(y, C_{m-1}) = \frac{1}{2}(y-C_{m-1})^2</script><p>범함수의 미분은 실�
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'https://jyujin39.github.io/images/모형결합.html';
+    var disqus_url = 'https://jyujin39.github.io/2018/12/17/model-combining-1-aggregation/';
     
     (function() {
     var dsq = document.createElement('script');
