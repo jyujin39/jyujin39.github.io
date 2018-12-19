@@ -6,26 +6,26 @@
     
 
     
-    <title>classification performance evaluation | Data Science YJ</title>
+    <title>perceptron | Data Science YJ</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
         <meta name="keywords" content="study">
     
-    <meta name="description" content="분류 성능 평가분류 문제는 회귀분석과 달리 다양한 성능 평가기준이 필요하다. Scikit-Learn에서 제공하는 분류 성능평가 메서드들은 다음과 같다. sklearn.metrics 서브 패키지  confusion_matrix() classfication_report() accuracy_score(y_true, y_pred) precision_score(y_">
+    <meta name="description" content="퍼셉트론퍼셉트론(perceptron)은 가장 오래되고 단순한 형태의 판별함수 기반 이진분류모형이다.  퍼셉트론은 입력값 $x=(1,x_1,\cdots ,x_m)$ 에 대해 1 또는 -1의 값을 가지는 $y$를 출력하는 비선형 함수이다. 1을 포함하는 입력요소 $x_i$ 에 대해 가중치 $w_i$ 를 곱한 값 $a = w^Tx$ 을 활성화값(activatio">
 <meta name="keywords" content="study">
 <meta property="og:type" content="article">
-<meta property="og:title" content="classification performance evaluation">
-<meta property="og:url" content="https://jyujin39.github.io/2018/12/02/classification_performance_evaluation/index.html">
+<meta property="og:title" content="perceptron">
+<meta property="og:url" content="https://jyujin39.github.io/2018/12/19/perceptron/index.html">
 <meta property="og:site_name" content="Data Science YJ">
-<meta property="og:description" content="분류 성능 평가분류 문제는 회귀분석과 달리 다양한 성능 평가기준이 필요하다. Scikit-Learn에서 제공하는 분류 성능평가 메서드들은 다음과 같다. sklearn.metrics 서브 패키지  confusion_matrix() classfication_report() accuracy_score(y_true, y_pred) precision_score(y_">
+<meta property="og:description" content="퍼셉트론퍼셉트론(perceptron)은 가장 오래되고 단순한 형태의 판별함수 기반 이진분류모형이다.  퍼셉트론은 입력값 $x=(1,x_1,\cdots ,x_m)$ 에 대해 1 또는 -1의 값을 가지는 $y$를 출력하는 비선형 함수이다. 1을 포함하는 입력요소 $x_i$ 에 대해 가중치 $w_i$ 를 곱한 값 $a = w^Tx$ 을 활성화값(activatio">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://jyujin39.github.io/Users/jeon-yujin/Library/Application%20Support/typora-user-images/image-20181201093234513.png">
-<meta property="og:updated_time" content="2018-12-04T06:49:37.092Z">
+<meta property="og:image" content="https://jyujin39.github.io/images/image-20181215091059976.png">
+<meta property="og:updated_time" content="2018-12-19T14:09:57.350Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="classification performance evaluation">
-<meta name="twitter:description" content="분류 성능 평가분류 문제는 회귀분석과 달리 다양한 성능 평가기준이 필요하다. Scikit-Learn에서 제공하는 분류 성능평가 메서드들은 다음과 같다. sklearn.metrics 서브 패키지  confusion_matrix() classfication_report() accuracy_score(y_true, y_pred) precision_score(y_">
-<meta name="twitter:image" content="https://jyujin39.github.io/Users/jeon-yujin/Library/Application%20Support/typora-user-images/image-20181201093234513.png">
+<meta name="twitter:title" content="perceptron">
+<meta name="twitter:description" content="퍼셉트론퍼셉트론(perceptron)은 가장 오래되고 단순한 형태의 판별함수 기반 이진분류모형이다.  퍼셉트론은 입력값 $x=(1,x_1,\cdots ,x_m)$ 에 대해 1 또는 -1의 값을 가지는 $y$를 출력하는 비선형 함수이다. 1을 포함하는 입력요소 $x_i$ 에 대해 가중치 $w_i$ 를 곱한 값 $a = w^Tx$ 을 활성화값(activatio">
+<meta name="twitter:image" content="https://jyujin39.github.io/images/image-20181215091059976.png">
     
 
     
@@ -139,14 +139,14 @@
 </div>
 
                         <div class="main-body-content">
-                            <article id="post-classification_performance_evaluation" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+                            <article id="post-perceptron" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        classification performance evaluation
+        perceptron
         </h1>
     
 
@@ -156,8 +156,8 @@
             <div class="article-meta">
                 
     <div class="article-date">
-        <a href="/2018/12/02/classification_performance_evaluation/" class="article-date">
-            <time datetime="2018-12-01T15:00:00.000Z" itemprop="datePublished">2018-12-02</time>
+        <a href="/2018/12/19/perceptron/" class="article-date">
+            <time datetime="2018-12-19T14:06:02.000Z" itemprop="datePublished">2018-12-19</time>
         </a>
     </div>
 
@@ -173,144 +173,81 @@
         
         
         <div class="article-entry" itemprop="articleBody">
-            <h1 id="분류-성능-평가"><a href="#분류-성능-평가" class="headerlink" title="분류 성능 평가"></a>분류 성능 평가</h1><p>분류 문제는 회귀분석과 달리 다양한 성능 평가기준이 필요하다.</p>
-<p>Scikit-Learn에서 제공하는 분류 성능평가 메서드들은 다음과 같다.</p>
-<p><code>sklearn.metrics</code> 서브 패키지</p>
-<ul>
-<li><code>confusion_matrix()</code></li>
-<li><code>classfication_report()</code></li>
-<li><code>accuracy_score(y_true, y_pred)</code></li>
-<li><code>precision_score(y_true, y_pred)</code></li>
-<li><code>recall_score(y_true, y_pred)</code></li>
-<li><code>fbeta_score(y_true, y_pred, beta)</code></li>
-<li><code>f1_score(y_true, y_pred)</code></li>
-</ul>
-<h3 id="분류-결과표-Confusion-Matrix"><a href="#분류-결과표-Confusion-Matrix" class="headerlink" title="분류 결과표 Confusion Matrix"></a>분류 결과표 Confusion Matrix</h3><p>분류 결과표는 타겟의 실제 클래스와 모형이 예측한 클래스가 일치하는 개수를 표로 나타낸 것이다. 원래 클래스는 행으로, 예측한 클래스는 열로 나타낸다.</p>
+            <h1 id="퍼셉트론"><a href="#퍼셉트론" class="headerlink" title="퍼셉트론"></a>퍼셉트론</h1><p>퍼셉트론(perceptron)은 가장 오래되고 단순한 형태의 판별함수 기반 이진분류모형이다.</p>
+<p><img src="/images/image-20181215091059976.png" alt=""></p>
+<p>퍼셉트론은 입력값 $x=(1,x_1,\cdots ,x_m)$ 에 대해 1 또는 -1의 값을 가지는 $y$를 출력하는 비선형 함수이다. 1을 포함하는 입력요소 $x_i$ 에 대해 가중치 $w_i$ 를 곱한 값 $a = w^Tx$ 을 활성화값(activations)이라고 하며 이 $a$가 판별함수 역할을 한다. </p>
+<p>판별함수 값이 <strong>활성화함수(activation function) $h(a)$</strong>를 지나면 분류 결과에 해당하는 $\hat{y}$ 가 생성된다.</p>
+<script type="math/tex; mode=display">
+\hat{y} = h(w^Tx)</script><p>퍼셉트론의 활성화함수는 단위 계단함수(heaviside step function)이다.</p>
+<script type="math/tex; mode=display">
+h(a) = \begin{cases} -1, & a<0,\\
+1, & a\geq 0
+\end{cases}</script><h3 id="퍼셉트론-손실함수"><a href="#퍼셉트론-손실함수" class="headerlink" title="퍼셉트론 손실함수"></a>퍼셉트론 손실함수</h3><p>퍼셉트론은 독립변수 $ x$로부터 종속변수 $y$를 예측하는 예측모형이므로, 예측 오차를 최소화하는 가중치 $w$를 구해야 한다. 가중치 $ w$에 따라 달라지는 전체 예측 오차 $ L$은 $i$번째 개별 데이터에 대한 손실, 즉 실제값과 예측값의 차이 $ L_i(\hat{y}_i, y_i)$ 의 합으로 표현할 수 있다.</p>
+<script type="math/tex; mode=display">
+L = \sum^N_{i=1} L_i(y_i,\hat{y}_i)</script><p>회귀분석에서 썼던 손실함수의 일반적 형태 $L(\hat{y},y)= -(y-\hat{y})^2$는 여기서 쓸 수 없다. 예측치와 실제값의 오차를 줄이는 데 너무 많은 에너지를 쓰게 되기 때문이다.</p>
+<p>퍼셉트론에서 사용하는 손실함수는 제로-원 손실함수(zero-one loss function)로 다음과 같은 형태로 쓰인다.</p>
+<script type="math/tex; mode=display">
+L_i(y_i,\hat{y}_i)=\max(0,-y_i\hat{y}_i)</script><script type="math/tex; mode=display">
+y = \begin{cases}{1\\-1}
+\end{cases}    , \,\,\,\,\,\,\,\,\,\,\,\, \hat{y} = \begin{cases}{1\\-1}
+\end{cases}</script><p>제로-원 손실함수 값은 예측치와 실제값이 같으면 0, 다르면 1이다. </p>
 <div class="table-container">
 <table>
 <thead>
 <tr>
-<th></th>
-<th style="text-align:center">예측 클래스 0</th>
-<th style="text-align:center">예측 클래스 1</th>
-<th style="text-align:center">예측 클래스 2</th>
+<th style="text-align:center"></th>
+<th style="text-align:center">$\hat{y} = 1$</th>
+<th style="text-align:center">$\hat{y} = -1$</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>원래 클래스 0</strong></td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-</tr>
-<tr>
-<td><strong>원래 클래스 1</strong></td>
-<td style="text-align:center">0</td>
+<td style="text-align:center">$y = 1$</td>
 <td style="text-align:center">0</td>
 <td style="text-align:center">1</td>
 </tr>
 <tr>
-<td><strong>원래 클래스 2</strong></td>
+<td style="text-align:center">$y=-1$</td>
 <td style="text-align:center">1</td>
 <td style="text-align:center">0</td>
-<td style="text-align:center">2</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>이를 코드로 구현하면 다음과 같다.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> confusion_matrix</span><br><span class="line">y_true = [<span class="number">2</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">y_pred = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">2</span>]</span><br><span class="line">confusion_matrix(y_true, y_pred)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#분류결과표</span><br><span class="line">array([[2, 0, 0],</span><br><span class="line">       [0, 0, 1],</span><br><span class="line">       [1, 0, 2]])</span><br></pre></td></tr></table></figure>
-<h2 id="이진-분류-결과표-Binary-Confusion-Matrix"><a href="#이진-분류-결과표-Binary-Confusion-Matrix" class="headerlink" title="이진 분류 결과표 Binary Confusion Matrix"></a>이진 분류 결과표 Binary Confusion Matrix</h2><p>클래스가 두 개인 경우에는 일반적으로 클래스 이름을 “Positive”와 “Negative”로 표시한다.</p>
-<ul>
-<li>positive : 특이한 케이스에 해당하는 경우</li>
-<li>negative :  그렇지 않은 일반적인 경우</li>
-</ul>
-<p>이진 분류 결과표는 다음과 같은 모양이다.</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th></th>
-<th style="text-align:center">Positive라고 예측</th>
-<th style="text-align:center">Negative라고 예측</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>실제 Positive</strong></td>
-<td style="text-align:center">True Positive</td>
-<td style="text-align:center">False Negative</td>
-</tr>
-<tr>
-<td><strong>실제 Negative</strong></td>
-<td style="text-align:center">False Positive</td>
-<td style="text-align:center">True Negative</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h4 id="FDS-Fraud-Detection-System"><a href="#FDS-Fraud-Detection-System" class="headerlink" title="FDS (Fraud Detection System)"></a>FDS (Fraud Detection System)</h4><p>잘못된 거래 및 사기 거래 등을 예측하는 시스템으로, 예측 결과가 실제와 일치하는지에 따라 다음과 같이 구분한다.</p>
-<ul>
-<li><strong>TP</strong>(True Positive): 사기를 사기라고 정확하게 예측</li>
-<li><strong>TN</strong>(True Negative): 정상을 정상이라고 정확하게 예측</li>
-<li><strong>FP</strong>(False Positive): 정상을 사기라고 잘못 예측</li>
-<li><strong>FN</strong>(False Negative): 사기를 정상이라고 잘못 예측</li>
-</ul>
-<p>FDS는 병의 진단에도 쓰일 수 있다. (positive: 병에 걸린 것, negative: 병에 걸리지 않은 것)</p>
-<p>이진분류결과표에 따르면 분류모델의 성능평가척도가 4개로 추려지지만 그래도 여전히 많다.</p>
-<p>그래서 그 4개의 수를 조합해 하나의 점수로 만든 것이 아래 설명할 평가점수다.</p>
-<h3 id="평가-점수"><a href="#평가-점수" class="headerlink" title="평가 점수"></a>평가 점수</h3><p>FDS 의 결과로 나온 TP, TN, FP, FN 네 가지를 조합해 다음의 평가점수들을 계산한다.</p>
-<ul>
-<li>accuracy (정확도)</li>
-<li>precision (정밀도)</li>
-<li>recall (재현율)</li>
-<li>fallout (위양성율)</li>
-<li>F (beta) score</li>
-</ul>
-<h4 id="1-Accuracy"><a href="#1-Accuracy" class="headerlink" title="1) Accuracy"></a>1) Accuracy</h4><p>​    : 전체 샘플 중 맞게 예측한 샘플 수의 비율</p>
+<p>전체 손실함수 값은 다음과 같게 된다.</p>
 <script type="math/tex; mode=display">
-\text{accuracy} = \dfrac{TP + TN}{TP + TN + FP + FN}</script><h4 id="2-Precision"><a href="#2-Precision" class="headerlink" title="2) Precision"></a>2) Precision</h4><p>​    : Positive 클래스라고 예측한 데이터 중 실제로 Positive에 해당하는 데이터의 비율</p>
+L = \sum_{i=1}^N \max(0, -y,\hat{y}_i) = - \sum_{i\in M}y_i\hat{y}_i</script><p>위 식에서 $M$ 은 오분류(misclassification)된 데이터의 집합이다.</p>
+<p>그런데 제로-원 손실함수를 쓰면 $\hat{y}(x)$가 $x$에 대한 계단식 그래프가 되므로 대부분의 영역에서 기울기가 0이 되어 최소점을 구할 수 없다. 따라서 퍼셉트론에서는 $\hat{y}$ 대신 활성화값 $w^Tx$ 를 손실함수로 사용한다. 이 때는 손실함수가 연속형 2차함수(peacewise-linear function) 모양이 나오게 된다.</p>
+<p>이를 <strong>퍼셉트론 손실함수(perceptron loss function)</strong>, <strong>0-힌지 손실함수(zero-hinge loss function</strong>) 라고 한다.</p>
+<script type="math/tex; mode=display">
+L_p(w) = -\sum_{i\in M}y_i\cdot w^Tx_i</script><p>여기서는 그레디언트 디센트 방법을 사용해 최소점의 위치를 구할 수 있게 된다.</p>
+<h3 id="가중치-계산"><a href="#가중치-계산" class="headerlink" title="가중치 계산"></a>가중치 계산</h3><p>퍼셉트론 손실함수 $L_p(w)$를 최소화하는 $w$ 를 찾기 위해 w로 미분해 그레디언트를 구하면 다음과 같다.</p>
+<script type="math/tex; mode=display">
+\frac{dL_p}{dw} = -\sum _{i\in M}x_iy_i</script><p>여기서도 위에서 설명했듯이 예측이 틀린 경우에 대해서만 서메이션이 이루어진다.</p>
+<p>그레디언트 디센트(gradient descent) 방법을 사용하면 다음과 같이 $w$ 를 갱신할 수 있다.</p>
+<script type="math/tex; mode=display">
+w_{k+1} = w_k + \eta_k\sum_{i\in M}x_iy_i</script><p>여기서 $\eta$ 는 스텝사이즈(step size) 또는 학습속도(learning rate)라고 한다.</p>
+<p>그런데 퍼셉트론 손실함수는 원래의 손실함수와 정확하게 같지 않기 때문에 이러한 방식으로 학습을 했을 때 매 단계마다 반드시 원래의 손실함수가 감소한다는 보장은 없다. 다만, <strong>퍼셉트론 수렴 정리(perceptron convergence theorem)</strong>로부터 <em>데이터가 선형분리(linearly separable)가능한 경우</em>에만 완전분류모형으로 수렴한다.</p>
+<p>선형분리란, 한 기준점을 중심으로 완벽히 두 개의 값으로 데이터가 구분될 수 있는 것을 의미한다.</p>
+<p>Scikit-Learn 에서 제공하는 퍼셉트론 모형 클래스 <code>Perceptron</code> 은 다음과 같은 입력 인수를 갖는다.</p>
 <ul>
-<li>사기거래 추정에서 일단 positive라고 추정이 됐으면 그게 실제 사기문제일 수 있기 때문에 중요하게 여겨지고, 사기거래 특정 시스템이 실제로 잘 작동하고 있는지 파악할 수 있어야 되기 때문에 precision점수가 중요하게 된다. </li>
+<li><code>max_iter</code>: 최적화를 위한 반복 횟수</li>
+<li><code>eta0</code>: learning rate $\eta $</li>
 </ul>
+<h3 id="퍼셉트론의-학습성능"><a href="#퍼셉트론의-학습성능" class="headerlink" title="퍼셉트론의 학습성능"></a>퍼셉트론의 학습성능</h3><p>퍼셉트론에서는 위에서 설명했듯 손실값이 계속 줄어든다는 보장이 있지는 않다. 전체적으로 기울기는 하락하는 방향이지만 실제 값들을 보면 진동(oscillation)이 일어난다. 즉, 성능이 나빠졌다가 더 좋아졌다가 조금 더 나빠졌다가 더 좋아졌다가를 계속해서 반복한다.</p>
+<p><img src="/images/image-20181215095251365.png" alt=""></p>
+<p>그리고 막판에는 값이 완전히 0에 도달하거나 값이 더 낮아지지 않고 같은 값에서 맴돈다. 물론 계속 횟수를 늘려가면 값이 더 내려갈 수도 있지만 장담할 수 없고, 현실적으로 횟수를 무한히 해보는 것은 불가능하기 때문에 적당한 수준에서 만족하고 임의로 멈춰준다. 이걸 early-stopping이라고 한다. </p>
+<h3 id="SGD"><a href="#SGD" class="headerlink" title="SGD"></a>SGD</h3><p>SGD(Stochastic Gradient Descent) 방법은 손실함수 자체가 아니라 손실함수의 추정치(기댓값)을 최소화하는 방법이다.</p>
 <script type="math/tex; mode=display">
-\text{precision} = \dfrac{TP}{TP + FP}</script><h4 id="3-Recall"><a href="#3-Recall" class="headerlink" title="3) Recall"></a>3) Recall</h4><p>​    : 실제 Positive인 데이터 중 Positive라고 예측된 데이터의 비율</p>
+\arg \min \text{E}[L]</script><p>전체 손실함수 L은 퍼셉트론처럼 개별데이터의 손실함수값의 합이다.</p>
 <script type="math/tex; mode=display">
-\text{recall} = \dfrac{TP}{TP + FN}</script><h4 id="4-Fall-Out"><a href="#4-Fall-Out" class="headerlink" title="4) Fall-Out"></a>4) Fall-Out</h4><p>​    : 실제 Negative인 데이터 중 Positive로 잘못 에측된 표본의 비율</p>
+L = \sum_i L_i(\hat{y}_i, y_i)</script><p>SGD 최적화 방법은 손실함수의 그래디언트의 기댓값 추정치를 이용해 $w$ 를 구한다. 이 때 모든 학습용 데이터를 다 사용하지 않고 일부 데이터만 사용해 그레디언트 추정치를 구한다. 따라서 계산량이 많거나 학습데이터가 많은 딥러닝에서 많이 쓰이는 방법이다. </p>
 <script type="math/tex; mode=display">
-\text{fallout} = \dfrac{FP}{FP + TN}</script><h4 id="5-F-beta-score"><a href="#5-F-beta-score" class="headerlink" title="5) F (beta) score"></a>5) F (beta) score</h4><p>​    :반비례관계에 있는 precision과 recall은 둘 다 중요한 점수이기 때문에 같이 봐야 하는데, 그 때 그 두 점수를 가중조화 평균낸 점수가 F-score다. 베타 값에 따라 달라진다.</p>
-<p><img src="/Users/jeon-yujin/Library/Application%20Support/typora-user-images/image-20181201093234513.png" alt="image-20181201093234513"></p>
-<script type="math/tex; mode=display">
-F_\beta = \dfrac{(1 + \beta^2) \, ({\text{precision} \times \text{recall}})}{({\beta^2 \, \text{precision} + \text{recall}})}</script><ul>
-<li>F1 score    (beta = 1)<script type="math/tex; mode=display">
-F_1 = \dfrac{2\cdot\text{precision}\cdot\text{recall}}{\text{precision} + \text{recall}}</script></li>
-</ul>
-<p>Scikit-Learn의 metrics 패키지에서는 정밀도, 재현율, F1-score를 구하는 <code>classification_report</code> 명령을 제공한다. </p>
-<p>이 명령은 각각의 클래스를 positive로 보았을 때의 precision, recall, F1-score를 구하고 그 평균값으로 전체 모형의 성능을 평가한다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.metrics import classification_report</span><br><span class="line"></span><br><span class="line">y_true = [0, 0, 0, 1, 1, 0, 0]</span><br><span class="line">y_pred = [0, 0, 0, 0, 1, 1, 1]</span><br><span class="line"></span><br><span class="line">print(classification_report(y_true, y_pred, target_names=[&apos;class 0&apos;, &apos;class 1&apos;]))</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#결과</span><br><span class="line">             precision    recall  f1-score   support</span><br><span class="line"></span><br><span class="line">    class 0       0.75      0.60      0.67         5</span><br><span class="line">    class 1       0.33      0.50      0.40         2</span><br><span class="line"></span><br><span class="line">avg / total       0.63      0.57      0.59         7</span><br></pre></td></tr></table></figure>
-<p>위의 평가 점수들은 서로 밀접한 관계를 맺고 있다.</p>
-<ul>
-<li>재현율(recall)과 위양성률(fall-out)은 양의 상관 관계가 있다.</li>
-<li>정밀도(precision)와 재현율(recall)은 대략적으로 음의 상관 관계가 있다.</li>
-</ul>
-<h3 id="Precision-vs-Recall"><a href="#Precision-vs-Recall" class="headerlink" title="Precision vs. Recall"></a>Precision vs. Recall</h3><p>분류모델 예측결과 precision과 recall이 모두 높으면 좋지만, 사실 두 점수는 반비례하는 경향이 있다.</p>
-<p>precision은, 예를들어 의사가 진단을 하는 경우 의사의 권위 및 능력과 직결되는 점수이다. precision이 낮으면 신뢰도가 떨어지기때문에 의사는 precision을 높이기 위해 판별함수 f(x)의 기준점을 0보다 높게 설정하게 된다. f(x)가 10 이상인 경우에만 positive라고 진단해버림으로써 0이상 10 미만일 때 오진이었던 경우를 배제해버리는 것이다. 그러면 precision점수가 높아진다.</p>
-<p>이와 반대로 recall을 높이려면 존재하는 모든 positive를 잡아내야만 하는 것이 목표가 된다. 그러기 위해서는 반대로 f(x)의 임계점을 0보다 낮게 만든다. 일단 negative인 것들도 막 잡아내고 보면 positive가 다 잡히게 되어있기 때문이다.</p>
-<p>따라서 precision과 recall을 동시에 높이기는 쉽지 않다.</p>
-<h3 id="ROC-커브"><a href="#ROC-커브" class="headerlink" title="ROC 커브"></a>ROC 커브</h3><p>ROC(Receiver Operator Characteristic) 커브란, fall-out과 recall 값이 판별함수 기준값의 변화에 따라 어떻게 달라지는지를 시각화한 것이다.</p>
-<p>아래 표는, 16개의 데이터에 대해 판별함수 기준값을 0으로 설정하고 이진분류를 진행한 결과이다. </p>
-<p><img src="/images/image-20181201094238076.png" alt=""></p>
-<p>​    표를 보면 6번, 7번, 10번 데이터의 예측에 실패했음을 알 수 있다. 이 때 만약 판별함수 기준값을 6번데이터의 판별함수값인 0.244729보다 높이게 되면 6번데이터는 0클래스로 예측되게 되므로 정확한 예측이 된다. 이런 식으로 기준값을 높이거나 낮춰가면서 recall과 fall-out 점수를 확인하는 과정을 자동으로 진행하고 시각화해주는 것이 scikit-learn의 <code>roc_curve</code> 명령이다.</p>
-<p><img src="/Users/jeon-yujin/Library/Application%20Support/typora-user-images/image-20181202204820835.png" alt="image-20181202204820835"></p>
-<p>​    아래 그래프는 위 16개의 데이터에 대한 ROC 곡선이다.</p>
-<p><img src="/images/image-20181202204930413.png" alt=""></p>
-<p>  데이터가 더 많으면 더 곡선에 가까운 형태의 그래프가 그려진다.</p>
-<h3 id="AUC"><a href="#AUC" class="headerlink" title="AUC"></a>AUC</h3><p>분류모델은 Fall-Out 점수가 낮으면서 Recall이 높으면 좋기 때문에 ROC커브 그래프에서는 좌측 상단의 점이 높게 그려질수록 좋은 모델에 해당한다. 따라서 곡선 아래 면적이 클수록 좋은데, 그 면적을 측정한 것이 AUC(Area Under the Curve)이다. AUC가 1에 가까울수록 좋은 모델이라고 볼 수 있다. </p>
-<p><img src="/images/image-20181201101735894.png" alt=""></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.metrics import auc</span><br><span class="line">auc(fpr, tpr)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#AUC 결과값</span><br><span class="line">0.9112016520622872</span><br></pre></td></tr></table></figure>
+w_{k+1} = w_k + \text{E}[\nabla L]</script><p>퍼셉트론은 오분류된 데이터들만 사용하는 SGD의 일종이라고 보면 된다.</p>
+<p>SGD 방법이 기댓값이 최소화되도록 수렴한다는 것은 다양한 논문에서 증명이 되어 있다. 다만 손실함수 자체를 최적화하는 것이 아니라 손실함수의 기댓값의 추정치를 최대화하기 때문에 손실함수값이 전반적으로 감소하는 추세를 보이는 것 뿐이고 항상 절대적으로 감소한다는 보장은 없다. </p>
+<p><img src="/images/image-20181219135615831.png" alt=""></p>
+<p>SGD에서는 손실함수값이 $\hat{y}$ 가 1보다 클 때는 0이고 1보다 작아지면 계속 증가하는(convex) 형태이기만 하면 손실함수의 조건을 만족한다.</p>
+<p><img src="/images/image-20181219135542409.png" alt=""></p>
 
         </div>
         <footer class="article-footer">
@@ -318,7 +255,7 @@ F_1 = \dfrac{2\cdot\text{precision}\cdot\text{recall}}{\text{precision} + \text{
 
 
 
-    <a data-url="https://jyujin39.github.io/2018/12/02/classification_performance_evaluation/" data-id="cjpv97sou00063nbauor9vwut" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://jyujin39.github.io/2018/12/19/perceptron/" data-id="cjpv97soy000d3nbag832x14z" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -416,20 +353,10 @@ F_1 = \dfrac{2\cdot\text{precision}\cdot\text{recall}}{\text{precision} + \text{
         
 <nav id="article-nav">
     
-        <a href="/2018/12/06/QDA_LDA/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">newer</strong>
-        <p class="article-nav-title">
-        
-            QDA &amp; LDA
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
-    
-        <a href="/2018/11/29/multi-class-classification/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2018/12/18/model-combining-2-Boosting/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">older</strong>
-        <p class="article-nav-title">multi-class classification</p>
+        <p class="article-nav-title">model combining - 2. Boosting</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -562,7 +489,7 @@ F_1 = \dfrac{2\cdot\text{precision}\cdot\text{recall}}{\text{precision} + \text{
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'https://jyujin39.github.io/2018/12/02/classification_performance_evaluation/';
+    var disqus_url = 'https://jyujin39.github.io/2018/12/19/perceptron/';
     
     (function() {
     var dsq = document.createElement('script');
