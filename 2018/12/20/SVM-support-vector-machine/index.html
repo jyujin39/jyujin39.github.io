@@ -20,12 +20,12 @@
 <meta property="og:site_name" content="Data Science YJ">
 <meta property="og:description" content="서포트 벡터 머신퍼셉트론에서는 영역을 구분하는 판별경계선(decision hyperplane)이 한 문제에도 다양하게 존재할 수 있었다. 서포트 벡터머신(SVM: Support Vector machine)은 퍼셉트론 기반 모형에 가장 안정적인 하나의 판별 경계선을 찾기 위한 제한조건을 추가한 모형이다.   서포트: 판별경계선을 하나로 정해줄 수 있는 근거가">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://jyujin39.github.io/images/image-20181219135833369.png">
-<meta property="og:updated_time" content="2018-12-20T07:39:55.012Z">
+<meta property="og:image" content="https://jyujin39.github.io/Users/jeon-yujin/Library/Application%20Support/typora-user-images/image-20181219135833369.png">
+<meta property="og:updated_time" content="2018-12-20T09:14:44.821Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SVM(support vector machine)">
 <meta name="twitter:description" content="서포트 벡터 머신퍼셉트론에서는 영역을 구분하는 판별경계선(decision hyperplane)이 한 문제에도 다양하게 존재할 수 있었다. 서포트 벡터머신(SVM: Support Vector machine)은 퍼셉트론 기반 모형에 가장 안정적인 하나의 판별 경계선을 찾기 위한 제한조건을 추가한 모형이다.   서포트: 판별경계선을 하나로 정해줄 수 있는 근거가">
-<meta name="twitter:image" content="https://jyujin39.github.io/images/image-20181219135833369.png">
+<meta name="twitter:image" content="https://jyujin39.github.io/Users/jeon-yujin/Library/Application%20Support/typora-user-images/image-20181219135833369.png">
     
 
     
@@ -175,7 +175,7 @@
         <div class="article-entry" itemprop="articleBody">
             <h1 id="서포트-벡터-머신"><a href="#서포트-벡터-머신" class="headerlink" title="서포트 벡터 머신"></a>서포트 벡터 머신</h1><p>퍼셉트론에서는 영역을 구분하는 판별경계선(decision hyperplane)이 한 문제에도 다양하게 존재할 수 있었다.</p>
 <p>서포트 벡터머신(SVM: Support Vector machine)은 퍼셉트론 기반 모형에 가장 안정적인 하나의 판별 경계선을 찾기 위한 제한조건을 추가한 모형이다.</p>
-<p><img src="/images/image-20181219135833369.png" alt=""></p>
+<p><img src="/Users/jeon-yujin/Library/Application%20Support/typora-user-images/image-20181219135833369.png" alt="image-20181219135833369"></p>
 <ul>
 <li><strong>서포트</strong>: 판별경계선을 하나로 정해줄 수 있는 근거가 되는 </li>
 <li><strong>벡터</strong>: 데이터</li>
@@ -205,7 +205,7 @@ f(x^+) = w^Tx^+ - w_0 = +1\\
 f(x^-) = w^Tx^- - w_0 = -1</script><p>그렇게 되면 판별경계선 $f(x)$ 와 두 점 $x^+, x^-$ 사이의 거리는 아래와 같이 계산할 수 있다.</p>
 <script type="math/tex; mode=display">
 \frac{w^Tx^+ - w_0}{||w||} = \frac{1}{||w||}\\
-- \frac{w^Tx^- - w_0}{||w||}=\frac{1}{||w||}</script><p>이 거리의 합을 <strong>마진(margin)</strong>이라 하며, 마진값이 클수록 경계선이 안정적이라고 할 수 있다. 위 두 식을 더하면 마진은 $\dfrac{2}{||w||}$ 가 되므로, 마진값이 최대가 되는 경우는 $||w||$ 이 최소가 되는 경우가 된다. 계산의 편의를 위해 제곱으로 변형해준다.</p>
+- \frac{w^Tx^- - w_0}{||w||}=\frac{1}{||w||}</script><p>이 거리의 합을 <strong>마진(margin)</strong>이라 하며, 마진값이 클수록 경계선이 안정적이라고 할 수 있다. 위 두 식을 더하면 마진은 $\dfrac{2}{||w||}$ 가 되므로, 마진값이 최대가 되는 경우는 $||w||$ 이 최소가 되는 경우가 된다. 계산의 편의를 위해 제곱을 취해주면 $||w||^2$ 를 최소화하는 문제가 되므로 quadratic optimization 이 된다.</p>
 <p>결국 마진을 최대화하는 것은 다음과 같은 목적함수를 최소화하는 것과 같다.</p>
 <script type="math/tex; mode=display">
 L = \frac{1}{2} ||w||^2 = \frac{1}{2}w^Tw</script><p>또한 모든 표본데이터에 대해 다음 부등식제한조건을 만족해야 한다.</p>
@@ -262,10 +262,10 @@ f(x) = a^+x^Tx^+ - a^-x^Tx^- - w_0</script><p>여기서 $x^Tx^+$ 는 $x$ 와 $x^
 <p><img src="/Users/jeon-yujin/Library/Application%20Support/typora-user-images/image-20181220160529743.png" alt="image-20181220160529743"></p>
 <p>위와 같은 학습용 데이터를 SVM 모델로 예측하면 아래와 같은 결과가 나온다.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">xmin = X[:, <span class="number">0</span>].min()</span><br><span class="line">xmax = X[:, <span class="number">0</span>].max()</span><br><span class="line">ymin = X[:, <span class="number">1</span>].min()</span><br><span class="line">ymax = X[:, <span class="number">1</span>].max()</span><br><span class="line">xx = np.linspace(xmin, xmax, <span class="number">10</span>)</span><br><span class="line">yy = np.linspace(ymin, ymax, <span class="number">10</span>)</span><br><span class="line">X1, X2 = np.meshgrid(xx, yy)</span><br><span class="line"></span><br><span class="line">Z = np.empty(X1.shape)</span><br><span class="line"><span class="keyword">for</span> (i, j), val <span class="keyword">in</span> np.ndenumerate(X1):</span><br><span class="line">    x1 = val</span><br><span class="line">    x2 = X2[i, j]</span><br><span class="line">    p = model.decision_function([[x1, x2]])</span><br><span class="line">    Z[i, j] = p[<span class="number">0</span>]</span><br><span class="line">levels = [<span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">linestyles = [<span class="string">'dashed'</span>, <span class="string">'solid'</span>, <span class="string">'dashed'</span>]</span><br><span class="line">plt.scatter(X[y == <span class="number">-1</span>, <span class="number">0</span>], X[y == <span class="number">-1</span>, <span class="number">1</span>], marker=<span class="string">'o'</span>, label=<span class="string">"-1 클래스"</span>)</span><br><span class="line">plt.scatter(X[y == +<span class="number">1</span>, <span class="number">0</span>], X[y == +<span class="number">1</span>, <span class="number">1</span>], marker=<span class="string">'x'</span>, label=<span class="string">"+1 클래스"</span>)</span><br><span class="line">plt.contour(X1, X2, Z, levels, colors=<span class="string">'k'</span>, linestyles=linestyles)</span><br><span class="line">plt.scatter(model.support_vectors_[:, <span class="number">0</span>], model.support_vectors_[:, <span class="number">1</span>], s=<span class="number">300</span>, alpha=<span class="number">0.3</span>)</span><br><span class="line"></span><br><span class="line">x_new = [<span class="number">10</span>, <span class="number">2</span>]</span><br><span class="line">plt.scatter(x_new[<span class="number">0</span>], x_new[<span class="number">1</span>], marker=<span class="string">'^'</span>, s=<span class="number">100</span>)</span><br><span class="line">plt.text(x_new[<span class="number">0</span>] + <span class="number">0.03</span>, x_new[<span class="number">1</span>] + <span class="number">0.08</span>, <span class="string">"테스트 데이터"</span>)</span><br><span class="line"></span><br><span class="line">plt.xlabel(<span class="string">"x1"</span>)</span><br><span class="line">plt.ylabel(<span class="string">"x2"</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.title(<span class="string">"SVM 예측 결과"</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img src="/images/image-20181220160625359.png" alt=""></p>
-<h3 id="슬랙-변수"><a href="#슬랙-변수" class="headerlink" title="슬랙 변수"></a>슬랙 변수</h3><p>데이터들의 클래스가 겹쳐있어서 직선인 경계선으로 나누어지지 않는, 즉 선형분리 할 수 없는 경우 슬랙변수를 사용한다. 슬랙변수는 개별 대이터에 대해 주어지며 항상 0 또는 양수이고, $\xi$ (크사이)로 표현한다. </p>
+<p><img src="/Users/jeon-yujin/Library/Application%20Support/typora-user-images/image-20181220160625359.png" alt="image-20181220160625359"></p>
+<h3 id="슬랙-변수"><a href="#슬랙-변수" class="headerlink" title="슬랙 변수"></a>슬랙 변수</h3><p>데이터들의 클래스가 겹쳐있어서 직선인 경계선으로 나누어지지 않는, 즉 선형분리 할 수 없는 경우에 분류를 위해 오차를 허용해야 하는데, 이 때 사용하는 개념이 슬랙변수이다. 슬랙변수는 개별 데이터에 대해 주어지며 항상 0 또는 양수이고, $\xi$ (크사이)로 표현한다. </p>
 <script type="math/tex; mode=display">
-\xi \geq 0 \,\,\,\,\,\,\,\,(i=1,\cdots, N)</script><p>슬랙변수를 사용하면 원래의 판별함수 조건을 데이터 하나하나에 대해 유도리 있게 완화해 적용함으로써 개별적인 오차를 허용할 수 있게 된다. </p>
+\xi \geq 0 \,\,\,\,\,\,\,\,(i=1,\cdots, N)</script><p>선형분리할 수 없는 분류데이터에 대해서 원래의 판별함수 조건을 그대로 적용하게 되면 아예 학습이 잘 되지 않거나 오버피팅이 일어날 확률이 높다. 슬랙변수를 사용하면 원래의 판별함수 부등식조건을 데이터 하나하나에 대해 완화해서 적용함으로써 개별적인 오차를 허용할 수 있게 된다. </p>
 <p>원래 판별함수 값은 클래스가 +1 인 영역의 샘플 $x_+$ , 클래스가 -1인 영역의 샘플 $x_-$ 에 대해 각각 </p>
 <script type="math/tex; mode=display">
 w^Tx_+ - w_0 \geq 1\\
@@ -282,12 +282,13 @@ y(w^Tx_- - w_0) \leq -1 + \xi_i\\</script><p>이 된다.</p>
 L = \dfrac{1}{2}||w||^2 - \sum^N_{i=1}a_i(y_i \cdot (w^Tx_i - w_0) -1 + \xi_i) - \sum^N_{i=1} \mu_i\xi_i+C\sum^N_{i=1}\xi_i</script><ul>
 <li><p>$\mu_i$ : 위 부등식 제한조건에 대한 라그랑주 멀티플라이어.</p>
 </li>
-<li><p>C : 슬랙변수의 합이 너무 커지지 않도록 제한하는 변수. 값을 크게 주면 슬랙변수 합의 크기가 제한된다.</p>
+<li><p>C : 슬랙변수의 합이 너무 커지지 않도록 제한하는 변수. </p>
 </li>
 </ul>
+<p>이 식에서 C를 ‘regularization parameter’라고 부르는데, 모델이 학습데이터에만 너무 특화되어 새로운 데이터가 들어왔을 때 예측이 잘못되는 것을 막기 위한 일반화 목적으로 들어가는 일종의 penalty값이라고 생각하면 된다. C값을 크게 주면 슬랙변수 합의 크기가 제한되어 마진이 작아지고, 작게 주면 반대로 마진이 커진다.</p>
 <p>C값에 따른 판별함수 경계선을 시각화하면 아래와 같이 달라지는 것을 알 수 있다.</p>
-<p><img src="/images/image-20181215123735674.png" alt=""></p>
-<p><img src="/images/image-20181215123943401.png" alt=""></p>
+<p><img src="/Users/jeon-yujin/Library/Application%20Support/typora-user-images/image-20181215123735674.png" alt="image-20181215123735674"></p>
+<p><img src="/Users/jeon-yujin/Library/Application%20Support/typora-user-images/image-20181215123943401.png" alt="image-20181215123943401"></p>
 
         </div>
         <footer class="article-footer">
