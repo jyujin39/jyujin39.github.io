@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>SVM(support vector machine) | Data Science YJ</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="study">
+    
+    <meta name="description" content="서포트 벡터 머신퍼셉트론에서는 영역을 구분하는 판별경계선(decision hyperplane)이 한 문제에도 다양하게 존재할 수 있었다. 서포트 벡터머신(SVM: Support Vector machine)은 퍼셉트론 기반 모형에 가장 안정적인 하나의 판별 경계선을 찾기 위한 제한조건을 추가한 모형이다.   서포트: 판별경계선을 하나로 정해줄 수 있는 근거가">
+<meta name="keywords" content="study">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SVM(support vector machine)">
+<meta property="og:url" content="https://jyujin39.github.io/2018/12/20/SVM-support-vector-machine/index.html">
+<meta property="og:site_name" content="Data Science YJ">
+<meta property="og:description" content="서포트 벡터 머신퍼셉트론에서는 영역을 구분하는 판별경계선(decision hyperplane)이 한 문제에도 다양하게 존재할 수 있었다. 서포트 벡터머신(SVM: Support Vector machine)은 퍼셉트론 기반 모형에 가장 안정적인 하나의 판별 경계선을 찾기 위한 제한조건을 추가한 모형이다.   서포트: 판별경계선을 하나로 정해줄 수 있는 근거가">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://jyujin39.github.io/images/image-20181219135833369.png">
+<meta property="og:updated_time" content="2018-12-20T07:39:55.012Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SVM(support vector machine)">
+<meta name="twitter:description" content="서포트 벡터 머신퍼셉트론에서는 영역을 구분하는 판별경계선(decision hyperplane)이 한 문제에도 다양하게 존재할 수 있었다. 서포트 벡터머신(SVM: Support Vector machine)은 퍼셉트론 기반 모형에 가장 안정적인 하나의 판별 경계선을 찾기 위한 제한조건을 추가한 모형이다.   서포트: 판별경계선을 하나로 정해줄 수 있는 근거가">
+<meta name="twitter:image" content="https://jyujin39.github.io/images/image-20181219135833369.png">
+    
+
+    
+
+    
+        <link rel="icon" href="/images/icons8-account-40.png">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Yujin&#39;s study blog for Data Science</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Classification/">Classification</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Classification/Math/">Math</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Math/">Math</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Math/Classification/">Classification</a></li></ul></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Classification/">Classification</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Classification/Math/">Math</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-SVM-support-vector-machine" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        SVM(support vector machine)
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/12/20/SVM-support-vector-machine/" class="article-date">
+            <time datetime="2018-12-20T07:37:09.000Z" itemprop="datePublished">2018-12-20</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/study/">study</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="서포트-벡터-머신"><a href="#서포트-벡터-머신" class="headerlink" title="서포트 벡터 머신"></a>서포트 벡터 머신</h1><p>퍼셉트론에서는 영역을 구분하는 판별경계선(decision hyperplane)이 한 문제에도 다양하게 존재할 수 있었다.</p>
+<p>서포트 벡터머신(SVM: Support Vector machine)은 퍼셉트론 기반 모형에 가장 안정적인 하나의 판별 경계선을 찾기 위한 제한조건을 추가한 모형이다.</p>
+<p><img src="/images/image-20181219135833369.png" alt=""></p>
+<ul>
+<li><strong>서포트</strong>: 판별경계선을 하나로 정해줄 수 있는 근거가 되는 </li>
+<li><strong>벡터</strong>: 데이터</li>
+<li>음의 서포트 벡터(o)와 양의 서포트 벡터(x) 사이의 거리 : <strong>마진</strong></li>
+</ul>
+<h3 id="서포트와-마진"><a href="#서포트와-마진" class="headerlink" title="서포트와 마진"></a>서포트와 마진</h3><p>다음과 같이 N개의 학습용 데이터가 있을 때, </p>
+<script type="math/tex; mode=display">
+(x_1,y_1),(x_2,y_2),\cdots,(x_i,y_i),\cdots,(x_N,y_N)</script><p>판별함수모형에서 $y$ 는 +1 혹은 -1 의 값을 갖는다.</p>
+<script type="math/tex; mode=display">
+y = \begin{cases} +1\\-1
+\end{cases}</script><p>판별함수모형에서 판별함수를 정의하기 전에 다음 수식들을 복습삼아 짚고 넘어가자.</p>
+<ul>
+<li><p>$w^Tx - w_0 = 0$ : 벡터 w에 수직인 x의 직선방정식</p>
+</li>
+<li><p>$\dfrac{|w^Tx - w_0|}{||w||}$ : 점과 직선의 거리</p>
+</li>
+</ul>
+<p>이제 판별함수 모형에서 직선인 판별함수 $f(x)$ 는 다음과 같은 수식으로 나타낼 수 있다.</p>
+<script type="math/tex; mode=display">
+f(x) = w^Tx - w_0</script><p>데이터 중에서 $y$값이 +1인 데이터를 $x_+$,  $y$값이 -1인 데이터를 $x_-$라고 하면, 판별함수 정의에 따라 $x_+$에 대한 판별함수 값은 양수가 되고, $x_-$에 대한 판별함수 값은 음수가 된다.</p>
+<script type="math/tex; mode=display">
+f(x^+) = w^Tx^+ - w_0> 0\\
+f(x^-) = w^Tx^- - w_0<0</script><p>$x_+ $중에서 판별 함수의 값이 가장 작은 데이터를 $x^+$라고 하고 $x_- $중에서 판별함수의 값이 가장 큰 데이터를 $x^-$라고 하자. 이 데이터들은 <strong>각각의 클래스에 속한 데이터 중에서 가장 경계선에 가까이 붙어있는 최전방(most front)의 데이터</strong>들이다. 즉, 마이너스 값을 갖는 데이터 중에서 가장 큰 데이터와 플러스값을 갖는 데이터 중에서 가장 작은 데이터에 해당하는 애들을 <strong>서포트(support)</strong> 혹은 <strong>서포트 벡터(support vector)</strong>라고 한다.</p>
+<p>그런데 조건을 지키는 내에서 100프로 동일한 성능을 갖는 판별함수가 다양하게 존재할 수 있다. 따라서 하나의 판별함수를 구하기 위해 $f(x^+)=1, f(x^-)=-1$ 이 되도록 normalizing한 판별함수를 구한다.</p>
+<script type="math/tex; mode=display">
+f(x^+) = w^Tx^+ - w_0 = +1\\
+f(x^-) = w^Tx^- - w_0 = -1</script><p>그렇게 되면 판별경계선 $f(x)$ 와 두 점 $x^+, x^-$ 사이의 거리는 아래와 같이 계산할 수 있다.</p>
+<script type="math/tex; mode=display">
+\frac{w^Tx^+ - w_0}{||w||} = \frac{1}{||w||}\\
+- \frac{w^Tx^- - w_0}{||w||}=\frac{1}{||w||}</script><p>이 거리의 합을 <strong>마진(margin)</strong>이라 하며, 마진값이 클수록 경계선이 안정적이라고 할 수 있다. 위 두 식을 더하면 마진은 $\dfrac{2}{||w||}$ 가 되므로, 마진값이 최대가 되는 경우는 $||w||$ 이 최소가 되는 경우가 된다. 계산의 편의를 위해 제곱으로 변형해준다.</p>
+<p>결국 마진을 최대화하는 것은 다음과 같은 목적함수를 최소화하는 것과 같다.</p>
+<script type="math/tex; mode=display">
+L = \frac{1}{2} ||w||^2 = \frac{1}{2}w^Tw</script><p>또한 모든 표본데이터에 대해 다음 부등식제한조건을 만족해야 한다.</p>
+<script type="math/tex; mode=display">
+y_i\cdot (w^Tx_i - w_0) - 1 \geq 0\,\,\,\,\, (i=1,\cdots ,N)</script><p>그렇게 되면 라그랑주 승수법을 통해 목적함수 $L$을 다음과 같이 고칠 수 있다.</p>
+<script type="math/tex; mode=display">
+L = \frac{1}{2}w^Tw - \sum^N_{i=1}a_i\{y_i\cdot(w^Tx_i-w_0)-1\}</script><p>여기서 $a_i$ 는 각각의 부등식에 대한 라그랑주 승수이다. 이 최적화문제를 풀어 $w, w_0, a$ 를 구하면 판별함수를 얻을 수 있다.</p>
+<h3 id="듀얼-형식-Dual-Form"><a href="#듀얼-형식-Dual-Form" class="headerlink" title="듀얼 형식(Dual Form)"></a>듀얼 형식(Dual Form)</h3><p>최적화를 위해서는 일단 목적함수를 $w, w_0$으로 미분한 값이 0이 되어야 한다.</p>
+<script type="math/tex; mode=display">
+\frac{\partial L}{\partial w} = 0 \\
+\frac{\partial L}{\partial w_0} = 0</script><p>이 식을 풀어서 정리하면 다음과 같아진다.</p>
+<script type="math/tex; mode=display">
+\begin{eqnarray}
+\frac{\partial L}{\partial w} &=& \frac{\partial}{\partial w}\left(\frac{1}{2} w^Tw\right) - \frac{\partial}{\partial w} \sum^N_{i=1}(a_iy_iw^Tx_i - a_iy_iw_0 - a_i)\\
+&=& w - \sum^N_{i=1}a_iy_ix_i\\
+&=& 0
+\end{eqnarray}</script><script type="math/tex; mode=display">
+\begin{eqnarray}
+\frac{\partial L}{\partial w_0} &=& \frac{\partial}{\partial w_0}\left(\frac{1}{2} w^Tw\right) - \frac{\partial}{\partial w_0} \sum^N_{i=1}(a_iy_iw^Tx_i - a_iy_iw_0 - a_i)\\
+&=& \sum^N_{i=1}a_iy_i\\
+&=& 0
+\end{eqnarray}</script><p>여기서 $a_i$, $y_i$, $w^Tx$ 는 모두 스칼라이고, 정리하면 아래와 같은 식이 나온다.</p>
+<script type="math/tex; mode=display">
+w = \sum^N_{i=1}a_iy_ix_i</script><script type="math/tex; mode=display">
+0 = \sum^N_{i=1}a_iy_i</script><p>이 두 식을 원래의 목적함수에 대입하여 $w, w_0$을 없애면 다음과 같다.</p>
+<script type="math/tex; mode=display">
+\begin{eqnarray}
+L &=& \frac{1}{2}w^Tw - \sum^N_{i=1}a_i\{y_i\cdot(w^Tx_i - w_0) -1\}\\
+&=& \frac{1}{2}\left(\sum^N_{i=1}a_iy_ix_i\right)^T \left(\sum^N_{j=1}a_jy_jx_j\right) - \sum^N_{i=1}a_i\left\{y_i\cdot \left(\left(\sum^N_{j=1}a_jy_jx_j\right)^T x_i-w_0\right)-1\right\}\\
+&=& \frac{1}{2}\sum^N_{i=1}\sum^N_{j=1}a_ia_jy_iy_jx_i^Tx_j - \sum^N_{i=1}\sum^N_{j=1}a_ia_jy_iy_jx^T_ix_j + w_o\sum^N_{i=1}a_iy_i + \sum^N_{i=1}a_i\\
+&=& \sum^N_{i=1} a_i - \frac{1}{2}\sum^N_{i=1}\sum^N_{j=1}a_ia_jy_iy_jx^T_ix_j
+\end{eqnarray}</script><p>즉,</p>
+<script type="math/tex; mode=display">
+L = \sum^N_{i=1}a_i - \frac{1}{2}\sum^N_{i=1}\sum^N_{j=1}a_ia_jy_iy_jx^T_ix_j</script><p>이 때 $a$는 다음조건을 만족한다.</p>
+<script type="math/tex; mode=display">
+\sum^N_{i=1}a_iy_i = 0\\
+a_i \geq 0\,\,\,\,\,(i = 1, \cdots , N)</script><p>이제 이 문제는 𝑤를 구하는 문제가 아니라 𝑎만을 구하는 문제로 바뀌었으므로 듀얼 형식(dual form)이라고 한다. 듀얼형식으로 바꾸면 수치적으로 QP(Quadratic Programming)문제가 되므로 원래의 문제보다 효율적으로 풀 수 있게 된다.</p>
+<p>QP문제를 풀어서 구한 $a$ 값을 식에 대입하면 $w$ 값을 찾을 수 있다.</p>
+<p>우선 $L$을 최소화하는 a 값을 구하면 예측모형을 다음과 같이 쓸 수 있다.</p>
+<script type="math/tex; mode=display">
+f(x) = w^Tx - w_0 = \sum^N_{i=1}a_iy_ix_i^Tx - w_0</script><p>$w_0$ 은</p>
+<script type="math/tex; mode=display">
+w_0 = w^Tx^+ - 1\\
+\text{또는}\\
+w_0 = w^Tx^- + 1\\
+\text{또는}\\
+w_0 = \frac{1}{2}w^T(x^+ + x^-)</script><p>로 구한다.</p>
+<p>$a_i=0$ 일 경우 해당 데이터는 $w$ 계산에 아무런 기여를 하지 않으므로 위 식은 사실상 다음과 같다.</p>
+<script type="math/tex; mode=display">
+f(x) = a^+x^Tx^+ - a^-x^Tx^- - w_0</script><p>여기서 $x^Tx^+$ 는 $x$ 와 $x^+$ 사이의 코사인유사도, $x^Tx^-$ 는 $x$ 와 $x^- $ 사이의 코사인유사도이므로, 결국 두 서포트벡터 중 코사인유사도가 큰 쪽으로 판별하게 된다. 이렇게 계산하는 것은 실제 판별경계선으로부터 데이터의 거리를 계산하는 것과 똑같다.</p>
+<h3 id="Scikit-Learn-의-서포트-벡터-머신"><a href="#Scikit-Learn-의-서포트-벡터-머신" class="headerlink" title="Scikit-Learn 의 서포트 벡터 머신"></a>Scikit-Learn 의 서포트 벡터 머신</h3><p>scikit-learn의 <code>svm</code> 서브패키지는 서포트벡터 머신 모형인 <code>SVC</code> (Support Vector Classifier) 클래스를 제공한다. </p>
+<p>SVC 클래스는 커널(kernel)을 선택하는 인수 <code>kernel</code> 과 슬랙변수 가중치(slack variable weight)를 선택하는 인수 <code>C</code> 를 받는데 지금까지 공부한 서포트벡터 머신을 사용하려면 인수를 다음처럼 넣어준다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.svm <span class="keyword">import</span> SVC</span><br><span class="line">model = SVC(kernel=<span class="string">'linear'</span>, C=<span class="number">1e10</span>).fit(X, y)</span><br></pre></td></tr></table></figure>
+<p><img src="/Users/jeon-yujin/Library/Application%20Support/typora-user-images/image-20181220160529743.png" alt="image-20181220160529743"></p>
+<p>위와 같은 학습용 데이터를 SVM 모델로 예측하면 아래와 같은 결과가 나온다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">xmin = X[:, <span class="number">0</span>].min()</span><br><span class="line">xmax = X[:, <span class="number">0</span>].max()</span><br><span class="line">ymin = X[:, <span class="number">1</span>].min()</span><br><span class="line">ymax = X[:, <span class="number">1</span>].max()</span><br><span class="line">xx = np.linspace(xmin, xmax, <span class="number">10</span>)</span><br><span class="line">yy = np.linspace(ymin, ymax, <span class="number">10</span>)</span><br><span class="line">X1, X2 = np.meshgrid(xx, yy)</span><br><span class="line"></span><br><span class="line">Z = np.empty(X1.shape)</span><br><span class="line"><span class="keyword">for</span> (i, j), val <span class="keyword">in</span> np.ndenumerate(X1):</span><br><span class="line">    x1 = val</span><br><span class="line">    x2 = X2[i, j]</span><br><span class="line">    p = model.decision_function([[x1, x2]])</span><br><span class="line">    Z[i, j] = p[<span class="number">0</span>]</span><br><span class="line">levels = [<span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">linestyles = [<span class="string">'dashed'</span>, <span class="string">'solid'</span>, <span class="string">'dashed'</span>]</span><br><span class="line">plt.scatter(X[y == <span class="number">-1</span>, <span class="number">0</span>], X[y == <span class="number">-1</span>, <span class="number">1</span>], marker=<span class="string">'o'</span>, label=<span class="string">"-1 클래스"</span>)</span><br><span class="line">plt.scatter(X[y == +<span class="number">1</span>, <span class="number">0</span>], X[y == +<span class="number">1</span>, <span class="number">1</span>], marker=<span class="string">'x'</span>, label=<span class="string">"+1 클래스"</span>)</span><br><span class="line">plt.contour(X1, X2, Z, levels, colors=<span class="string">'k'</span>, linestyles=linestyles)</span><br><span class="line">plt.scatter(model.support_vectors_[:, <span class="number">0</span>], model.support_vectors_[:, <span class="number">1</span>], s=<span class="number">300</span>, alpha=<span class="number">0.3</span>)</span><br><span class="line"></span><br><span class="line">x_new = [<span class="number">10</span>, <span class="number">2</span>]</span><br><span class="line">plt.scatter(x_new[<span class="number">0</span>], x_new[<span class="number">1</span>], marker=<span class="string">'^'</span>, s=<span class="number">100</span>)</span><br><span class="line">plt.text(x_new[<span class="number">0</span>] + <span class="number">0.03</span>, x_new[<span class="number">1</span>] + <span class="number">0.08</span>, <span class="string">"테스트 데이터"</span>)</span><br><span class="line"></span><br><span class="line">plt.xlabel(<span class="string">"x1"</span>)</span><br><span class="line">plt.ylabel(<span class="string">"x2"</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.title(<span class="string">"SVM 예측 결과"</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20181220160625359.png" alt=""></p>
+<h3 id="슬랙-변수"><a href="#슬랙-변수" class="headerlink" title="슬랙 변수"></a>슬랙 변수</h3><p>데이터들의 클래스가 겹쳐있어서 직선인 경계선으로 나누어지지 않는, 즉 선형분리 할 수 없는 경우 슬랙변수를 사용한다. 슬랙변수는 개별 대이터에 대해 주어지며 항상 0 또는 양수이고, $\xi$ (크사이)로 표현한다. </p>
+<script type="math/tex; mode=display">
+\xi \geq 0 \,\,\,\,\,\,\,\,(i=1,\cdots, N)</script><p>슬랙변수를 사용하면 원래의 판별함수 조건을 데이터 하나하나에 대해 유도리 있게 완화해 적용함으로써 개별적인 오차를 허용할 수 있게 된다. </p>
+<p>원래 판별함수 값은 클래스가 +1 인 영역의 샘플 $x_+$ , 클래스가 -1인 영역의 샘플 $x_-$ 에 대해 각각 </p>
+<script type="math/tex; mode=display">
+w^Tx_+ - w_0 \geq 1\\
+w^Tx_- - w_0 \leq -1</script><p>의 부등식 조건을 만족해야 했다.</p>
+<p>그런데 슬랙변수를 사용하면 아래와 같이 조건을 완화할 수 있게 된다.</p>
+<script type="math/tex; mode=display">
+w^Tx_+ - w_0 \geq 1 - \xi_i\\
+w^Tx_- - w_0 \leq -1 + \xi_i</script><p>즉,</p>
+<script type="math/tex; mode=display">
+y(w^Tx_- - w_0) \leq -1 + \xi_i\\</script><p>이 된다.</p>
+<p>하지만 슬랙변수를 사용하더라도 어쨌든 없던 값을 추가해주는 것이기 때문에 최대한 적게 주고, 작은값으로 주어야 한다.</p>
+<p>그러면 최적화목적함수는 다음과 같아진다.</p>
+<script type="math/tex; mode=display">
+L = \dfrac{1}{2}||w||^2 - \sum^N_{i=1}a_i(y_i \cdot (w^Tx_i - w_0) -1 + \xi_i) - \sum^N_{i=1} \mu_i\xi_i+C\sum^N_{i=1}\xi_i</script><ul>
+<li><p>$\mu_i$ : 위 부등식 제한조건에 대한 라그랑주 멀티플라이어.</p>
+</li>
+<li><p>C : 슬랙변수의 합이 너무 커지지 않도록 제한하는 변수. 값을 크게 주면 슬랙변수 합의 크기가 제한된다.</p>
+</li>
+</ul>
+<p>C값에 따른 판별함수 경계선을 시각화하면 아래와 같이 달라지는 것을 알 수 있다.</p>
+<p><img src="/images/image-20181215123735674.png" alt=""></p>
+<p><img src="/images/image-20181215123943401.png" alt=""></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://jyujin39.github.io/2018/12/20/SVM-support-vector-machine/" data-id="cjpwaq0cu00009kbauwxygdrk" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/jyujin39/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2018/12/19/perceptron/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">perceptron</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Classification/">Classification</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Classification/Math/">Math</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Math/Classification/">Classification</a><span class="category-list-count">10</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="no-thumbnail">
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Classification/">Classification</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Classification/Math/">Math</a></p>
+                            <p class="item-title"><a href="/2018/12/20/SVM-support-vector-machine/" class="title">SVM(support vector machine)</a></p>
+                            <p class="item-date"><time datetime="2018-12-20T07:37:09.000Z" itemprop="datePublished">2018-12-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/12/19/perceptron/" class="title">perceptron</a></p>
+                            <p class="item-date"><time datetime="2018-12-19T14:06:02.000Z" itemprop="datePublished">2018-12-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/12/18/model-combining-2-Boosting/" class="title">model combining - 2. Boosting</a></p>
+                            <p class="item-date"><time datetime="2018-12-18T13:45:53.000Z" itemprop="datePublished">2018-12-18</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/12/17/model-combining-1-aggregation/" class="title">model combining - 1. aggregation</a></p>
+                            <p class="item-date"><time datetime="2018-12-17T08:58:36.000Z" itemprop="datePublished">2018-12-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/12/13/decision-tree/" class="title">decision_tree</a></p>
+                            <p class="item-date"><time datetime="2018-12-13T11:17:27.000Z" itemprop="datePublished">2018-12-13</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/">study</a><span class="tag-list-count">11</span></li></ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 Yujin Jeon</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'https://jyujin39.github.io/2018/12/20/SVM-support-vector-machine/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
