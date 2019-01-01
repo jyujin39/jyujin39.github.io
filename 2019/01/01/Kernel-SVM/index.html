@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>Kernel SVM | Data Science YJ</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="study">
+    
+    <meta name="description" content="커널 서포트 벡터 머신XORXOR(exclusive OR) 문제는 이진수에서의 or 연산이라고 생각하면 된다. 다음과 같이 하나만 1일 때 1이 되고, 나머지 경우는 0이 된다.      x2=0 x2=1     X1=0 0 1   x1=1 1 0     이러한 경우 다음 그림처럼 클래스가 구분되는데,  퍼셉트론이나 SVM과 같은 선형판별함수 분류모형으로는">
+<meta name="keywords" content="study">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kernel SVM">
+<meta property="og:url" content="https://jyujin39.github.io/2019/01/01/Kernel-SVM/index.html">
+<meta property="og:site_name" content="Data Science YJ">
+<meta property="og:description" content="커널 서포트 벡터 머신XORXOR(exclusive OR) 문제는 이진수에서의 or 연산이라고 생각하면 된다. 다음과 같이 하나만 1일 때 1이 되고, 나머지 경우는 0이 된다.      x2=0 x2=1     X1=0 0 1   x1=1 1 0     이러한 경우 다음 그림처럼 클래스가 구분되는데,  퍼셉트론이나 SVM과 같은 선형판별함수 분류모형으로는">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://jyujin39.github.io/images/image-20181215125454714.png">
+<meta property="og:updated_time" content="2019-01-01T09:44:14.505Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kernel SVM">
+<meta name="twitter:description" content="커널 서포트 벡터 머신XORXOR(exclusive OR) 문제는 이진수에서의 or 연산이라고 생각하면 된다. 다음과 같이 하나만 1일 때 1이 되고, 나머지 경우는 0이 된다.      x2=0 x2=1     X1=0 0 1   x1=1 1 0     이러한 경우 다음 그림처럼 클래스가 구분되는데,  퍼셉트론이나 SVM과 같은 선형판별함수 분류모형으로는">
+<meta name="twitter:image" content="https://jyujin39.github.io/images/image-20181215125454714.png">
+    
+
+    
+
+    
+        <link rel="icon" href="/images/icons8-account-40.png">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Yujin&#39;s study blog for Data Science</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Classification/">Classification</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Classification/Math/">Math</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Math/">Math</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Math/Classification/">Classification</a></li></ul></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Math/Classification/">Classification</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-Kernel-SVM" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Kernel SVM
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/01/01/Kernel-SVM/" class="article-date">
+            <time datetime="2019-01-01T09:39:39.000Z" itemprop="datePublished">2019-01-01</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/study/">study</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="커널-서포트-벡터-머신"><a href="#커널-서포트-벡터-머신" class="headerlink" title="커널 서포트 벡터 머신"></a>커널 서포트 벡터 머신</h1><h3 id="XOR"><a href="#XOR" class="headerlink" title="XOR"></a>XOR</h3><p>XOR(exclusive OR) 문제는 이진수에서의 or 연산이라고 생각하면 된다. 다음과 같이 하나만 1일 때 1이 되고, 나머지 경우는 0이 된다.</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>x2=0</th>
+<th>x2=1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>X1=0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>x1=1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>이러한 경우 다음 그림처럼 클래스가 구분되는데,  퍼셉트론이나 SVM과 같은 선형판별함수 분류모형으로는 이 문제를 풀 수 없다. </p>
+<p><img src="/images/image-20181215125454714.png" alt=""></p>
+<p>이 문제를 SVM으로 풀게되면 아래처럼 선형 경계선이 그어져, 성능이 50정도밖에 나오지 않는다. 따라서 곡선을 사용해 경계를 판별해야 한다.</p>
+<p><img src="/images/image-20190101162939996.png" alt=""></p>
+<p>이러한 경우 사용할 수 있는 방법은 𝐷 차원 독립 변수 벡터 𝑥 대신 기저함수(basis function)으로 변환한 𝑀 차원 벡터 𝜙(𝑥)를 독립 변수 벡터로 사용하는 방법이다.</p>
+<h3 id="기저함수를-사용한-비선형-판별-모형"><a href="#기저함수를-사용한-비선형-판별-모형" class="headerlink" title="기저함수를 사용한 비선형 판별 모형"></a>기저함수를 사용한 비선형 판별 모형</h3><script type="math/tex; mode=display">
+\phi (\cdot) : R^D \to R^M</script><script type="math/tex; mode=display">
+x = (x_1,x_2,\cdots , x_D) \,\,\,\,\,\to\,\,\,\,\,\phi(x) = (\phi_1(x),\phi_2(x),\cdots , \phi_M(x))</script><p>기저함수 $\phi $ 는 D차원 벡터인 독립변수를 입력받아 함수식에 따라 계산하여 M개의 스칼라를 출력해 M차원 벡터를 만든다.</p>
+<p>앞의 XOR 문제를 풀기 위해 다음과 같이 상호곱(cross-multiplication) 항을 추가한 기저함수를 사용해보자.</p>
+<script type="math/tex; mode=display">
+(x_1, x_2) \,\,\,\,\,\to \,\,\,\,\,\phi(x) = (x_1^2, \sqrt2 x_1x_2,x_2^2)</script><p><code>FunctionTransformer</code> 전처리 클래스를 이용하면 기저함수를 이용한 변환을 할 수 있다.</p>
+<p>위 기저함수로 변환한 데이터는 다음과 같은 분포를 갖게 되고,  $\phi _2$ 가 0보다 큰지 작은지를 기준으로 클래스를 분류할 수 있게 된다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">X_xor2 = FunctionTransformer(basis).fit_transform(X_xor)</span><br><span class="line">plt.scatter(X_xor2[y_xor == <span class="number">1</span>, <span class="number">0</span>], X_xor2[y_xor == <span class="number">1</span>, <span class="number">1</span>], c=<span class="string">"b"</span>, marker=<span class="string">'o'</span>, s=<span class="number">50</span>)</span><br><span class="line">plt.scatter(X_xor2[y_xor == <span class="number">0</span>, <span class="number">0</span>], X_xor2[y_xor == <span class="number">0</span>, <span class="number">1</span>], c=<span class="string">"r"</span>, marker=<span class="string">'s'</span>, s=<span class="number">50</span>)</span><br><span class="line">plt.ylim(<span class="number">-6</span>, <span class="number">6</span>)</span><br><span class="line">plt.title(<span class="string">"변환 공간에서의 데이터 분포"</span>)</span><br><span class="line">plt.xlabel(<span class="string">r"$\phi_1$"</span>)</span><br><span class="line">plt.ylabel(<span class="string">r"$\phi_2$"</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20181218180912017.png" alt=""></p>
+<p><code>FunctionTransformer</code> 와 <code>SVC</code> 클래스를 합쳐 $\phi$와 $x$ 사이의 비선형관계를 원래의 독립변수공간으로 다시 돌려놓으면 아래와 같이 휘어진 곡선으로 클래스가 분리된다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.pipeline <span class="keyword">import</span> Pipeline</span><br><span class="line"></span><br><span class="line">basismodel = Pipeline([(<span class="string">"basis"</span>, FunctionTransformer(basis)), </span><br><span class="line">                       (<span class="string">"svc"</span>, SVC(kernel=<span class="string">"linear"</span>))]).fit(X_xor, y_xor)</span><br><span class="line">plot_xor(X_xor, y_xor, basismodel, <span class="string">"기저함수 SVC 모형을 사용한 XOR 분류 결과"</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20181218181109502.png" alt=""></p>
+<p>결국 이러한 문제에서는 적절한 기저함수 $\phi$ 를 찾아내는 것이 관건이다. 위처럼 제곱, 루트, 곱하기 등 다양한 연산을 해보다 보면 어떻게든 찾을 수 있다. 그런데 이 때는 아래와 같은 문제들이 발생한다.</p>
+<ol>
+<li><p>기저함수를 너무 많이 만들어봐야 해서 계산이 많아진다.</p>
+</li>
+<li><p>그 중 단 한 개도 제대로 된 기저함수가 안 나올 수도 있다.</p>
+</li>
+</ol>
+<p>그래서 나온 것이 <strong>커널</strong>이라는 개념이다.</p>
+<h3 id="커널-트릭"><a href="#커널-트릭" class="headerlink" title="커널 트릭"></a>커널 트릭</h3><p>SVM모델의 목적함수와 예측모형은 다음과 같은 dual form으로 표현할 수 있었다.</p>
+<script type="math/tex; mode=display">
+L = \sum^N_{m=1}a_n-\frac{1}{2}\sum^N_{n=1}\sum^N_{m=1}a_na_my_ny_mx_n^Tx_m</script><script type="math/tex; mode=display">
+y = w^Tx - w_0 = \sum^N_{n-1}a_ny_nx_n^Tx-w_0</script><p>여기서 기저함수를 사용하면 svm 모형을 푸는 것은 아래 수식을 푸는 문제가 된다.</p>
+<script type="math/tex; mode=display">
+L = \sum^N_{m=1}a_n-\frac{1}{2}\sum^N_{n=1}\sum^N_{m=1}a_na_my_ny_m\phi(x_n)^T\phi(x_m)</script><script type="math/tex; mode=display">
+y = w^Tx - w_0 = \sum^N_{n-1}a_ny_n\phi(x_n)^T\phi(x)-w_0</script><p>즉 모든 기저함수는 두 개의 변환된 독립변수벡터를 내적한 $\phi(x_i)^T \phi(x_j)$의 형태로만 사용되며 독립적으로 사용되지 않는다.</p>
+<p>따라서 이 값을 하나의 스칼라 함수로 나타낼 수 있다.(입력변수는 벡터)</p>
+<script type="math/tex; mode=display">
+k(x_i,x_j) = \phi(x_i)^T\phi(x_j)</script><p>이 함수를 <strong>커널(kernel)함수</strong>라고 한다.</p>
+<p>대응하는 기저함수가 존재할 수만 있다면 기저함수를 먼저 정의하고 커널을 정의하는 것이 아니라 커널을 먼저 정의해도 상관 없다.</p>
+<h3 id="커널의-의미"><a href="#커널의-의미" class="headerlink" title="커널의 의미"></a>커널의 의미</h3><p>위 수식을 커널함수로 바꿔 표현하면 다음과 같다.</p>
+<script type="math/tex; mode=display">
+L = \sum^N_{m=1}a_n-\frac{1}{2}\sum^N_{n=1}\sum^N_{m=1}a_na_my_ny_mk(x_n,x_m)</script><script type="math/tex; mode=display">
+y = w^Tx - w_0 = \sum^N_{n-1}a_ny_nk(x_n,x)-w_0</script><p>두 벡터를 내적하는 것은 두 벡터 사이의 유사도를 측정하는 것과 같으므로 커널함수는 두 표본데이터 간의 유사도를 측정하는 기준으로 볼 수도 있다.</p>
+<h3 id="커널-사용의-장점"><a href="#커널-사용의-장점" class="headerlink" title="커널 사용의 장점"></a>커널 사용의 장점</h3><p>커널을 사용하면 기저함수를 하나하나 생각해내는 수고를 덜 수 있고, 변환과 내적에 들어가는 계산도 줄어든다.</p>
+<p>예를 들어,</p>
+<script type="math/tex; mode=display">
+\phi(x_i) = \phi([x_{i,1},x_{i,2}])= (x_{i,1}^2, \sqrt{2}x_{i,1}x_{i,2},x_{i,2}^2)</script><p>총 11번의 곱셈을 필요로 하는 위 기저함수는 다음과 같은 커널함수로 대체 가능하다.</p>
+<script type="math/tex; mode=display">
+\begin{eqnarray}
+k(x_1,x_2) &=& (x_1^Tx_2)^2\\
+&=& (x_{1,1}x_{2,1} + x_{1,2}x_{2,2})^2\\
+&=& x^2_{1,1}x^2_{2,1} + 2x_{1,1}x_{2,1}x_{1,2}x_{2,2} + x^2_{1,2}y^2_{2,2}\\
+&-& (x_{1,1}^2,\sqrt{2}x_{1,1}x_{1,2},x_{1,2}^2)(x_{2,1}^2,\sqrt{2}x_{2,1}x_{2,2},x_{2,2}^2)^T\\
+&=& \phi(x_1)^T\phi(x_2)
+\end{eqnarray}</script><p>여기서는 같은 계산을 하는 데 3번의 곱셈이면 된다.</p>
+<h3 id="커널의-확장생성"><a href="#커널의-확장생성" class="headerlink" title="커널의 확장생성"></a>커널의 확장생성</h3><p>다음 규칙을 통해 두 개의 커널함수 $k_1(x_1,x_2), k_2(x_1,x_2)$로부터 새로운 커널을 쉽게 만들어내 사용할 수 있다.</p>
+<ol>
+<li><p>커널함수를 양수인 상수배한 함수는 커널함수다. (단위를 바꾸는 것에 지나지 않기 때문이다.)</p>
+<script type="math/tex; mode=display">
+k(x_1,x_2) = ck_1(x_1,x_2) \,\,\,(c>0)</script></li>
+<li><p>커널함수에 양수인 상수를 더한 함수는 커널함수다.(기준점이 달라질 뿐 같은 함수다.)</p>
+<script type="math/tex; mode=display">
+k(x_1,x_2) = k_1(x_1,x_2) + c \,\,\,\,(c>0)</script></li>
+<li><p>두 커널함수를 더한 함수는 커널함수다.</p>
+<script type="math/tex; mode=display">
+k(x_1,x_2) = k_1(x_1,x_2) + k_2(x_1,x_2)</script></li>
+<li><p>두 커널함수를 곱한 함수는 커널함수다. (하나의 커널함수를 몇제곱해도 커널함수다.)</p>
+</li>
+<li><script type="math/tex; mode=display">
+k(x_1,x_2) k_1(x_1,x_2)k_2(x_1,x_2)</script></li>
+<li><script type="math/tex; mode=display">
+k(x_1,x_2) k_1(x_1,x_2)k_2(x_1,x_2)</script></li>
+<li></li>
+<li><p>단조증가(monotonically increasing)하는 $\exp$, $\text{sigmoid}$ 등의 함수에 집어넣은 커널함수도 커널함수다.</p>
+<script type="math/tex; mode=display">
+k(x_1,x_2) = (k_1(x_1,x_2))^n\,\,\,(n=1,2,\cdots)\\
+k(x_1,x_2) = \exp(k_1(x_1,x_2))\\
+k(x_1,x_2) = \text{sigmoid}(k_1(x_1,x_2))</script></li>
+<li><p>x1, x2 각각의 커널함수 값의 곱도 커널함수다.</p>
+</li>
+</ol>
+<script type="math/tex; mode=display">
+k(x_1,x_2) = k_1(x_1,x_1)k_2(x_2,x_2)</script><p>위 규칙에 따르면 무한히 많은 커널함수를 생성해낼 수 있다.</p>
+<h3 id="많이-사용되는-커널"><a href="#많이-사용되는-커널" class="headerlink" title="많이 사용되는 커널"></a>많이 사용되는 커널</h3><p>아래 소개하는 커널은 scikit learn에 구현되어있는 커널함수들로, 대부분의 비선형성을 처리할 수 있다. 기본 커널함수 형태에 해당하는 선형 서포트벡터머신에 위 규칙들을 적용해보면 아래 커널들이 다 생성될 수 있음을 알 수 있다.</p>
+<ul>
+<li><p>선형 서포트벡터머신</p>
+<script type="math/tex; mode=display">
+k(x_1, x_2) = x_1^T x_2</script></li>
+<li><p>다항 커널 </p>
+<script type="math/tex; mode=display">
+k(x_1,x_2) = (\gamma(x_1^T x-2)+\theta)^d</script></li>
+<li><p>RBF(Radial Basis Kernel) 또는 가우시안 커널(Gaussian Kernel)</p>
+<script type="math/tex; mode=display">
+k(x_1,x_2) = \exp(-\gamma||x_1-x_2||^2)</script></li>
+<li><p>시그모이드 커널(Sigmoid Kernel)</p>
+<script type="math/tex; mode=display">
+k(x_1, x_2) = \tanh(\gamma(x_1^Tx_2)+\theta)</script></li>
+</ul>
+<h3 id="1-다항-커널"><a href="#1-다항-커널" class="headerlink" title="1) 다항 커널"></a>1) 다항 커널</h3><p>위에서 소개한 다항 커널(Polynomial Kernel)은 벡터의 내적으로 정의된 커널을 1번, 2번, 4번 규칙을 통해 확장하여 만들 수 있는 커널이다.</p>
+<script type="math/tex; mode=display">
+k(x_1,x_2) = (\gamma(x_1^Tx_2)+\theta)^d</script><p>간단한 예로 $\gamma = 1, \theta = 1, d = 3$ 이고 $x$ 가 스칼라인 경우,</p>
+<script type="math/tex; mode=display">
+\begin{eqnarray}
+k(x_1,x_2) &=& (x^T_1x_2+1)^4\\
+&=& x_1^4x_2^4 + 4x_1^3x_2^3 + 6x_1^2x_2^2 + 4x_1x_2 + 1\\
+&=& (x_1^4,2x_1^3,\sqrt6 x_1,2x_1,1)^T(x_2^4,2x_2^3,\sqrt6 x_2,2x_2,1)
+\end{eqnarray}</script><p>와 같이 기저함수의 내적으로 표현되는 4차 다항커널이 된다. 여기서 기저함수는 다음 5개가 된다.</p>
+<script type="math/tex; mode=display">
+\begin{eqnarray}
+\phi_1(x) &=& x^4\\
+\phi_2(x) &=& 2x^3\\
+\phi_3(x) &=& \sqrt6 x^2\\
+\phi_4(x) &=& 2x\\
+\phi_5(x) &=& 1
+\end{eqnarray}</script><p>이 커널과 기저함수들을 그래프로 나타내면 아래와 같다.</p>
+<p><img src="/images/image-20190101181607740.png" alt=""></p>
+<h3 id="2-RBF-커널"><a href="#2-RBF-커널" class="headerlink" title="2) RBF 커널"></a>2) RBF 커널</h3><p>가우시안 커널이라고도 불리는 RBF 커널은 차수가 무한대인 다항커널과 같다.</p>
+<p>간단하게 하기 위해 $\gamma = \frac{1}{2}$ 로 놓았을 때 다음과 같은 RBF 커널이 나온다.</p>
+<script type="math/tex; mode=display">
+\begin{eqnarray}
+k(x_1,x_2) &=& \exp\left(-\dfrac{||x_1-x_2||^2}{2}\right)\\
+&=&\exp\left(-\frac{x_1^Tx_1}{2} - \frac{x_2^Tx_2}{2} + 2x_1^Tx_2\right)\\
+&=&\exp\left(-\frac{x_1^Tx_1}{2}\right)\exp\left(-\frac{x_2^Tx_2}{2}\right)\exp(x_1^Tx_2)\\
+&=&C\exp(x_1^Tx_2)\\
+&\approx& C\left(1 + (x_1^Tx_2) + \frac{1}{2!}(x_1^Tx_2)^2 + \frac{1}{3!}(x_1^Tx_2)^3 + \cdots\right)
+\end{eqnarray}</script><p>이 RBF 커널함수를 그래프로 보면 다음과 같다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">x1 = 0.0</span><br><span class="line">x2 = np.linspace(-7, 7, 100)</span><br><span class="line"></span><br><span class="line">def rbf(x1, x2, gamma):</span><br><span class="line">    return np.exp(-gamma * np.abs(x2 - x1) ** 2)</span><br><span class="line"></span><br><span class="line">plt.figure(figsize=(8, 4))</span><br><span class="line">plt.subplot(121)</span><br><span class="line">plt.plot(x2, rbf(x1, x2, 1), ls=&quot;-&quot;, label=&quot;gamma = 1&quot;)</span><br><span class="line">plt.plot(x2, rbf(x1, x2, 0.5), ls=&quot;:&quot;, label=&quot;gamma = 0.5&quot;)</span><br><span class="line">plt.plot(x2, rbf(x1, x2, 5), ls=&quot;--&quot;, label=&quot;gamma = 5&quot;)</span><br><span class="line">plt.xlabel(&quot;x2 - x1&quot;)</span><br><span class="line">plt.xlim(-3, 7)</span><br><span class="line">plt.legend(loc=1)</span><br><span class="line">plt.title(&quot;RBF 커널&quot;)</span><br><span class="line"></span><br><span class="line">plt.subplot(122)</span><br><span class="line">plt.plot(x2, rbf(-4, x2, 1))</span><br><span class="line">plt.plot(x2, rbf(-2, x2, 1))</span><br><span class="line">plt.plot(x2, rbf(0, x2, 1))</span><br><span class="line">plt.plot(x2, rbf(2, x2, 1))</span><br><span class="line">plt.plot(x2, rbf(4, x2, 1))</span><br><span class="line">plt.xlabel(&quot;x2&quot;)</span><br><span class="line">plt.title(&quot;RBF 커널의 기저함수들&quot;)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20190101182521911.png" alt=""></p>
+<h3 id="scikit-learn의-커널-SVM"><a href="#scikit-learn의-커널-SVM" class="headerlink" title="scikit-learn의 커널 SVM"></a>scikit-learn의 커널 SVM</h3><p>scikit-learn의 <code>SVM</code> 클래스에서는 <code>kernel</code> 인수를 지정하여 커널을 설정할 수 있다.</p>
+<ul>
+<li><code>kernel = &#39;linear&#39;</code> : 선형 SVM 커널</li>
+<li><p><code>kernel = &#39;poly&#39;</code> : 다항 커널</p>
+<ul>
+<li><code>gamma</code> : $\gamma$</li>
+<li><code>coef0</code> : $\theta$</li>
+<li><code>degree</code> : $d$</li>
+</ul>
+</li>
+<li><p><code>kernel = &#39;rbf&#39;</code> : RBF 커널(디폴트값이 rbf라서 써주지 않아도 된다.)</p>
+</li>
+<li><code>kernel = &#39;sigmoid&#39;</code> : 시그모이드 커널</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">polysvc = SVC(kernel=<span class="string">"poly"</span>, degree=<span class="number">2</span>, gamma=<span class="number">1</span>, coef0=<span class="number">0</span>).fit(X_xor, y_xor)</span><br><span class="line">rbfsvc = SVC(kernel=<span class="string">"rbf"</span>).fit(X_xor, y_xor)</span><br><span class="line">sigmoidsvc = SVC(kernel=<span class="string">"sigmoid"</span>, gamma=<span class="number">2</span>, coef0=<span class="number">2</span>).fit(X_xor, y_xor)</span><br><span class="line"></span><br><span class="line">plt.figure(figsize=(<span class="number">8</span>, <span class="number">12</span>))</span><br><span class="line">plt.subplot(<span class="number">311</span>)</span><br><span class="line">plot_xor(X_xor, y_xor, polysvc, <span class="string">"다항커널 SVC를 사용한 분류 결과"</span>)</span><br><span class="line">plt.subplot(<span class="number">312</span>)</span><br><span class="line">plot_xor(X_xor, y_xor, rbfsvc, <span class="string">"RBF커널 SVC를 사용한 분류 결과"</span>)</span><br><span class="line">plt.subplot(<span class="number">313</span>)</span><br><span class="line">plot_xor(X_xor, y_xor, sigmoidsvc, <span class="string">"시그모이드커널 SVC를 사용한 분류 결과"</span>)</span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20190101183523069.png" alt=""></p>
+<p><img src="/images/image-20190101183537454.png" alt=""></p>
+<h3 id="커널-파라미터의-영향"><a href="#커널-파라미터의-영향" class="headerlink" title="커널 파라미터의 영향"></a>커널 파라미터의 영향</h3><p>$\gamma$ 값이 작으면 $x_2$와 $x_1$의 유사도에 따라 커널함수의 기울기와 값이 많이 달라진다.</p>
+<p>$\gamma$ 값이 크면 $x_2$와 $x_1$이 멀리 떨어져있든 가까이 있든 커널함수 값이 별로 차이 나지 않는다.</p>
+<p><img src="/images/image-20181218185514927.png" alt=""></p>
+<p>svm은 서포트벡터라는 대표값과의 유사도를 측정하여 가까이 있는 애들을 기준으로 클래스를 판별하는 거였다. 커널 svm에서는 그 유사도의 계산기준이 커널이기 때문에 감마값이 작으면 새로운 데이터와 기존 애들과의 유사도를 측정할 때 넓은 영역 안에서 유사도가 있다고 판단하지만, 감마값이 커지면 서포트벡터(기존의 빨간 점들)와의 유사도가 진짜 가깝지 않으면 없다고 판단하므로 오버피팅이 된다.</p>
+<p>위에서 $\gamma$가 2인 것은 정규화된 것이고 100인 것은 오버피팅된 것이다.</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://jyujin39.github.io/2019/01/01/Kernel-SVM/" data-id="cjqdkg6ot0000iibax1b50ow7" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/jyujin39/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2018/12/20/SVM-support-vector-machine/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">SVM(support vector machine)</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Classification/">Classification</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Classification/Math/">Math</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Math/Classification/">Classification</a><span class="category-list-count">11</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="no-thumbnail">
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2019/01/01/Kernel-SVM/" class="title">Kernel SVM</a></p>
+                            <p class="item-date"><time datetime="2019-01-01T09:39:39.000Z" itemprop="datePublished">2019-01-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Classification/">Classification</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Classification/Math/">Math</a></p>
+                            <p class="item-title"><a href="/2018/12/20/SVM-support-vector-machine/" class="title">SVM(support vector machine)</a></p>
+                            <p class="item-date"><time datetime="2018-12-20T07:37:09.000Z" itemprop="datePublished">2018-12-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/12/19/perceptron/" class="title">perceptron</a></p>
+                            <p class="item-date"><time datetime="2018-12-19T14:06:02.000Z" itemprop="datePublished">2018-12-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/12/18/model-combining-2-Boosting/" class="title">model combining - 2. Boosting</a></p>
+                            <p class="item-date"><time datetime="2018-12-18T13:45:53.000Z" itemprop="datePublished">2018-12-18</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2018/12/17/model-combining-1-aggregation/" class="title">model combining - 1. aggregation</a></p>
+                            <p class="item-date"><time datetime="2018-12-17T08:58:36.000Z" itemprop="datePublished">2018-12-17</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/">study</a><span class="tag-list-count">12</span></li></ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 Yujin Jeon</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'https://jyujin39.github.io/2019/01/01/Kernel-SVM/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
