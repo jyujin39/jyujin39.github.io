@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>Clustering | Data Science YJ</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="study">
+    
+    <meta name="description" content="클러스터링주어진 데이터 집합을 유사한 데이터들의 그룹으로 나누는 것을 클러스터링(clustering)이라고 하고, 이렇게 나누어진 유사한 데이터들의 그룹을 클러스터(cluster)라고 한다. 클러스터링은 분류 문제와 달리 특정한 독립변수와 종속변수의 구분도 없고 학습을 위한 목푯값(target value)도 필요로 하지 않는 비지도학습(unsupervise">
+<meta name="keywords" content="study">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Clustering">
+<meta property="og:url" content="https://jyujin39.github.io/2019/01/11/Clustering/index.html">
+<meta property="og:site_name" content="Data Science YJ">
+<meta property="og:description" content="클러스터링주어진 데이터 집합을 유사한 데이터들의 그룹으로 나누는 것을 클러스터링(clustering)이라고 하고, 이렇게 나누어진 유사한 데이터들의 그룹을 클러스터(cluster)라고 한다. 클러스터링은 분류 문제와 달리 특정한 독립변수와 종속변수의 구분도 없고 학습을 위한 목푯값(target value)도 필요로 하지 않는 비지도학습(unsupervise">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://jyujin39.github.io/images/image-20190110201815231.png">
+<meta property="og:updated_time" content="2019-01-11T05:31:15.074Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Clustering">
+<meta name="twitter:description" content="클러스터링주어진 데이터 집합을 유사한 데이터들의 그룹으로 나누는 것을 클러스터링(clustering)이라고 하고, 이렇게 나누어진 유사한 데이터들의 그룹을 클러스터(cluster)라고 한다. 클러스터링은 분류 문제와 달리 특정한 독립변수와 종속변수의 구분도 없고 학습을 위한 목푯값(target value)도 필요로 하지 않는 비지도학습(unsupervise">
+<meta name="twitter:image" content="https://jyujin39.github.io/images/image-20190110201815231.png">
+    
+
+    
+
+    
+        <link rel="icon" href="/images/icons8-account-40.png">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Yujin&#39;s study blog for Data Science</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Classification/">Classification</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Classification/Math/">Math</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Math/">Math</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Math/Classification/">Classification</a></li></ul></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Math/Classification/">Classification</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-Clustering" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Clustering
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/01/11/Clustering/" class="article-date">
+            <time datetime="2019-01-11T02:06:28.000Z" itemprop="datePublished">2019-01-11</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/study/">study</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="클러스터링"><a href="#클러스터링" class="headerlink" title="클러스터링"></a>클러스터링</h1><p>주어진 데이터 집합을 유사한 데이터들의 그룹으로 나누는 것을 <strong>클러스터링(clustering)</strong>이라고 하고, 이렇게 나누어진 유사한 데이터들의 그룹을 <strong>클러스터(cluster)</strong>라고 한다.</p>
+<p>클러스터링은 분류 문제와 달리 특정한 독립변수와 종속변수의 구분도 없고 학습을 위한 목푯값(target value)도 필요로 하지 않는 <strong>비지도학습(unsupervised learning)</strong>의 일종이다.</p>
+<h2 id="클러스터링-방법"><a href="#클러스터링-방법" class="headerlink" title="클러스터링 방법"></a>클러스터링 방법</h2><p>대부분의 클러스터링 방법들도 예측모형처럼 특정한 목표함수의 값을 최소화 혹은 최대화하긴 하지만, 예측모형과 달리 명확하게 주어진 목표함수가 없기 때문에, 목표함수의 정의 및 최적화 방법이 각기 다른 다양한 클러스터링 방법이 존재한다. 아래 소개하는 방법들이 많이 사용되는 클러스터링 방법이다.</p>
+<ul>
+<li>K-means</li>
+<li>DBSCAN</li>
+<li>Spectral Clustering</li>
+<li>Affinity Propagation</li>
+<li>계층적 클러스터링(Hierarchial Clustering)</li>
+</ul>
+<p>클러스터링 방법마다 사용법과 모수 등이 다르다. 예를 들어 K-means, Spectral Clustering 등은 클러스터의 개수를 미리 지정해주어야 하지만, DBSCAN이나 Affinity, Propagation 등은 클러스터의 개수를 지정할 필요가 없다. 다만 다른 종류의 모수값을 지정해줘야 하는데 이 값에 따라 클러스터의 개수가 달라질 수 있다.</p>
+<p>다음은 몇 가지 예제 데이터에 이 클러스터링 방법들을 적용한 결과다. 같은색상의 데이터는 같은 클러스터로 분류된 것이다. 각 방법마다 특성이 다르기 때문에 클러스터링 목적과 데이터의 유형에 적합한 방법을 선택해 사용해야 한다. 또한 지정된 모수값에 따라 성능이 달라질 수 있다. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> sklearn.cluster <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler</span><br><span class="line"><span class="keyword">from</span> sklearn.utils.testing <span class="keyword">import</span> ignore_warnings</span><br><span class="line"></span><br><span class="line">np.random.seed(<span class="number">0</span>)</span><br><span class="line">n_samples = <span class="number">1500</span></span><br><span class="line">blobs = make_blobs(n_samples=n_samples, random_state=<span class="number">8</span>)</span><br><span class="line">X, y = make_blobs(n_samples=n_samples, random_state=<span class="number">170</span>)</span><br><span class="line">anisotropic = (np.dot(X, [[<span class="number">0.6</span>, <span class="number">-0.6</span>], [<span class="number">-0.4</span>, <span class="number">0.8</span>]]), y)</span><br><span class="line">varied = make_blobs(n_samples=n_samples, cluster_std=[<span class="number">1.0</span>, <span class="number">2.5</span>, <span class="number">0.5</span>], random_state=<span class="number">170</span>)</span><br><span class="line">noisy_circles = make_circles(n_samples=n_samples, factor=<span class="number">.5</span>, noise=<span class="number">.05</span>)</span><br><span class="line">noisy_moons = make_moons(n_samples=n_samples, noise=<span class="number">.05</span>)</span><br><span class="line">no_structure = np.random.rand(n_samples, <span class="number">2</span>), <span class="keyword">None</span></span><br><span class="line">datasets = &#123;</span><br><span class="line">    <span class="string">"같은 크기의 원형"</span>: blobs, </span><br><span class="line">    <span class="string">"같은 크기의 타원형"</span>: anisotropic, </span><br><span class="line">    <span class="string">"다른 크기의 원형"</span>: varied, </span><br><span class="line">    <span class="string">"초승달"</span>: noisy_moons, </span><br><span class="line">    <span class="string">"동심원"</span>: noisy_circles, </span><br><span class="line">    <span class="string">"비구조화"</span>: no_structure</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">plt.figure(figsize=(<span class="number">11</span>, <span class="number">11</span>))</span><br><span class="line">plot_num = <span class="number">1</span></span><br><span class="line"><span class="keyword">for</span> i, (data_name, (X, y)) <span class="keyword">in</span> enumerate(datasets.items()):</span><br><span class="line">    X = StandardScaler().fit_transform(X)</span><br><span class="line"></span><br><span class="line">    two_means = MiniBatchKMeans(n_clusters=<span class="number">3</span>)</span><br><span class="line">    dbscan = DBSCAN(eps=<span class="number">0.15</span>)</span><br><span class="line">    spectral = SpectralClustering(n_clusters=<span class="number">3</span>, affinity=<span class="string">"nearest_neighbors"</span>)</span><br><span class="line">    ward = AgglomerativeClustering(n_clusters=<span class="number">3</span>)</span><br><span class="line">    affinity_propagation = AffinityPropagation(damping=<span class="number">0.9</span>, preference=<span class="number">-200</span>)</span><br><span class="line">    clustering_algorithms = (</span><br><span class="line">        (<span class="string">'K-Means'</span>, two_means),</span><br><span class="line">        (<span class="string">'DBSCAN'</span>, dbscan),</span><br><span class="line">        (<span class="string">'Spectral Clustering'</span>, spectral),</span><br><span class="line">        (<span class="string">'Hierarchical Clustering'</span>, ward),</span><br><span class="line">        (<span class="string">'Affinity Propagation'</span>, affinity_propagation),</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> j, (name, algorithm) <span class="keyword">in</span> enumerate(clustering_algorithms):</span><br><span class="line">        <span class="keyword">with</span> ignore_warnings(category=UserWarning):</span><br><span class="line">            algorithm.fit(X)</span><br><span class="line">        <span class="keyword">if</span> hasattr(algorithm, <span class="string">'labels_'</span>):</span><br><span class="line">            y_pred = algorithm.labels_.astype(np.int)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            y_pred = algorithm.predict(X)</span><br><span class="line">        plt.subplot(len(datasets), len(clustering_algorithms), plot_num)</span><br><span class="line">        <span class="keyword">if</span> i == <span class="number">0</span>:</span><br><span class="line">            plt.title(name)</span><br><span class="line">        <span class="keyword">if</span> j == <span class="number">0</span>:</span><br><span class="line">            plt.ylabel(data_name)</span><br><span class="line">        colors = plt.cm.tab10(np.arange(<span class="number">20</span>, dtype=int))</span><br><span class="line">        plt.scatter(X[:, <span class="number">0</span>], X[:, <span class="number">1</span>], s=<span class="number">5</span>, color=colors[y_pred])</span><br><span class="line">        plt.xlim(<span class="number">-2.5</span>, <span class="number">2.5</span>)</span><br><span class="line">        plt.ylim(<span class="number">-2.5</span>, <span class="number">2.5</span>)</span><br><span class="line">        plt.xticks(())</span><br><span class="line">        plt.yticks(())</span><br><span class="line">        plot_num += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20190110201815231.png" alt=""></p>
+<h2 id="클러스터링-성능기준"><a href="#클러스터링-성능기준" class="headerlink" title="클러스터링 성능기준"></a>클러스터링 성능기준</h2><p>클러스터링의 경우 분류문제에 비해 성능기준을 만들기가 어렵다. 원래 데이터가 어떻게 클러스터링되어있는지를 보여주는 정답(groundtruth)이 있는 경우에도 쉽지 않다. 따라서 아래 제시된 예시를 비롯해 다양한 성능기준들이 사용되고 있다.</p>
+<ul>
+<li>Adjusted Rand Index</li>
+<li>Adjusted Mutual Information</li>
+<li>Silhouette Coefficient</li>
+</ul>
+<h3 id="1-Adjusted-Rand-Index"><a href="#1-Adjusted-Rand-Index" class="headerlink" title="1) Adjusted Rand Index"></a>1) Adjusted Rand Index</h3><p>(Adjusted) Rand Index를 구하려면, 데이터가 원래 어떻게 클러스터링되어있는지에 대한 정답이 있어야 한다. $N$ 개의 데이터 집합에서 $i, j$ 두 개의 데이터를 선택했을 때 그 두 데이터가 같은 클러스터에 속하면 1, 다른 데이터에 속하면 0이라고 하자. 이 값들을 $N\times N$ 행렬 $T$ 로 나타내자.</p>
+<script type="math/tex; mode=display">
+T_{ij} = \begin{cases} 1 && \text{i와 j가 같은 클러스터}\\0 && \text{i와 j가 다른 클러스터}\end{cases}</script><p>예를 들어 $\{0,1,2,3,4\}$라는 5개의 데이터 집합에서 $\{0,1,2\}$가 한 클러스터, $\{3,4\}$가 한 클러스터라면 정답행렬 $T$ 는 아래와 같은 행렬이 된다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">groundtruth = np.array([</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+<p>이제 해당 데이터 집합에 대해 클러스터링을 진행한 결과를 행렬 $C$ 라고 하자. 클러스터링이 정확하게 이루어졌다면 $C$ 는 정답행렬 $T$ 와 같은 값을 가져야 한다. 만약 클러스터링 결과 $\{0,1\}$ 과 $\{2, 3, 4\}$ 로 분류되었다면 $C$ 는 아래와 같은 행렬이 된다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">clusters = np.array([</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+<p>행렬 $T$ 와 $C$ 를 비교하여, 값이 같은 원소의 자리에는 1, 다른 원소의 자리에는 0으로 표시한 행렬을 <strong>incidence matrix </strong>라고 하며 $R$ 로 표시한다. 즉, 정답인 경우 1, 틀린 경우 0이 된다.</p>
+<script type="math/tex; mode=display">
+R_{ij} = \begin{cases}1 && \text{if}\,\,\, T_{ij} = C_{ij} \\
+0 && \text{if}\,\,\, T_{ij} \neq C_{ij}\end{cases}</script><p>위 예제에서 incidence matrix를 구하면 다음과 같다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">incidence = <span class="number">1</span> * (groundtruth == clusters)</span><br><span class="line">incidence</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20190110203823687.png" alt=""></p>
+<p>Rand Index 는 이 incidence matrix에서 전체 원소 개수 중에 1의 개수 즉 정답인 쌍의 개수의 비율로, 예측문제의 정확도(accuracy)에 해당한다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rand_index = np.sum(incidence) / np.prod(incidence.shape)</span><br><span class="line">rand_index</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20190110204603915.png" alt=""></p>
+<p>Rand Index는 0에서 1사이 값을 가지고, 1일 때 가장 성능이 좋은 것이다. 이 rand index 의 문제점은, 무작위로 클러스터링을 한 경우에도 어느 정도 좋은 값이 나올 가능성이 높다는 점이다. 이를 해결하기 위해 무작위 클러스터링에서 생기는 rand index의 기댓값을 원래의 값에서 빼서 기댓값과 분산을 재조정한 것이 <strong>Adjusted Rand index</strong>이다. Adjusted rand index는 무작위클러스터링의 경우 0이 나올 확률이 높고, 경우에 따라 음수가 나올 수도 있다.</p>
+<p>adjusted Rand index를 계산하려면 우선 contingency table을 만들어야 한다. contingencey table은 정답과 클러스터링 결과가 같은 데이터의 개수를 나타낸 것이다.</p>
+<p>정답이 $r$ 개의 클러스터를 갖고 클러스터링 결과는 $s$ 개의 클러스터를 가진다고 가정할 때,</p>
+<script type="math/tex; mode=display">
+T = \{T_1, T_2, \cdots , T_r\}\\
+C = \{C_1, C_2, \cdots , C_s\}</script><p>contingency table은 아래와 같이 그려진다.</p>
+<script type="math/tex; mode=display">
+\begin{array}{c|cccc|c}
+T \; \backslash \; C &
+C_1&
+C_2&
+\ldots&
+C_s&
+\text{소계}
+\\
+\hline
+T_1&
+n_{11}&
+n_{12}&
+\ldots&
+n_{1s}&
+a_1
+\\
+T_2&
+n_{21}&
+n_{22}&
+\ldots&
+n_{2s}&
+a_2
+\\
+\vdots&
+\vdots&
+\vdots&
+\ddots&
+\vdots&
+\vdots
+\\
+T_r&
+n_{r1}&
+n_{r2}&
+\ldots&
+n_{rs}&
+a_r
+\\
+\hline
+\text{소계}&
+b_1&
+b_2&
+\ldots&
+b_s&
+\end{array}</script><ul>
+<li>$n_{ij}$ : 정답에서는 클러스터 $T_i$ 에 속하고 클러스터링 결과에서는 $C_j$ 에 속하는 데이터의 수</li>
+<li>$a_i = \sum^s_{j=1} n_{ij}$</li>
+<li>$b_j = \sum^r_{i=1}n_{ij}$ </li>
+</ul>
+<p>여기서 adjusted Rand index값은 아래와 같이 구할 수 있다.</p>
+<script type="math/tex; mode=display">
+\text{ARI} = \frac{ \overbrace{\sum_{ij} \binom{n_{ij}}{2}}^\text{Index} - \overbrace{[\sum_i \binom{a_i}{2} \sum_j \binom{b_j}{2}] / \binom{n}{2}}^\text{기댓값} }{ \underbrace{\frac{1}{2} [\sum_i \binom{a_i}{2} + \sum_j \binom{b_j}{2}]}_\text{최댓값} - \underbrace{[\sum_i \binom{a_i}{2} \sum_j \binom{b_j}{2}] / \binom{n}{2}}_\text{기댓값} }</script><p>위에서 예로 들었던 타원형 데이터 예제에 대해 여러가지 클러스터링 방법을 적용하였을때 adjusted Rand index 값을 계산해보면 DBSCAN과 Spectral Clustering의 값이 높게 나오는 것을 확인할 수 있다. scikit-learn 패키지의 metrics.cluster 서브패키지는 <code>adjusted_rand_score</code> 명령을 제공한다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics.cluster <span class="keyword">import</span> adjusted_rand_score</span><br><span class="line"></span><br><span class="line">X, y_true = anisotropic</span><br><span class="line">X = StandardScaler().fit_transform(X)</span><br><span class="line"><span class="keyword">for</span> name, algorithm <span class="keyword">in</span> clustering_algorithms:</span><br><span class="line">    <span class="keyword">with</span> ignore_warnings(category=UserWarning):</span><br><span class="line">        algorithm.fit(X)</span><br><span class="line">    <span class="keyword">if</span> hasattr(algorithm, <span class="string">'labels_'</span>):</span><br><span class="line">        y_pred = algorithm.labels_.astype(np.int)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        y_pred = algorithm.predict(X)</span><br><span class="line">    print(<span class="string">"&#123;:25s&#125;: ARI=&#123;:5.3f&#125;"</span>.format(name, adjusted_rand_score(y_true, y_pred)))</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20190110205657179.png" alt=""></p>
+<h3 id="2-Adjusted-Mutual-Information"><a href="#2-Adjusted-Mutual-Information" class="headerlink" title="2) Adjusted Mutual Information"></a>2) Adjusted Mutual Information</h3><p>mutual information은 두 확률변수간의 상호 의존성을 측정한 값이다. </p>
+<p>클러스터링 결과가 이산확률변수라고 가정했을 때, 위 경우에서처럼 정답이 r개의 값을 갖는 이산확률변수이고 클러스터링 결과는 s개의 값을 갖는 이산확률변수라고 하자.</p>
+<script type="math/tex; mode=display">
+T = \{T_1, T_2, \cdots , T_r\}\\
+C = \{C_1, C_2, \cdots , C_s\}</script><p>전체 데이터 수를 $N$ 이라고 하면 이산확률변수 $T$ 와 $C$ 의 분포는 아래와 같이 추정할 수 있다.</p>
+<script type="math/tex; mode=display">
+P(i) = \frac{|T_i|}{N}</script><script type="math/tex; mode=display">
+P'(j) = \frac{|C_j|}{N}</script><p>​    - $|T_i|$ : 클러스터 $T_i$ 에 속하는 데이터 수</p>
+<p>​    - $|C_j|$ : 클러스터 $C_j$ 에 속하는 데이터 수</p>
+<p>이 때 $T$ 와 $C$ 의 결합확률분포는 다음처럼 추정된다.</p>
+<script type="math/tex; mode=display">
+P(i, j) = \frac{|T_i\cap C_j|}{N}</script><p>​    - $|T_i \cap C_j|$: 클러스터 $T_i$ 와 $C_j$ 모두에 속하는 데이터의 개수</p>
+<p>확률변수 $T, C$ 의 mutual information은 아래와 같이 정의된다.</p>
+<script type="math/tex; mode=display">
+M I(T, C) = \sum^r_{i=1}\sum^s_{j=1}P(i,j)\log\frac{P(i,j)}{P(i)P'(j)}</script><p>만약 두 확률변수가 서로 독립이면 mutual information의 값은 0이며, 이 값이 mutual information이 가질 수 있는 최소값이다. 두 확률변수간의 의존성이 강할수록 값이 커진다. 그런데 클러스터의 개수가 많아질수록 값이 증가하므로 올바른 비교가 어렵다. 따라서 각 경우에 따른 mutual information 기대값을 빼서 재조정한 것이 <strong>adjusted mutual information</strong> 이다.</p>
+<p>다음은 위에서 예로 들었던 타원형 데이터 예제에 대해 여러가지 클러스터링 방법을 적용했을 때 adjusted mutual information 값을 계산한 결과이다. scikit-learn 패키지의 metrics.cluster 서브패키지는 <code>adjusted_mutual_info_score</code> 명령을 제공한다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics.cluster <span class="keyword">import</span> adjusted_mutual_info_score</span><br><span class="line"></span><br><span class="line">X, y_true = anisotropic</span><br><span class="line">X = StandardScaler().fit_transform(X)</span><br><span class="line"><span class="keyword">for</span> name, algorithm <span class="keyword">in</span> clustering_algorithms:</span><br><span class="line">    <span class="keyword">with</span> ignore_warnings(category=UserWarning):</span><br><span class="line">        algorithm.fit(X)</span><br><span class="line">    <span class="keyword">if</span> hasattr(algorithm, <span class="string">'labels_'</span>):</span><br><span class="line">        y_pred = algorithm.labels_.astype(np.int)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        y_pred = algorithm.predict(X)</span><br><span class="line">    print(<span class="string">"&#123;:25s&#125;: ARI=&#123;:5.3f&#125;"</span>.format(name, adjusted_mutual_info_score(y_true, y_pred)))</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20190110210935956.png" alt=""></p>
+<h3 id="3-실루엣-계수"><a href="#3-실루엣-계수" class="headerlink" title="3) 실루엣 계수"></a>3) 실루엣 계수</h3><p>지금까지는 데이터의 클러스터링에 대한 정답을 알고 있는 경우였다. 하지만 이런 정답정보가 없다면 어떻게 클러스터링 결과를 판단할 수 있을까? <strong>실루엣 계수(Silhouette coefficient)</strong> 는 이러한 경우에 클러스터링 성능을 판단하기 위한 기준의 하나이다.</p>
+<p>우선 모든 데이터쌍 $(i, j)$ 에 대해 거리(distance) 혹은 비유사도(dissimilarity) 를 구한다. 이 결과를 이용해 모든 데이터 $i$ 에 대해 다음 값을 구한다.</p>
+<ul>
+<li>$a_i$ : $i $ 와 같은 클러스터에 속한 원소들의 평균 거리</li>
+<li>$b_i$  : $i$ 와 다른 클러스터 중 가장 가까운 클러스터까지의 평균 거리</li>
+</ul>
+<p>이 때 실루엣 계수는 다음과 같이 정의된다.</p>
+<script type="math/tex; mode=display">
+s = \frac{b-a}{\max(a,b)}</script><p>만약 데이터 $i$ 에 대해 같은 클러스터의 데이터가 다른 클러스터의 데이터보다 가깝다면 실루엣 계수는 양수가 된다. 하지만 만약 다른 클러스터의 데이터가 더 가깝다면 실루엣 계수가 음수가 되는데, 이 때는 클러스터링이 잘못된 경우로 보면 된다. 실루엣 계수가 클수록 좋은 클러스터링이라고 볼 수 있다.</p>
+<p>실루엣 계수는 클러스터의 개수를 사용자가 정해주어야 하는 경우 큰 도움이 된다. 앞서 예로 들었던 3개의 원형데이터에 대해 KMean 방법으로 클러스터 개수를 바꿔가면서 클러스터링 결과를 살펴보자.</p>
+<p>Scikit-learn 패키지의 metrics 서브패키지에 제공되는 <code>silhouette_samples</code>명령을 사용한다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> silhouette_samples</span><br><span class="line"></span><br><span class="line">X = StandardScaler().fit_transform(blobs[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">colors = plt.cm.tab10(np.arange(<span class="number">20</span>, dtype=int))</span><br><span class="line"></span><br><span class="line">plt.figure(figsize=(<span class="number">6</span>, <span class="number">8</span>))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">4</span>):</span><br><span class="line">    model = KMeans(n_clusters=i + <span class="number">2</span>, random_state=<span class="number">0</span>)</span><br><span class="line">    cluster_labels = model.fit_predict(X)</span><br><span class="line">    sample_silhouette_values = silhouette_samples(X, cluster_labels)</span><br><span class="line">    silhouette_avg = sample_silhouette_values.mean()</span><br><span class="line">    </span><br><span class="line">    plt.subplot(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2</span> * i + <span class="number">1</span>)</span><br><span class="line">    y_lower = <span class="number">10</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(i + <span class="number">2</span>):</span><br><span class="line">        jth_cluster_silhouette_values = sample_silhouette_values[cluster_labels == j]</span><br><span class="line">        jth_cluster_silhouette_values.sort()</span><br><span class="line">        size_cluster_j = jth_cluster_silhouette_values.shape[<span class="number">0</span>]</span><br><span class="line">        y_upper = y_lower + size_cluster_j</span><br><span class="line">        plt.fill_betweenx(np.arange(y_lower, y_upper),</span><br><span class="line">                          <span class="number">0</span>, jth_cluster_silhouette_values,</span><br><span class="line">                          facecolor=colors[j], edgecolor=colors[j])</span><br><span class="line">        plt.text(<span class="number">-0.05</span>, y_lower + <span class="number">0.5</span> * size_cluster_j, str(j + <span class="number">1</span>))</span><br><span class="line">        plt.axvline(x=silhouette_avg, color=<span class="string">"red"</span>, linestyle=<span class="string">"--"</span>)</span><br><span class="line">        plt.xticks([<span class="number">-0.2</span>, <span class="number">0</span>, <span class="number">0.2</span>, <span class="number">0.4</span>, <span class="number">0.6</span>, <span class="number">0.8</span>, <span class="number">1</span>])</span><br><span class="line">        plt.yticks([])</span><br><span class="line">        plt.title(<span class="string">"실루엣 계수 평균: &#123;:5.2f&#125;"</span>.format(silhouette_avg))</span><br><span class="line">        y_lower = y_upper + <span class="number">10</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    plt.subplot(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2</span> * i + <span class="number">2</span>)</span><br><span class="line">    plt.scatter(X[:, <span class="number">0</span>], X[:, <span class="number">1</span>], s=<span class="number">5</span>, color=colors[cluster_labels])</span><br><span class="line">    plt.xlim(<span class="number">-2.5</span>, <span class="number">2.5</span>)</span><br><span class="line">    plt.ylim(<span class="number">-2.5</span>, <span class="number">2.5</span>)</span><br><span class="line">    plt.xticks(())</span><br><span class="line">    plt.yticks(())</span><br><span class="line">    plt.title(<span class="string">"클러스터 수: &#123;&#125;"</span>.format(i + <span class="number">2</span>))</span><br><span class="line"></span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20190110211549736.png" alt=""></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://jyujin39.github.io/2019/01/11/Clustering/" data-id="cjqrltqpv0000kabaitldisr6" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/jyujin39/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2019/01/10/Recommender-System/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">Recommender System</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Classification/">Classification</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Classification/Math/">Math</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">14</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Math/Classification/">Classification</a><span class="category-list-count">14</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="no-thumbnail">
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2019/01/11/Clustering/" class="title">Clustering</a></p>
+                            <p class="item-date"><time datetime="2019-01-11T02:06:28.000Z" itemprop="datePublished">2019-01-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2019/01/10/Recommender-System/" class="title">Recommender System</a></p>
+                            <p class="item-date"><time datetime="2019-01-10T09:42:01.000Z" itemprop="datePublished">2019-01-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2019/01/08/Hyper-Parameter-Tuning/" class="title">Hyper Parameter Tuning</a></p>
+                            <p class="item-date"><time datetime="2019-01-08T08:12:40.000Z" itemprop="datePublished">2019-01-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2019/01/01/Kernel-SVM/" class="title">Kernel SVM</a></p>
+                            <p class="item-date"><time datetime="2019-01-01T09:39:39.000Z" itemprop="datePublished">2019-01-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Classification/">Classification</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Classification/Math/">Math</a></p>
+                            <p class="item-title"><a href="/2018/12/20/SVM-support-vector-machine/" class="title">SVM(support vector machine)</a></p>
+                            <p class="item-date"><time datetime="2018-12-20T07:37:09.000Z" itemprop="datePublished">2018-12-20</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/">study</a><span class="tag-list-count">15</span></li></ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 Yujin Jeon</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'https://jyujin39.github.io/2019/01/11/Clustering/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
