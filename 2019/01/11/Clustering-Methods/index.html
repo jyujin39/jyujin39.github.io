@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>Clustering Methods | Data Science YJ</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="study">
+    
+    <meta name="description" content="클러스터링 방법1. K-Means 클러스터링앞서 언급했던 5가지 클러스터링 방법 중 첫번째로 소개할 K-Means 클러스터링 알고리즘은 가장 단순하고 빠른 클러스터링 알고리즘 중 하나다. 이 클러스터링 방법에서는 아래 목적함수 값이 최소화될 때까지 클러스터의 중심(centroid) 위치와 각 데이터가 소속될 클러스터를 반복해서 찾는다. 목적함수 값을 ine">
+<meta name="keywords" content="study">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Clustering Methods">
+<meta property="og:url" content="https://jyujin39.github.io/2019/01/11/Clustering-Methods/index.html">
+<meta property="og:site_name" content="Data Science YJ">
+<meta property="og:description" content="클러스터링 방법1. K-Means 클러스터링앞서 언급했던 5가지 클러스터링 방법 중 첫번째로 소개할 K-Means 클러스터링 알고리즘은 가장 단순하고 빠른 클러스터링 알고리즘 중 하나다. 이 클러스터링 방법에서는 아래 목적함수 값이 최소화될 때까지 클러스터의 중심(centroid) 위치와 각 데이터가 소속될 클러스터를 반복해서 찾는다. 목적함수 값을 ine">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://jyujin39.github.io/images/image-20190111113256254.png">
+<meta property="og:updated_time" content="2019-01-11T08:05:39.150Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Clustering Methods">
+<meta name="twitter:description" content="클러스터링 방법1. K-Means 클러스터링앞서 언급했던 5가지 클러스터링 방법 중 첫번째로 소개할 K-Means 클러스터링 알고리즘은 가장 단순하고 빠른 클러스터링 알고리즘 중 하나다. 이 클러스터링 방법에서는 아래 목적함수 값이 최소화될 때까지 클러스터의 중심(centroid) 위치와 각 데이터가 소속될 클러스터를 반복해서 찾는다. 목적함수 값을 ine">
+<meta name="twitter:image" content="https://jyujin39.github.io/images/image-20190111113256254.png">
+    
+
+    
+
+    
+        <link rel="icon" href="/images/icons8-account-40.png">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Yujin&#39;s study blog for Data Science</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Classification/">Classification</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Classification/Math/">Math</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Math/">Math</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Math/Classification/">Classification</a></li></ul></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Math/Classification/">Classification</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-Clustering-Methods" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Clustering Methods
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/01/11/Clustering-Methods/" class="article-date">
+            <time datetime="2019-01-11T08:03:15.000Z" itemprop="datePublished">2019-01-11</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/study/">study</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="클러스터링-방법"><a href="#클러스터링-방법" class="headerlink" title="클러스터링 방법"></a>클러스터링 방법</h1><h2 id="1-K-Means-클러스터링"><a href="#1-K-Means-클러스터링" class="headerlink" title="1. K-Means 클러스터링"></a>1. K-Means 클러스터링</h2><p>앞서 언급했던 5가지 클러스터링 방법 중 첫번째로 소개할 K-Means 클러스터링 알고리즘은 가장 단순하고 빠른 클러스터링 알고리즘 중 하나다. 이 클러스터링 방법에서는 아래 목적함수 값이 최소화될 때까지 클러스터의 중심(centroid) 위치와 각 데이터가 소속될 클러스터를 반복해서 찾는다. 목적함수 값을 inertia 라고도 한다.</p>
+<script type="math/tex; mode=display">
+J = \sum^K_{k=1}\sum_{i\in C} d(x_i, \mu_k)</script><ul>
+<li><p>$K$ : 클러스터의 개수</p>
+</li>
+<li><p>$C_k$ : $k$ 번째 클러스터에 속하는 데이터 집합</p>
+</li>
+<li><p>$\mu_k$ : $k$ 번째 클러스터의 중심 위치</p>
+</li>
+<li><p>$d(x_i,\mu_k)$ : 두 데이터 $x_i, \mu_k$ 사이의 거리 혹은 비유사도</p>
+<ul>
+<li>유클리드 거리를 사용할 경우:<script type="math/tex; mode=display">
+d(x_i,\mu_k) = ||x_i - \mu_k ||^2</script></li>
+</ul>
+</li>
+</ul>
+<p>K-Means 클러스터링 방법의 세부 알고리즘은 다음과 같다.</p>
+<ol>
+<li>임의 중심값 $\mu_k$ 를 고른다. 보통 데이터 샘플 중에서 $K$개를 선택한다.</li>
+<li>중심값에서 각 데이터까지의 거리를 계산한다.</li>
+<li>각 데이터에서 가장 가까운 중심을 선택하여 클러스터를 갱신한다.</li>
+<li>다시 만들어진 클러스터에 대해 중심을 다시 계산하고 위 과정을 반복한다.</li>
+</ol>
+<p>Scikit-learn의 cluster 서브패키지는 K-Means 클러스터링을 위한 <code>KMeans</code> 클래스를 제공하고, 다음과 같은 인수를 받는다.</p>
+<ul>
+<li><code>n_clusters</code> : 클러스터의 개수</li>
+<li><code>init</code> : 초기화 방법. <code>random</code> 이면 무작위,  <code>k-means++</code>이면 K-Means++ 방법. 또는 각 데이터의 클러스터 라벨</li>
+<li><code>n_init</code> : 초기 중심값 시도 횟수. 디폴트는 10. 횟수만큼의 무작위 중심값 중 가장 좋은 값을 선택함 </li>
+<li><code>max_iter</code> : 최대 반복 횟수</li>
+<li><code>random_state</code> : 시드값</li>
+</ul>
+<p>다음은 <code>make_blobs</code> 명령으로 만든 데이터를 2개의 클러스터로 K-means클러스터링 하는 과정이다. 마커의 모양은 클러스터를 나타내며, 크기가 큰 마커가 중심값이다. 각 단계에서 중심값은 전 단계의 클러스터의 평균으로 다시 계산된다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> make_blobs</span><br><span class="line"><span class="keyword">from</span> sklearn.cluster <span class="keyword">import</span> KMeans</span><br><span class="line"></span><br><span class="line">X, _ = make_blobs(n_samples=<span class="number">20</span>, random_state=<span class="number">4</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_KMeans</span><span class="params">(n)</span>:</span></span><br><span class="line">    model = KMeans(n_clusters=<span class="number">2</span>, init=<span class="string">"random"</span>, n_init=<span class="number">1</span>, max_iter=n, random_state=<span class="number">8</span>).fit(X)</span><br><span class="line">    c0, c1 = model.cluster_centers_</span><br><span class="line">    plt.scatter(X[model.labels_ == <span class="number">0</span>, <span class="number">0</span>], X[model.labels_ == <span class="number">0</span>, <span class="number">1</span>], marker=<span class="string">'v'</span>, facecolor=<span class="string">'r'</span>, edgecolors=<span class="string">'k'</span>)</span><br><span class="line">    plt.scatter(X[model.labels_ == <span class="number">1</span>, <span class="number">0</span>], X[model.labels_ == <span class="number">1</span>, <span class="number">1</span>], marker=<span class="string">'^'</span>, facecolor=<span class="string">'y'</span>, edgecolors=<span class="string">'k'</span>)</span><br><span class="line">    plt.scatter(c0[<span class="number">0</span>], c0[<span class="number">1</span>], marker=<span class="string">'v'</span>, c=<span class="string">"r"</span>, s=<span class="number">200</span>)</span><br><span class="line">    plt.scatter(c1[<span class="number">0</span>], c1[<span class="number">1</span>], marker=<span class="string">'^'</span>, c=<span class="string">"y"</span>, s=<span class="number">200</span>)</span><br><span class="line">    plt.grid(<span class="keyword">False</span>)</span><br><span class="line">    plt.title(<span class="string">"iteration=&#123;&#125;, score=&#123;:5.2f&#125;"</span>.format(n, model.score(X)))</span><br><span class="line"></span><br><span class="line">plt.figure(figsize=(<span class="number">8</span>, <span class="number">8</span>))</span><br><span class="line">plt.subplot(<span class="number">321</span>)</span><br><span class="line">plot_KMeans(<span class="number">1</span>)</span><br><span class="line">plt.subplot(<span class="number">322</span>)</span><br><span class="line">plot_KMeans(<span class="number">2</span>)</span><br><span class="line">plt.subplot(<span class="number">323</span>)</span><br><span class="line">plot_KMeans(<span class="number">3</span>)</span><br><span class="line">plt.subplot(<span class="number">324</span>)</span><br><span class="line">plot_KMeans(<span class="number">4</span>)</span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20190111113256254.png" alt=""></p>
+<h3 id="K-Means"><a href="#K-Means" class="headerlink" title="K-Means++"></a>K-Means++</h3><p>K-Means++ 알고리즘은 <code>KMeans</code> 클러스터링 클래스의 인수로 설정할 수 있는, 초기 중심값을 설정하기 위한 알고리즘이다. 랜덤하게 초기중심값을 설정했을 때 클러스터링 성능이 떨어지는 점을 보완하기 위한 방법이 된다. 다음과 같은 방법을 통해 되도록 서로 멀리 떨어진 중심값 집합을 찾아낸다.</p>
+<ol>
+<li>중심값을 저장할 집합 $M$ 을 준비한다.</li>
+<li>일단 하나의 중심 $\mu_0$ 를 랜덤하게 선택해 $M$ 에 넣는다.</li>
+<li>$M$ 에 속하지 않는 모든 샘플 $x_i$ 에 대해 거리 $d(M, x_i)$를 계산한다. $M$ 안에 현재까지 들어있는 모든 중심값 $\mu_k$ 중 해당 데이터 $x_i$ 와 가장 가까운 중심값과의 거리에 해당한다.</li>
+<li>$d(M, x_i)$에 비례하는 확률로 다음 중심 $\mu$ 를 선택한다.</li>
+<li>$k$개의 중심이 선택될 때까지 위 과정을 반복한다.</li>
+<li>$k$ 개의 중심값에 대해 K-Means 알고리즘을 사용해 클러스터링을 진행한다.</li>
+</ol>
+<p>다음은 K-Means++ 알고리즘을 사용해 MNist Digit 이미지를 클러스터링한 결과이다. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_digits</span><br><span class="line"></span><br><span class="line">digits = load_digits()</span><br><span class="line"></span><br><span class="line">model = KMeans(init=<span class="string">"k-means++"</span>, n_clusters=<span class="number">10</span>, random_state=<span class="number">0</span>)</span><br><span class="line">model.fit(digits.data)</span><br><span class="line">y_pred = model.labels_</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_digits</span><span class="params">(images, labels)</span>:</span></span><br><span class="line">    f = plt.figure(figsize=(<span class="number">8</span>, <span class="number">2</span>))</span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> (i &lt; <span class="number">10</span> <span class="keyword">and</span> i &lt; images.shape[<span class="number">0</span>]):</span><br><span class="line">        ax = f.add_subplot(<span class="number">1</span>, <span class="number">10</span>, i + <span class="number">1</span>)</span><br><span class="line">        ax.imshow(images[i], cmap=plt.cm.bone)</span><br><span class="line">        ax.grid(<span class="keyword">False</span>)</span><br><span class="line">        ax.set_title(labels[i])</span><br><span class="line">        ax.xaxis.set_ticks([])</span><br><span class="line">        ax.yaxis.set_ticks([])</span><br><span class="line">        plt.tight_layout()</span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">        </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_cluster</span><span class="params">(images, y_pred, cluster_number)</span>:</span></span><br><span class="line">    images = images[y_pred == cluster_number]</span><br><span class="line">    y_pred = y_pred[y_pred == cluster_number]</span><br><span class="line">    show_digits(images, y_pred)</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">    show_cluster(digits.images, y_pred, i)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20190111114939664.png" alt=""></p>
+<h4 id="연습-문제"><a href="#연습-문제" class="headerlink" title="연습 문제"></a>연습 문제</h4><p>붓꽃 데이터를 K=3인 K-Means 클러스터링하여 adjusted Rand index, adjusted mutual information, 실루엣 계수를 각각 계산하라.</p>
+<p><img src="/images/image-20190111123921323.png" alt=""></p>
+<h2 id="2-DBSCAN-클러스터링"><a href="#2-DBSCAN-클러스터링" class="headerlink" title="2. DBSCAN 클러스터링"></a>2. DBSCAN 클러스터링</h2><p>K-Means 클러스터링 방법은 단순하고 강력한 방법이지만 클러스터의 모양이 원형이 아닌 경우에는 잘 동작하지 않으며 클러스터의 개수를 사용자가 지정해주어야 한다는 단점이 있다.</p>
+<p><strong>DBSCAN(Density-Based Spatial Clustering of  Applications with Noise)</strong> 방법은 데이터가 밀집한 정도를 이용하기 때문에 클러스터의 형태에 구애받지 않으며 클러스터의 개수도 지정해줄 필요가 없다. 이 방법에서는 초기데이터로부터 근접한 데이터를 찾아나가는 방식으로 클러스터를 확장한다. 이 때 사용되는 사용자 인수는 다음과 같다.</p>
+<ul>
+<li>epsilon $\epsilon$ : 이웃(neighborhood)을 정의하기 위한 거리(이웃 영역의 반지름)</li>
+<li>최소 데이터 개수(minimum points) : 밀집지역을 정의하기 위해 필요한 이웃의 개수</li>
+</ul>
+<p>만약 어떤 데이터에서 $\epsilon$ 거리 반경 안에 있는, 즉 해당 데이터의 이웃 영역 안에 최소 데이터개수(MinPts) 이상의 데이터가 있으면, 그 데이터는 <strong>핵심 데이터(core point)</strong>이다. </p>
+<p>이 핵심 데이터의 이웃 영역 안에 있는 데이터들을 핵심데이터와 <strong>연결된 고밀도 데이터(density-reachable points)</strong>라고 한다. 고밀도 데이터의 이웃영역 안에 있는 데이터 또한 연결된 고밀도 데이터가 된다. </p>
+<p>고밀도 데이터에 더이상 이웃이 없으면, 그 고밀도 데이터는 <strong>경계데이터(border data)</strong>라고 하며, 연결은 끝난다. 아무 데이터에도 연결되지 않은 데이터를 <strong>아웃라이어(outlier)</strong> 라고 한다.</p>
+<p><img src="/images/image-20190111150104717.png" alt=""></p>
+<p>scikit-learn의 cluster 서브패키지에서 제공하는 <code>DBSCAN</code> 클래스를 이용하면 다음과 같은 인수를 지정해 클러스터링을 할 수 잇다.</p>
+<ul>
+<li><code>eps</code> : 이웃을 정의하기 위한 거리 $\epsilon$ </li>
+<li><code>core_sample_indices_</code> : 핵심 데이터의 인덱스</li>
+</ul>
+<p>다음은 <code>make_circles</code> 명령과 <code>make_moons</code> 명령으로 만든 동심원, 초승달 데이터를 DBSCAN 방법으로 클러스터링한 결과를 나타낸 것이다. 마커의 모양은 클러스터를 나타내고, 마커의 크기가 큰 데이터가 핵심데이터, x 표시된 데이터는 아웃라이어다.</p>
+<p><img src="/images/image-20190111160730893.png" alt=""></p>
+<h2 id="3-계층적-클러스터링"><a href="#3-계층적-클러스터링" class="headerlink" title="3. 계층적 클러스터링"></a>3. 계층적 클러스터링</h2><p>계층적 클러스터링은 하나의 데이터샘플을 하나의 클러스터로 보고 가장 유사도가 높은 클러스터끼리 합치면서 클러스터의 개수를 줄여가는 방법이다.</p>
+<h3 id="클러스터간-거리-측정"><a href="#클러스터간-거리-측정" class="headerlink" title="클러스터간 거리 측정"></a>클러스터간 거리 측정</h3><p>클러스터간의 비유사도 혹은 거리를 측정하는 방법에는 다음과 같은 것들이 있다.</p>
+<ul>
+<li>비귀납적 방법<ul>
+<li>centroid</li>
+<li>single</li>
+<li>complete</li>
+<li>average</li>
+</ul>
+</li>
+<li>귀납적 방법<ul>
+<li>median</li>
+<li>weighted</li>
+<li>Ward</li>
+</ul>
+</li>
+</ul>
+<h4 id="비귀납적-방법"><a href="#비귀납적-방법" class="headerlink" title="비귀납적 방법"></a>비귀납적 방법</h4><h4 id="1-centroid"><a href="#1-centroid" class="headerlink" title="1) centroid"></a>1) centroid</h4><p>두 클러스터 $u, v$의 중심점(centroid) $c_u, c_v$를 정의한 다음 두 중심점의 거리를 클러스터간 거리로 정의한다.</p>
+<script type="math/tex; mode=display">
+d(u, v) = ||c_u-c_v||^2</script><h4 id="2-single"><a href="#2-single" class="headerlink" title="2) single"></a>2) single</h4><p>클러스터 $u$ 의 모든 데이터 $i$와 클러스터 $v$ 의 모든 데이터 $j$ 의 모든 조합에 대해 거리를 측정해 그 중 최소값 클러스터간 거리로 정의한다. 최소거리(Nearest Point) 방법이라고도 한다.</p>
+<script type="math/tex; mode=display">
+d(u, v) = \min(dist(u[i], v[j]))</script><h4 id="3-complete"><a href="#3-complete" class="headerlink" title="3) complete"></a>3) complete</h4><p>클러스터 $u$ 의 모든 데이터  $i$와 클러스터 $v$ 의 모든 데이터 $j$ 의 모든 조합에 대해 거리를 측정해 그 평균을 클러스터간 거리로 정의한다. $|u|$ 와 $|v|$ 는 각각 두 클러스터의 원소의 개수를 의미한다.</p>
+<script type="math/tex; mode=display">
+d(u,v) = \sum_{ij} \frac{d(u[i],v[j])}{|u||v|}</script><h4 id="귀납적-방법"><a href="#귀납적-방법" class="headerlink" title="귀납적 방법"></a>귀납적 방법</h4><p>귀납적 방법에 속하는 아래 방법들은 Agglomerative Clustering에서 사용할 수 있는 방법들이다.</p>
+<h4 id="1-median"><a href="#1-median" class="headerlink" title="1) median"></a>1) median</h4><p>centroid 방법의 변형으로, 만약 클러스터 $u$가 클러스터 $s$ 와 $t$ 의 결합으로 생겨난 클러스터라면 $u$ 클러스터의 중심점은 새로 계산하지 않고 원래 두 클러스터의 중심점의 평균으로 사용한다.</p>
+<h4 id="2-weighted"><a href="#2-weighted" class="headerlink" title="2) weighted"></a>2) weighted</h4><p>만약 클러스터 $u$가 클러스터 $s$ 와 $t$ 의 결합으로 생겨난 클러스터라면 $u$ 클러스터와 $v$ 클러스터간의 거리는 $v$에서 원래 두 클러스터까지의 거리의 평균으로 정의한다.</p>
+<script type="math/tex; mode=display">
+d(u, v) = (dist(s,v)+dist(t,v))/2</script><h4 id="3-Ward"><a href="#3-Ward" class="headerlink" title="3) Ward"></a>3) Ward</h4><p>만약 클러스터 $u$가 클러스터 $s$ 와 $t$ 의 결합으로 생겨난 클러스터라면 $u$ 클러스터와 $v$ 클러스터간의 거리는 $v$ 에서 $s, t$ 각각까지의 거리의 가중평균에서 $s$ 와 $t$ 간 거리를 보정한 값으로 정의한다.</p>
+<script type="math/tex; mode=display">
+d(u,v)\\
+= \sqrt{\frac{|v|+|s|}{|v|+|s|+|t|}d(v,s)^2+\frac{|v|+|t|}{|v|+|s|+|t|}d(v,t)^2 - \frac{|v|}{|v|+|s|+|t|}d(s,t)^2}</script><h3 id="SciPy의-계층적-클러스터링"><a href="#SciPy의-계층적-클러스터링" class="headerlink" title="SciPy의 계층적 클러스터링"></a>SciPy의 계층적 클러스터링</h3><p>파이썬으로 계층적 클러스터링을 하려면 SciPy 패키지의 <code>linkage</code> 명령을 사용하거나 scikit-learn 패키지의 AgglomerativeClustering 클래스를 사용한다. Scipy패키지는 클러스터링 결과를 tree형태로 시각화해주는 <code>dendogram</code> 명령도 지원한다.</p>
+<p>MNIST digit 이미지 중 20개를 무작위로 골라 계층적 클러스터링을 적용해보자.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_digits</span><br><span class="line"></span><br><span class="line">digits = load_digits()</span><br><span class="line">n_image = <span class="number">20</span></span><br><span class="line">np.random.seed(<span class="number">0</span>)</span><br><span class="line">idx = np.random.choice(range(len(digits.images)), n_image)</span><br><span class="line">X = digits.data[idx]</span><br><span class="line">images = digits.images[idx]</span><br><span class="line"></span><br><span class="line">plt.figure(figsize=(<span class="number">12</span>, <span class="number">1</span>))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n_image):</span><br><span class="line">    plt.subplot(<span class="number">1</span>, n_image, i + <span class="number">1</span>)</span><br><span class="line">    plt.imshow(images[i], cmap=plt.cm.bone)</span><br><span class="line">    plt.grid(<span class="keyword">False</span>)</span><br><span class="line">    plt.xticks(())</span><br><span class="line">    plt.yticks(())</span><br><span class="line">    plt.title(i)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20190111163722402.png" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy.cluster.hierarchy <span class="keyword">import</span> linkage, dendrogram</span><br><span class="line"></span><br><span class="line">Z = linkage(X, <span class="string">'ward'</span>) <span class="comment"># 귀납적 방법 중 'Ward'를 적용한 계층적 클러스터링 실시</span></span><br><span class="line"><span class="keyword">from</span> matplotlib.offsetbox <span class="keyword">import</span> OffsetImage, AnnotationBbox</span><br><span class="line"></span><br><span class="line">plt.figure(figsize=(<span class="number">10</span>, <span class="number">4</span>))</span><br><span class="line">ax = plt.subplot()</span><br><span class="line"></span><br><span class="line">ddata = dendrogram(Z)</span><br><span class="line"></span><br><span class="line">dcoord = np.array(ddata[<span class="string">"dcoord"</span>])</span><br><span class="line">icoord = np.array(ddata[<span class="string">"icoord"</span>])</span><br><span class="line">leaves = np.array(ddata[<span class="string">"leaves"</span>])</span><br><span class="line">idx = np.argsort(dcoord[:, <span class="number">2</span>])</span><br><span class="line">dcoord = dcoord[idx, :]</span><br><span class="line">icoord = icoord[idx, :]</span><br><span class="line">idx = np.argsort(Z[:, :<span class="number">2</span>].ravel())</span><br><span class="line">label_pos = icoord[:, <span class="number">1</span>:<span class="number">3</span>].ravel()[idx][:<span class="number">20</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">20</span>):</span><br><span class="line">    imagebox = OffsetImage(images[i], cmap=plt.cm.bone_r, interpolation=<span class="string">"bilinear"</span>, zoom=<span class="number">3</span>)</span><br><span class="line">    ab = AnnotationBbox(imagebox, (label_pos[i], <span class="number">0</span>),  box_alignment=(<span class="number">0.5</span>, <span class="number">-0.1</span>), </span><br><span class="line">                        bboxprops=&#123;<span class="string">"edgecolor"</span> : <span class="string">"none"</span>&#125;)</span><br><span class="line">    ax.add_artist(ab)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20190111163821373.png" alt=""></p>
+<h2 id="4-Affinity-Propagation"><a href="#4-Affinity-Propagation" class="headerlink" title="4. Affinity Propagation"></a>4. Affinity Propagation</h2><p>모든 데이터가 특정한 기준에 따라 자신을 대표할 대표 데이터를 선택한다. 만약 스스로가 자기 자신을 대표하게 되면, 그 데이터가 클러스터의 중심이 된다.</p>
+<ul>
+<li>responsibility $r(i, k)$<ul>
+<li>$k$번째 데이터가 $i$ 번째 데이터의 대표가 되어야 한다는 근거</li>
+</ul>
+</li>
+<li>availability $a(i, k)$<ul>
+<li>$i$ 번째 데이터가 $k$ 번째 데이터를 대표로 선택해야 한다는 근거</li>
+</ul>
+</li>
+<li>다음 수식을 $r,a$ 값이 수렴할 때까지 반복</li>
+</ul>
+<script type="math/tex; mode=display">
+r(i, k) \leftarrow s(i,k) - \max_{k'\neq k}(a(i,k')+ s(i,k'))</script><script type="math/tex; mode=display">
+a(i,k) \leftarrow \min(0, r(k,k) + \sum_{i'\neq i,k}r(i',k))</script><p>여기에서 $s(i,k)$ 는 다음과 같이 음의 거리로 정의되는 유사도이다.</p>
+<script type="math/tex; mode=display">
+s(i,k) = -||x_i - x_k||^2</script><p>특히 $s(k,k)$ 는 특정한 음수값으로 사용자가 지정해주게 되는데, 이 값에 따라 클러스터의 개수가 달라지는 하이퍼 모수가 된다. <strong>$s(k,k)$값이 크면 자기 자신에 대한 유사도가 커져서 클러스터 수가 증가</strong>한다.</p>
+<p>위 알고리즘으로 계산하는 $r, a$ 가 더 이상 변화하지 않고 수렴하면 게산이 종료되고, 종료 시점에서 <strong>$r(k,k) + a(k,k) &gt; 0$ 인 데이터가 클러스터의 중심</strong>이 된다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.datasets.samples_generator <span class="keyword">import</span> make_blobs</span><br><span class="line"><span class="keyword">from</span> sklearn.cluster <span class="keyword">import</span> AffinityPropagation</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> cycle</span><br><span class="line"></span><br><span class="line">centers = [[<span class="number">1</span>, <span class="number">1</span>], [<span class="number">-1</span>, <span class="number">-1</span>], [<span class="number">1</span>, <span class="number">-1</span>]]</span><br><span class="line">X, labels_true = make_blobs(n_samples=<span class="number">300</span>, centers=centers, cluster_std=<span class="number">0.5</span>, random_state=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">model = AffinityPropagation(preference=<span class="number">-50</span>).fit(X)</span><br><span class="line"></span><br><span class="line">cluster_centers_indices = model.cluster_centers_indices_</span><br><span class="line">labels = model.labels_</span><br><span class="line">n_clusters_ = len(cluster_centers_indices)</span><br><span class="line"></span><br><span class="line">colors = cycle(<span class="string">'rgb'</span>)</span><br><span class="line"><span class="keyword">for</span> k, col <span class="keyword">in</span> zip(range(n_clusters_), colors):</span><br><span class="line">    class_members = labels == k</span><br><span class="line">    cluster_center = X[cluster_centers_indices[k]]</span><br><span class="line">    plt.plot(X[class_members, <span class="number">0</span>], X[class_members, <span class="number">1</span>], col + <span class="string">'.'</span>)</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> X[class_members]:</span><br><span class="line">        plt.plot([cluster_center[<span class="number">0</span>], x[<span class="number">0</span>]], [cluster_center[<span class="number">1</span>], x[<span class="number">1</span>]], col, alpha=<span class="number">0.25</span>)</span><br><span class="line">    plt.plot(cluster_center[<span class="number">0</span>], cluster_center[<span class="number">1</span>], <span class="string">'o'</span>, mec=<span class="string">'k'</span>, mew=<span class="number">3</span>, markersize=<span class="number">7</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20190111170025769.png" alt=""></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://jyujin39.github.io/2019/01/11/Clustering-Methods/" data-id="cjqrrex0n0001gyba0tvqtthl" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/jyujin39/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2019/01/11/Clustering/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">Clustering</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Classification/">Classification</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Classification/Math/">Math</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">15</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Math/Classification/">Classification</a><span class="category-list-count">15</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="no-thumbnail">
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2019/01/11/Clustering-Methods/" class="title">Clustering Methods</a></p>
+                            <p class="item-date"><time datetime="2019-01-11T08:03:15.000Z" itemprop="datePublished">2019-01-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2019/01/11/Clustering/" class="title">Clustering</a></p>
+                            <p class="item-date"><time datetime="2019-01-11T02:06:28.000Z" itemprop="datePublished">2019-01-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2019/01/10/Recommender-System/" class="title">Recommender System</a></p>
+                            <p class="item-date"><time datetime="2019-01-10T09:42:01.000Z" itemprop="datePublished">2019-01-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2019/01/08/Hyper-Parameter-Tuning/" class="title">Hyper Parameter Tuning</a></p>
+                            <p class="item-date"><time datetime="2019-01-08T08:12:40.000Z" itemprop="datePublished">2019-01-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2019/01/01/Kernel-SVM/" class="title">Kernel SVM</a></p>
+                            <p class="item-date"><time datetime="2019-01-01T09:39:39.000Z" itemprop="datePublished">2019-01-01</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/">study</a><span class="tag-list-count">16</span></li></ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 Yujin Jeon</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'https://jyujin39.github.io/2019/01/11/Clustering-Methods/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
