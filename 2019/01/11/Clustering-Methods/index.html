@@ -21,7 +21,7 @@
 <meta property="og:description" content="클러스터링 방법1. K-Means 클러스터링앞서 언급했던 5가지 클러스터링 방법 중 첫번째로 소개할 K-Means 클러스터링 알고리즘은 가장 단순하고 빠른 클러스터링 알고리즘 중 하나다. 이 클러스터링 방법에서는 아래 목적함수 값이 최소화될 때까지 클러스터의 중심(centroid) 위치와 각 데이터가 소속될 클러스터를 반복해서 찾는다. 목적함수 값을 ine">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://jyujin39.github.io/images/image-20190111113256254.png">
-<meta property="og:updated_time" content="2019-01-11T08:05:39.150Z">
+<meta property="og:updated_time" content="2019-01-11T10:53:48.768Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Clustering Methods">
 <meta name="twitter:description" content="클러스터링 방법1. K-Means 클러스터링앞서 언급했던 5가지 클러스터링 방법 중 첫번째로 소개할 K-Means 클러스터링 알고리즘은 가장 단순하고 빠른 클러스터링 알고리즘 중 하나다. 이 클러스터링 방법에서는 아래 목적함수 값이 최소화될 때까지 클러스터의 중심(centroid) 위치와 각 데이터가 소속될 클러스터를 반복해서 찾는다. 목적함수 값을 ine">
@@ -238,7 +238,7 @@ d(x_i,\mu_k) = ||x_i - \mu_k ||^2</script></li>
 </ul>
 <p>다음은 <code>make_circles</code> 명령과 <code>make_moons</code> 명령으로 만든 동심원, 초승달 데이터를 DBSCAN 방법으로 클러스터링한 결과를 나타낸 것이다. 마커의 모양은 클러스터를 나타내고, 마커의 크기가 큰 데이터가 핵심데이터, x 표시된 데이터는 아웃라이어다.</p>
 <p><img src="/images/image-20190111160730893.png" alt=""></p>
-<h2 id="3-계층적-클러스터링"><a href="#3-계층적-클러스터링" class="headerlink" title="3. 계층적 클러스터링"></a>3. 계층적 클러스터링</h2><p>계층적 클러스터링은 하나의 데이터샘플을 하나의 클러스터로 보고 가장 유사도가 높은 클러스터끼리 합치면서 클러스터의 개수를 줄여가는 방법이다.</p>
+<h2 id="3-계층적-클러스터링"><a href="#3-계층적-클러스터링" class="headerlink" title="3. 계층적 클러스터링"></a>3. 계층적 클러스터링</h2><p>계층적 클러스터링(Hierarchical Clustering)은 하나의 데이터샘플을 하나의 클러스터로 보고 가장 유사도가 높은 클러스터끼리 합치면서 클러스터의 개수를 줄여가는 방법이다.</p>
 <h3 id="클러스터간-거리-측정"><a href="#클러스터간-거리-측정" class="headerlink" title="클러스터간 거리 측정"></a>클러스터간 거리 측정</h3><p>클러스터간의 비유사도 혹은 거리를 측정하는 방법에는 다음과 같은 것들이 있다.</p>
 <ul>
 <li>비귀납적 방법<ul>
