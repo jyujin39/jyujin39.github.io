@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>graph | Data Science YJ</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="study">
+    
+    <meta name="description" content="그래프그래프(graph)는 다음 그림처럼 노드(node 혹은 vertex)와 노드들을 잇는 간선(edge)으로 이루어진 구조를 말한다.  수학적으로 그래프 $G$ 는 노드집합 $V$ 와 간선집합 $E$ 로 구성된다.  G = (V, E)간선은 두 개의 노드로 이루어진, 순서가 있는 쌍(ordered pair)이다.  E \subseteq V \times V">
+<meta name="keywords" content="study">
+<meta property="og:type" content="article">
+<meta property="og:title" content="graph">
+<meta property="og:url" content="https://jyujin39.github.io/2019/01/13/graph/index.html">
+<meta property="og:site_name" content="Data Science YJ">
+<meta property="og:description" content="그래프그래프(graph)는 다음 그림처럼 노드(node 혹은 vertex)와 노드들을 잇는 간선(edge)으로 이루어진 구조를 말한다.  수학적으로 그래프 $G$ 는 노드집합 $V$ 와 간선집합 $E$ 로 구성된다.  G = (V, E)간선은 두 개의 노드로 이루어진, 순서가 있는 쌍(ordered pair)이다.  E \subseteq V \times V">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://jyujin39.github.io/images/image-20190113082846700.png">
+<meta property="og:updated_time" content="2019-01-13T10:55:42.084Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="graph">
+<meta name="twitter:description" content="그래프그래프(graph)는 다음 그림처럼 노드(node 혹은 vertex)와 노드들을 잇는 간선(edge)으로 이루어진 구조를 말한다.  수학적으로 그래프 $G$ 는 노드집합 $V$ 와 간선집합 $E$ 로 구성된다.  G = (V, E)간선은 두 개의 노드로 이루어진, 순서가 있는 쌍(ordered pair)이다.  E \subseteq V \times V">
+<meta name="twitter:image" content="https://jyujin39.github.io/images/image-20190113082846700.png">
+    
+
+    
+
+    
+        <link rel="icon" href="/images/icons8-account-40.png">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Yujin&#39;s study blog for Data Science</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Coding-drills/">Coding drills</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Coding-drills/Programmers/">Programmers</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Math/">Math</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Math/Classification/">Classification</a></li></ul></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Math/Classification/">Classification</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-graph" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        graph
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/01/13/graph/" class="article-date">
+            <time datetime="2019-01-13T10:50:08.000Z" itemprop="datePublished">2019-01-13</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/study/">study</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="그래프"><a href="#그래프" class="headerlink" title="그래프"></a>그래프</h1><p><strong>그래프(graph)</strong>는 다음 그림처럼 노드(node 혹은 vertex)와 노드들을 잇는 간선(edge)으로 이루어진 구조를 말한다.</p>
+<p><img src="/images/image-20190113082846700.png" alt=""></p>
+<p>수학적으로 그래프 $G$ 는 노드집합 $V$ 와 간선집합 $E$ 로 구성된다.</p>
+<script type="math/tex; mode=display">
+G = (V, E)</script><p>간선은 두 개의 노드로 이루어진, 순서가 있는 쌍(ordered pair)이다.</p>
+<script type="math/tex; mode=display">
+E \subseteq V \times V</script><p>위에서 그린 그래프는 4개의 노드 집합과 6개의 간선 집합을 갖는다.</p>
+<script type="math/tex; mode=display">
+V = \{0, 1, 2, 3\}\\
+E = \{(0,1), (0,2), (0,3), (1,2), (1,3), (2,3)\}</script><h2 id="방향성-그래프와-비방향성-그래프"><a href="#방향성-그래프와-비방향성-그래프" class="headerlink" title="방향성 그래프와 비방향성 그래프"></a>방향성 그래프와 비방향성 그래프</h2><p>만약 간선 $(a, b)$와 $(b, a)$가 있을 때, 이 두 간선을 다른 것으로 본다면 방향이 있는 방향성 그래프(directed graph), 같은 것으로 본다면 방향이 없는 비방향성 그래프(undirected graph)이다. 그래프를 시각화할 때 방향성은 화살표로 표시한다.</p>
+<h3 id="NetworkX-패키지"><a href="#NetworkX-패키지" class="headerlink" title="NetworkX 패키지"></a>NetworkX 패키지</h3><p>NetworkX는 그래프를 다루기 위한 파이썬 패키지이다. 비방향성 그래프를 만드는 클래스 <code>Graph</code> 와, 방향성 그래프를 만드는 클래스<code>DiGraph</code> 를 제공한다. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># !pip3 install networkx</span></span><br><span class="line"><span class="keyword">import</span> networkx <span class="keyword">as</span> nx</span><br><span class="line">g1 = nx.DiGraph()</span><br></pre></td></tr></table></figure>
+<p>위에서 g1이라는 방향성 그래프를 생성하였다. 노드를 추가하려면 <code>add_node</code> 메서드를 사용한다. 노드에는 숫자나 문자열을 사용할 수 있으며, <code>nodes</code> 메서드로 추가된 노드들을 확인할 수 있다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">g1.add_node(<span class="string">"a"</span>)</span><br><span class="line">g1.add_node(<span class="number">1</span>)</span><br><span class="line">g1.add_node(<span class="number">2</span>)</span><br><span class="line">g1.nodes()</span><br></pre></td></tr></table></figure>
+<p><img src="/Users/jeon-yujin/Library/Application%20Support/typora-user-images/image-20190113084101505.png" alt="image-20190113084101505"></p>
+<p>간선을 추가할 때는<code>add_edge</code> 메서드를 사용한다. 간선을 이을 두 노드를 인수로 사용한다. 그래프에 포함된 간선은 <code>edges</code> 메서드로 확인할 수 있다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">g1.add_edge(<span class="number">1</span>, <span class="string">'a'</span>)</span><br><span class="line">g1.add_edge(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">g1.edges()</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20190113084404242.png" alt=""></p>
+<p>Graphviz 프로그램과 pydot 패키지를 설치하면 이를 시각화할 수 있다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> IPython.core.display <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">from</span> networkx.drawing.nx_pydot <span class="keyword">import</span> to_pydot</span><br><span class="line"></span><br><span class="line">d1 = to_pydot(g1)</span><br><span class="line">d1.set_dpi(<span class="number">300</span>)</span><br><span class="line">d1.set_rankdir(<span class="string">"LR"</span>)</span><br><span class="line">d1.set_margin(<span class="number">1</span>)</span><br><span class="line">Image(d1.create_png(), width=<span class="number">300</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20190113084557796.png" alt=""></p>
+<p>노드 집합 $V$ 와 간선 집합 $E$ 를 갖는 그래프 $G$ 에 포함된 노드의 개수를 <strong>그래프의 크기(cardinality)</strong>라고 한다. $|G|$ 또는 $|V|$ 로 나타내며, 간선의 개수는 $|E|$ 로 나타낸다.</p>
+<p>NetworkX 패키지에서는 각각 <code>len</code> , <code>number_of_nodes</code>, <code>number_of_edges</code>  메서드로 계산할 수 있다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">len(g1), g1.number_of_nodes(), g1.number_of_edges()</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20190113085023464.png" alt=""></p>
+<p>만약 두 노드 $a, b$ 를 포함하는 간선 $(a,b)$ 가 $E$ 안에 존재하면 두 노드는 <strong>인접(adjacent)하다</strong>고 하며, 인접한 두 노드를 서로 <strong>이웃(neighbor)</strong>이라고 한다.</p>
+<script type="math/tex; mode=display">
+(a, b) \in E</script><p>NetworkX 패키지 <code>Graph</code> 클래스의 <code>neighbors</code> 메서드는 인수로 받은 노드에 인접한 노드를 생성하므로 인접성을 확인하는 데 사용할 수 있다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> n <span class="keyword">in</span> g1.neighbors(<span class="number">1</span>):</span><br><span class="line">	print(n)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20190113085557832.png" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span> <span class="keyword">in</span> g1.neighbors(<span class="number">1</span>), <span class="number">1</span> <span class="keyword">in</span> g1.neighbors(<span class="number">2</span>), <span class="string">'a'</span> <span class="keyword">in</span> g1.neighbors(<span class="number">2</span>), <span class="string">'a'</span> <span class="keyword">in</span> g1.neighbors(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20190113085811104.png" alt=""></p>
+<p>만약 어떤 노드에서 출발해 자기 자신으로 바로 돌아오는 간선이 있다면 <strong>셀프 루프(self loop)</strong>라고 한다. 다음 그래프에서는 노드2에 셀프루프가 있는 것이다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">g2 = nx.Graph()</span><br><span class="line">g2.add_node(<span class="number">1</span>)</span><br><span class="line">g2.add_node(<span class="number">2</span>)</span><br><span class="line">g2.add_node(<span class="number">3</span>)</span><br><span class="line">g2.add_edge(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">g2.add_edge(<span class="number">2</span>, <span class="number">2</span>)</span><br><span class="line">g2.add_edge(<span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">np.random.seed(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">d2 = to_pydot(g2)</span><br><span class="line">d2.set_dpi(<span class="number">600</span>)</span><br><span class="line">d2.set_rankdir(<span class="string">"LR"</span>)</span><br><span class="line">Image(d2.create_png(), width=<span class="number">600</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20190113090009096.png" alt=""></p>
+<h2 id="워크-트레일-패스"><a href="#워크-트레일-패스" class="headerlink" title="워크, 트레일, 패스"></a>워크, 트레일, 패스</h2><p>어떤 노드를 출발해서 다른 노드로 도달하기 위한 인접한 노드의 순서열을 <strong>워크(walk)</strong>라고 하고, 워크 중에서 동일한 노드를 두 번 이상 지나지 않는 워크를 <strong>트레일(trail),</strong> 시작과 끝 노드를 제외하고 동일한 노드를 두 번 이상 지나지 않는 워크를 <strong>패스(path)</strong>라고 한다.</p>
+<p>패스 중에서 시작점과 끝점이 동일한 패스를 <strong>사이클(cycle)</strong>이라고 하며, 사이클이 하나도 없는 그래프를 <strong>어사이클릭 그래프(acyclic graph)</strong>라고 한다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">g3 = nx.DiGraph()</span><br><span class="line">g3.add_node(<span class="string">"a"</span>)</span><br><span class="line">g3.add_node(<span class="string">"b"</span>)</span><br><span class="line">g3.add_node(<span class="string">"c"</span>)</span><br><span class="line">g3.add_node(<span class="string">"d"</span>)</span><br><span class="line">g3.add_node(<span class="string">"e"</span>)</span><br><span class="line">g3.add_node(<span class="string">"f"</span>)</span><br><span class="line">g3.add_edge(<span class="string">"a"</span>, <span class="string">"b"</span>)</span><br><span class="line">g3.add_edge(<span class="string">"c"</span>, <span class="string">"a"</span>)</span><br><span class="line">g3.add_edge(<span class="string">"b"</span>, <span class="string">"c"</span>)</span><br><span class="line">g3.add_edge(<span class="string">"c"</span>, <span class="string">"d"</span>)</span><br><span class="line">g3.add_edge(<span class="string">"d"</span>, <span class="string">"e"</span>)</span><br><span class="line">g3.add_edge(<span class="string">"e"</span>, <span class="string">"c"</span>)</span><br><span class="line"></span><br><span class="line">d3 = to_pydot(g3)</span><br><span class="line">d3.set_dpi(<span class="number">600</span>)</span><br><span class="line">d3.set_rankdir(<span class="string">"LR"</span>)</span><br><span class="line">d3.set_margin(<span class="number">0.5</span>)</span><br><span class="line">Image(d3.create_png(), width=<span class="number">800</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20190113090505844.png" alt=""></p>
+<p>위 그래프 $g3$에서 워크, 트레일, 패스, 사이클을 찾아보자.</p>
+<ul>
+<li>$a- b-c-a-b-c-d-e-c$ 는 $a$ 에서 $c$ 로 가는 워크이다. 하지만 트레일이나 패스는 아니다.</li>
+<li>$a-b-c-d-e$ 는 트레일이다.</li>
+<li>$a-b-c-d-e-c$ 는 패스지만 트레일은 아니다.</li>
+<li>$a-b-c-a$ 는 사이클이다.</li>
+</ul>
+<p><code>has_path</code> 명령으로 두 노드간에 패스가 존재하는지 알 수 있다. 패스가 존재하면 <code>shortest_path</code> 명령으로 가장 짧은 패스를 구할 수 있다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nx.has_path(g3, <span class="string">'a'</span>, <span class="string">'b'</span>), nx.has_path(g3, <span class="string">'a'</span>, <span class="string">'e'</span>), nx.has_path(g3, <span class="string">'a'</span>, <span class="string">'f'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20190113193129628.png" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nx.shortest_path(g3, <span class="string">'a'</span>, <span class="string">'e'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20190113193159938.png" alt=""></p>
+<h2 id="클리크"><a href="#클리크" class="headerlink" title="클리크"></a>클리크</h2><ul>
+<li><strong>클리크(clique)</strong> : 모든 노드끼리 간선이 존재하는 무방향성 그래프의 노드 집합</li>
+<li><strong>최대 클리크(maximal clique)</strong> : 클리크에 포함된 노드에 인접한 다른 노드를 추가하면 클리크가 아니게 되는 것</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">g4 = nx.Graph()</span><br><span class="line">g4.add_node(<span class="string">"a"</span>)</span><br><span class="line">g4.add_node(<span class="string">"b"</span>)</span><br><span class="line">g4.add_node(<span class="string">"c"</span>)</span><br><span class="line">g4.add_node(<span class="string">"d"</span>)</span><br><span class="line">g4.add_node(<span class="string">"e"</span>)</span><br><span class="line">g4.add_node(<span class="string">"f"</span>)</span><br><span class="line">g4.add_edge(<span class="string">"a"</span>, <span class="string">"b"</span>)</span><br><span class="line">g4.add_edge(<span class="string">"a"</span>, <span class="string">"c"</span>)</span><br><span class="line">g4.add_edge(<span class="string">"b"</span>, <span class="string">"c"</span>)</span><br><span class="line">g4.add_edge(<span class="string">"b"</span>, <span class="string">"d"</span>)</span><br><span class="line">g4.add_edge(<span class="string">"c"</span>, <span class="string">"d"</span>)</span><br><span class="line">g4.add_edge(<span class="string">"d"</span>, <span class="string">"e"</span>)</span><br><span class="line">g4.add_edge(<span class="string">"d"</span>, <span class="string">"f"</span>)</span><br><span class="line">g4.add_edge(<span class="string">"e"</span>, <span class="string">"f"</span>)</span><br><span class="line"></span><br><span class="line">d4 = to_pydot(g4)</span><br><span class="line">d4.set_dpi(<span class="number">600</span>)</span><br><span class="line">d4.set_rankdir(<span class="string">"LR"</span>)</span><br><span class="line">Image(d4.create_png(), width=<span class="number">800</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20190113193837011.png" alt=""></p>
+<p>위 그래프에서 클리크를 찾아보려면 <code>enumerate_all_cliques</code>, 최대 클리크를 찾아보려면  <code>find_cliques</code> 명령을 사용하면 된다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[c <span class="keyword">for</span> c <span class="keyword">in</span> nx.enumerate_all_cliques(g4)]</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20190113194546171.png" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[c <span class="keyword">for</span> c <span class="keyword">in</span> nx.find_cliques(g4)]</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20190113194613633.png" alt=""></p>
+<p>특정 노드가 포함된 클리크를 찾아보려면 해당 노드를 인수로 설정하여 <code>cliques_containing_node</code> 명령을 사용하면 된다. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nx.cliques_containing_node(g4, [<span class="string">'a'</span>])</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20190113194154441.png" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nx.cliques_containing_node(g4, [<span class="string">'a'</span>,<span class="string">'b'</span>])</span><br></pre></td></tr></table></figure>
+<p><img src="/images/image-20190113194240089.png" alt=""></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://jyujin39.github.io/2019/01/13/graph/" data-id="cjqusa6r0000ispbaw0zdx1f2" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/jyujin39/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2019/01/12/모의고사/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">모의고사</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding-drills/">Coding drills</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding-drills/Programmers/">Programmers</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Math/Classification/">Classification</a><span class="category-list-count">17</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="no-thumbnail">
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2019/01/13/graph/" class="title">graph</a></p>
+                            <p class="item-date"><time datetime="2019-01-13T10:50:08.000Z" itemprop="datePublished">2019-01-13</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Coding-drills/">Coding drills</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Coding-drills/Programmers/">Programmers</a></p>
+                            <p class="item-title"><a href="/2019/01/12/모의고사/" class="title">모의고사</a></p>
+                            <p class="item-date"><time datetime="2019-01-12T11:42:20.000Z" itemprop="datePublished">2019-01-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Coding-drills/">Coding drills</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Coding-drills/Programmers/">Programmers</a></p>
+                            <p class="item-title"><a href="/2019/01/12/완주하지-못한-선수/" class="title">완주하지 못한 선수</a></p>
+                            <p class="item-date"><time datetime="2019-01-12T04:24:32.000Z" itemprop="datePublished">2019-01-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2019/01/11/Clustering-Methods/" class="title">Clustering Methods</a></p>
+                            <p class="item-date"><time datetime="2019-01-11T08:03:15.000Z" itemprop="datePublished">2019-01-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a></p>
+                            <p class="item-title"><a href="/2019/01/11/Clustering/" class="title">Clustering</a></p>
+                            <p class="item-date"><time datetime="2019-01-11T02:06:28.000Z" itemprop="datePublished">2019-01-11</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/">study</a><span class="tag-list-count">19</span></li></ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 Yujin Jeon</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'https://jyujin39.github.io/2019/01/13/graph/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
