@@ -20,12 +20,12 @@
 <meta property="og:site_name" content="Data Science YJ">
 <meta property="og:description" content="마지막 인덱스 찾기1부터 M까지 숫자가 들어있는 길이가 N인 리스트에서, 각 숫자가 마지막으로 등장하는 index를 순차적으로 담은 리스트를 리턴하세요. 예제    m data return     3 [1, 2, 3, 1, 2, 3, 1] [6, 4, 5]     설명 1이 등장한 index는 0과 3과 6,  그 중 가장 마지막에 등장한 index는 6">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://jyujin39.github.io/Users/jeon-yujin/Library/Application">
-<meta property="og:updated_time" content="2019-01-19T09:30:42.981Z">
+<meta property="og:image" content="https://jyujin39.github.io/images/image-20190119181756949.png">
+<meta property="og:updated_time" content="2019-01-19T09:35:17.696Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="마지막 인덱스 찾기">
 <meta name="twitter:description" content="마지막 인덱스 찾기1부터 M까지 숫자가 들어있는 길이가 N인 리스트에서, 각 숫자가 마지막으로 등장하는 index를 순차적으로 담은 리스트를 리턴하세요. 예제    m data return     3 [1, 2, 3, 1, 2, 3, 1] [6, 4, 5]     설명 1이 등장한 index는 0과 3과 6,  그 중 가장 마지막에 등장한 index는 6">
-<meta name="twitter:image" content="https://jyujin39.github.io/Users/jeon-yujin/Library/Application">
+<meta name="twitter:image" content="https://jyujin39.github.io/images/image-20190119181756949.png">
     
 
     
@@ -212,7 +212,7 @@
 <li><p><strong>첫 번째 풀이</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span><span class="params">(m, n, data)</span>:</span></span><br><span class="line">    result = [<span class="number">0</span>] * m</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">if</span> <span class="number">0</span> <span class="keyword">not</span> <span class="keyword">in</span> result:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">elif</span> result[data[n-i]<span class="number">-1</span>] == <span class="number">0</span>:</span><br><span class="line">            result[data[n-i]<span class="number">-1</span>] = n - i</span><br><span class="line">    <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">%%time</span><br><span class="line">s = solution(m, n, data)</span><br></pre></td></tr></table></figure>
-<p><img src="/Users/jeon-yujin/Library/Application Support/typora-user-images/image-20190119181756949.png" alt="image-20190119181756949"></p>
+<p><img src="/images/image-20190119181756949.png" alt=""></p>
 </li>
 </ul>
 <p>  data의 뒤에서부터 포문을 돌며 처음으로 나오는 숫자의 인덱스를 미리 만들어둔 result 리스트의 해당 인덱스 위치에 넣어주었다. data의 맨 앞까지 포문이 돌기 전에 result가 인덱스로 꽉 차면 break해주는 코드도 추가해주었다. 그런데 시간복잡도가 1초가 넘어가기 때문에 효율성측면에서 코드개선이 필요했다.</p>
@@ -226,7 +226,7 @@
 <li><p>개선한 풀이 </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span><span class="params">(m, n, data)</span>:</span></span><br><span class="line">    result = [<span class="number">0</span>] * m</span><br><span class="line">    zero_count = m</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">if</span> zero_count == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">elif</span> result[data[n-i]<span class="number">-1</span>] == <span class="number">0</span>:</span><br><span class="line">            result[data[n-i]<span class="number">-1</span>] = n - i</span><br><span class="line">            zero_count -= <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">%%time</span><br><span class="line">s = solution(m, n, data)</span><br></pre></td></tr></table></figure>
-<p><img src="/Users/jeon-yujin/Library/Application Support/typora-user-images/image-20190119182901450.png" alt="image-20190119182901450"></p>
+<p><img src="/images/image-20190119182901450.png" alt=""></p>
 <p>포문을 처음부터 끝까지 돌 필요가 없는 경우 중간에 끊어줌으로서 시간을 단축시키기 위해 break를 사용했었다. 그런데 break에 걸어준 조건이 리스트를 처음부터 끝까지 훑어야만 확인할 수 있는 조건이었기 때문에 포문이 한 번 돌 때마다 리스트를 한 번 돌게 되어 오히려 시간복잡도를 늘리는 원인이 되었다. 따라서 break를 거는 if 문의 조건을 단순 계산으로 바꿔줌으로써 시간복잡도를 현저히 줄일 수 있었다.</p>
 </li>
 </ul>
