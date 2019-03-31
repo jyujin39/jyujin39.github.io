@@ -6,23 +6,24 @@
     
 
     
-    <title>인공지능을 위한 수학 | Data Science YJ</title>
+    <title>로지스틱 회귀와 소프트맥스 회귀 | Data Science YJ</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
         <meta name="keywords" content="study">
     
-    <meta name="keywords" content="study">
+    <meta name="description" content="로지스틱 회귀와 소프트맥스 회귀1. 로지스틱 회귀회귀 알고리즘을 이진 분류에 적용하는 것이 로지스틱 회귀이다. 선형 회귀문제와 같이 입력 특성에 가중치를 곱하고 편향을 더해주지만, 그대로 출력하지 않고 그 값에 로지스틱 함수를 적용한 값을 출력한다. 로지스틱 함수에 속하는 함수들 중 가장 많이 쓰이는 시그모이드 함수의 식은 아래와 같으며,  \sigma (">
+<meta name="keywords" content="study">
 <meta property="og:type" content="article">
-<meta property="og:title" content="인공지능을 위한 수학">
-<meta property="og:url" content="https://jyujin39.github.io/2019/03/23/인공지능을-위한-수학/index.html">
+<meta property="og:title" content="로지스틱 회귀와 소프트맥스 회귀">
+<meta property="og:url" content="https://jyujin39.github.io/2019/03/31/로지스틱-회귀와-소프트맥스-회귀/index.html">
 <meta property="og:site_name" content="Data Science YJ">
+<meta property="og:description" content="로지스틱 회귀와 소프트맥스 회귀1. 로지스틱 회귀회귀 알고리즘을 이진 분류에 적용하는 것이 로지스틱 회귀이다. 선형 회귀문제와 같이 입력 특성에 가중치를 곱하고 편향을 더해주지만, 그대로 출력하지 않고 그 값에 로지스틱 함수를 적용한 값을 출력한다. 로지스틱 함수에 속하는 함수들 중 가장 많이 쓰이는 시그모이드 함수의 식은 아래와 같으며,  \sigma (">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://user-images.githubusercontent.com/44221498/54862215-bdf7e700-4d7a-11e9-9092-57079c50d236.png">
-<meta property="og:updated_time" content="2019-03-23T07:29:59.874Z">
+<meta property="og:updated_time" content="2019-03-31T08:31:09.148Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="인공지능을 위한 수학">
-<meta name="twitter:image" content="https://user-images.githubusercontent.com/44221498/54862215-bdf7e700-4d7a-11e9-9092-57079c50d236.png">
+<meta name="twitter:title" content="로지스틱 회귀와 소프트맥스 회귀">
+<meta name="twitter:description" content="로지스틱 회귀와 소프트맥스 회귀1. 로지스틱 회귀회귀 알고리즘을 이진 분류에 적용하는 것이 로지스틱 회귀이다. 선형 회귀문제와 같이 입력 특성에 가중치를 곱하고 편향을 더해주지만, 그대로 출력하지 않고 그 값에 로지스틱 함수를 적용한 값을 출력한다. 로지스틱 함수에 속하는 함수들 중 가장 많이 쓰이는 시그모이드 함수의 식은 아래와 같으며,  \sigma (">
     
 
     
@@ -131,19 +132,19 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <a class="page-title-link" href="/categories/이런-책을-읽고-있습니다/">이런 책을 읽고 있습니다</a>
+    <a class="page-title-link" href="/categories/Machine-Learning/">Machine Learning</a>
     </h1>
 </div>
 
                         <div class="main-body-content">
-                            <article id="post-인공지능을-위한-수학" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+                            <article id="post-로지스틱-회귀와-소프트맥스-회귀" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        인공지능을 위한 수학
+        로지스틱 회귀와 소프트맥스 회귀
         </h1>
     
 
@@ -153,8 +154,8 @@
             <div class="article-meta">
                 
     <div class="article-date">
-        <a href="/2019/03/23/인공지능을-위한-수학/" class="article-date">
-            <time datetime="2019-03-23T05:26:11.000Z" itemprop="datePublished">2019-03-23</time>
+        <a href="/2019/03/31/로지스틱-회귀와-소프트맥스-회귀/" class="article-date">
+            <time datetime="2019-03-31T08:30:54.000Z" itemprop="datePublished">2019-03-31</time>
         </a>
     </div>
 
@@ -170,7 +171,26 @@
         
         
         <div class="article-entry" itemprop="articleBody">
-            <p><img src="https://user-images.githubusercontent.com/44221498/54862215-bdf7e700-4d7a-11e9-9092-57079c50d236.png" alt="image"></p>
+            <h1 id="로지스틱-회귀와-소프트맥스-회귀"><a href="#로지스틱-회귀와-소프트맥스-회귀" class="headerlink" title="로지스틱 회귀와 소프트맥스 회귀"></a>로지스틱 회귀와 소프트맥스 회귀</h1><h2 id="1-로지스틱-회귀"><a href="#1-로지스틱-회귀" class="headerlink" title="1. 로지스틱 회귀"></a>1. 로지스틱 회귀</h2><p>회귀 알고리즘을 <strong>이진 분류</strong>에 적용하는 것이 로지스틱 회귀이다. 선형 회귀문제와 같이 입력 특성에 가중치를 곱하고 편향을 더해주지만, 그대로 출력하지 않고 그 값에 <strong>로지스틱 함수</strong>를 적용한 값을 출력한다.</p>
+<p>로지스틱 함수에 속하는 함수들 중 가장 많이 쓰이는 <strong>시그모이드 함수</strong>의 식은 아래와 같으며,</p>
+<script type="math/tex; mode=display">
+\sigma (t) = \frac{1}{1 + \exp(-t)}</script><p>이 함수를 씌워 출력한 로지스틱 회귀의 결과값은 0에서 1 사이의 값을 갖는다. </p>
+<script type="math/tex; mode=display">
+\hat{y} = \begin{cases} 0 && \hat{p} < 0.5 \text{일 때}\\
+1 && \hat{p} \geq 0.5 \text{일 때}\end{cases}</script><p>로지스틱 회귀의 비용함수는 로그손실함수라고도 불리며 다음과 같이 식으로 쓸 수 있다.</p>
+<script type="math/tex; mode=display">
+J(\theta) = -\frac{1}{m} \sum^m_{i=1} \big(y^{(i)}\log(\hat{p}^{(i)}) + (1 - y^{(i)})\log(1-\hat{p}^{(i)})\big)</script><p>이 비용함수는 정규방정식같은 특별한 식을 통해 최솟값을 계산해낼 수는 없지만, 볼록함수이므로 경사하강법을 비롯한 최적화 알고리즘을 통해 전역 최솟값을 찾아낼 수 있다.</p>
+<p>사이킷런은 `LogisticRegression’이라는 로지스틱 회귀모델을 제공한다. 로지스틱 회귀 또한 규제를 적용할 수 있으며, 기본적으로 사이킷런에서는 L2규제를 사용한다. 규제 강도를 조절하는 하이퍼파라미터는 선형모델에서 사용한 alpha 값의 역수인 C로, C 값이 높을수록 모델의 규제가 줄어든다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</span><br><span class="line"></span><br><span class="line">log_reg = LogisticRegression(solver=<span class="string">'liblinear'</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="2-소프트맥스-회귀"><a href="#2-소프트맥스-회귀" class="headerlink" title="2. 소프트맥스 회귀"></a>2. 소프트맥스 회귀</h2><p>로지스틱 회귀를 일반화하여 다중클래스를 지원하도록 일반화한 것이 소프트맥스 회귀 혹은 <strong>다항 로지스틱 회귀</strong>에 해당한다.</p>
+<p>소프트맥스 회귀에서는 샘플들의 각 클래스에 대한 점수 $s_k(\bold{x})$를 계산하고, 그 점수에 <strong>소프트맥스 함수</strong>를 씌워 특정 클래스 $k$에 속할 확률 $\hat{p}_k$를 출력한다.</p>
+<script type="math/tex; mode=display">
+\hat{p}_k = \sigma\big(\bold{s}(\bold{x})\big)_k = \frac{\exp\big(s_k(\bold{x})\big)}{\sum^K_{j=1}\exp\big(s_j(\bold{x})\big)}</script><p>그리고 클래스들 중 그 확률값이 가장 높게 나온 클래스를 선택한다.</p>
+<p>소프트맥스 회귀의 비용함수로는 주로 <strong>크로스 엔트로피</strong>를 사용하는데, 이 비용함수 식은 샘플의 타깃 클래스가 아닌 클래스들에 대해서는 항상 값을 0으로 만들기 때문에, 타깃이 아닌 클래스에 대해 낮은 확률을 출력해내도록 최적화하는 데에는 적절하지 못하다. 다만 모델이 타깃 클래스에 대해서 얼마나 높은 확률로 추정해내는지를 측정하는 용도로 사용된다.</p>
+<script type="math/tex; mode=display">
+J(\Theta) = -\frac{1}{m} \sum^m_{i=1}\sum^K_{k=1} y_k^{(1)}\log\big(\hat{p}_k^{(i)}\big)</script><p>여기서 $\Theta$는 각 클래스가 갖는 파라미터벡터 $\theta^{(k)}​$를 모은 파라미터 행렬이다.</p>
+<p>사이킷런의 <code>Logistic Regression</code> 에서 <code>multi_class</code> 인수를 “multinomial” 로 바꾸면 소프트맥스 회귀를 사용할 수 있다. 소프트맥스 회귀를 사용하려면 <code>solver</code> 매개변수에 “lbfgs” 와 같이 이 회귀를 지원하는 알고리즘을 지정해주어야 한다. 소프트맥스 회귀에서 사용하는 규제는 로지스틱회귀와 마찬가지로 기본적으로 L2 규제이며, 하이퍼파라미터 인수 <code>C</code> 값을 통해 조절할 수 있다. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">softmax_reg = LogisticRegression(multi_class=&apos;multinomial&apos;, solver=&apos;lbfgs&apos;, C=10)</span><br></pre></td></tr></table></figure>
 
         </div>
         <footer class="article-footer">
@@ -178,7 +198,7 @@
 
 
 
-    <a data-url="https://jyujin39.github.io/2019/03/23/인공지능을-위한-수학/" data-id="cjtwey1wk002kg4bao6xeayyb" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://jyujin39.github.io/2019/03/31/로지스틱-회귀와-소프트맥스-회귀/" data-id="cjtwo2upm0000pdba37pm9ane" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -276,20 +296,10 @@
         
 <nav id="article-nav">
     
-        <a href="/2019/03/31/로지스틱-회귀와-소프트맥스-회귀/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">newer</strong>
-        <p class="article-nav-title">
-        
-            로지스틱 회귀와 소프트맥스 회귀
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
-    
-        <a href="/2019/03/23/파이썬-라이브러리를-활용한-머신러닝/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2019/03/23/인공지능을-위한-수학/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">older</strong>
-        <p class="article-nav-title">파이썬 라이브러리를 활용한 머신러닝</p>
+        <p class="article-nav-title">인공지능을 위한 수학</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -422,7 +432,7 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'https://jyujin39.github.io/2019/03/23/인공지능을-위한-수학/';
+    var disqus_url = 'https://jyujin39.github.io/2019/03/31/로지스틱-회귀와-소프트맥스-회귀/';
     
     (function() {
     var dsq = document.createElement('script');
