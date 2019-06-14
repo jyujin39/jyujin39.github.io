@@ -20,12 +20,12 @@
 <meta property="og:site_name" content="Data Science YJ">
 <meta property="og:description" content="2장. 파이썬 코드를 정돈하기 위한 패턴2.1 assert : 단언문어떤 조건을 테스트하는 디버깅 보조도구. 단언조건이 참이면 아무 일도 일어나지 않고, 거짓이면 AssertionError를 발생시킨다 12345def apply_discount(product, discount):    price = int(product[&apos;price&apos;] * (1.0 - di">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://jyujin39.github.io/Users/jeon-yujin/Library/Application">
-<meta property="og:updated_time" content="2019-06-14T05:23:44.169Z">
+<meta property="og:image" content="https://user-images.githubusercontent.com/44221498/59485371-8cda0f00-8eb0-11e9-9f55-434a2f9ef3de.png">
+<meta property="og:updated_time" content="2019-06-14T05:32:22.879Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="파이썬 코드를 정돈하기 위한 패턴">
 <meta name="twitter:description" content="2장. 파이썬 코드를 정돈하기 위한 패턴2.1 assert : 단언문어떤 조건을 테스트하는 디버깅 보조도구. 단언조건이 참이면 아무 일도 일어나지 않고, 거짓이면 AssertionError를 발생시킨다 12345def apply_discount(product, discount):    price = int(product[&apos;price&apos;] * (1.0 - di">
-<meta name="twitter:image" content="https://jyujin39.github.io/Users/jeon-yujin/Library/Application">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/44221498/59485371-8cda0f00-8eb0-11e9-9f55-434a2f9ef3de.png">
     
 
     
@@ -176,21 +176,21 @@
             <h2 id="2장-파이썬-코드를-정돈하기-위한-패턴"><a href="#2장-파이썬-코드를-정돈하기-위한-패턴" class="headerlink" title="2장. 파이썬 코드를 정돈하기 위한 패턴"></a>2장. 파이썬 코드를 정돈하기 위한 패턴</h2><h3 id="2-1-assert-단언문"><a href="#2-1-assert-단언문" class="headerlink" title="2.1 assert : 단언문"></a>2.1 <code>assert</code> : 단언문</h3><p>어떤 조건을 테스트하는 디버깅 보조도구. 단언조건이 참이면 아무 일도 일어나지 않고, 거짓이면 <code>AssertionError</code>를 발생시킨다</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">apply_discount</span><span class="params">(product, discount)</span>:</span></span><br><span class="line">    price = int(product[<span class="string">'price'</span>] * (<span class="number">1.0</span> - discount))</span><br><span class="line">    <span class="keyword">assert</span> <span class="number">0</span> &lt;= price &lt;= product[<span class="string">'price'</span>], <span class="string">'price out of range'</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> price</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">shoes = &#123;<span class="string">'name'</span>:<span class="string">'Fancy Shoes'</span>, <span class="string">'price'</span>:<span class="number">14900</span>&#125;</span><br><span class="line">apply_discount(shoes, <span class="number">0.25</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">11175</span><br></pre></td></tr></table></figure>
+<p><img src="https://user-images.githubusercontent.com/44221498/59485371-8cda0f00-8eb0-11e9-9f55-434a2f9ef3de.png" alt="image"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apply_discount(shoes, <span class="number">2.0</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="/Users/jeon-yujin/Library/Application Support/typora-user-images/image-20190614140622448.png" alt="image-20190614140622448"></p>
+<p><img src="https://user-images.githubusercontent.com/44221498/59485386-9bc0c180-8eb0-11e9-82c9-157dffe53561.png" alt="image"></p>
 <blockquote>
 <p>Traceback 을 통해 에러가 발생한 코드가 몇 번째 줄인지, 즉 에러의 근본원인을 금방 찾을 수 있기 때문에 디버깅이 쉬워진다.</p>
 </blockquote>
 <p>* 주의할 점: <code>assert</code>문의 첫 번째 인자로 튜플을 전달하게 되면, 튜플이 비어있지 않은 이상 파이썬에서 항상 참이기 때문에 어떤 경우에도 에러가 발생되지 않는다</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">assert</span>(<span class="number">1</span>==<span class="number">2</span>, <span class="string">'this should fail'</span>)</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">assert</span> <span class="number">1</span>==<span class="number">2</span>, <span class="string">'this works'</span></span><br></pre></td></tr></table></figure>
-<p><img src="/Users/jeon-yujin/Library/Application Support/typora-user-images/image-20190614140805334.png" alt="image-20190614140805334"></p>
+<p><img src="https://user-images.githubusercontent.com/44221498/59485408-b004be80-8eb0-11e9-904d-e56910161928.png" alt="image"></p>
 <h3 id="2-2-보기-좋은-쉼표-배치"><a href="#2-2-보기-좋은-쉼표-배치" class="headerlink" title="2.2 보기 좋은 쉼표 배치"></a>2.2 보기 좋은 쉼표 배치</h3><p>리스트, 딕셔너리, 세트 등을 선언할 때 쉼표마다 행을 나누면 보기도 좋고 나중에 수정하기도 쉽다.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">names = [</span><br><span class="line">    <span class="string">'Alice'</span>,</span><br><span class="line">    <span class="string">'Bob'</span>,</span><br><span class="line">    <span class="string">'Jane'</span>, <span class="comment">#마지막 행에도 쉼표를 붙여준다</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 <p>파이썬은 ‘문자열 리터럴 결합’을 하기 때문에 쉼표를 쓰지 않고 행을 나눠 문자열을 쓰는 경우 그 문자열이 하나로 합쳐지게 된다. 이 기능은 긴 문자열을 백슬래시를 쓰지 않고 쓰는 것에 유용하게 사용할 수 있다.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">string = (<span class="string">'This is a super long string constant'</span></span><br><span class="line">         <span class="string">'spread out across multiple lines.'</span></span><br><span class="line">         <span class="string">'And look, no backslash characters needed!'</span>)</span><br><span class="line"></span><br><span class="line">string</span><br></pre></td></tr></table></figure>
-<p><img src="/Users/jeon-yujin/Library/Application Support/typora-user-images/image-20190614140931791.png" alt="image-20190614140931791"></p>
+<p><img src="https://user-images.githubusercontent.com/44221498/59485426-c0b53480-8eb0-11e9-98e5-ac2bb1aa55f0.png" alt="image"></p>
 <h3 id="2-3-with-문"><a href="#2-3-with-문" class="headerlink" title="2.3 with 문"></a>2.3 <code>with</code> 문</h3><p><code>with</code>문은 기능을 추상화하고 재사용할 수 있게 하여 리소스 관리패턴을 단순화해준다.</p>
 <p><code>with</code>문을 사용해 파일을 열면 프로그램이 context를 벗어났을 때 파일이 자동으로 닫힌다.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> open(<span class="string">'file.txt'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(<span class="string">'hello'</span>)</span><br></pre></td></tr></table></figure>
@@ -203,25 +203,25 @@
 </ol>
 <p><code>try</code> 다음에 <code>finally</code>를 쓰면, <code>try</code>에 있는 코드에 오류가 있을 때 그 오류가 출력된 후 다음 코드로 넘어가 <code>finally</code> 에 있는 코드가 실행된다.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    [].find(<span class="string">'a'</span>)</span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    print(<span class="string">'done'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="/Users/jeon-yujin/Library/Application Support/typora-user-images/image-20190614141143575.png" alt="image-20190614141143575"></p>
+<p><img src="https://user-images.githubusercontent.com/44221498/59485447-d4f93180-8eb0-11e9-8cc7-421f19cf578f.png" alt="image"></p>
 <ol>
 <li><code>try</code>$\cdots$ <code>except</code></li>
 </ol>
 <p><code>try</code> 에 있는 코드에 오류가 있으면 if 문의 조건이 맞지 않을 때 else로 넘어가는 것처럼 바로 <code>except</code> 문으로 넘어가 해당 코드만이 실행된다.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    [].find(<span class="string">'a'</span>)</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    print(<span class="string">'done'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="/Users/jeon-yujin/Library/Application Support/typora-user-images/image-20190614141126401.png" alt="image-20190614141126401"></p>
+<p><img src="https://user-images.githubusercontent.com/44221498/59485520-138eec00-8eb1-11e9-8021-5b1d75c0bd60.png" alt="image"></p>
 <ol>
 <li><code>try</code> 문 이후에 아무것도 쓰지 않았을 경우</li>
 </ol>
 <p><code>try</code> 문의 코드에 오류가 있지만 <code>try</code> 문이 완전히 종료되지 않았기 때문에 다음 코드로 넘어가지만 기대했던<code>finally</code> 나 <code>except</code> 가 등장하지 않자 다음 코드에서 오류가 난다.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    [].find(<span class="string">'a'</span>)</span><br><span class="line">print(<span class="string">'done'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="/Users/jeon-yujin/Library/Application Support/typora-user-images/image-20190614141203264.png" alt="image-20190614141203264"></p>
+<p><img src="https://user-images.githubusercontent.com/44221498/59485533-21447180-8eb1-11e9-9290-b67a3ead7e18.png" alt="image"></p>
 <ol>
 <li><code>try</code> 없이 오류가 나는 코드를 실행시키는 경우</li>
 </ol>
 <p><code>try</code> 에 사용했을 때는 다음코드로 넘어갔지만 그냥 써주자 아예 해당 코드에서 오류가 나면서 다음줄로 넘어가지 못한다.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[].find(<span class="string">'a'</span>)</span><br><span class="line">print(<span class="string">'done'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="/Users/jeon-yujin/Library/Application Support/typora-user-images/image-20190614141230378.png" alt="image-20190614141230378"></p>
+<p><img src="https://user-images.githubusercontent.com/44221498/59485545-2e616080-8eb1-11e9-9c8a-167368ae2f52.png" alt="image"></p>
 <p><sup><a href="#fn_'python tricks the book' 책을 보고 정리한 내용입니다." id="reffn_'python tricks the book' 책을 보고 정리한 내용입니다.">'python tricks the book' 책을 보고 정리한 내용입니다.</a></sup>: </p>
 
         </div>
