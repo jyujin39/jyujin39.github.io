@@ -6,24 +6,17 @@
     
 
     
-    <title>Stacks: Balanced Brackets | Data Science YJ</title>
+    <title>Tag: ISLR | Data Science YJ</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="study,algorithm,coding">
-    
-    <meta name="description" content="Stacks: Balanced BracketsA bracket is considered to be any one of the following characters: (, ), {, }, [, or ]. Two brackets are considered to be a matched pair if the an opening bracket (i.e., (, [,">
-<meta name="keywords" content="study,algorithm,coding">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Stacks: Balanced Brackets">
-<meta property="og:url" content="https://jyujin39.github.io/2019/05/18/Stacks-Balanced-Brackets/index.html">
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Data Science YJ">
+<meta property="og:url" content="https://jyujin39.github.io/tags/ISLR/index.html">
 <meta property="og:site_name" content="Data Science YJ">
-<meta property="og:description" content="Stacks: Balanced BracketsA bracket is considered to be any one of the following characters: (, ), {, }, [, or ]. Two brackets are considered to be a matched pair if the an opening bracket (i.e., (, [,">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-05-18T08:34:56.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Stacks: Balanced Brackets">
-<meta name="twitter:description" content="Stacks: Balanced BracketsA bracket is considered to be any one of the following characters: (, ), {, }, [, or ]. Two brackets are considered to be a matched pair if the an opening bracket (i.e., (, [,">
+<meta name="twitter:title" content="Data Science YJ">
     
 
     
@@ -132,150 +125,57 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <a class="page-title-link" href="/categories/Coding-drills/">Coding drills</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Coding-drills/Algorithm-test/">Algorithm test</a>
+    <i class="icon fa fa-tag"></i>Tag: <em>ISLR</em>
     </h1>
 </div>
 
                         <div class="main-body-content">
-                            <article id="post-Stacks-Balanced-Brackets" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
-    <div class="article-inner">
+                            
+
+    
+    
         
-            <header class="article-header">
-                
+        
+        <section class="archives-wrap">
+            <div class="archive-year-wrap">
+                <a href="/archives/2019" class="archive-year"><i class="icon fa fa-calendar-o"></i>2019</a>
+            </div>
+            <div class="archives">
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <div class="article-meta">
+            <div class="category">
+            <a class="article-category-link" href="/categories/Statistics/">Statistics</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Statistics/ISLR-Introduction-to-Statistical-Learning/">ISLR(Introduction to Statistical Learning)</a>
+            </div>
+            <div class="date"><time datetime="2019-11-18T04:18:53.000Z" itemprop="datePublished">2019-11-18</time></div>
+        </div>
+        
     
         <h1 class="article-title" itemprop="name">
-        Stacks: Balanced Brackets
+        <a href="/2019/11/18/통계학습이란-statistical-learning/">ISLR-2.1</a>
         </h1>
     
 
-            </header>
-        
-        
-            <div class="article-meta">
-                
-    <div class="article-date">
-        <a href="/2019/05/18/Stacks-Balanced-Brackets/" class="article-date">
-            <time datetime="2019-05-18T08:25:18.000Z" itemprop="datePublished">2019-05-18</time>
-        </a>
-    </div>
+        <p class="article-excerpt">
+            2. 통계학습2.1 통계학습이란?통계학습이란, 입력변수, 독립변수 등으로 불리는 $X$ 와 출력변수, 반응변수, 종속변수와 같은 명칭을 갖는 $Y$ 간의 관계를 찾아내는 일이다.
+이 관계를 수식으로 표현하면 다음과 같다.
 
-		
-
-                
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/algorithm/">algorithm</a>, <a class="tag-link" href="/tags/coding/">coding</a>, <a class="tag-link" href="/tags/study/">study</a>
-    </div>
-
-            </div>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-            <h1 id="Stacks-Balanced-Brackets"><a href="#Stacks-Balanced-Brackets" class="headerlink" title="Stacks: Balanced Brackets"></a>Stacks: Balanced Brackets</h1><p>A bracket is considered to be any one of the following characters: <code>(</code>, <code>)</code>, <code>{</code>, <code>}</code>, <code>[</code>, or <code>]</code>.</p>
-<p>Two brackets are considered to be a matched pair if the an opening bracket (i.e., <code>(</code>, <code>[</code>, or <code>{</code>) occurs to the left of a closing bracket (i.e., <code>)</code>, <code>]</code>, or <code>}</code>) of the exact same type. There are three types of matched pairs of brackets: <code>[]</code>, <code>{}</code>, and <code>()</code>.</p>
-<p>A matching pair of brackets is not balanced if the set of brackets it encloses are not matched. For example, <code>{[(])}</code> is not balanced because the contents in between <code>{</code> and <code>}</code> are not balanced. The pair of square brackets encloses a single, unbalanced opening bracket, <code>(</code>, and the pair of parentheses encloses a single, unbalanced closing square bracket, <code>]</code>.</p>
-<p>Some examples of balanced brackets are <code>[]{}()</code>, <code>[({})]{}()</code> and <code>({(){}[]})[]</code>.</p>
-<p>By this logic, we say a sequence of brackets is considered to be balanced if the following conditions are met:</p>
-<ul>
-<li>It contains no unmatched brackets.</li>
-<li>The subset of brackets enclosed within the confines of a matched pair of brackets is also a matched pair of brackets.</li>
-</ul>
-<p>Given  strings of brackets, determine whether each sequence of brackets is balanced. If a string is balanced, print <code>YES</code> on a new line; otherwise, print <code>NO</code> on a new line.</p>
-<h5 id="Input-Format"><a href="#Input-Format" class="headerlink" title="Input Format"></a>Input Format</h5><p>The first line contains a single integer, $n$, denoting the number of strings. </p>
-<p>Each line $i$ of the $n$ subsequent lines consists of a single string, $s$, denoting a sequence of brackets.</p>
-<h5 id="Constraints"><a href="#Constraints" class="headerlink" title="Constraints"></a>Constraints</h5><ul>
-<li><p>$1 \le n \le 10^3$</p>
-</li>
-<li><p>$1 \le length(s) \le 10^3$, where $length(s)$ is the length of the sequence.</p>
-</li>
-<li><p>Each character in the sequence will be a bracket (i.e., <code>{</code>, <code>}</code>, <code>(</code>, <code>)</code>, <code>[</code>, and <code>]</code>).</p>
-</li>
-</ul>
-<h5 id="Output-Format"><a href="#Output-Format" class="headerlink" title="Output Format"></a>Output Format</h5><p>For each string, print whether or not the string of brackets is balanced on a new line. If the brackets are balanced, print <code>YES</code>; otherwise, print <code>NO</code>.</p>
-<h5 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">&#123;[()]&#125;</span><br><span class="line">&#123;[(])&#125;</span><br><span class="line">&#123;&#123;[[(())]]&#125;&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">YES</span><br><span class="line">NO</span><br><span class="line">YES</span><br></pre></td></tr></table></figure>
-<h3 id="My-Answer-Code"><a href="#My-Answer-Code" class="headerlink" title="My Answer Code"></a>My Answer Code</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_matched</span><span class="params">(expression)</span>:</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> len(expression) % <span class="number">2</span> == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line">    open_brackets = [<span class="string">'&#123;'</span>, <span class="string">'('</span>, <span class="string">'['</span>]</span><br><span class="line">    closing_brackets = [<span class="string">'&#125;'</span>, <span class="string">')'</span>, <span class="string">']'</span>]</span><br><span class="line">    bracket_sets = dict(zip(open_brackets, closing_brackets))</span><br><span class="line"></span><br><span class="line">    open_b = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(expression)):</span><br><span class="line">        <span class="keyword">if</span> expression[i] <span class="keyword">in</span> open_brackets:</span><br><span class="line">            open_b.append(expression[i])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> bracket_sets[open_b.pop()] != expression[i]:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">            </span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">True</span></span><br></pre></td></tr></table></figure>
-<h3 id="Test-Code"><a href="#Test-Code" class="headerlink" title="Test Code"></a>Test Code</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">t = int(input().strip())</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> range(t):</span><br><span class="line">    expression = input().strip()</span><br><span class="line">    <span class="keyword">if</span> is_matched(expression) == <span class="keyword">True</span>:</span><br><span class="line">        print(<span class="string">"YES"</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">"NO"</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> 3</span><br><span class="line"> (&#123;[]&#125;)</span><br><span class="line">YES</span><br><span class="line"> &#123;[&#125;]</span><br><span class="line">NO</span><br><span class="line"> &#123;[(((())))]&#125;</span><br><span class="line">YES</span><br></pre></td></tr></table></figure>
-        </div>
-        <footer class="article-footer">
-            
-
-
-
-    <a data-url="https://jyujin39.github.io/2019/05/18/Stacks-Balanced-Brackets/" data-id="ck33xgeqj001dfedzt81vl8ad" class="article-share-link"><i class="fa fa-share"></i>Share</a>
-<script>
-    (function ($) {
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-        </footer>
+Y = f(X) + \epsilon여기서 $\epsilon$ 은 X와는 독립이고 평균이 0인 랜덤 오차항이다. 오차항은 조절 불가능한 
+        </p>
     </div>
 </article>
-
-    <section id="comments">
     
-        
-    <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
-
+        </div>
     
-    </section>
+
+
+    </div></section>
 
 
 
@@ -297,29 +197,6 @@
             
         </ul>
     </div>
-    
-        
-<nav id="article-nav">
-    
-        <a href="/2019/06/14/파이썬-코드를-정돈하기-위한-패턴/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">newer</strong>
-        <p class="article-nav-title">
-        
-            파이썬 코드를 정돈하기 위한 패턴
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
-    
-    
-        <a href="/2019/05/16/Hash-Tables-Ransom-Note/" id="article-nav-older" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">older</strong>
-        <p class="article-nav-title">Hash Tables: Ransom Note</p>
-        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
-        </a>
-    
-</nav>
-
     
     <div class="widgets-container">
         
@@ -447,13 +324,11 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'https://jyujin39.github.io/2019/05/18/Stacks-Balanced-Brackets/';
-    
     (function() {
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
     </script>
