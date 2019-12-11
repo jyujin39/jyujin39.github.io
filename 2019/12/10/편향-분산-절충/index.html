@@ -6,17 +6,26 @@
     
 
     
-    <title>Category: Math | Data Science YJ</title>
+    <title>편향 분산 절충 | Data Science YJ</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Data Science YJ">
-<meta property="og:url" content="https://jyujin39.github.io/categories/Math/index.html">
+        <meta name="keywords" content="study,statistics,ISLR">
+    
+    <meta name="description" content="편향 분산 절충테스트데이터 x에 대한 기대검정 MSE는 다음과 같은 3개의 속성으로 나눌 수 있다.  E(y_0 - f(x_o))^2 = Var(f(x_o)) + [Bias(f(x_0))]^2 + Var(\epsilon) 예측값의 분산 예측값의 제곱편향 오차항 $\epsilon$ 의 분산  이 항들의 합을 최대한 작게 하는 것이 모델 학습의 목적이 된다.">
+<meta name="keywords" content="study,statistics,ISLR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="편향 분산 절충">
+<meta property="og:url" content="https://jyujin39.github.io/2019/12/10/편향-분산-절충/index.html">
 <meta property="og:site_name" content="Data Science YJ">
+<meta property="og:description" content="편향 분산 절충테스트데이터 x에 대한 기대검정 MSE는 다음과 같은 3개의 속성으로 나눌 수 있다.  E(y_0 - f(x_o))^2 = Var(f(x_o)) + [Bias(f(x_0))]^2 + Var(\epsilon) 예측값의 분산 예측값의 제곱편향 오차항 $\epsilon$ 의 분산  이 항들의 합을 최대한 작게 하는 것이 모델 학습의 목적이 된다.">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="https://user-images.githubusercontent.com/44221498/70614000-09c22780-1c4d-11ea-92b7-064946acee6b.png">
+<meta property="og:updated_time" content="2019-12-11T10:38:22.854Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Data Science YJ">
+<meta name="twitter:title" content="편향 분산 절충">
+<meta name="twitter:description" content="편향 분산 절충테스트데이터 x에 대한 기대검정 MSE는 다음과 같은 3개의 속성으로 나눌 수 있다.  E(y_0 - f(x_o))^2 = Var(f(x_o)) + [Bias(f(x_0))]^2 + Var(\epsilon) 예측값의 분산 예측값의 제곱편향 오차항 $\epsilon$ 의 분산  이 항들의 합을 최대한 작게 하는 것이 모델 학습의 목적이 된다.">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/44221498/70614000-09c22780-1c4d-11ea-92b7-064946acee6b.png">
     
 
     
@@ -125,383 +134,147 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <i class="icon fa fa-folder-open"></i>Category: <em class="page-title-link">Math</em>
+    <a class="page-title-link" href="/categories/Statistics/">Statistics</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Statistics/ISLR-Introduction-to-Statistical-Learning/">ISLR(Introduction to Statistical Learning)</a>
     </h1>
 </div>
 
                         <div class="main-body-content">
-                            
-
-    
-    
+                            <article id="post-편향-분산-절충" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
         
-        
-        <section class="archives-wrap">
-            <div class="archive-year-wrap">
-                <a href="/archives/2019" class="archive-year"><i class="icon fa fa-calendar-o"></i>2019</a>
-            </div>
-            <div class="archives">
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a>
-            </div>
-            <div class="date"><time datetime="2019-01-15T14:28:04.000Z" itemprop="datePublished">2019-01-15</time></div>
-        </div>
-        
+            <header class="article-header">
+                
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2019/01/15/Network-Inference/">Network Inference</a>
+        편향 분산 절충
         </h1>
     
 
-        <p class="article-excerpt">
-            네트워크 추론확률모형에서 일부 확률변수의 값이 주어졌을 때 다른 값들을 알아내는 것을 추론(inference)이라고 한다.
-조건부 확률분포함수 $p(X_{\text{unknown}}|\{X\}_{\text{known}})$ 을 알면 일부 확률변수의 값 $\{X\}_\text{known}$이 주어졌을 때 다른 확률변수 $X_\text{unknown}$ 의 확
-        </p>
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/12/10/편향-분산-절충/" class="article-date">
+            <time datetime="2019-12-10T11:33:22.000Z" itemprop="datePublished">2019-12-10</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/ISLR/">ISLR</a>, <a class="tag-link" href="/tags/statistics/">statistics</a>, <a class="tag-link" href="/tags/study/">study</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="편향-분산-절충"><a href="#편향-분산-절충" class="headerlink" title="편향 분산 절충"></a>편향 분산 절충</h1><p>테스트데이터 x에 대한 기대검정 MSE는 다음과 같은 3개의 속성으로 나눌 수 있다.</p>
+<script type="math/tex; mode=display">
+E(y_0 - f(x_o))^2 = Var(f(x_o)) + [Bias(f(x_0))]^2 + Var(\epsilon)</script><ol>
+<li>예측값의 분산</li>
+<li>예측값의 제곱편향</li>
+<li>오차항 $\epsilon$ 의 분산</li>
+</ol>
+<p>이 항들의 합을 최대한 작게 하는 것이 모델 학습의 목적이 된다.</p>
+<p>그런데 알다시피 마지막 항은 irreducible error에 해당하는 오차항의 분산이므로 최소화할 수 없다.</p>
+<p>따라서 앞 두 항인 예측값의 분산과 제곱편향을 최소화해야 한다.</p>
+<h3 id="분산과-편향"><a href="#분산과-편향" class="headerlink" title="분산과 편향"></a>분산과 편향</h3><p><strong>분산</strong>이란, <strong>다른 훈련데이터를 사용해 $f$ 를 추정했을 때 $f$ 가 변동되는 정도</strong>를 말한다.</p>
+<p>모델의 성능이 어떤 데이터에서든 좋으려면 이 변동 정도가 작은 것이 좋을 것이다. </p>
+<p>그런데 모델의 유연성(자유도, 복잡도)이 높을수록 훈련데이터에 많이 적합되기 때문에 분산이 커질 수밖에 없다.</p>
+<p><strong>편향</strong>은 <strong>실제 데이터보다 너무 단순한 모델에 적합시켰을 때 예측값과 실제 값과의 오차</strong>를 의미한다.</p>
+<p>모델의 유연성이 높을수록 훈련데이터의 실제값에 가까운 값을 예측해낼 것이므로 분산과는 반대로 편향은 작아지게 된다.</p>
+<p>즉, 분산과 편향은 반비례 관계에 놓이는 개념이다.</p>
+<script type="math/tex; mode=display">
+편향 \propto    \frac{1}{분산}</script><h4 id="분산과-편향의-절충"><a href="#분산과-편향의-절충" class="headerlink" title="분산과 편향의 절충"></a>분산과 편향의 절충</h4><p>모델의 유연성을 증가시키면 MSE는 처음에 빠르게 감소한다. 훈련데이터를 더 잘 예측하게 되면서 편향이 급격히 작아지기 때문이다. 그러나 어느 순간 MSE가 증가하기 시작한다. 모델이 훈련데이터에 과대적합되면서 분산이 커지기 때문이다.</p>
+<p><img src="https://user-images.githubusercontent.com/44221498/70614000-09c22780-1c4d-11ea-92b7-064946acee6b.png" alt="image"></p>
+<p><strong>편향과 분산이 가장 작은 곳에서 만나는 지점, 그 곳에서 MSE가 가장 작은 모델이 결정된다.</strong></p>
+<p><img src="https://user-images.githubusercontent.com/44221498/70614203-750bf980-1c4d-11ea-8a82-89c8e9be73e1.png" alt="image"></p>
+<p>물론 현실적으로 이 지점을 찾기란 굉장히 어렵다. 하지만 이 점을 염두에 두고 적절한 모델을 찾아나가는 것이 중요할 것이다.</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://jyujin39.github.io/2019/12/10/편향-분산-절충/" data-id="ck415uyp7004esfdz58lln2ol" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
     </div>
 </article>
-    
 
+    <section id="comments">
     
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
         
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a>
-            </div>
-            <div class="date"><time datetime="2019-01-13T13:57:19.000Z" itemprop="datePublished">2019-01-13</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2019/01/13/Graphical-Probability-Model/">Graphical Probability Model</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            그래프 확률모형여러 확률변수의 결합확률분포를 구해야 하는 경우를 생각하자. 예를 들어 A, B, C 3개의 확률변수가 있고, 각 확률변수는 모두 0, 1, 2 세 가지의 값만 가질 수 있는 범주형 확률변수이다. 이ㅍ때 A, B, C 의 결합확률분포는 다음과 같이 나타낼 수 있다. 이 때 우리가 알아야 하는 모수는 총 $3^3 -1 = 26$ 개다.
-
-
-
-
-
-        </p>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
-</article>
-    
-        </div>
-    
 
     
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a>
-            </div>
-            <div class="date"><time datetime="2019-01-13T10:50:08.000Z" itemprop="datePublished">2019-01-13</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2019/01/13/graph/">graph</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            그래프그래프(graph)는 다음 그림처럼 노드(node 혹은 vertex)와 노드들을 잇는 간선(edge)으로 이루어진 구조를 말한다.
-
-수학적으로 그래프 $G$ 는 노드집합 $V$ 와 간선집합 $E$ 로 구성된다.
-
-G = (V, E)간선은 두 개의 노드로 이루어진, 순서가 있는 쌍(ordered pair)이다.
-
-E \subseteq V \times V
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a>
-            </div>
-            <div class="date"><time datetime="2019-01-11T08:03:15.000Z" itemprop="datePublished">2019-01-11</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2019/01/11/Clustering-Methods/">Clustering Methods</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            클러스터링 방법1. K-Means 클러스터링앞서 언급했던 5가지 클러스터링 방법 중 첫번째로 소개할 K-Means 클러스터링 알고리즘은 가장 단순하고 빠른 클러스터링 알고리즘 중 하나다. 이 클러스터링 방법에서는 아래 목적함수 값이 최소화될 때까지 클러스터의 중심(centroid) 위치와 각 데이터가 소속될 클러스터를 반복해서 찾는다. 목적함수 값을 ine
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a>
-            </div>
-            <div class="date"><time datetime="2019-01-11T02:06:28.000Z" itemprop="datePublished">2019-01-11</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2019/01/11/Clustering/">Clustering</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            클러스터링주어진 데이터 집합을 유사한 데이터들의 그룹으로 나누는 것을 클러스터링(clustering)이라고 하고, 이렇게 나누어진 유사한 데이터들의 그룹을 클러스터(cluster)라고 한다.
-클러스터링은 분류 문제와 달리 특정한 독립변수와 종속변수의 구분도 없고 학습을 위한 목푯값(target value)도 필요로 하지 않는 비지도학습(unsupervise
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a>
-            </div>
-            <div class="date"><time datetime="2019-01-10T09:42:01.000Z" itemprop="datePublished">2019-01-10</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2019/01/10/Recommender-System/">Recommender System</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            추천 시스템추천 시스템(recommender system)이란, 누적된 기록 등을 기반으로 사용자(user)가 선호하는 상품(item)을 예측하는 시스템이다. 
-파이썬의 surprise 패키지는 다양한 추천시스템 알고리즘을 제공한다.
-123# 먼저 설치가 필요하다!pip install surpriseimport surprise
-평점 데이터surprise 패
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a>
-            </div>
-            <div class="date"><time datetime="2019-01-08T08:12:40.000Z" itemprop="datePublished">2019-01-08</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2019/01/08/Hyper-Parameter-Tuning/">Hyper Parameter Tuning</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            모형 최적화머신러닝 예측 모형을 완성한 후에는 최적화 과정을 통해 성능을 향상시킨다. 이 과정을 하이퍼 파라미터 튜닝(hyper parameter tuning)이라고 한다.
-scikit-learn패키지에서 제공하는 하이퍼파라미터 튜닝 도구들은 다음과 같다.
-
-validation curve
-단일 하이퍼 파라미터 최적화
-
-
-GridSearchCV
-그리드를 사용
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a>
-            </div>
-            <div class="date"><time datetime="2019-01-01T09:39:39.000Z" itemprop="datePublished">2019-01-01</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2019/01/01/Kernel-SVM/">Kernel SVM</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            커널 서포트 벡터 머신XORXOR(exclusive OR) 문제는 이진수에서의 or 연산이라고 생각하면 된다. 다음과 같이 하나만 1일 때 1이 되고, 나머지 경우는 0이 된다.
-
-
-
-
-
-x2=0
-x2=1
-
-
-
-
-X1=0
-0
-1
-
-
-x1=1
-1
-0
-
-
-
-
-이러한 경우 다음 그림처럼 클래스가 구분되는데,  퍼셉트론이나 SVM과 같은 선형판별함수 분류모형으로는
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-        
-            </div></section>
-        
-        
-        <section class="archives-wrap">
-            <div class="archive-year-wrap">
-                <a href="/archives/2018" class="archive-year"><i class="icon fa fa-calendar-o"></i>2018</a>
-            </div>
-            <div class="archives">
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a>
-            </div>
-            <div class="date"><time datetime="2018-12-20T07:37:09.000Z" itemprop="datePublished">2018-12-20</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2018/12/20/SVM-support-vector-machine/">SVM(support vector machine)</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            서포트 벡터 머신퍼셉트론에서는 영역을 구분하는 판별경계선(decision hyperplane)이 한 문제에도 다양하게 존재할 수 있었다.
-서포트 벡터머신(SVM: Support Vector machine)은 퍼셉트론 기반 모형에 가장 안정적인 하나의 판별 경계선을 찾기 위한 제한조건을 추가한 모형이다.
-
-
-서포트: 판별경계선을 하나로 정해줄 수 있는 근거가
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/Math/">Math</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Math/Classification/">Classification</a>
-            </div>
-            <div class="date"><time datetime="2018-12-19T14:06:02.000Z" itemprop="datePublished">2018-12-19</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2018/12/19/perceptron/">perceptron</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            퍼셉트론퍼셉트론(perceptron)은 가장 오래되고 단순한 형태의 판별함수 기반 이진분류모형이다.
-
-퍼셉트론은 입력값 $x=(1,x_1,\cdots ,x_m)$ 에 대해 1 또는 -1의 값을 가지는 $y$를 출력하는 비선형 함수이다. 1을 포함하는 입력요소 $x_i$ 에 대해 가중치 $w_i$ 를 곱한 값 $a = w^Tx$ 을 활성화값(activatio
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-
-    </div></section>
-
-
-    <nav id="page-nav">
-        <span class="pages">Page 1 of 2</span>
-        <span class="page-number current">1</span><a class="page-number" href="/categories/Math/page/2/">2</a><a class="extend next" rel="next" href="/categories/Math/page/2/">&raquo;</a>
-    </nav>
+    </section>
 
 
 
@@ -523,6 +296,19 @@ x1=1
             
         </ul>
     </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2019/11/18/통계학습이란-statistical-learning/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">ISLR-2.1</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
     
     <div class="widgets-container">
         
@@ -650,11 +436,13 @@ x1=1
     var disqus_shortname = 'hexo-theme-hueman';
     
     
+    var disqus_url = 'https://jyujin39.github.io/2019/12/10/편향-분산-절충/';
+    
     (function() {
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
     </script>
