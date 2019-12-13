@@ -21,7 +21,7 @@
 <meta property="og:description" content="편향 분산 절충테스트데이터 x에 대한 기대검정 MSE는 다음과 같은 3개의 속성으로 나눌 수 있다.  E(y_0 - f(x_o))^2 = Var(f(x_o)) + [Bias(f(x_0))]^2 + Var(\epsilon) 예측값의 분산 예측값의 제곱편향 오차항 $\epsilon$ 의 분산  이 항들의 합을 최대한 작게 하는 것이 모델 학습의 목적이 된다.">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://user-images.githubusercontent.com/44221498/70614000-09c22780-1c4d-11ea-92b7-064946acee6b.png">
-<meta property="og:updated_time" content="2019-12-11T10:38:22.854Z">
+<meta property="og:updated_time" content="2019-12-13T02:30:33.431Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="편향 분산 절충">
 <meta name="twitter:description" content="편향 분산 절충테스트데이터 x에 대한 기대검정 MSE는 다음과 같은 3개의 속성으로 나눌 수 있다.  E(y_0 - f(x_o))^2 = Var(f(x_o)) + [Bias(f(x_0))]^2 + Var(\epsilon) 예측값의 분산 예측값의 제곱편향 오차항 $\epsilon$ 의 분산  이 항들의 합을 최대한 작게 하는 것이 모델 학습의 목적이 된다.">
@@ -193,7 +193,7 @@ E(y_0 - f(x_o))^2 = Var(f(x_o)) + [Bias(f(x_0))]^2 + Var(\epsilon)</script><ol>
 편향 \propto    \frac{1}{분산}</script><h4 id="분산과-편향의-절충"><a href="#분산과-편향의-절충" class="headerlink" title="분산과 편향의 절충"></a>분산과 편향의 절충</h4><p>모델의 유연성을 증가시키면 MSE는 처음에 빠르게 감소한다. 훈련데이터를 더 잘 예측하게 되면서 편향이 급격히 작아지기 때문이다. 그러나 어느 순간 MSE가 증가하기 시작한다. 모델이 훈련데이터에 과대적합되면서 분산이 커지기 때문이다.</p>
 <p><img src="https://user-images.githubusercontent.com/44221498/70614000-09c22780-1c4d-11ea-92b7-064946acee6b.png" alt="image"></p>
 <p><strong>편향과 분산이 가장 작은 곳에서 만나는 지점, 그 곳에서 MSE가 가장 작은 모델이 결정된다.</strong></p>
-<p><img src="https://user-images.githubusercontent.com/44221498/70614203-750bf980-1c4d-11ea-8a82-89c8e9be73e1.png" alt="image"></p>
+<p><img src="https://user-images.githubusercontent.com/44221498/70764769-ee196700-1d9b-11ea-8e32-b6edd9d32847.png" alt="image"></p>
 <p>물론 현실적으로 이 지점을 찾기란 굉장히 어렵다. 하지만 이 점을 염두에 두고 적절한 모델을 찾아나가는 것이 중요할 것이다.</p>
 
         </div>
