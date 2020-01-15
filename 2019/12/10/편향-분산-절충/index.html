@@ -6,25 +6,25 @@
     
 
     
-    <title>편향 분산 절충 | Data Science YJ</title>
+    <title>ISLR-2.2 | Data Science YJ</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
         <meta name="keywords" content="study,statistics,ISLR">
     
-    <meta name="description" content="편향 분산 절충테스트데이터 x에 대한 기대검정 MSE는 다음과 같은 3개의 속성으로 나눌 수 있다.  E(y_0 - f(x_o))^2 = Var(f(x_o)) + [Bias(f(x_0))]^2 + Var(\epsilon) 예측값의 분산 예측값의 제곱편향 오차항 $\epsilon$ 의 분산  이 항들의 합을 최대한 작게 하는 것이 모델 학습의 목적이 된다.">
+    <meta name="description" content="2.2.2 편향 분산 절충테스트데이터 x에 대한 기대검정 MSE는 다음과 같은 3개의 속성으로 나눌 수 있다.  E(y_0 - f(x_o))^2 = Var(f(x_o)) + [Bias(f(x_0))]^2 + Var(\epsilon) 예측값의 분산 예측값의 제곱편향 오차항 $\epsilon$ 의 분산  이 항들의 합을 최대한 작게 하는 것이 모델 학습의 목적">
 <meta name="keywords" content="study,statistics,ISLR">
 <meta property="og:type" content="article">
-<meta property="og:title" content="편향 분산 절충">
+<meta property="og:title" content="ISLR-2.2">
 <meta property="og:url" content="https://jyujin39.github.io/2019/12/10/편향-분산-절충/index.html">
 <meta property="og:site_name" content="Data Science YJ">
-<meta property="og:description" content="편향 분산 절충테스트데이터 x에 대한 기대검정 MSE는 다음과 같은 3개의 속성으로 나눌 수 있다.  E(y_0 - f(x_o))^2 = Var(f(x_o)) + [Bias(f(x_0))]^2 + Var(\epsilon) 예측값의 분산 예측값의 제곱편향 오차항 $\epsilon$ 의 분산  이 항들의 합을 최대한 작게 하는 것이 모델 학습의 목적이 된다.">
+<meta property="og:description" content="2.2.2 편향 분산 절충테스트데이터 x에 대한 기대검정 MSE는 다음과 같은 3개의 속성으로 나눌 수 있다.  E(y_0 - f(x_o))^2 = Var(f(x_o)) + [Bias(f(x_0))]^2 + Var(\epsilon) 예측값의 분산 예측값의 제곱편향 오차항 $\epsilon$ 의 분산  이 항들의 합을 최대한 작게 하는 것이 모델 학습의 목적">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://user-images.githubusercontent.com/44221498/70614000-09c22780-1c4d-11ea-92b7-064946acee6b.png">
-<meta property="og:updated_time" content="2019-12-13T02:30:33.431Z">
+<meta property="og:updated_time" content="2019-12-23T08:15:51.638Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="편향 분산 절충">
-<meta name="twitter:description" content="편향 분산 절충테스트데이터 x에 대한 기대검정 MSE는 다음과 같은 3개의 속성으로 나눌 수 있다.  E(y_0 - f(x_o))^2 = Var(f(x_o)) + [Bias(f(x_0))]^2 + Var(\epsilon) 예측값의 분산 예측값의 제곱편향 오차항 $\epsilon$ 의 분산  이 항들의 합을 최대한 작게 하는 것이 모델 학습의 목적이 된다.">
+<meta name="twitter:title" content="ISLR-2.2">
+<meta name="twitter:description" content="2.2.2 편향 분산 절충테스트데이터 x에 대한 기대검정 MSE는 다음과 같은 3개의 속성으로 나눌 수 있다.  E(y_0 - f(x_o))^2 = Var(f(x_o)) + [Bias(f(x_0))]^2 + Var(\epsilon) 예측값의 분산 예측값의 제곱편향 오차항 $\epsilon$ 의 분산  이 항들의 합을 최대한 작게 하는 것이 모델 학습의 목적">
 <meta name="twitter:image" content="https://user-images.githubusercontent.com/44221498/70614000-09c22780-1c4d-11ea-92b7-064946acee6b.png">
     
 
@@ -146,7 +146,7 @@
                 
     
         <h1 class="article-title" itemprop="name">
-        편향 분산 절충
+        ISLR-2.2
         </h1>
     
 
@@ -173,7 +173,7 @@
         
         
         <div class="article-entry" itemprop="articleBody">
-            <h1 id="편향-분산-절충"><a href="#편향-분산-절충" class="headerlink" title="편향 분산 절충"></a>편향 분산 절충</h1><p>테스트데이터 x에 대한 기대검정 MSE는 다음과 같은 3개의 속성으로 나눌 수 있다.</p>
+            <h1 id="2-2-2-편향-분산-절충"><a href="#2-2-2-편향-분산-절충" class="headerlink" title="2.2.2 편향 분산 절충"></a>2.2.2 편향 분산 절충</h1><p>테스트데이터 x에 대한 기대검정 MSE는 다음과 같은 3개의 속성으로 나눌 수 있다.</p>
 <script type="math/tex; mode=display">
 E(y_0 - f(x_o))^2 = Var(f(x_o)) + [Bias(f(x_0))]^2 + Var(\epsilon)</script><ol>
 <li>예측값의 분산</li>
@@ -202,7 +202,7 @@ E(y_0 - f(x_o))^2 = Var(f(x_o)) + [Bias(f(x_0))]^2 + Var(\epsilon)</script><ol>
 
 
 
-    <a data-url="https://jyujin39.github.io/2019/12/10/편향-분산-절충/" data-id="ck415uyp7004esfdz58lln2ol" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://jyujin39.github.io/2019/12/10/편향-분산-절충/" data-id="ck5eo2dkm004hledztlkihid8" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -336,7 +336,7 @@ E(y_0 - f(x_o))^2 = Var(f(x_o)) + [Bias(f(x_0))]^2 + Var(\epsilon)</script><ol>
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/Statistics/">Statistics</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Statistics/ISLR-Introduction-to-Statistical-Learning/">ISLR(Introduction to Statistical Learning)</a></p>
-                            <p class="item-title"><a href="/2019/12/10/편향-분산-절충/" class="title">편향 분산 절충</a></p>
+                            <p class="item-title"><a href="/2019/12/10/편향-분산-절충/" class="title">ISLR-2.2</a></p>
                             <p class="item-date"><time datetime="2019-12-10T11:33:22.000Z" itemprop="datePublished">2019-12-10</time></p>
                         </div>
                     </li>
@@ -417,7 +417,7 @@ E(y_0 - f(x_o))^2 = Var(f(x_o)) + [Bias(f(x_0))]^2 + Var(\epsilon)</script><ol>
                 <h1 class="logo-wrap">
                     <a href="/" class="logo"></a>
                 </h1>
-                <p>&copy; 2019 Yujin Jeon</p>
+                <p>&copy; 2020 Yujin Jeon</p>
                 <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
             </div>
             <div class="footer-plugins">
