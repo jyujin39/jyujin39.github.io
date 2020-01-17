@@ -20,12 +20,12 @@
 <meta property="og:site_name" content="Data Science YJ">
 <meta property="og:description" content="3 선형회귀3.1 단순선형회귀선형회귀 중에서도 단순선형회귀란, 하나의 독립변수 X를 가지고 종속변수 Y를 예측하는 접근방법이다. X와 Y 간에 선형 관계가 있다고 가정하며, 수식으로 쓰면 다음과 같다.  Y \approx \beta_0 + \beta_1 X위 식에서 ‘$\approx$’ 기호는 “대략적으로 모델링되었다” 라는 개념으로 보면 된다. TV 광고">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://user-images.githubusercontent.com/44221498/72405882-c30ca380-379d-11ea-8506-b489a5b906ac.png">
-<meta property="og:updated_time" content="2020-01-15T04:49:05.194Z">
+<meta property="og:image" content="https://user-images.githubusercontent.com/44221498/72489207-bbf59c00-3856-11ea-8645-a1f48ce7ae31.png">
+<meta property="og:updated_time" content="2020-01-17T10:06:30.731Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ISLR-3.1">
 <meta name="twitter:description" content="3 선형회귀3.1 단순선형회귀선형회귀 중에서도 단순선형회귀란, 하나의 독립변수 X를 가지고 종속변수 Y를 예측하는 접근방법이다. X와 Y 간에 선형 관계가 있다고 가정하며, 수식으로 쓰면 다음과 같다.  Y \approx \beta_0 + \beta_1 X위 식에서 ‘$\approx$’ 기호는 “대략적으로 모델링되었다” 라는 개념으로 보면 된다. TV 광고">
-<meta name="twitter:image" content="https://user-images.githubusercontent.com/44221498/72405882-c30ca380-379d-11ea-8506-b489a5b906ac.png">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/44221498/72489207-bbf59c00-3856-11ea-8645-a1f48ce7ae31.png">
     
 
     
@@ -185,8 +185,39 @@ Y \approx \beta_0 + \beta_1 X</script><p>위 식에서 ‘$\approx$’ 기호는
 <script type="math/tex; mode=display">
 \eqalign{\hat{\beta_0} &= \hat{y} - \hat{\beta_1}\bar{x}\\\\\hat{\beta_1} &= \frac{\sum^n_{i=1}(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^n(x_i-\bar{x})^2}}</script><p>위 식에서 $\bar{x}$ 와 $\bar{y}$ 는 각각 x와 y의 표본평균을 의미한다.</p>
 <script type="math/tex; mode=display">
-\bar{x} = \frac{1}{n}\sum\nolimits^n_{i=1}x_i,~~~~~ \bar{y} = \frac{1}{n}\sum\nolimits^n_{i=1}y_i</script><h3 id="3-1-2-계수-추정치의-정확도-평가"><a href="#3-1-2-계수-추정치의-정확도-평가" class="headerlink" title="3.1.2 계수 추정치의 정확도 평가"></a>3.1.2 계수 추정치의 정확도 평가</h3><h3 id="3-1-3-모델의-정확도-평가"><a href="#3-1-3-모델의-정확도-평가" class="headerlink" title="3.1.3 모델의 정확도 평가"></a>3.1.3 모델의 정확도 평가</h3><ul>
-<li>RSS 미분과정</li>
+\bar{x} = \frac{1}{n}\sum\nolimits^n_{i=1}x_i,~~~~~ \bar{y} = \frac{1}{n}\sum\nolimits^n_{i=1}y_i</script><h3 id="3-1-2-계수-추정치의-정확도-평가"><a href="#3-1-2-계수-추정치의-정확도-평가" class="headerlink" title="3.1.2 계수 추정치의 정확도 평가"></a>3.1.2 계수 추정치의 정확도 평가</h3><p>X와 Y 사이의 실제 관계는 $Y = f(X) + \epsilon$ 의 모습으로 표현할 수 있다고 정의한 바 있다. 예측식과 다른 점은 오차항에 해당하는 $\epsilon$ 이 있다는 건데, 이 오차항은 X와 독립이며, 평균이 0인 정규분포에서 발생하는 랜덤한 상수로, 통제 혹은 예측이 불가능한 현실로 인해 발생하는 것이다. </p>
+<script type="math/tex; mode=display">
+Y = \beta_0 + \beta_1 X + \epsilon</script><p>위 식이 실제 X와 Y간의 관계를 가장 잘 나타내는 <strong>모회귀선</strong>에 해당하며, 아래 식은 최소제곱법을 통해 구한 계수 추정치를 사용해 y를 예측한 <strong>최소제곱선</strong>에 해당한다. </p>
+<script type="math/tex; mode=display">
+\hat{y} = \hat{\beta_0} + \hat{\beta_1} x</script><p><img src="https://user-images.githubusercontent.com/44221498/72489207-bbf59c00-3856-11ea-8645-a1f48ce7ae31.png" alt="image"></p>
+<p>위 그래프를 보자. 왼쪽 그래프에 $Y = 2 + 3X + \epsilon$ 식에 100개의 랜덤한 X값을 집어넣어 생성한 데이터가 표시되어 있다. 이 식, 즉 데이터들을 가장 잘 나타내는 모회귀선이 빨간 선에 해당하고, 우리가 예측한 최소제곱선이 파란 선에 해당한다. </p>
+<p>오른쪽 그래프의 희미한 파란 선들은, 위 하나의 식으로 10개의 랜덤한 데이터셋을 생성하여 예측한 10개의 최소제곱선을 표시한 것이다. 각각의 최소제곱선을 모회귀선으로 보기에는 훈련셋으로 사용한 각 데이터셋에 과적합된 것일 수 있어 위험하지만, 이 최소제곱선들의 평균을 내게 되면 모회귀선에 가까워진다. 파란 선이 많아지만 많아질수록 그 선들의 평균은 빨간 선에 가까워진다는 것이다. 즉, <strong>데이터가 많아질수록 실제 모회귀선에 가까운 최소제곱선을 구할 수가 있게 된다.</strong></p>
+<p>이는 확률변수 Y의 모평균 $\mu$이 Y에서 나온 샘플데이터들의 표본평균 $\hat{\mu}$ 의 평균과 동일할 것으로 기대되는 것과 같은 맥락이다. 개별 $\hat{\mu}$ 는 모평균을 과소추정 혹은 과대추정할 수 있지만, 엄청 많은 샘플들의 표본평균을 구해 평균내면 모평균과 거의 가까워진다. 그렇다면 개별 $\hat{\mu}$ 는 모평균과 얼마나 벗어난 값일까? 보통 이 값은 $\hat{\mu}$ 의 <strong>표준오차</strong>(standard error)로 계산한다. 표준오차를 구하는 공식은 다음과 같다.</p>
+<script type="math/tex; mode=display">
+\text{Var}(\hat{\mu}) = \text{SE}(\hat{\mu})^2 = \frac{\sigma^2}{n}</script><p>여기서 $\sigma$ 는 y 샘플값들의 표준편차에 해당한다. 이 식만 보더라도 표본 수가 적어지면 표준오차가 커진다는 사실을 알 수 있다.</p>
+<p>같은 방식으로, 다음 공식을 통해 우리가 추정한 $\hat{\beta_0}$과 $\hat{\beta_1}$이 실제 $\beta_0$과 $\beta_1$에 얼마나 가까운지, 즉 $\hat{\beta_0}$과 $\hat{\beta_1}$의 표준오차를 구할 수 있다. </p>
+<script type="math/tex; mode=display">
+\text{SE}(\hat{\beta_0})^2 = \sigma^2 \bigg[\frac{1}{n} + \frac{\bar{x}^2}{\sum_{i=1}^n(x_i - \bar{x})^2}\bigg],~~~~\ \text{SE}(\hat{\beta_1})^2 = \frac{\sigma^2}{\sum_{i=1}^n(x_i - \bar{x})^2}</script><p>여기서 $\sigma^2$는 $\text{Var}(\epsilon)$이다. 그런데 알다시피 $\epsilon$은 알 수 없는 오차이기 때문에 그 분산 또한 알 수 없다. 다만 데이터를 통해 추정할 수가 있는데, $\sigma$를 <strong>잔차표준오차(RSE, Residual Standard Error)</strong>라고 하며 다음과 같이 구할 수 있다.</p>
+<script type="math/tex; mode=display">
+\text{RSE} = \sqrt{\text{RSS} / (n - 2)} = \sqrt{\frac{1}{n-2}\sum^n_{i=1}(y_i-\hat{y_i})^2}</script><p>표준오차는 신뢰구간을 정의할 때에도 쓰이는데, 예를 들어 실제 계수 값은 95%의 확률로 우리가 구한 계수추정치의 다음 구간 안에 존재한다.</p>
+<script type="math/tex; mode=display">
+\hat{\beta_1} \pm 2 \cdot \text{SE}(\hat{\beta_1})\\
+\hat{\beta_0} \pm 2 \cdot \text{SE}(\hat{\beta_0})</script><p>또한, 표준오차는 귀무가설을 검정할 때에도 사용된다. 단순하게 상관관계 검정에 대한 귀무가설과 대립가설을 아래와 같이 세웠다고 하자.</p>
+<script type="math/tex; mode=display">
+H_0 : X\text{와} Y \text{사이에는 상관관계가 없다.}\\
+H_1 : X\text{와} Y \text{사이에는 상관관계가 있다.}</script><p>수학적으로는 다음과 같이 쓸 수 있다.</p>
+<script type="math/tex; mode=display">
+H_0 : \beta_1 = 0\\
+H_1 : \beta_1 \neq 0</script><p>즉, 이 귀무가설을 검정하기 위해서는 우리가 구한 $\hat{\beta_1}$의 값이 0과 얼마나 먼 값인지를 알아야 하는데, 어느 정도가 충분히 먼 것일지를 판단하는 데에 표준오차가 사용되는 것이다. $\text{SE}(\hat{\beta_0})$의 값이 작으면  $\hat{\beta_1}$ 값이 작더라도 $\beta_1 \neq 0$ 이라는 충분한 근거가 되어 귀무가설을 기각할 수 있고, $\text{SE}(\hat{\beta_0})$의 값이 크면 귀무가설을 기각하기 위해서는 $\hat{\beta_1}$ 값이 훨씬 커야만 한다. </p>
+<h3 id="3-1-3-모델의-정확도-평가"><a href="#3-1-3-모델의-정확도-평가" class="headerlink" title="3.1.3 모델의 정확도 평가"></a>3.1.3 모델의 정확도 평가</h3><p>귀무가설을 기각하고 대립가설을 채택한 후, 즉 X와 Y 사이에 상관관계가 있다는 결론을 내린 후에는 우리가 추정한 계수들로 만든 선형회귀 모델이 얼마나 데이터에 잘 적합하는지를 평가하는 과정이 필요하다. 모델의 정확도를 평가할 때는 앞서 본 RSE를 사용할 수도 있지만, RSE와 관련된 개념인 <strong>$R^2$ 통계량</strong>을 주로 사용한다.</p>
+<p>RSE는 쉽게 말하면 반응변수 y값이 모회귀선에서 얼마나 벗어나는지에 대한 평균값이다. 다시 말하면, 모델이 완벽하고 계수들의 실제 값을 알고 있다 하더라도 실제 값은 예측값에서 RSE 값의 크기만큼 벗어날 수 있다는 뜻이다.</p>
+<p>이렇게 RSE는 데이터에 대한 모델의 적합도를 절대적으로 측정하는 기준이 된다. 그런데 계산식에서 알 수 있듯이, RSE 값은 Y에 종속적이다. 각 데이터에 따라 적정 RSE가 무엇인지는 다를 수 있다. 반면 $R^2$는 0과 1 사이 값을 가지는 <em>비율</em>의 형태를 하고 있고 Y값에 독립적이라서, 어떤 데이터로 예측을 하든 동일하게 정확도를 판단할 수 있는 기준이 된다.</p>
+<script type="math/tex; mode=display">
+R^2 = \frac{\text{TSS} - \text{RSS}}{\text{TSS}} = 1 - \frac{\text{RSS}}{\text{TSS}}</script><p>여기서 <em>TSS(Total Sum of Squares)</em>는 $\text{TSS}=\sum(y_i-\bar{y})^2$  로 계산되며, 반응변수 Y의 분산을 의미한다. TSS는 원래 Y에 내재하는 분산인 것이며, RSS는 예측값과 실제값의 차이, 즉 회귀를 수행하여 X와 Y 사이의 관계를 잡아내고 난 후에도 설명되지 않고 남아있는 분산인 것이다. 따라서 TSS와 RSS의 차는 회귀 수행 후 설명이 된 Y의 분산에 해당한다. 결론적으로 <strong>$R^2$는 Y에 내재하는 변동성 중 X로 설명할 수 있는 변동성의 비율</strong>이 된다. $R^2$ 값이 1에 가까우면 회귀모델로 Y의 많은 부분을 설명할 수 있다는 것이고, 0에 가까우면 거의 설명하지 못한다는 것이다. 따라서 $R^2$ 값이 높을수록 설명력이 높은 좋은 모델이라고 단순하게는 말할 수 있다.</p>
+<p>그러나 무조건 $R^2$가 1에 가까워야만 좋은 모델이고 그렇지 않으면 쓸모없는 모델이라고 단정지을 수는 없다. 예를 들어 물리학에서는 실제로 선형관계를 갖고있고 오차가 적은 데이터가 많아 모델에 높은 $R^2$가 요구되지만, 상대적으로 예측할 수 없고 통제가 어려운 변수가 많은 심리학이나 마케팅 같은 분야에서는 0.1보다 낮은 $R^2$가 현실적일 수 있기 때문이다. </p>
+<p>$R^2$ 통계량은 모델의 정확도 판단 기준도 되지만 다른 관점에서 보면 X와 Y 사이의 상관관계를 나타내는 수치도 될 수 있다. 실제로 상관관계를 나타내는 수치인 상관계수 $r$을 제곱하면 $R^2$과 같다. 다음에 살펴볼 다중선형회귀에서 설명변수 X가 늘어나게 되면 상관계수를 구하는 공식을 적용하기가 어려워지는데, 이 때는 $R^2$가 적절한 대체재가 된다.</p>
+<ul>
+<li>RSS 미분 과정</li>
 </ul>
 <p><img src="https://user-images.githubusercontent.com/44221498/72405882-c30ca380-379d-11ea-8506-b489a5b906ac.png" alt="image"></p>
 
@@ -196,7 +227,7 @@ Y \approx \beta_0 + \beta_1 X</script><p>위 식에서 ‘$\approx$’ 기호는
 
 
 
-    <a data-url="https://jyujin39.github.io/2020/01/15/ISLR-3-1/" data-id="ck5etkkdm000jamdz8tqp8xpd" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://jyujin39.github.io/2020/01/15/ISLR-3-1/" data-id="ck5i00k9r000awxdzmyxiqvfo" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
