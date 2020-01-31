@@ -1026,8 +1026,8 @@ code {
 }
 .article-summary .article-summary-inner .article-excerpt {
   position: relative;
-  color: rgba(54,56,59,0.949);
-  font-size: 14px;
+  color: #aaa;
+  font-size: 16px;
   line-height: 1.6em;
   overflow: hidden;
   height: 6.4em;
@@ -1149,6 +1149,9 @@ a.article-title:hover {
 }
 .article-entry a:hover {
   text-decoration: underline;
+}
+.article-entry figcaption a {
+  float: right;
 }
 .article-entry ul,
 .article-entry ol,
@@ -1842,46 +1845,45 @@ i.icon:before {
   height: 1.6em;
 }
 .highlight {
-  color: #a9b7c6;
-  background: #282b2e;
-}
-.highlight .code .number,
-.highlight .code .literal,
-.highlight .code .symbol,
-.highlight .code .bullet {
-  color: #6897bb;
-}
-.highlight .code .keyword,
-.highlight .code .selector-tag,
-.highlight .code .deletion {
-  color: #cc7832;
-}
-.highlight .code .variable,
-.highlight .code .template-variable,
-.highlight .code .link {
-  color: #629755;
+  color: #516d7b;
+  background: #ebf8ff;
 }
 .highlight .code .comment,
 .highlight .code .quote {
-  color: #808080;
+  color: #5a7b8c;
 }
-.highlight .code .meta {
-  color: #bbb529;
-}
-.highlight .code .string,
+.highlight .code .variable,
+.highlight .code .template-variable,
 .highlight .code .attribute,
-.highlight .code .addition {
-  color: #6a8759;
-}
-.highlight .code .section,
-.highlight .code .title,
-.highlight .code .type {
-  color: #ffc66d;
-}
+.highlight .code .tag,
 .highlight .code .name,
+.highlight .code .regexp,
+.highlight .code .link,
 .highlight .code .selector-id,
 .highlight .code .selector-class {
-  color: #e8bf6a;
+  color: #d22d72;
+}
+.highlight .code .number,
+.highlight .code .meta,
+.highlight .code .built_in,
+.highlight .code .builtin-name,
+.highlight .code .literal,
+.highlight .code .type,
+.highlight .code .params {
+  color: #935c25;
+}
+.highlight .code .string,
+.highlight .code .symbol,
+.highlight .code .bullet {
+  color: #568c3b;
+}
+.highlight .code .title,
+.highlight .code .section {
+  color: #257fad;
+}
+.highlight .code .keyword,
+.highlight .code .selector-tag {
+  color: #6b6bb8;
 }
 .highlight .code .emphasis {
   font-style: italic;

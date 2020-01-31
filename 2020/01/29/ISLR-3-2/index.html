@@ -10,7 +10,7 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="study,statistics,ISLR">
+    <meta name="keywords" content="study,statistics,ISLR">
     
     <meta name="description" content="3.2 다중선형회귀단순선형회귀는 하나의 설명변수로 결과값을 예측할 때 유용한 방법이다. 하지만 현실에서 설명변수가 하나인 경우는 많지 않다. 광고 매출을 예측할 때만 해도 TV광고, 지면 광고, 소셜미디어 광고 등 다양한 설명변수가 존재할 수 있다. 이럴 경우 회귀분석을 어떻게 해야 할까? 한 가지 방법은 단순선형회귀를 설명변수 각각에 대해 진행하는 것이다">
 <meta name="keywords" content="study,statistics,ISLR">
@@ -20,7 +20,7 @@
 <meta property="og:site_name" content="스윗유진">
 <meta property="og:description" content="3.2 다중선형회귀단순선형회귀는 하나의 설명변수로 결과값을 예측할 때 유용한 방법이다. 하지만 현실에서 설명변수가 하나인 경우는 많지 않다. 광고 매출을 예측할 때만 해도 TV광고, 지면 광고, 소셜미디어 광고 등 다양한 설명변수가 존재할 수 있다. 이럴 경우 회귀분석을 어떻게 해야 할까? 한 가지 방법은 단순선형회귀를 설명변수 각각에 대해 진행하는 것이다">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-01-29T06:22:43.705Z">
+<meta property="og:updated_time" content="2020-01-30T02:57:05.374Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ISLR-3.2">
 <meta name="twitter:description" content="3.2 다중선형회귀단순선형회귀는 하나의 설명변수로 결과값을 예측할 때 유용한 방법이다. 하지만 현실에서 설명변수가 하나인 경우는 많지 않다. 광고 매출을 예측할 때만 해도 TV광고, 지면 광고, 소셜미디어 광고 등 다양한 설명변수가 존재할 수 있다. 이럴 경우 회귀분석을 어떻게 해야 할까? 한 가지 방법은 단순선형회귀를 설명변수 각각에 대해 진행하는 것이다">
@@ -38,7 +38,7 @@
 
     <link rel="stylesheet" href="/css/style.css">
 
-    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/libs/jquery/3.4.1/jquery.min.js"></script>
     
     
         <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
@@ -154,18 +154,24 @@
             <div class="article-meta">
                 
     <div class="article-date">
-        <a href="/2020/01/29/ISLR-3-2/" class="article-date">
-            <time datetime="2020-01-29T06:21:51.000Z" itemprop="datePublished">2020-01-29</time>
-        </a>
+      <i class="fa fa-calendar"></i>
+      <a href="/2020/01/29/ISLR-3-2/" class="article-date">
+         <time datetime="2020-01-29T06:21:51.000Z" itemprop="datePublished">2020-01-29</time>
+      </a>
     </div>
 
-		
+
+                
 
                 
     <div class="article-tag">
         <i class="fa fa-tag"></i>
         <a class="tag-link" href="/tags/ISLR/">ISLR</a>, <a class="tag-link" href="/tags/statistics/">statistics</a>, <a class="tag-link" href="/tags/study/">study</a>
     </div>
+
+                
+
+                
 
             </div>
         
@@ -175,9 +181,63 @@
 <p>한 가지 방법은 단순선형회귀를 설명변수 각각에 대해 진행하는 것이다. 물론 선호되는 방식은 아니다. 일단 개별 선형회귀모델에서 나온 다른 예측값들을 가지고 하나의 값을 도출해내기가 어렵다. 또한 각 모델은 다른 모델을 고려하지 않은 채 하나의 변수만을 가지고 학습하고 예측하기 때문에 만약 변수들 간에 상관관계가 존재한다면 개별 모델이 예측하는 결과는 상당히 왜곡되어있을 수 있다.</p>
 <p>따라서 많은 변수들을 하나의 모델에 담아내는 것이 더 좋은 방법이다. 단순선형회귀식에서 하나의 설명변수에 하나의 계수 $\beta_1$이 주어졌다면, 그 식을 그대로 확장해 변수마다 계수를 부여하는 것이다. 이를 <strong>다중선형회귀</strong>라고 하며, p개의 설명변수를 가진 다중선형회귀모델은 아래와 같은 형식을 취한다.</p>
 <script type="math/tex; mode=display">
-Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + \cdots \beta_p X_p + \epsilon</script><p>TV광고에 쓰인 광고비, 신문광고에 쓰인 광고비, SNS에 쓰인 광고비를 통해 매출을 예측하고 싶다면, 다중선형회귀식은 아래와 같을 것이다.</p>
+Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + \cdots \beta_p X_p + \epsilon</script><p>만약 TV광고에 쓰인 광고비, 신문광고에 쓰인 광고비, SNS에 쓰인 광고비를 통해 매출을 예측하고자 한다면, 다중선형회귀식은 아래와 같이 쓸 수 있다.</p>
 <script type="math/tex; mode=display">
-\style{color:navy}{\text{sales}} = \beta_0 + \beta_1 \times \style{color:darkred}{\text{TV}} + \beta_2 \times \style{color:darkred}{\text{newspaper}} + \beta_3 \times \style{color:darkred}{\text{sns}} + \epsilon</script><h3 id="3-2-1-회귀계수의-추정"><a href="#3-2-1-회귀계수의-추정" class="headerlink" title="3.2.1 회귀계수의 추정"></a>3.2.1 회귀계수의 추정</h3><p>단순선형회귀에서와 마찬가지로, 다중선형회귀의 </p>
+\style{color:navy}{\text{sales}} = \beta_0 + \beta_1 \times \style{color:darkred}{\text{TV}} + \beta_2 \times \style{color:darkred}{\text{newspaper}} + \beta_3 \times \style{color:darkred}{\text{sns}} + \epsilon</script><h3 id="3-2-1-회귀계수의-추정"><a href="#3-2-1-회귀계수의-추정" class="headerlink" title="3.2.1 회귀계수의 추정"></a>3.2.1 회귀계수의 추정</h3><p>단순선형회귀에서와 마찬가지로, 다중선형회귀의 회귀계수들 또한 알려지지 않았기 때문에 우리가 추정한 값들 $\hat{\beta_0}, \hat{\beta_1}, \cdots, \hat{\beta_p}$를 가지고 예측값 $\hat{y}$을 도출해내는 것이다.</p>
+<script type="math/tex; mode=display">
+\hat{y} = \hat{\beta_0} + \hat{\beta_1}x_1 + \hat{\beta_2}x_2 + \cdots + \hat{\beta_p}x_p</script><p>회귀계수를 추정할 때도 단순선형회귀에서와 마찬가지로 최소제곱법을 이용한다. 즉, 다음 RSS를 최소화하는 계수들을 찾아내는 것이 목적이다.</p>
+<script type="math/tex; mode=display">
+\begin{eqnarray}
+\text{RSS} &=& \sum_{i=1}^n (y_i - \hat{y_i})^2\\
+&=& \sum_{i=1}^n (y_i - \hat{\beta_0} - \hat{\beta_1}x_{i1} - \hat{\beta_2}x_{i2} - \cdots - \hat{\beta_p}x_{ip})^2
+\end{eqnarray}</script><p>위에서 들었던 광고 매출을 예측하는 문제에 대해 다중선형회귀를 통해 추정한 계수 값이 아래 표와 같다면,</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>coefficient(계수)</th>
+<th>표준오차(std.error)</th>
+<th>t-통계량</th>
+<th>p-value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>상수항($\hat{\beta_0}$)</td>
+<td>2.939</td>
+<td>0.3119</td>
+<td>9.42</td>
+<td>&lt; 0.0001</td>
+</tr>
+<tr>
+<td>TV</td>
+<td>0.046</td>
+<td>0.0014</td>
+<td>32.81</td>
+<td>&lt; 0.0001</td>
+</tr>
+<tr>
+<td>newspaper</td>
+<td>0.189</td>
+<td>0.0086</td>
+<td>21.89</td>
+<td>&lt; 0.0001</td>
+</tr>
+<tr>
+<td>SNS</td>
+<td>-0.001</td>
+<td>0.0059</td>
+<td>-0.18</td>
+<td>0.8599</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>우리는 이 결과를 이렇게 해석할 수 있다:</p>
+<p>원래 하던 TV, 신문, sns 광고를 그대로 두고 TV광고에 추가적으로 $1000을 더 쓴다면, 약 189단위의 매출 상승을 기대할 수 있다.</p>
+<p>이 다중선형회귀 결과 추정된 계수값은 각 변수에 대해 단순선형회귀를 했을 때 나오는 계수값과 상당히 다를 수 있다. 이 차이는 위에서 언급했듯이 하나의 변수에 대한 단순선형회귀가 다른 변수의 영향을 전혀 고려하지 않는 반면 <strong>다중선형회귀는 다른 변수들의 값이 고정일 때 변수 하나가 y에 미치는 영향을 측정</strong>하기 때문이다.</p>
+<p>따라서 단순선형회귀 결과 SNS 광고가 매출과 양의 상관관계를 가졌지만, 다중선형회귀를 해보니 둘 사이에는 상관관계가 없다는 결론이 나올 수가 있다.</p>
 
         </div>
         <footer class="article-footer">
@@ -185,7 +245,7 @@ Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + \cdots \beta_p X_p + \epsilon</script><p
 
 
 
-    <a data-url="https://jyujin39.github.io/2020/01/29/ISLR-3-2/" data-id="ck5z45oo1000gj1dzssaa0z53" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://jyujin39.github.io/2020/01/29/ISLR-3-2/" data-id="ck61u9y0m000c9ndz5w2hy1ma" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -247,6 +307,28 @@ Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + \cdots \beta_p X_p + \epsilon</script><p
 
         </footer>
     </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "Yujin Jeon"
+        },
+        "headline": "ISLR-3.2",
+        "image": "https://jyujin39.github.io",
+        "keywords": "study statistics ISLR",
+        "genre": "Statistics ISLR(Introduction to Statistical Learning)",
+        "datePublished": "2020-01-29",
+        "dateCreated": "2020-01-29",
+        "dateModified": "2020-01-30",
+        "url": "https://jyujin39.github.io/2020/01/29/ISLR-3-2/",
+        "description": "3.2 다중선형회귀단순선형회귀는 하나의 설명변수로 결과값을 예측할 때 유용한 방법이다. 하지만 현실에서 설명변수가 하나인 경우는 많지 않다. 광고 매출을 예측할 때만 해도 TV광고, 지면 광고, 소셜미디어 광고 등 다양한 설명변수가 존재할 수 있다. 이럴 경우 회귀분석을 어떻게 해야 할까?
+한 가지 방법은 단순선형회귀를 설명변수 각각에 대해 진행하는 것이다",
+        "wordCount": 356
+    }
+</script>
+
 </article>
 
     <section id="comments">
@@ -255,6 +337,7 @@ Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + \cdots \beta_p X_p + \epsilon</script><p
     <div id="disqus_thread">
         <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
+
 
     
     </section>
@@ -409,7 +492,7 @@ Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + \cdots \beta_p X_p + \epsilon</script><p
                     <a href="/" class="logo"></a>
                 </h1>
                 <p>&copy; 2020 Yujin Jeon</p>
-                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+                
             </div>
             <div class="footer-plugins">
               
@@ -441,6 +524,7 @@ Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + \cdots \beta_p X_p + \epsilon</script><p
 
 
 
+
     
         <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
         <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
@@ -460,6 +544,8 @@ Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + \cdots \beta_p X_p + \epsilon</script><p
             MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
         </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+
     
 
 
