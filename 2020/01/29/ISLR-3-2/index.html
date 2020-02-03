@@ -3,6 +3,8 @@
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
 
+    <link rel="stylesheet" href="https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.css">
+
     
 
     
@@ -20,7 +22,7 @@
 <meta property="og:site_name" content="스윗유진">
 <meta property="og:description" content="3.2 다중선형회귀단순선형회귀는 하나의 설명변수로 결과값을 예측할 때 유용한 방법이다. 하지만 현실에서 설명변수가 하나인 경우는 많지 않다. 광고 매출을 예측할 때만 해도 TV광고, 지면 광고, 소셜미디어 광고 등 다양한 설명변수가 존재할 수 있다. 이럴 경우 회귀분석을 어떻게 해야 할까? 한 가지 방법은 단순선형회귀를 설명변수 각각에 대해 진행하는 것이다">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-01-30T02:57:05.374Z">
+<meta property="og:updated_time" content="2020-02-03T04:50:23.611Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ISLR-3.2">
 <meta name="twitter:description" content="3.2 다중선형회귀단순선형회귀는 하나의 설명변수로 결과값을 예측할 때 유용한 방법이다. 하지만 현실에서 설명변수가 하나인 경우는 많지 않다. 광고 매출을 예측할 때만 해도 TV광고, 지면 광고, 소셜미디어 광고 등 다양한 설명변수가 존재할 수 있다. 이럴 경우 회귀분석을 어떻게 해야 할까? 한 가지 방법은 단순선형회귀를 설명변수 각각에 대해 진행하는 것이다">
@@ -235,7 +237,7 @@ Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + \cdots \beta_p X_p + \epsilon</script><p
 </table>
 </div>
 <p>우리는 이 결과를 이렇게 해석할 수 있다:</p>
-<p>원래 하던 TV, 신문, sns 광고를 그대로 두고 TV광고에 추가적으로 $1000을 더 쓴다면, 약 189단위의 매출 상승을 기대할 수 있다.</p>
+<p><code>원래 하던 TV, 신문, sns 광고를 유지한 상태에서 TV광고에 추가적으로 $1000을 더 쓴다면, 약 189단위의 매출 상승을 기대할 수 있다.</code></p>
 <p>이 다중선형회귀 결과 추정된 계수값은 각 변수에 대해 단순선형회귀를 했을 때 나오는 계수값과 상당히 다를 수 있다. 이 차이는 위에서 언급했듯이 하나의 변수에 대한 단순선형회귀가 다른 변수의 영향을 전혀 고려하지 않는 반면 <strong>다중선형회귀는 다른 변수들의 값이 고정일 때 변수 하나가 y에 미치는 영향을 측정</strong>하기 때문이다.</p>
 <p>따라서 단순선형회귀 결과 SNS 광고가 매출과 양의 상관관계를 가졌지만, 다중선형회귀를 해보니 둘 사이에는 상관관계가 없다는 결론이 나올 수가 있다.</p>
 
@@ -245,7 +247,7 @@ Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + \cdots \beta_p X_p + \epsilon</script><p
 
 
 
-    <a data-url="https://jyujin39.github.io/2020/01/29/ISLR-3-2/" data-id="ck61u9y0m000c9ndz5w2hy1ma" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://jyujin39.github.io/2020/01/29/ISLR-3-2/" data-id="ck65zubx1000ewcdz9vcw8tdi" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -321,7 +323,7 @@ Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + \cdots \beta_p X_p + \epsilon</script><p
         "genre": "Statistics ISLR(Introduction to Statistical Learning)",
         "datePublished": "2020-01-29",
         "dateCreated": "2020-01-29",
-        "dateModified": "2020-01-30",
+        "dateModified": "2020-02-03",
         "url": "https://jyujin39.github.io/2020/01/29/ISLR-3-2/",
         "description": "3.2 다중선형회귀단순선형회귀는 하나의 설명변수로 결과값을 예측할 때 유용한 방법이다. 하지만 현실에서 설명변수가 하나인 경우는 많지 않다. 광고 매출을 예측할 때만 해도 TV광고, 지면 광고, 소셜미디어 광고 등 다양한 설명변수가 존재할 수 있다. 이럴 경우 회귀분석을 어떻게 해야 할까?
 한 가지 방법은 단순선형회귀를 설명변수 각각에 대해 진행하는 것이다",
