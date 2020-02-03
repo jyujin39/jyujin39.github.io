@@ -189,7 +189,7 @@
 <script type="math/tex; mode=display">
 J(\theta) = -\frac{1}{m} \sum^m_{i=1} \big(y^{(i)}\log(\hat{p}^{(i)}) + (1 - y^{(i)})\log(1-\hat{p}^{(i)})\big)</script><p>이 비용함수는 정규방정식같은 특별한 식을 통해 최솟값을 계산해낼 수는 없지만, 볼록함수이므로 경사하강법을 비롯한 최적화 알고리즘을 통해 전역 최솟값을 찾아낼 수 있다.</p>
 <p>사이킷런은 `LogisticRegression’이라는 로지스틱 회귀모델을 제공한다. 로지스틱 회귀 또한 규제를 적용할 수 있으며, 기본적으로 사이킷런에서는 L2규제를 사용한다. 규제 강도를 조절하는 하이퍼파라미터는 선형모델에서 사용한 alpha 값의 역수인 C로, C 값이 높을수록 모델의 규제가 줄어든다.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</span><br><span class="line"></span><br><span class="line">log_reg = LogisticRegression(solver=<span class="string">'liblinear'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn.linear_model <span class="hljs-keyword">import</span> LogisticRegression<br><br>log_reg = LogisticRegression(solver=<span class="hljs-string">'liblinear'</span>)<br></code></pre></td></tr></table></figure>
 <h2 id="2-소프트맥스-회귀"><a href="#2-소프트맥스-회귀" class="headerlink" title="2. 소프트맥스 회귀"></a>2. 소프트맥스 회귀</h2><p>로지스틱 회귀를 일반화하여 다중클래스를 지원하도록 일반화한 것이 소프트맥스 회귀 혹은 <strong>다항 로지스틱 회귀</strong>에 해당한다.</p>
 <p>소프트맥스 회귀에서는 샘플들의 각 클래스에 대한 점수 $s_k(\bold{x})$를 계산하고, 그 점수에 <strong>소프트맥스 함수</strong>를 씌워 특정 클래스 $k$에 속할 확률 $\hat{p}_k$를 출력한다.</p>
 <script type="math/tex; mode=display">
@@ -198,7 +198,7 @@ J(\theta) = -\frac{1}{m} \sum^m_{i=1} \big(y^{(i)}\log(\hat{p}^{(i)}) + (1 - y^{
 <script type="math/tex; mode=display">
 J(\Theta) = -\frac{1}{m} \sum^m_{i=1}\sum^K_{k=1} y_k^{(1)}\log\big(\hat{p}_k^{(i)}\big)</script><p>여기서 $\Theta$는 각 클래스가 갖는 파라미터벡터 $\theta^{(k)}​$를 모은 파라미터 행렬이다.</p>
 <p>사이킷런의 <code>Logistic Regression</code> 에서 <code>multi_class</code> 인수를 “multinomial” 로 바꾸면 소프트맥스 회귀를 사용할 수 있다. 소프트맥스 회귀를 사용하려면 <code>solver</code> 매개변수에 “lbfgs” 와 같이 이 회귀를 지원하는 알고리즘을 지정해주어야 한다. 소프트맥스 회귀에서 사용하는 규제는 로지스틱회귀와 마찬가지로 기본적으로 L2 규제이며, 하이퍼파라미터 인수 <code>C</code> 값을 통해 조절할 수 있다. </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">softmax_reg = LogisticRegression(multi_class=&apos;multinomial&apos;, solver=&apos;lbfgs&apos;, C=10)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">softmax_reg = LogisticRegression(multi_class=&apos;multinomial&apos;, solver=&apos;lbfgs&apos;, C=10)<br></code></pre></td></tr></table></figure>
 
         </div>
         <footer class="article-footer">
@@ -206,7 +206,7 @@ J(\Theta) = -\frac{1}{m} \sum^m_{i=1}\sum^K_{k=1} y_k^{(1)}\log\big(\hat{p}_k^{(
 
 
 
-    <a data-url="https://jyujin39.github.io/2019/03/31/로지스틱-회귀와-소프트맥스-회귀/" data-id="ck662zarb00379adzl8wvt7rr" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://jyujin39.github.io/2019/03/31/로지스틱-회귀와-소프트맥스-회귀/" data-id="ck664ngcj0032bsdzqcz5g3j6" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

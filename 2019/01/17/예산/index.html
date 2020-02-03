@@ -225,12 +225,12 @@
 <h3 id="나의-풀이"><a href="#나의-풀이" class="headerlink" title="나의 풀이"></a>나의 풀이</h3><ul>
 <li><strong>원래 풀이</strong></li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span><span class="params">(d, budget)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> sum(d) &lt;= budget:</span><br><span class="line">        <span class="keyword">return</span> len(d)</span><br><span class="line">    i=<span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> i &lt;= len(d): </span><br><span class="line">        <span class="keyword">if</span> sum(sorted(d)[:-i]) &lt;= budget:</span><br><span class="line">            <span class="keyword">return</span> len(d)-i</span><br><span class="line">        i += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">solution</span><span class="hljs-params">(d, budget)</span>:</span><br>    <span class="hljs-keyword">if</span> sum(d) &lt;= budget:<br>        <span class="hljs-keyword">return</span> len(d)<br>    i=<span class="hljs-number">1</span><br>    <span class="hljs-keyword">while</span> i &lt;= len(d): <br>        <span class="hljs-keyword">if</span> sum(sorted(d)[:-i]) &lt;= budget:<br>            <span class="hljs-keyword">return</span> len(d)-i<br>        i += <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
 <p>★ 단 1개의 부서에도 예산을 지원해줄 수 없는 경우를 생각하여 while문에 &lt;가 아닌 &lt;= 를 써 주는 것이 핵심!</p>
 <ul>
 <li><strong>수정한 풀이</strong></li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span><span class="params">(d, budget)</span>:</span></span><br><span class="line">    total = sum(d)</span><br><span class="line">    d = sorted(d)</span><br><span class="line">    <span class="keyword">if</span> total &lt;= budget:</span><br><span class="line">        <span class="keyword">return</span> len(d)</span><br><span class="line">    i=<span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> i &lt;= len(d):</span><br><span class="line">        total -= d[-i]</span><br><span class="line">        <span class="keyword">if</span> total &lt;= budget:</span><br><span class="line">            <span class="keyword">return</span> len(d)-i</span><br><span class="line">        i += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">solution</span><span class="hljs-params">(d, budget)</span>:</span><br>    total = sum(d)<br>    d = sorted(d)<br>    <span class="hljs-keyword">if</span> total &lt;= budget:<br>        <span class="hljs-keyword">return</span> len(d)<br>    i=<span class="hljs-number">1</span><br>    <span class="hljs-keyword">while</span> i &lt;= len(d):<br>        total -= d[-i]<br>        <span class="hljs-keyword">if</span> total &lt;= budget:<br>            <span class="hljs-keyword">return</span> len(d)-i<br>        i += <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
 <p>while문 안에서 <code>sum</code> 과 리스트 슬라이싱을 반복하는 것이 시간적으로 효율성이 떨어지므로, <code>sum</code>은 while문 바깥에서 한 번만 해주고, 슬라이싱 대신 인덱싱을 하는 방향으로 코드를 수정하였다.</p>
 
         </div>
@@ -239,7 +239,7 @@
 
 
 
-    <a data-url="https://jyujin39.github.io/2019/01/17/예산/" data-id="ck662zarh003s9adzkvg12z3y" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://jyujin39.github.io/2019/01/17/예산/" data-id="ck664ngcr003qbsdz4xzlfy4g" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -319,7 +319,7 @@
         "url": "https://jyujin39.github.io/2019/01/17/예산/",
         "description": "예산S사에서는 각 부서에 필요한 물품을 지원해 주기 위해 부서별로 물품을 구매하는데 필요한 금액을 조사했습니다. 그러나, 전체 예산이 정해져 있기 때문에 모든 부서의 물품을 구매해 줄 수는 없습니다. 그래서 최대한 많은 부서의 물품을 구매해 줄 수 있도록 하려고 합니다.
 물품을 구매해 줄 때는 각 부서가 신청한 금액만큼을 모두 지원해 줘야 합니다. 예를 들",
-        "wordCount": 533
+        "wordCount": 518
     }
 </script>
 

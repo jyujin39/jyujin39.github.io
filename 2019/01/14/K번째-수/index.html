@@ -193,7 +193,7 @@
 <li>commands의 길이는 1 이상 50 이하입니다.</li>
 <li>commands의 각 원소는 길이가 3입니다.</li>
 </ul>
-<h3 id="나의-풀이"><a href="#나의-풀이" class="headerlink" title="나의 풀이"></a>나의 풀이</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span><span class="params">(array, commands)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i, j, k <span class="keyword">in</span> commands:</span><br><span class="line">        result.append(sorted(array[i<span class="number">-1</span>:j])[k<span class="number">-1</span>])</span><br><span class="line">    <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+<h3 id="나의-풀이"><a href="#나의-풀이" class="headerlink" title="나의 풀이"></a>나의 풀이</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">solution</span><span class="hljs-params">(array, commands)</span>:</span><br>    <span class="hljs-keyword">for</span> i, j, k <span class="hljs-keyword">in</span> commands:<br>        result.append(sorted(array[i<span class="hljs-number">-1</span>:j])[k<span class="hljs-number">-1</span>])<br>    <span class="hljs-keyword">return</span> result<br></code></pre></td></tr></table></figure>
 
         </div>
         <footer class="article-footer">
@@ -201,7 +201,7 @@
 
 
 
-    <a data-url="https://jyujin39.github.io/2019/01/14/K번째-수/" data-id="ck662zaqk000v9adz190g73k9" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://jyujin39.github.io/2019/01/14/K번째-수/" data-id="ck664ngbu000pbsdzrecrn8jk" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -285,7 +285,7 @@
 array의 2번째부터 5번째까지 자르면 [5, 2, 6, 3]입니다.
 1에서 나온 배열을 정렬하면 [2, 3, 5, 6]입니다.
 2에서",
-        "wordCount": 160
+        "wordCount": 158
     }
 </script>
 

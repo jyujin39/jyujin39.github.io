@@ -182,19 +182,19 @@
             <h1 id="Regex-와-의-차이"><a href="#Regex-와-의-차이" class="headerlink" title="Regex - [.*] 와 [.*?] 의 차이"></a>Regex - [.*] 와 [.*?] 의 차이</h1><p>문서에서 [ ] 안에 들어있는 문자열을 괄호와 함께 모두 지워버려야 하는 상황이 생겼다.</p>
 <p>Regex 를 어떻게 쓰면 이 문제를 해결할 수 있을까?</p>
 <p>우선 예시 문장을 하나 만들어 보았다.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sent = <span class="string">"Hello, this is an example sentence [for trying out regex grammar]. We are going to find [all of the phrases in the square bracket] including [this one] and [8#kd91?/*] and also just blank []."</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">sent = <span class="hljs-string">"Hello, this is an example sentence [for trying out regex grammar]. We are going to find [all of the phrases in the square bracket] including [this one] and [8#kd91?/*] and also just blank []."</span><br></code></pre></td></tr></table></figure>
 <p>결과로는 [for trying out regex grammar], [all of the phrases in the square bracket], [this one], [8#kd91?/*], 그리고 []까지 총 5개의 대괄호문자열이 삭제되고 나머지 문자열만이 남아있어야 한다.</p>
 <p>우선 삭제하려는 문자열은 처음과 끝에 ‘[‘ 와 ‘]’를 무조건 포함해야 한다. 따라서 regex 문법에 따라 <code>()</code> 를 사용해주어야 한다.</p>
 <p>대괄호는 regex 에서 사용했을 때 <strong>그 안에 들어있는 어떤 문자든 포함하는 경우</strong> 라는 특수한 의미를 갖는 regex 문법 기호이다. 그렇기 때문에 실제 대괄호를 문자열로써 인식해 찾아내야 하는 이와 같은 경우 <code>\</code> 로 그 문법에서 탈출시켜주어야 한다. <code>\[ \]</code> 와 같이 쓰면 된다.</p>
 <p>이제 그 안에 어떤 문법을 작성해주느냐가 관건인데, 어떤 문자열이 한 번 이상 나와야 한다는 의미의 <code>.</code> 와 0번 이상 나와야 한다는 의미의 <code>*</code> 를 함께 사용해주면 다음과 같은 결과가 나온다. 바로 지워버리지 않고 실제로 regex가 어떤 문자열들을 찾아내는지 확인하기 위해 <code>findall</code> 를 찍어본다.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">re.findall(<span class="string">'(\[.*])'</span>, sent)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&apos;[for trying out regex grammar]. We are going to find [all of the phrases in the square bracket] including [this one] and [8#kd91?/*] and also just blank []&apos;]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">re.findall(<span class="hljs-string">'(\[.*])'</span>, sent)<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">[&apos;[for trying out regex grammar]. We are going to find [all of the phrases in the square bracket] including [this one] and [8#kd91?/*] and also just blank []&apos;]<br></code></pre></td></tr></table></figure>
 <p>그러자 위과 같이 하나의 결과값을 뱉어낸다. 자세히 보면 맨 문장에서 가장 처음 등장한 [ 와 가장 마지막에 등장한 ] 만을 대괄호로 인식하고, 그 안에 들어있는 문자열 전체를 통으로 뽑아내고 있음을 알 수 있다. 즉, 그 안에 있는 괄호 하나하나를 인식하지 못하는 것이다.</p>
 <h3 id="Greedy-match-vs-Non-greedy-match"><a href="#Greedy-match-vs-Non-greedy-match" class="headerlink" title="Greedy match vs. Non-greedy match"></a>Greedy match vs. Non-greedy match</h3><p>그 이유는 바로 <code>.</code> 과 <code>*</code> 는 기본적으로 greedy match를 수행하는 기호이기 때문이다.</p>
 <p>그 의미인즉슨, 열어주는 대괄호 [ 를 처음 찾은 이후, 문서의 맨 끝으로 가서 뒤에서부터 역으로 닫아주는 대괄호 ] 를 찾게 된다는 뜻이다.</p>
 <p>그런데 여기서    <code>?</code> 를 써주게 되면, 앞에서부터 차근차근 찾아나가면서 매칭을 시켜주기 때문에 다음과 같이 찾고자 하는 모든 5개의 괄호문을 찾아낼 수 있다.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">re.findall(<span class="string">'(\[.*?\])'</span>, sent)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[&apos;[for trying out regex grammar]&apos;,</span><br><span class="line"> &apos;[all of the phrases in the square bracket]&apos;,</span><br><span class="line"> &apos;[this one]&apos;,</span><br><span class="line"> &apos;[8#kd91?/*]&apos;,</span><br><span class="line"> &apos;[]&apos;]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">re.findall(<span class="hljs-string">'(\[.*?\])'</span>, sent)<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs undefined">[&apos;[for trying out regex grammar]&apos;,<br> &apos;[all of the phrases in the square bracket]&apos;,<br> &apos;[this one]&apos;,<br> &apos;[8#kd91?/*]&apos;,<br> &apos;[]&apos;]<br></code></pre></td></tr></table></figure>
 <p><code>?</code> 는 greedy match에서 탈출시켜주는, 즉 non-greedy match를 가능하게 하는 역할을 하기 때문이다.</p>
 
         </div>
@@ -203,7 +203,7 @@
 
 
 
-    <a data-url="https://jyujin39.github.io/2019/05/14/Regex-와-의-차이/" data-id="ck662zaqp00199adzk5fjdf8y" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://jyujin39.github.io/2019/05/14/Regex-와-의-차이/" data-id="ck664ngc0001absdzw95x7xpg" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -285,7 +285,7 @@
 Regex 를 어떻게 쓰면 이 문제를 해결할 수 있을까?
 우선 예시 문장을 하나 만들어 보았다.
 1sent = "Hello, this is an example sentence [for trying out regex gramm",
-        "wordCount": 412
+        "wordCount": 413
     }
 </script>
 

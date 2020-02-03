@@ -203,11 +203,11 @@ L(y, C_{m-1}) = \frac{1}{2}(y-C_{m-1})^2</script><p>범함수의 미분은 실�
 <ul>
 <li><strong>XGBoost 라이브러리</strong></li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xgboost</span><br><span class="line"></span><br><span class="line">model_xgb = xgboost.XGBClassifier(n_estimators=<span class="number">100</span>, max_depth=<span class="number">1</span>, random_state=<span class="number">0</span>)</span><br><span class="line">model_xgb.fit(X_train, y_train)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> xgboost<br><br>model_xgb = xgboost.XGBClassifier(n_estimators=<span class="hljs-number">100</span>, max_depth=<span class="hljs-number">1</span>, random_state=<span class="hljs-number">0</span>)<br>model_xgb.fit(X_train, y_train)<br></code></pre></td></tr></table></figure>
 <p><img src="/Users/jeon-yujin/Library/Application Support/typora-user-images/image-20181218180019308.png" alt="image-20181218180019308"></p>
 <ul>
 <li><p><strong>LightGBM 라이브러리</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lightgbm</span><br><span class="line"></span><br><span class="line">model_lgbm = lightgbm.LGBMClassifier(n_estimators=<span class="number">100</span>, max_depth=<span class="number">1</span>, random_state=<span class="number">0</span>)</span><br><span class="line">model_lgbm.fit(X, y)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> lightgbm<br><br>model_lgbm = lightgbm.LGBMClassifier(n_estimators=<span class="hljs-number">100</span>, max_depth=<span class="hljs-number">1</span>, random_state=<span class="hljs-number">0</span>)<br>model_lgbm.fit(X, y)<br></code></pre></td></tr></table></figure>
 <p><img src="/Users/jeon-yujin/Library/Application Support/typora-user-images/image-20181218224306396.png" alt="image-20181218224306396"></p>
 </li>
 </ul>
@@ -218,7 +218,7 @@ L(y, C_{m-1}) = \frac{1}{2}(y-C_{m-1})^2</script><p>범함수의 미분은 실�
 
 
 
-    <a data-url="https://jyujin39.github.io/images/모형결합2.html" data-id="ck662zaq200039adzccxygnkm" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://jyujin39.github.io/images/모형결합2.html" data-id="ck664ngbh0003bsdzu5h4rte9" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -298,7 +298,7 @@ L(y, C_{m-1}) = \frac{1}{2}(y-C_{m-1})^2</script><p>범함수의 미분은 실�
         "url": "https://jyujin39.github.io/images/모형결합2.html",
         "description": "2. 부스팅 boosting부스트(boost) 방법은 처음부터 여러 개의 모형을 합쳐 문제를 푸는 취합(aggregation)과 달리 하나의 모형에서 시작해 하나씩 모형을 추가해나간다. 
 이 때 모형들의 집합을 위원회(commitee) $C$ 라고 하고, m개의 모형을 갖는 위원회를 $C_m$ 으로 표시한다. 위원회에 포함된 개별모형은 weak classi",
-        "wordCount": 747
+        "wordCount": 743
     }
 </script>
 

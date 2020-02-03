@@ -194,7 +194,7 @@
 </ol>
 <h4 id="파이썬에서의-정규성-검정"><a href="#파이썬에서의-정규성-검정" class="headerlink" title="파이썬에서의 정규성 검정"></a>파이썬에서의 정규성 검정</h4><p>t-test의 첫 번째 조건, 데이터가 정규분포를 따르는지를 확인하는 검정을 <strong>정규성검정(normality test)</strong>이라고 한다. 정규성검정 방법은 다양하게 있는데, 대표적으로 콜모고로프-스미르노프 검정, 샤피로-윌크 검정 등이 있다.</p>
 <p>numpy를 이용해 정규분포를 따르는 표본 100개를 임의로 생성한 후 scipy를 이용해 샤피로-윌크 검정을 해보자.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> scipy <span class="keyword">as</span> sp</span><br><span class="line"></span><br><span class="line">data = np.random.normal(size=<span class="number">100</span>)</span><br><span class="line">sp.stats.shapiro(data)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> scipy <span class="hljs-keyword">as</span> sp<br><br>data = np.random.normal(size=<span class="hljs-number">100</span>)<br>sp.stats.shapiro(data)<br></code></pre></td></tr></table></figure>
 <p>(0.9859086871147156, 0.368507872306824)</p>
 <p>코드를 실행하면 위와 같이 2개의 수치가 나오는데, 오른쪽에 있는 값이 p-value에 해당한다. p-value가 유의수준(0.05)보다 작으면 귀무가설을 기각하고, 크면 귀무가설을 채택한다.</p>
 <p>여기서 귀무가설은 ‘데이터가 정규분포를 따른다’ 이고, p-value가 0.36이 나왔기 때문에 귀무가설을 기각할 수 없어 위 데이터는 정규분포를 따른다고 얘기할 수 있게 된다.</p>
@@ -206,7 +206,7 @@
 
 
 
-    <a data-url="https://jyujin39.github.io/2019/11/12/t-test/" data-id="ck662zar7002s9adzksabulc1" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://jyujin39.github.io/2019/11/12/t-test/" data-id="ck664ngcg002qbsdz0d68zi8p" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -288,7 +288,7 @@
 하나의 데이터 집단에 대해 평균값을 조사하는 단일표본(One-sample) t-test와, 
 두 개의 데이터 집단에 대해 평균값이 같은지 다른지를 조사하는 독립표본(Independent-two-sample) t-test,
 그리고 두 데이터집단의 표본데이터가 서로 1대1 대응",
-        "wordCount": 227
+        "wordCount": 224
     }
 </script>
 
