@@ -22,7 +22,7 @@
 <meta property="og:site_name" content="스윗유진">
 <meta property="og:description" content="3.2 다중선형회귀단순선형회귀는 하나의 설명변수로 결과값을 예측할 때 유용한 방법이다. 하지만 현실에서 설명변수가 하나인 경우는 많지 않다. 광고 매출을 예측할 때만 해도 TV광고, 지면 광고, 소셜미디어 광고 등 다양한 설명변수가 존재할 수 있다. 이럴 경우 회귀분석을 어떻게 해야 할까? 한 가지 방법은 단순선형회귀를 설명변수 각각에 대해 진행하는 것이다">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-02-03T04:50:23.611Z">
+<meta property="og:updated_time" content="2020-02-03T09:31:23.801Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ISLR-3.2">
 <meta name="twitter:description" content="3.2 다중선형회귀단순선형회귀는 하나의 설명변수로 결과값을 예측할 때 유용한 방법이다. 하지만 현실에서 설명변수가 하나인 경우는 많지 않다. 광고 매출을 예측할 때만 해도 TV광고, 지면 광고, 소셜미디어 광고 등 다양한 설명변수가 존재할 수 있다. 이럴 경우 회귀분석을 어떻게 해야 할까? 한 가지 방법은 단순선형회귀를 설명변수 각각에 대해 진행하는 것이다">
@@ -240,6 +240,26 @@ Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + \cdots \beta_p X_p + \epsilon</script><p
 <p><code>원래 하던 TV, 신문, sns 광고를 유지한 상태에서 TV광고에 추가적으로 $1000을 더 쓴다면, 약 189단위의 매출 상승을 기대할 수 있다.</code></p>
 <p>이 다중선형회귀 결과 추정된 계수값은 각 변수에 대해 단순선형회귀를 했을 때 나오는 계수값과 상당히 다를 수 있다. 이 차이는 위에서 언급했듯이 하나의 변수에 대한 단순선형회귀가 다른 변수의 영향을 전혀 고려하지 않는 반면 <strong>다중선형회귀는 다른 변수들의 값이 고정일 때 변수 하나가 y에 미치는 영향을 측정</strong>하기 때문이다.</p>
 <p>따라서 단순선형회귀 결과 SNS 광고가 매출과 양의 상관관계를 가졌지만, 다중선형회귀를 해보니 둘 사이에는 상관관계가 없다는 결론이 나올 수가 있다.</p>
+<p>일상생횔에서도 위와 같은 상황이 자주 발생한다. 여름에는 아이스크림 판매량이 늘어나고, 또한 수영복 판매량도 늘어나는 것이 일반적이다. 만약 아이스크림 판매량으로 수영복 판매를 예측하는 선형회귀를 해본다면 둘 사이에 분명 양의 상관관계가 포착될 것이다. 그런데 사실 여름이라는 계절적 특성이 원인으로 작용해 두 판매량이 같이 증가하는 것일 뿐, 아이스크림 판매가 수영복 판매를 촉진시키거나 그 반대의 경우가 결코 아니라는 것을 우리 모두가 알고 있다. 다시 아이스크림 판매량과 기온을 가지고 수영복 판매를 다중회귀 해본다면, 더 이상 아이스크림 판매량이 수영복 판매에 영향을 주지 않는 결과가 나올 것이다.</p>
+<h3 id="3-2-2-다중선형회귀의-중요한-이슈들"><a href="#3-2-2-다중선형회귀의-중요한-이슈들" class="headerlink" title="3.2.2 다중선형회귀의 중요한 이슈들"></a>3.2.2 다중선형회귀의 중요한 이슈들</h3><ol>
+<li>설명변수 $X_1, X_2, \cdots , X_p$ 중에서 최소 하나 이상의 변수가 반응변수와 관련되어있는가?</li>
+<li>모든 변수가 $Y$ 에 대한 설명력을 가지는가, 아니면 일부만 설명력을 가지는가?</li>
+<li>만들어진 모델이 얼마나 데이터에 잘 적합하는가?</li>
+<li>만들어진 모델의 예측값은 얼마나 정확한가?</li>
+</ol>
+<p>다중선형회귀를 할 때 위 질문들을 염두하고 진행해야 한다. 하나씩 살펴보도록 하자.</p>
+<h4 id="1-반응변수와-설명변수-사이에-상관관계가-있는가"><a href="#1-반응변수와-설명변수-사이에-상관관계가-있는가" class="headerlink" title="1. 반응변수와 설명변수 사이에 상관관계가 있는가?"></a>1. 반응변수와 설명변수 사이에 상관관계가 있는가?</h4><p>설명변수가 1개뿐인 단순선형회귀에서는, X와 Y 사이에 상관관계가 존재하는지 보기 위해서 $\beta_1 = 0$ 인지만 확인하면 됐는데, 다중선형회귀에서는 $\beta_1 = \beta_2 = \cdots = \beta_p = 0$ 인지를 확인하는 문제가 된다. 선형회귀분석의 귀무가설은 ‘<strong>어떤 X변수도 Y와 상관관계가 없다</strong>‘ 가 되고, 대립가설은 ‘<strong>X 중 하나라도 Y와 상관관계가 있다</strong>‘가 된다.</p>
+<script type="math/tex; mode=display">
+H_0 : \beta_1 = \beta_2 = \cdots = \beta_p = 0\\
+H_a : \text{최소 하나 이상의 } \beta_j\text{는  0이 아니다.}</script><p>가설 검정은 <strong>F통계량</strong> 계산을 통해 하게 되는데, F통계량은 다음과 같이 계산한다.</p>
+<script type="math/tex; mode=display">
+F = \frac{(\text{TSS} - \text{RSS}) / p}{\text{RSS} / (n - p - 1)}</script><p>선형 모델에서는 아래 식이 디폴트로 증명되고, </p>
+<script type="math/tex; mode=display">
+E\{\text{RSS} / (n - p - 1)\} = \sigma^2</script><p>귀무가설이 맞다면, 즉 X와 Y 사이에 어떠한 상관관계도 없다면, 다음 식 또한 증명할 수 있다.</p>
+<script type="math/tex; mode=display">
+E\{(\text{TSS} - \text{RSS})/ p \} = \sigma^2</script><p>즉, <strong>X와 Y 사이에 상관관계가 없다면 F통계량은 1에 가까운 값을 갖게 된다</strong>. 반대로 대립가설이 맞다면, $E\{(\text{TSS} - \text{RSS})/ p \} &gt; \sigma^2$ 가 되어 F값이 1보다 커진다. </p>
+<p>그렇다면 도대체 <em>F값이 1보다 얼마나 큰 값이어야 귀무가설을 기각하고 X와 Y 사이에 상관관계가 있음을 주장할 수 있는 걸까</em>? 이 질문에 대한 대답은 데이터의 크기에 달려있다.</p>
+<p>$n$ 이 크면, 즉 <strong>데이터가 많으면, F값이 1보다 약간 큰 값이더라도 충분히 귀무가설을 기각할 수 있다</strong>. 다르게 말하면 데이터가 적을수록 귀무가설을 기각하기 위해 더 큰 F값이 요구된다. </p>
 
         </div>
         <footer class="article-footer">
@@ -247,7 +267,7 @@ Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + \cdots \beta_p X_p + \epsilon</script><p
 
 
 
-    <a data-url="https://jyujin39.github.io/2020/01/29/ISLR-3-2/" data-id="ck664ngbt000nbsdzs6a29b6o" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://jyujin39.github.io/2020/01/29/ISLR-3-2/" data-id="ck67996kl000pi7dzh3u44yxs" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -327,7 +347,7 @@ Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + \cdots \beta_p X_p + \epsilon</script><p
         "url": "https://jyujin39.github.io/2020/01/29/ISLR-3-2/",
         "description": "3.2 다중선형회귀단순선형회귀는 하나의 설명변수로 결과값을 예측할 때 유용한 방법이다. 하지만 현실에서 설명변수가 하나인 경우는 많지 않다. 광고 매출을 예측할 때만 해도 TV광고, 지면 광고, 소셜미디어 광고 등 다양한 설명변수가 존재할 수 있다. 이럴 경우 회귀분석을 어떻게 해야 할까?
 한 가지 방법은 단순선형회귀를 설명변수 각각에 대해 진행하는 것이다",
-        "wordCount": 356
+        "wordCount": 707
     }
 </script>
 
