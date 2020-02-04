@@ -236,11 +236,11 @@ body {
 code {
   margin: 0 2px;
   color: #141414;
+  background: #f8f8f8;
   padding: 3px 5px;
   font-size: 0.8em;
   border-radius: 2px;
   font-family: "Source Code Pro", NanumSquareRound, Consolas;
-  background-color: #fffac4;
 }
 .container {
   position: relative;
